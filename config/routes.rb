@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     sessions: 'admin/sessions'
   }
 
-  scope module: :admin do
+  namespace :admin do
     get 'top' =>  'homes#top', as: 'top'
 
     resources :shops, only: [:show, :index, :edit, :update]
@@ -19,8 +19,8 @@ Rails.application.routes.draw do
     sessions: 'shop/sessions'
   }
 
-  scope module: :shop do
-    get 'top' =>  'homes#top', as: 'shop_top'
+  namespace :shop do
+    get 'top' =>  'homes#top', as: 'top'
 
     get 'shops/unsubscribe' => 'shops#unsubscribe', as: 'confirm_unsubscribe_shop'
     get 'shops/withdraw' => 'shops#withdraw', as: 'withdraw_shop'
@@ -48,7 +48,8 @@ Rails.application.routes.draw do
     patch 'members/information' => 'members#update', as: 'update_information'
     get 'members/unsubscribe' => 'members#unsubscribe', as: 'confirm_unsubscribe_member'
     patch 'members/withdraw' => 'members#withdraw', as: 'withdraw_member'
-    get 'pre_orders/confirm' => 'pre_orders#confirm'
+    post 'pre_orders/confirm' => 'pre_orders#confirm'
+    get 'pre_orders/confirm' => 'pre_orders#error'
     get 'pre_orders/thanks' => 'pre_orders#thanks', as: 'thanks'
 
     resources :shops, only: [:show]
