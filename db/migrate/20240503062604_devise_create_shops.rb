@@ -31,6 +31,20 @@ class DeviseCreateShops < ActiveRecord::Migration[6.1]
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
+      t.string :name, null: false
+      t.string :name_kana, null: false
+      t.string :representative_name, null: false
+      t.text :introduction, null: false
+      t.string :postal_code, null: false
+      t.string :address, null: false
+      t.string :direction, null: false
+      t.string :telephone_number, null: false
+      t.string :parking, null: false
+      t.string :opening_hour, null: false
+      t.string :holiday, null: false
+      t.string :payment_method, null: false
+      t.text :note, null: false
+      t.boolean :is_active, null: false, default: true
 
 
       t.timestamps null: false
