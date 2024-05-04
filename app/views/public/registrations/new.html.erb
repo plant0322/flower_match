@@ -24,7 +24,7 @@
               <td><%= f.label :first_name_kana, "(メイ)" %> <%= f.text_field :first_name_kana, placeholder: "例）ハナコ", autocomplete: "first_name_kana", class: "form-control" %></td>
             </tr>
             <tr>
-              <td>ニックネーム</td>
+              <td><%= f.label :nickname, "ニックネーム" %></td>
               <td><%= f.text_field :nickname, placeholder: "例）たんぽぽ", autocomplete: "nickname", class: "form-control" %></td>
               <td></td>
             </tr>
@@ -64,7 +64,6 @@
           </tbody>
         </table>
       </div>
-
       <div class="col-6 d-grid my-3 mx-auto">
         <%= f.submit "登録する", class: "btn btn-info p-2" %>
       </div>
@@ -74,7 +73,7 @@
     <hr>
     <div class="bg-secondary p-3 mb-3 mx-auto">
       <div class="col-6 d-grid mx-auto">
-        <%= link_to "ログインする", new_session_path(resource_name), class: "btn btn-info p-2" %>
+        <%= link_to "ログインする", new_member_session_path, class: "btn btn-info p-2" %>
       </div>
     </div>
 

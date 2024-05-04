@@ -1,2 +1,16 @@
-<h1>Shop::Homes#top</h1>
-<p>Find me in app/views/shop/homes/top.html.erb</p>
+<div class="container d-flex flex-row-reverse pt-3">
+  <div class="col-9 px-3">
+    <h1>ショップTOP</h1>
+    <hr>
+    <p>新着とおすすめを並べる</p>
+
+    <h2>New Item</h2>
+    <hr>
+    <h2>Pick Up</h2>
+    <hr>
+
+  </div>
+  <div class="col-3 px-3">
+    <%= render 'shop_menu' %>
+  </div>
+</div>

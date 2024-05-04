@@ -22,11 +22,12 @@ Rails.application.routes.draw do
   namespace :shop do
     get 'top' =>  'homes#top', as: 'top'
 
+    get 'shops/information/edit' => 'shops#edit', as: 'edit_information'
+    patch 'shops/information' => 'shops#update', as: 'update_information'
     get 'shops/unsubscribe' => 'shops#unsubscribe', as: 'confirm_unsubscribe_shop'
     get 'shops/withdraw' => 'shops#withdraw', as: 'withdraw_shop'
     get 'members/:member_id/pre_orders' => 'pre_orders#index', as: 'member_pre_orders'
 
-    resources :shops, only: [:edit, :update]
     resources :members, only: [:show]
     resources :items
     resources :pre_orders, only: [:show, :index, :update]

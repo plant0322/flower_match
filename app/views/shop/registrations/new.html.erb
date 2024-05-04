@@ -1,29 +1,111 @@
-<h2>Sign up</h2>
+<div class="container d-flex flex-column pt-3">
+  <div class="col-8 mx-auto px-3">
+    <h2>ショップ新規登録</h2>
+    <hr>
+    <%= form_with model: @shop, url: shop_registration_path do |f| %>
+      <%= render "public/shared/error_messages", resource: resource %>
+      <div class="bg-secondary p-3">
+        <table class="table table-borderless table-secondary">
+          <thead>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= f.label :name, "ショップ名" %></td>
+              <td class="w-75"><%= f.text_field :name, autofocus: true, placeholder: "例）Flower Shop", autocomplete: "name", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :name_kana, "ショップ名（フリガナ）" %></td>
+              <td><%= f.text_field :name_kana, placeholder: "例）フラワーショップ", autocomplete: "name_kana", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :representative_name, "担当者" %></td>
+              <td><%= f.text_field :representative_name, placeholder: "例）牡丹百合", autocomplete: "representative_name", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :postal_code, "ショップの郵便番号" %></td>
+              <td><%= f.text_field :postal_code, placeholder: "例）1234567", autocomplete: "postal_code", class: "form-control" %> ※ハイフンは不要です</td>
+            </tr>
+            <tr>
+              <td><%= f.label :address, "ショップの住所" %></td>
+              <td><%= f.text_field :address, placeholder: "例）富山県砺波市0-0", autocomplete: "address", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :direction, "アクセス・道案内" %></td>
+              <td><%= f.text_area :direction, placeholder: "例）スーパーの向かい側にある白い建物です", autocomplete: "direction", class: "form-control" %> ※お店の場所を簡単に説明してください</td>
+            </tr>
+            <tr>
+              <td><%= f.label :telephone_number, "電話番号（ショップの連絡先）" %></td>
+              <td><%= f.text_field :telephone_number, placeholder: "例）0800000000", autocomplete: "telephone_number", class: "form-control" %> ※ハイフンは不要です</td>
+            </tr>
+            <tr>
+              <td><%= f.label :opening_hour, "営業時間" %></td>
+              <td><%= f.text_field :opening_hour, placeholder: "例）火～日 9:30～18：00", autocomplete: "opening_hour", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :holiday, "定休日" %></td>
+              <td><%= f.text_field :holiday, placeholder: "例）月曜日", autocomplete: "holiday", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :parking, "駐車場" %></td>
+              <td><%= f.text_field :parking, placeholder: "例）駐車場あり（3台分）", autocomplete: "parking", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :payment_method, "支払方法" %></td>
+              <td><%= f.text_field :payment_method, placeholder: "例）現金/Visa／Mastercard／JCB／American Express／PayPay", autocomplete: "payment_method", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :introduction, "ショップ紹介文" %></td>
+              <td><%= f.text_area :introduction, placeholder: "例）フラワーアレンジのご要望承ります。", autocomplete: "introduction", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :note, "備考欄" %></td>
+              <td><%= f.text_area :note, placeholder: "その他", autocomplete: "note", class: "form-control" %></td>
+            </tr>
+          </tbody>
+        </table>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "shop/shared/error_messages", resource: resource %>
+        <table class="table table-borderless table-secondary">
+          <thead>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= f.label :email, "メール" %></td>
+              <td><%= f.email_field :email, placeholder: "例）xxx_sample@mail", autocomplete: "email", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :password, "パスワード" %></td>
+              <td>
+                <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+                ※<%= @minimum_password_length %> 文字以上で入力してください
+              </td>
+            </tr>
+            <tr>
+              <td><%= f.label :password_confirmation, "パスワード(確認用)" %></td>
+              <td>
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div class="col-6 d-grid my-3 mx-auto">
+        <%= f.submit "登録する", class: "btn btn-info p-2" %>
+      </div>
+    <% end %>
+
+    <h2 class="mt-5">既に登録済みの方はこちら</h2>
+    <hr>
+    <div class="bg-secondary p-3 mb-3 mx-auto">
+      <div class="col-6 d-grid mx-auto">
+        <%= link_to "ログインする", new_shop_session_path, class: "btn btn-info p-2" %>
+      </div>
+    </div>
+
+
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "shop/shared/links" %>
+</div>

@@ -1,2 +1,65 @@
-<h1>Public::Members#edit</h1>
-<p>Find me in app/views/public/members/edit.html.erb</p>
+<div class="container d-flex flex-column pt-3">
+  <div class="col-8 mx-auto px-3">
+    <h2>会員情報編集</h2>
+    <hr>
+
+    <%= form_with model: @member, url: update_information_path do |f| %>
+      <%= render "public/shared/error_messages", resource: @member %>
+      <div class="bg-secondary p-3">
+        <table class="table table-borderless table-secondary">
+          <thead>
+            <th></th>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>名前</td>
+              <td><%= f.label :last_name, "(姓)" %> <%= f.text_field :last_name, autofocus: true, placeholder: "例）山本", autocomplete: "last_name", class: "form-control" %></td>
+              <td><%= f.label :first_name, "(名)" %> <%= f.text_field :first_name, placeholder: "例）花子", autocomplete: "first_name", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td>フリガナ</td>
+              <td><%= f.label :last_name_kana, "(セイ)" %> <%= f.text_field :last_name_kana, placeholder: "例）ヤマモト", autocomplete: "last_name_kana", class: "form-control" %></td>
+              <td><%= f.label :first_name_kana, "(メイ)" %> <%= f.text_field :first_name_kana, placeholder: "例）ハナコ", autocomplete: "first_name_kana", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :nickname, "ニックネーム" %></td>
+              <td><%= f.text_field :nickname, placeholder: "例）たんぽぽ", autocomplete: "nickname", class: "form-control" %></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><%= f.label :postal_code, "郵便番号" %></td>
+              <td><%= f.text_field :postal_code, placeholder: "例）1234567", autocomplete: "postal_code", class: "form-control" %> ※ハイフンは不要です</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><%= f.label :address, "住所" %></td>
+              <td colspan="2"><%= f.text_field :address, placeholder: "例）愛知県名古屋市中区0-0", autocomplete: "address", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :telephone_number, "電話番号" %></td>
+              <td><%= f.text_field :telephone_number, placeholder: "例）0800000000", autocomplete: "telephone_number", class: "form-control" %> ※ハイフンは不要です</td>
+            </tr>
+            <tr>
+              <td><%= f.label :email, "メール" %></td>
+              <td colspan="2"><%= f.email_field :email, placeholder: "例）xxx_sample@mail", autocomplete: "email", class: "form-control" %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="d-flex flex-row my-3 mx-auto">
+        <div class="col-6 d-grid p-2">
+          <%= link_to "マイページへ戻る", mypage_path, class: "btn btn-info p-2" %>
+        </div>
+        <div class="col-6 d-grid p-2">
+          <%= f.submit "この内容で更新する", class: "btn btn-info p-2" %>
+        </div>
+      </div>
+    <% end %>
+
+    <div>退会手続き</div>
+    <div><%= link_to "パスワードの変更はこちら", edit_member_password_path %></div>
+
+  </div>
+</div>
