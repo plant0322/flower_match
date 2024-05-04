@@ -1,5 +1,5 @@
 class Public::MembersController < ApplicationController
-  def mypage
+  def show
   end
 
   def edit
