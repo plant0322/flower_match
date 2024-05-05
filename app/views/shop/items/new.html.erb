@@ -3,55 +3,7 @@
     <h2>商品を新しく登録する</h2>
     <hr>
 
-    <%= form_with model: @item, url: shop_items_path do |f| %>
-      <%= render "layouts/error_messages", obj: @item %>
-      <div class="bg-secondary p-3">
-        <table class="table table-borderless table-secondary">
-          <thead>
-            <th></th>
-            <th></th>
-            <th></th>
-          </thead>
-          <tbody>
-            <tr>
-              <td><%= f.label :item_image, "画像" %></td>
-              <td colspan="2" class="w-75"><%= f.file_field :item_image, accept: "item_image", class: "form-control" %></td>
-            </tr>
-            <tr>
-              <td><%= f.label :name, "商品名" %></td>
-              <td colspan="2"><%= f.text_field :name, autofocus: true, placeholder: "例）ミニ花束", autocomplete: "name", class: "form-control" %></td>
-            </tr>
-            <tr>
-              <td><%= f.label :introduction, "商品説明" %></td>
-              <td colspan="2"><%= f.text_area :introduction, placeholder: "例）日常でも気軽にお花を楽しめる、小さな花束です。", autocomplete: "introduction", class: "form-control" %></td>
-            </tr>
-            <tr>
-              <td><%= f.label :size, "サイズ" %></td>
-              <td colspan="2"><%= f.text_field :size, placeholder: "例）幅15×奥行き15×高さ20㎝", autocomplete: "size", class: "form-control" %></td>
-            </tr>
-            <tr>
-              <td><%= f.label :price, "値段" %></td>
-              <td><%= f.text_field :price, placeholder: "例）1500円", autocomplete: "price", class: "form-control" %>※カンマ(,)なしの数字のみで入力してください</td>
-              <td>円</td>
-            </tr>
-            <tr>
-              <td><%= f.label :stock, "在庫" %></td>
-              <td><%= f.text_field :stock, placeholder: "例）5", autocomplete: "stock", class: "form-control" %>※対応可能な個数を入力してください</td>
-              <td>個</td>
-            </tr>
-            <tr>
-              <td><%= f.label :deadline, "キャンセル可能期限" %></td>
-              <td><%= f.text_field :deadline, placeholder: "例）2", autocomplete: "deadline", class: "form-control" %> ※数字で入力してください</td>
-              <td>日前まで可能</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="col-6 d-grid my-3 mx-auto">
-        <%= f.submit "商品を登録する", class: "btn btn-info p-2" %>
-      </div>
-    <% end %>
-
+    <%= render 'form', item: @item, url: shop_items_path %>
 
   </div>
 </div>

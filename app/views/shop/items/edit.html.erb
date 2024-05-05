@@ -1,2 +1,9 @@
-<h1>Shop::Items#edit</h1>
-<p>Find me in app/views/shop/items/edit.html.erb</p>
+<div class="container d-flex flex-column pt-3">
+  <div class="col-8 mx-auto px-3">
+    <h2>商品情報を編集する</h2>
+    <hr>
+
+    <%= render 'form', item: @item, url: shop_item_path %>
+
+  </div>
+</div>

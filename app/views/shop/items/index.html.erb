@@ -1,2 +1,28 @@
-<h1>Shop::Items#index</h1>
-<p>Find me in app/views/shop/items/index.html.erb</p>
+<div class="container d-flex flex-row-reverse pt-3">
+  <div class="col-9 px-3">
+    <h1>商品一覧</h1>
+    <hr>
+    <div class="d-flex flex-wrap">
+      <% @items. each do |item| %>
+        <div class="col-4 card p-2">
+          <%= image_tag item.get_item_image(200,200), class: "card-img-top" %>
+          <div class="card-body">
+            <div class="card-title h6">
+              <%= item.name %>
+            </div>
+            <div class="card-body">
+              <%= item.price.to_s(:delimited, delimiter: ',') %>円<br>
+              在庫<%= item.stock %>個<br>
+              <%= item.is_active %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+
+  </div>
+  <div class="col-3 px-3">
+    <%= render 'shop/homes/menu' %>
+  </div>
+</div>

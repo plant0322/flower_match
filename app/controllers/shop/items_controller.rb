@@ -1,4 +1,6 @@
 class Shop::ItemsController < ApplicationController
+  before_action :set_item, only: [:show, :edit, :update]
+
   def new
     @item = Item.new
   end
@@ -11,6 +13,8 @@ class Shop::ItemsController < ApplicationController
   end
 
   def index
+    @shop = Shop.find(current_shop.id)
+    @items = @shop.items
   end
 
   def show
@@ -19,7 +23,16 @@ class Shop::ItemsController < ApplicationController
   def edit
   end
 
+  def update
+    @item = Item.update(item_params)
+    redirect_to shop_items_path
+  end
+
   private
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
   def item_params
     params.require(:item).permit(:item_image, :name, :introduction, :size, :price, :stock, :deadline)
