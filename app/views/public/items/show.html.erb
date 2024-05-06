@@ -41,7 +41,12 @@
       <p><%= @item.introduction %></p>
     </div>
     <div class="col-6 d-grid my-3 mx-auto">
+    <% if member_signed_in? %>
       <%= link_to 'この商品を予約する', new_pre_order_path, class: "btn btn-info p-2" %>
+    <% else %>
+      <%= link_to 'ログインして予約する', new_member_session_path, class: "btn btn-info p-2" %>
+      ※予約にはログインが必要です
+    <% end %>
     </div>
 
   </div>

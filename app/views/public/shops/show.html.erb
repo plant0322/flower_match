@@ -1,2 +1,64 @@
-<h1>Public::Shops#show</h1>
-<p>Find me in app/views/public/shops/show.html.erb</p>
+<div class="container d-flex flex-row-reverse pt-3">
+  <div class="col-9 px-3">
+    <div class="d-flex flex-wrap">
+      <!--画像を登録できるようにする-->
+      <div class="col-5 order-1">
+        <%= image_tag 'sample', size: '300x300' %>
+      </div>
+      <!--詳細-->
+      <div class="col-7 order-3 p-1">
+        <table class="table table-borderless table-secondary">
+          <tr>
+            <th>ショップ名</th>
+            <td>
+              <%= @shop.name_kana %><br>
+              <%= @shop.name %>
+            </td>
+          </tr>
+          <tr>
+            <th>紹介文</th>
+            <td><%= @shop.introduction %></td>
+          </tr>
+          <tr>
+          <tr>
+            <th>住所</th>
+            <td>
+              <%= @shop.postal_code.to_s.insert(3, "-") %><br>
+              <%= @shop.address %>
+            </td>
+          </tr>
+          <tr>
+            <th>アクセス・道案内</th>
+            <td><%= @shop.direction %></td>
+          </tr>
+          <tr>
+            <th>営業時間</th>
+            <td><%= @shop.opening_hour %></td>
+          </tr>
+          <tr>
+            <th>定休日</th>
+            <td><%= @shop.holiday %></td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td><%= @shop.telephone_number.to_s.insert(3, "-").insert(7, "-") %></td>
+          </tr>
+          <tr>
+            <th>支払方法</th>
+            <td><%= @shop.payment_method %></td>
+          </tr>
+          <tr>
+            <th>備考</th>
+            <td><%= @shop.note %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <%= render 'public/items/index', items: @items %>
+
+  </div>
+  <div class="col-3 px-3">
+    <%= render 'public/members/info' %>
+    <%= render 'public/members/menu' %>
+  </div>
+</div>

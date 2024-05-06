@@ -1,0 +1,21 @@
+<table class="table">
+  <tr>
+    <th>会員情報</th>
+  </tr>
+  <tr>
+    <td>
+      <!--画像を登録できるようにする-->
+      <%= image_tag 'sample', size: '150x150' %>
+    </td>
+  </tr>
+  <tr>
+    <th>
+      ニックネーム
+    </th>
+  </tr>
+  <tr>
+    <td>
+      <%= @member.nickname %>
+    </td>
+  </tr>
+</table>
