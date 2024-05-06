@@ -1,4 +1,5 @@
 class Shop::PreOrdersController < ApplicationController
+  before_action :authenticate_shop!
   def index
   end
 

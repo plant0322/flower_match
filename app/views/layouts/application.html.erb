@@ -27,8 +27,8 @@
       </div>
       <!--ヘッダーボタン-->
       <div class="col-5 d-flex justify-content-end pe-4">
-        <%= link_to destroy_member_session_path, method: :delete, class: "text-white" do %>ユーザーログアウト<% end %>
-        <%= link_to shop_session_path, method: :delete, class: "text-white" do %>店ログイン<% end %>
+        <%= link_to destroy_member_session_path, method: :delete, class: "text-white" do %>ユーザーログアウト　<% end %>
+        <%= link_to shop_session_path, method: :delete, class: "text-white" do %>店ログイン　<% end %>
         <%= link_to destroy_shop_session_path, method: :delete, class: "text-white" do %>店ログアウト<% end %>
         <!--ショップユーザーログイン後-->
         <% if shop_signed_in? %>
@@ -38,7 +38,7 @@
         <% elsif member_signed_in? %>
         <!--一般ユーザーログイン後-->
           <div class="col-1 bg-info p-3 m-2 w-25"><%= link_to about_path do %>About<% end %></div>
-          <div class="col-1 bg-info p-3 m-2 w-25"><%= link_to shop_top_path do %>ユーザーマイページ<% end %></div>
+          <div class="col-1 bg-info p-3 m-2 w-25"><%= link_to mypage_path do %>ユーザーマイページ<% end %></div>
           <div class="col-1 bg-info p-3 m-2 w-25"><%= link_to pre_orders_path do %>予約一覧<% end %></div>
         <% else %>
           <!--ログイン前-->

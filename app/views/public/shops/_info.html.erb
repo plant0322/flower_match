@@ -1,0 +1,76 @@
+<table class="table">
+  <tr>
+    <th>ショップ情報</th>
+  </tr>
+  <tr>
+    <td>
+      <!--画像を登録できるようにする-->
+      <%= image_tag 'sample', size: '150x150' %>
+    </td>
+  </tr>
+  <tr>
+    <th>
+      ショップ名
+    </th>
+  </tr>
+  <tr>
+    <td>
+      <%= @shop.name_kana %><br>
+      <%= @shop.name %>
+    </td>
+  </tr>
+  <tr>
+    <th>
+      住所
+    </th>
+  </tr>
+  <tr>
+    <td>
+      <%= @shop.postal_code.to_s.insert(3, "-") %><br>
+      <%= @shop.address %>
+    </td>
+  </tr>
+  <tr>
+    <th>
+      営業時間
+    </th>
+  </tr>
+  <tr>
+    <td><%= @shop.opening_hour %></td>
+  </tr>
+  <tr>
+    <th>
+      定休日
+    </th>
+  </tr>
+  <tr>
+    <td><%= @shop.holiday %></td>
+  </tr>
+  <tr>
+    <th>
+      支払方法
+    </th>
+  </tr>
+  <tr>
+    <td><%= @shop.payment_method %></td>
+  </tr>
+  <tr>
+    <th>
+      電話番号
+    </th>
+  </tr>
+  <tr>
+    <td><%= @shop.telephone_number %></td>
+  </tr>
+  <tr>
+    <th>
+      駐車場
+    </th>
+  </tr>
+  <tr>
+    <td><%= @shop.parking %></td>
+  </tr>
+  <tr>
+    <td><%= link_to "ショップ情報を詳しく見る", shop_path %></td>
+  </tr>
+</table>

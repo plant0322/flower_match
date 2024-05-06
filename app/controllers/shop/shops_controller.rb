@@ -1,4 +1,5 @@
 class Shop::ShopsController < ApplicationController
+  before_action :authenticate_shop!
   before_action :set_current_shop
 
   def edit
