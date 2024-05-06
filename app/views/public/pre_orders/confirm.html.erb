@@ -1,2 +1,59 @@
-<h1>Public::PreOrders#confirm</h1>
-<p>Find me in app/views/public/pre_orders/confirm.html.erb</p>
+<div class="container d-flex flex-column pt-3">
+  <div class="col-8 mx-auto px-3">
+    <h2>予約情報をご確認ください</h2>
+    <hr>
+    <!--商品情報-->
+    <div class="bg-secondary p-3">
+      <table class="table table-borderless table-secondary">
+        <tbody>
+          <tr>
+            <th>来店日時</td>
+            <td><%= @pre_order.visit_day %> <%= @pre_order.visit_time %></td>
+          </tr>
+          <tr>
+            <th>予約商品</td>
+            <td ><%= @pre_order.name %> <%= @pre_order.total_payment %></td>
+          </tr>
+          <tr>
+            <th>用途</td>
+            <td><%= @pre_order.purpose %> <%= @pre_order.purpose %></td>
+          </tr>
+          <tr>
+            <th>備考</td>
+            <td><%= @pre_order.note %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--お客さま情報-->
+    <div class="bg-secondary p-3">
+      <table class="table table-borderless table-secondary">
+        <tbody>
+          <tr>
+            <th>予約者氏名</td>
+            <td><%= @pre_order.last_name %> <%= @pre_order.first_name %></td>
+          </tr>
+          <tr>
+            <th>予約者連絡先（電話番号）</td>
+            <td><%= @pre_order.telephone_number %> <%= @pre_order.telephone_number %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  <div class="d-flex flex-row my-3 mx-auto">
+    <div class="col-6 d-grid p-2">
+      <%= form_with url: pre_orders_new_path do |f| %>
+        <%= f.hidden_field :item_id, value: @pre_order.item_id %>
+        <%= f.submit '情報入力へ戻る', class: "btn btn-info p-2" %>
+      <% end %>
+    </div>
+    <div class="col-6 d-grid p-2">
+      <%= form_with model: @pre_order, url: pre_orders_path do |f| %>
+        <%= f.submit "予約を確定する", class: "btn btn-info p-2" %>
+      <% end %>
+    </div>
+  </div>
+
+  </div>
+</div>

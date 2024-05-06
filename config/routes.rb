@@ -51,10 +51,12 @@ Rails.application.routes.draw do
     patch 'members/withdraw'       => 'members#withdraw', as: 'withdraw_member'
     post 'pre_orders/confirm'      => 'pre_orders#confirm'
     get 'pre_orders/confirm'       => 'pre_orders#error'
+    post 'pre_orders/new'          => 'pre_orders#new'
+    get 'pre_orders/confirm'       => 'pre_orders#error'
     get 'pre_orders/thanks'        => 'pre_orders#thanks', as: 'thanks'
 
     resources :shops, only: [:show]
     resources :items, only: [:show]
-    resources :pre_orders, only: [:new, :show, :index, :create]
+    resources :pre_orders, only: [:show, :index, :create]
   end
 end
