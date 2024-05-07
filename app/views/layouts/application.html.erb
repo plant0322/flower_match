@@ -27,6 +27,10 @@
         <% if member_signed_in? %>
           <div class="text-white"><%= current_member.last_name %></div>
         <% end %>
+        <!--管理者でログインしている場合-->
+        <% if admin_signed_in? %>
+          <div class="text-white">管理者</div>
+        <% end %>
       <!--検索フォーム-->
       <div class="input-group h-25">
         <input type="text" class="form-control" placeholder="キーワードから探す" aria-label="キーワードから探す">
@@ -49,6 +53,11 @@
           <div class="col-1 bg-info p-3 m-2 w-25"><%= link_to about_path do %>About<% end %></div>
           <div class="col-1 bg-info p-3 m-2 w-25"><%= link_to mypage_path do %>ユーザーマイページ<% end %></div>
           <div class="col-1 bg-info p-3 m-2 w-25"><%= link_to pre_orders_path do %>予約一覧<% end %></div>
+        <% elsif admin_signed_in? %>
+        <!--管理者ログイン後…口コミ一覧・連絡一覧を追加する-->
+          <div class="col-1 bg-info p-3 m-2 w-25"><%= link_to admin_shops_path do %>ショップ一覧<% end %></div>
+          <div class="col-1 bg-info p-3 m-2 w-25"><%= link_to admin_members_path do %>一般ユーザー一覧<% end %></div>
+          <div class="col-1 bg-info p-3 m-2 w-25"><%= link_to destroy_admin_session_path do %>ログアウト<% end %></div>
         <% else %>
           <!--ログイン前-->
           <div class="col-1 bg-info p-3 m-2 w-25"><%= link_to about_path do %>About<% end %></div>
