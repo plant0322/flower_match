@@ -12,12 +12,21 @@
   </head>
 
   <body class="d-flex flex-column vh-100">
+    <!--ヘッダーここから-->
     <header class="d-flex flex-row bg-secondary p-2">
       <div class="col-4 pt-4 ps-4">
         <%= link_to root_path do %>
           <p class="h1 text-white">FlowerMatch</p>
         <% end %>
       </div>
+        <!--ログイン中の一般ユーザー名-->
+        <% if shop_signed_in? %>
+          <div class="text-white"><%= current_shop.name %></div>
+        <% end %>
+        <!--ログイン中のショップ名-->
+        <% if member_signed_in? %>
+          <div class="text-white"><%= current_member.last_name %></div>
+        <% end %>
       <!--検索フォーム-->
       <div class="input-group h-25">
         <input type="text" class="form-control" placeholder="キーワードから探す" aria-label="キーワードから探す">

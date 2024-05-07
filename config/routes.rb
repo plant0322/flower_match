@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     get 'shops/information/edit'        => 'shops#edit', as: 'edit_information'
     patch 'shops/information'           => 'shops#update', as: 'update_information'
     get 'shops/unsubscribe'             => 'shops#unsubscribe', as: 'confirm_unsubscribe_shop'
-    get 'shops/withdraw'                => 'shops#withdraw', as: 'withdraw_shop'
+    patch 'shops/withdraw'                => 'shops#withdraw', as: 'withdraw_shop'
     get 'members/:member_id/pre_orders' => 'pre_orders#index', as: 'member_pre_orders'
 
     resources :members, only: [:show]
@@ -48,11 +48,13 @@ Rails.application.routes.draw do
     get 'members/information/edit' => 'members#edit', as: 'edit_information'
     patch 'members/information'    => 'members#update', as: 'update_information'
     get 'members/unsubscribe'      => 'members#unsubscribe', as: 'confirm_unsubscribe_member'
+    put 'members/information'      => 'members#update'
     patch 'members/withdraw'       => 'members#withdraw', as: 'withdraw_member'
     post 'pre_orders/confirm'      => 'pre_orders#confirm'
     get 'pre_orders/confirm'       => 'pre_orders#error'
+    # newのルーティング怪しい
     post 'pre_orders/new'          => 'pre_orders#new'
-    get 'pre_orders/confirm'       => 'pre_orders#error'
+    get 'pre_orders/new'           => 'pre_orders#error'
     get 'pre_orders/thanks'        => 'pre_orders#thanks', as: 'thanks'
 
     resources :shops, only: [:show]

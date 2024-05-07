@@ -12,7 +12,7 @@
           </tr>
           <tr>
             <th>予約商品</td>
-            <td ><%= @pre_order.name %> <%= @pre_order.total_payment %></td>
+            <td ><%= @item.name %> <%= @item.price %></td>
           </tr>
           <tr>
             <th>用途</td>
@@ -31,11 +31,11 @@
         <tbody>
           <tr>
             <th>予約者氏名</td>
-            <td><%= @pre_order.last_name %> <%= @pre_order.first_name %></td>
+            <td><%= current_member.last_name %> <%= current_member.first_name %></td>
           </tr>
           <tr>
             <th>予約者連絡先（電話番号）</td>
-            <td><%= @pre_order.telephone_number %> <%= @pre_order.telephone_number %></td>
+            <td><%= current_member.telephone_number %> <%= current_member.telephone_number %></td>
           </tr>
         </tbody>
       </table>
@@ -44,7 +44,6 @@
   <div class="d-flex flex-row my-3 mx-auto">
     <div class="col-6 d-grid p-2">
       <%= form_with url: pre_orders_new_path do |f| %>
-        <%= f.hidden_field :item_id, value: @pre_order.item_id %>
         <%= f.submit '情報入力へ戻る', class: "btn btn-info p-2" %>
       <% end %>
     </div>

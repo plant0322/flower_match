@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Shop::SessionsController < Devise::SessionsController
+  before_action :shop_state, only: [:create]
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -31,6 +32,18 @@ class Shop::SessionsController < Devise::SessionsController
 
   def after_sign_out_path_for(resource)
     root_path
+  end
+
+  private
+
+  def shop_state
+    shop = Shop.find_by(email: params[:shop][:email])
+    return if shop.nil?
+    return unless shop.valid_password?(params[:shop][:password])
+    unless shop.is_active
+      flash[:alert] = "すでに退会されているアカウントです。申し訳ありませんが、管理者にお問い合わせください。"
+      redirect_to new_shop_registration_path
+    end
   end
 
 end
