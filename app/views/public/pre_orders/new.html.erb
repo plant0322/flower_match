@@ -31,6 +31,7 @@
       <!--< link_to "商品情報へ戻る", item_path(@item_id), class: "btn btn-info p-2" %>-->
     </div>
     <div class="col-6 d-grid p-2">
+      <%= f.hidden_field :item_id, value: @item.id %>
       <%= f.submit "予約情報を確認する", class: "btn btn-info p-2" %>
     </div>
   </div>

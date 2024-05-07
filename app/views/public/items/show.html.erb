@@ -42,7 +42,7 @@
     </div>
     <div class="col-6 d-grid my-3 mx-auto">
     <% if member_signed_in? %>
-      <%= form_with url: pre_orders_new_path do |f| %>
+      <%= form_with url: new_pre_order_path, method: :get do |f| %>
         <%= f.hidden_field :item_id, value: @item.id %>
         <%= f.submit 'この商品を予約する', class: "btn btn-info p-2" %>
       <% end %>

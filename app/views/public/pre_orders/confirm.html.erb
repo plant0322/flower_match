@@ -35,7 +35,7 @@
           </tr>
           <tr>
             <th>予約者連絡先（電話番号）</td>
-            <td><%= current_member.telephone_number %> <%= current_member.telephone_number %></td>
+            <td><%= current_member.telephone_number %></td>
           </tr>
         </tbody>
       </table>
@@ -43,12 +43,17 @@
 
   <div class="d-flex flex-row my-3 mx-auto">
     <div class="col-6 d-grid p-2">
-      <%= form_with url: pre_orders_new_path do |f| %>
+      <%= form_with url: new_pre_order_path do |f| %>
         <%= f.submit '情報入力へ戻る', class: "btn btn-info p-2" %>
       <% end %>
     </div>
     <div class="col-6 d-grid p-2">
       <%= form_with model: @pre_order, url: pre_orders_path do |f| %>
+        <%= f.hidden_field :item_id, value: @item.id %>
+        <%= f.hidden_field :visit_day, value: @pre_order.visit_day %>
+        <%= f.hidden_field :visit_time, value: @pre_order.visit_time %>
+        <%= f.hidden_field :purpose, value: @pre_order.purpose %>
+        <%= f.hidden_field :note, value: @pre_order.note %>
         <%= f.submit "予約を確定する", class: "btn btn-info p-2" %>
       <% end %>
     </div>

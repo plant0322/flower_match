@@ -6,7 +6,7 @@ class Public::PreOrdersController < ApplicationController
   end
 
   def confirm
-    @item = Item.find(params[:item_id])
+    @item = Item.find_by(params[:pre_order][:item_id])
     @pre_order = PreOrder.new(pre_order_params)
     if params[:note].blank?
       @pre_order.note = '特になし'
@@ -15,8 +15,7 @@ class Public::PreOrdersController < ApplicationController
 
   def create
     @pre_order = current_member.pre_orders.new(pre_order_params)
-    item_id = params[:item_id]
-    item = Item.find_by(id: item_id)
+    item = Item.find_by(params[:pre_order][:item_id])
     @pre_order.item_id = item.id
     @pre_order.name = item.name
     @pre_order.total_payment = item.price
@@ -27,6 +26,7 @@ class Public::PreOrdersController < ApplicationController
     @pre_order.telephone_number = current_member.telephone_number
     @pre_order.postal_code = current_member.postal_code
     @pre_order.address = current_member.address
+    @pre_order.buy_day = Time.zone.today
     if @pre_order.save
       redirect_to thanks_path
     else
@@ -38,6 +38,7 @@ class Public::PreOrdersController < ApplicationController
   end
 
   def thanks
+    @pre_orders = current_member.pre_orders
   end
 
   def index
