@@ -8,7 +8,10 @@ class Public::PreOrdersController < ApplicationController
   def confirm
     @item = Item.find_by(params[:pre_order][:item_id])
     @pre_order = PreOrder.new(pre_order_params)
-    if params[:note].blank?
+    if params[:pre_order][:visit_day].blank? || params[:pre_order][:visit_time].blank?  || params[:pre_order][:purpose].blank?
+      flash[:alert] = '情報を正しく入力して下さい。'
+      render :new
+    else params[:note].blank?
       @pre_order.note = '特になし'
     end
   end
@@ -38,10 +41,10 @@ class Public::PreOrdersController < ApplicationController
   end
 
   def thanks
-    @pre_orders = current_member.pre_orders
   end
 
   def index
+    @pre_orders = current_member.pre_orders
   end
 
   def show

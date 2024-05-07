@@ -40,9 +40,9 @@
       </div>
       <!--ヘッダーボタン-->
       <div class="col-5 d-flex justify-content-end pe-4">
-        <%= link_to destroy_member_session_path, method: :delete, class: "text-white" do %>ユーザーログアウト　<% end %>
+        <%= link_to destroy_member_session_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "text-white" do %>ユーザーログアウト　<% end %>
         <%= link_to shop_session_path, method: :delete, class: "text-white" do %>店ログイン　<% end %>
-        <%= link_to destroy_shop_session_path, method: :delete, class: "text-white" do %>店ログアウト<% end %>
+        <%= link_to destroy_shop_session_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "text-white" do %>店ログアウト<% end %>
         <!--ショップユーザーログイン後-->
         <% if shop_signed_in? %>
           <div class="col-1 bg-info p-3 m-2 w-25"><%= link_to new_shop_item_path do %>商品の新規登録<% end %></div>

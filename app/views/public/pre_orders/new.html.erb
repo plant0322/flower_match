@@ -28,7 +28,7 @@
   </div>
   <div class="d-flex flex-row my-3 mx-auto">
     <div class="col-6 d-grid p-2">
-      <!--< link_to "商品情報へ戻る", item_path(@item_id), class: "btn btn-info p-2" %>-->
+      <%= link_to "商品情報へ戻る", item_path(@item.id), class: "btn btn-info p-2" %>
     </div>
     <div class="col-6 d-grid p-2">
       <%= f.hidden_field :item_id, value: @item.id %>

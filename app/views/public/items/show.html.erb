@@ -44,7 +44,7 @@
     <% if member_signed_in? %>
       <%= form_with url: new_pre_order_path, method: :get do |f| %>
         <%= f.hidden_field :item_id, value: @item.id %>
-        <%= f.submit 'この商品を予約する', class: "btn btn-info p-2" %>
+        <%= f.submit 'この商品を予約する', name: '', class: "btn btn-info p-2" %>
       <% end %>
     <% else %>
       <%= link_to 'ログインして予約する', new_member_session_path, class: "btn btn-info p-2" %>

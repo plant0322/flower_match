@@ -1,2 +1,20 @@
-<h1>Public::PreOrders#index</h1>
-<p>Find me in app/views/public/pre_orders/index.html.erb</p>
+
+
+<% @pre_orders.each do |pre_order| %>
+※データ受渡し確認用<br>
+  <%= pre_order.name %><br>
+  <%= pre_order.total_payment %><br>
+  <%= pre_order.visit_day %><br>
+  <%= pre_order.visit_time %><br>
+  <%= pre_order.buy_day %><br>
+  <%= pre_order.purpose %><br>
+  <%= pre_order.note %><br>
+  <%= pre_order.last_name %><br>
+  <%= pre_order.first_name %><br>
+  <%= pre_order.last_name_kana %><br>
+  <%= pre_order.first_name_kana %><br>
+  <%= pre_order.postal_code %><br>
+  <%= pre_order.address %><br>
+  <%= pre_order.telephone_number %><br>
+  <%= pre_order.status %><br><br>
+<% end %>
