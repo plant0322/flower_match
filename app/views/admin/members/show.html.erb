@@ -1,2 +1,47 @@
-<h1>Admin::Members#show</h1>
-<p>Find me in app/views/admin/members/show.html.erb</p>
+<div class="container d-flex flex-row-reverse pt-3">
+  <div class="col-9 px-3">
+    <div class="d-flex flex-wrap">
+      <!--画像を登録できるようにする-->
+      <div class="col-5 order-1">
+        <%= image_tag 'sample', size: '300x300', class: "w-100" %>
+      </div>
+      <!--詳細-->
+      <div class="col-7 order-3 p-1">
+        <table class="table table-borderless table-secondary">
+          <tr>
+            <th>ショップ名</th>
+            <td>
+              <%= @member.member_full_name %><br>
+              <%= @member.member_full_name_kana %>
+            </td>
+          </tr>
+          <tr>
+            <th>ユーザー名（ニックネーム）</th>
+            <td><%= @member.nickname %></td>
+          </tr>
+          <tr>
+          <tr>
+            <th>住所</th>
+            <td>
+              <%= @member.postal_code.to_s.insert(3, "-") %><br>
+              <%= @member.address %>
+            </td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td><%= @member.telephone_number.to_s.insert(3, "-").insert(7, "-") %></td>
+          </tr>
+          <tr>
+            <th>会員ステータス</th>
+            <td><%= @member.is_active %></td>
+          </tr>
+        </table>
+        <%= link_to "このユーザー情報を編集する", edit_admin_member_path, class: "btn btn-info p-2" %>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-3 px-3">
+    <%= render 'admin/homes/menu' %>
+  </div>
+</div>
