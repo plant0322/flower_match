@@ -48,7 +48,10 @@ class Public::PreOrdersController < ApplicationController
   end
 
   def show
+    @pre_order = PreOrder.find(params[:id])
   end
+
+  private
 
   def pre_order_params
     params.require(:pre_order).permit(:item_id, :visit_day, :visit_time, :purpose, :note)

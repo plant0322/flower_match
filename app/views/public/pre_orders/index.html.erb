@@ -1,20 +1,48 @@
+<div class="container d-flex flex-row-reverse pt-3">
+  <div class="col-9 px-3">
+    <ul class="w-100">
+      <% @pre_orders.each do |pre_order| %>
+        <li class="bg-secondary my-2 p-3">
+            <div>
+              <span class="bg-info px-1"><%= pre_order.status %></span>
+              来店日時:<%= pre_order.visit_day %> <%= pre_order.visit_time %>
+            </div>
 
+          <%= link_to shop_path(pre_order.item.shop.id) do %>
+            <!--画像を登録できるようにする-->
+            <div class="d-flex flex-row">
+              <div class="col-4">
+                <%= image_tag 'sample', size: '200x200', class: "w-100" %>
+              </div>
+              <div class="text-white p-3">
+                <div>
+                  <%= pre_order.item.shop.name %>
+                </div>
+                <div class="col-8">
+                  <%= pre_order.item.shop.address %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <div class="bg-light my-2 p-2">
+            <div>
+              ご予約商品：
+              <%= pre_order.name %> <%= pre_order.total_payment.to_s(:delimited) %>円
+            </div>
+            <div>
+              用途：<%= pre_order.purpose %><br>
+              備考：<%= pre_order.note %><br>
+            </div>
+          </div>
+          <%= link_to '予約内容の詳細を確認する', pre_order_path(pre_order), class: "btn btn-light" %>
+          <%= link_to 'このショップの商品を予約する', shop_path(pre_order.item.shop.id), class: "btn btn-info" %>
 
-<% @pre_orders.each do |pre_order| %>
-※データ受渡し確認用<br>
-  <%= pre_order.name %><br>
-  <%= pre_order.total_payment %><br>
-  <%= pre_order.visit_day %><br>
-  <%= pre_order.visit_time %><br>
-  <%= pre_order.buy_day %><br>
-  <%= pre_order.purpose %><br>
-  <%= pre_order.note %><br>
-  <%= pre_order.last_name %><br>
-  <%= pre_order.first_name %><br>
-  <%= pre_order.last_name_kana %><br>
-  <%= pre_order.first_name_kana %><br>
-  <%= pre_order.postal_code %><br>
-  <%= pre_order.address %><br>
-  <%= pre_order.telephone_number %><br>
-  <%= pre_order.status %><br><br>
-<% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-3 px-3">
+    <%= render 'public/members/info' %>
+    <%= render 'public/members/menu' %>
+  </div>
+</div>

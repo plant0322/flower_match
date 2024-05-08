@@ -1,2 +1,45 @@
-<h1>Public::PreOrders#show</h1>
-<p>Find me in app/views/public/pre_orders/show.html.erb</p>
+<div class="container d-flex flex-row-reverse pt-3">
+  <div class="col-9 px-3">
+    <h2>予約詳細</h2>
+    <hr>
+    <table class="table table-borderless table-secondary">
+      <tr>
+        <th>予約状況</th>
+        <td><%= @pre_order.status %> ※来店済みだったらありがとうございましたにする？</td>
+      </tr>
+      <tr>
+        <th>来店日時</th>
+        <td>日にち：<%= @pre_order.visit_day %> 時間：<%= @pre_order.visit_time %></td>
+      </tr>
+      <tr>
+        <th>ショップ情報</th>
+        <td>
+          <%= link_to shop_path(@pre_order.item.shop.id) do %>
+            <%= @pre_order.item.shop.name %>
+            <%= @pre_order.item.shop.address %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>ご予約商品</th>
+        <td>
+          <%= @pre_order.name %>※キャンセルについて（ルール決める）<br>
+          用途：<%= @pre_order.purpose %><br>
+          備考：<%= @pre_order.note %>
+        </td>
+      </tr>
+      <tr>
+        <th>お支払金額</th>
+        <td><%= @pre_order.total_payment.to_s(:delimited) %>円　※来店時にショップへお支払いください</td>
+      </tr>
+      <tr>
+        <th>予約番号</th>
+        <td><%= @pre_order.id %>　※ランダムで番号作るか検討</td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-3 px-3">
+    <%= render 'public/members/info' %>
+    <%= render 'public/members/menu' %>
+  </div>
+</div>
