@@ -42,8 +42,10 @@
       <tr>
         <th>予約者名</th>
         <td>
-          <%= @pre_order.order_full_name %> 様<br>
-         （<%= @pre_order.order_full_name_kana %>）
+          <%= link_to shop_member_path(@pre_order.member_id) do %>
+            <%= @pre_order.order_full_name %> 様<br>
+            （<%= @pre_order.order_full_name_kana %>）
+          <% end %>
         </td>
       </tr>
       <tr>

@@ -1,2 +1,47 @@
-<h1>Shop::Members#show</h1>
-<p>Find me in app/views/shop/members/show.html.erb</p>
+<div class="container d-flex flex-row-reverse pt-3">
+  <div class="col-9 px-3">
+    <h1>予約一覧</h1>
+    <hr>
+
+      <% @pre_orders.each do |pre_order| %>
+        <table class="table table-borderless table-secondary">
+          <tr>
+            <th>来店日時</th>
+            <td><%= pre_order.visit_day %> <%= pre_order.visit_time %></td>
+          </tr>
+          <tr>
+            <th>予約者名</th>
+            <td>
+              <%= link_to shop_member_path(pre_order.member_id) do %>
+                <%= pre_order.member.last_name %> <%= pre_order.member.first_name %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th>予約商品</th>
+            <td>
+              <%= link_to shop_item_path(pre_order) do %>
+                <%= pre_order.item.name %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th>用途</th>
+            <td><%= pre_order.purpose %></td>
+          </tr>
+          <tr>
+            <th>備考</th>
+            <td><%= pre_order.note %></td>
+          </tr>
+          <tr>
+            <td><%= link_to '予約内容の詳細を確認する', shop_pre_order_path(pre_order), class: "btn btn-info" %></td>
+            <td></td>
+          </tr>
+        </table>
+      <% end %>
+
+  </div>
+  <div class="col-3 px-3">
+    <%= render 'shop/homes/menu' %>
+  </div>
+</div>
