@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
     get 'shops/information/edit'        => 'shops#edit', as: 'edit_information'
     patch 'shops/information'           => 'shops#update', as: 'update_information'
-    get 'shops/unsubscribe'             => 'shops#unsubscribe', as: 'confirm_unsubscribe_shop'
+    get 'shops/unsubscribe'             => 'shops#unsubscribe', as: 'confirm_unsubscribe'
     patch 'shops/withdraw'                => 'shops#withdraw', as: 'withdraw_shop'
     get 'members/:member_id/pre_orders' => 'pre_orders#index', as: 'member_pre_orders'
 
@@ -47,7 +47,7 @@ Rails.application.routes.draw do
     get 'members/mypage'           => 'members#show', as: 'mypage'
     get 'members/information/edit' => 'members#edit', as: 'edit_information'
     patch 'members/information'    => 'members#update', as: 'update_information'
-    get 'members/unsubscribe'      => 'members#unsubscribe', as: 'confirm_unsubscribe_member'
+    get 'members/unsubscribe'      => 'members#unsubscribe', as: 'member_confirm_unsubscribe'
     put 'members/information'      => 'members#update'
     patch 'members/withdraw'       => 'members#withdraw', as: 'withdraw_member'
     post 'pre_orders/confirm'      => 'pre_orders#confirm'

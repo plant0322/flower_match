@@ -1,26 +1,31 @@
-<h2>Log in</h2>
+<div class="container d-flex flex-column pt-3">
+  <div class="col-8 mx-auto px-3">
+    <h2>ログイン</h2>
+    <hr>
+      <%= form_with model: @admin, url: admin_session_path do |f| %>
+        <div class="bg-secondary p-3">
+          <table class="table table-borderless table-secondary">
+            <thead>
+              <th></th>
+              <th></th>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= f.label :email, "メール" %></td>
+                <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>
+              </tr>
+              <tr>
+                <td><%= f.label :password, "パスワード" %></td>
+                <td><%= f.password_field :password, autocomplete: "current-password", class: "form-control" %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <div class="col-6 d-grid my-3 mx-auto">
+          <%= f.submit "ログインする", class: "btn btn-info p-2" %>
+        </div>
+      <% end %>
+
   </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "admin/shared/links" %>
+</div>

@@ -1,2 +1,52 @@
-<h1>Admin::Shops#index</h1>
-<p>Find me in app/views/admin/shops/index.html.erb</p>
+<div class="container d-flex flex-row-reverse pt-3">
+  <div class="col-9 px-3">
+
+      <!--画像を登録できるようにする-->
+      <% @shops.each do |shop| %>
+        <div class="d-flex flex-wrap">
+          <div class="col-2 order-1">
+            <%= image_tag 'sample', size: '100x100', class: "w-100" %>
+          </div>
+          <!--詳細-->
+          <div class="col-10 order-3 p-1">
+            <table class="table table-borderless table-secondary">
+              <tr>
+                <th>ショップ名</th>
+                <td>
+                  <%= link_to admin_shop_path(shop) do %>
+                    <%= shop.name_kana %><br>
+                    <%= shop.name %>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th>紹介文</th>
+                <td><%= shop.introduction %></td>
+              </tr>
+              <tr>
+              <tr>
+                <th>住所</th>
+                <td>
+                  <%= shop.postal_code.to_s.insert(3, "-") %><br>
+                  <%= shop.address %>
+                </td>
+              </tr>
+              <tr>
+                <th>電話番号</th>
+                <td><%= shop.telephone_number.to_s.insert(3, "-").insert(7, "-") %></td>
+              </tr>
+              <tr>
+                <th>会員ステータス</th>
+                <td><%= shop.is_active %></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+
+  <div class="col-3 px-3">
+    <%= render 'admin/homes/menu' %>
+  </div>
+</div>
