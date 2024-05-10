@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   namespace :shop do
     get 'top' =>  'homes#top', as: 'top'
 
+    get "" => redirect("/shop/sign_up")
     get 'shops/information/edit'        => 'shops#edit', as: 'edit_information'
     patch 'shops/information'           => 'shops#update', as: 'update_information'
     get 'shops/unsubscribe'             => 'shops#unsubscribe', as: 'confirm_unsubscribe'
@@ -44,6 +45,7 @@ Rails.application.routes.draw do
     root 'homes#top'
     get 'about' => 'homes#about', as: 'about'
 
+    get "members" => redirect("/members/sign_up")
     get 'members/mypage'           => 'members#show', as: 'mypage'
     get 'members/information/edit' => 'members#edit', as: 'edit_information'
     patch 'members/information'    => 'members#update', as: 'update_information'

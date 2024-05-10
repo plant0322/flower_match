@@ -7,6 +7,8 @@ class PreOrder < ApplicationRecord
   validates :visit_time, presence: true
   validates :purpose, presence: true
 
+  enum status: { before_visit: 0, visit: 1, cancel: 2 }
+
   def order_full_name
     last_name + ' ' + first_name
   end

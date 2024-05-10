@@ -6,6 +6,11 @@
       <% @pre_orders.each do |pre_order| %>
         <table class="table table-borderless table-secondary">
           <tr>
+            <td colspan="2">
+              <%= render 'status', pre_order: pre_order %>
+            </td>
+          </tr>
+          <tr>
             <th>来店日時</th>
             <td><%= pre_order.visit_day %> <%= pre_order.visit_time %></td>
           </tr>

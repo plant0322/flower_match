@@ -16,7 +16,7 @@
           </tr>
           <tr>
             <th>用途</td>
-            <td><%= @pre_order.purpose %> <%= @pre_order.purpose %></td>
+            <td><%= @pre_order.purpose %></td>
           </tr>
           <tr>
             <th>備考</td>
@@ -43,7 +43,7 @@
 
   <div class="d-flex flex-row my-3 mx-auto">
     <div class="col-6 d-grid p-2">
-      <%= form_with url: new_pre_order_path do |f| %>
+      <%= form_with url: new_pre_order_path, method: :get do |f| %>
         <%= f.submit '情報入力へ戻る', class: "btn btn-info p-2" %>
       <% end %>
     </div>

@@ -10,6 +10,16 @@ class Shop::PreOrdersController < ApplicationController
     @pre_order = PreOrder.find(params[:id])
   end
 
-  def user_pre_orders
+  def update
+    @pre_order = PreOrder.find(params[:id])
+    @pre_order.update(pre_order_params)
+    redirect_to shop_pre_order_path(@pre_order)
   end
+
+  private
+
+  def pre_order_params
+    params.require(:pre_order).permit(:status, :visit_day)
+  end
+
 end

@@ -34,7 +34,13 @@
           </tr>
           <tr>
             <th>状態</th>
-            <td><%= @item.is_active %></td>
+            <td>
+              <% if @item.is_active %>
+                <p class="text-success">公開中</p>
+              <% else %>
+                <p class="text-danger">非公開</p>
+              <% end %>
+            </td>
           </tr>
         </table>
       </div>

@@ -25,7 +25,7 @@ class Shop::ItemsController < ApplicationController
   end
 
   def update
-    @item = Item.update(item_params)
+    @item.update(item_params)
     redirect_to shop_items_path
   end
 
@@ -36,6 +36,6 @@ class Shop::ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:item_image, :name, :introduction, :size, :price, :stock, :deadline)
+    params.require(:item).permit(:item_image, :name, :introduction, :size, :price, :stock, :deadline, :is_active)
   end
 end

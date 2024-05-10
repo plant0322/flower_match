@@ -57,7 +57,7 @@
         <!--管理者ログイン後…口コミ一覧・連絡一覧を追加する-->
           <div class="col-1 bg-info p-3 m-2 w-25"><%= link_to admin_shops_path do %>ショップ一覧<% end %></div>
           <div class="col-1 bg-info p-3 m-2 w-25"><%= link_to admin_members_path do %>一般ユーザー一覧<% end %></div>
-          <div class="col-1 bg-info p-3 m-2 w-25"><%= link_to destroy_admin_session_path, "data-confirm" => "本当にログアウトしますか？" do %>ログアウト<% end %></div>
+          <div class="col-1 bg-info p-3 m-2 w-25"><%= link_to destroy_admin_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？" do %>ログアウト<% end %></div>
         <% else %>
           <!--ログイン前-->
           <div class="col-1 bg-info p-3 m-2 w-25"><%= link_to about_path do %>About<% end %></div>
@@ -67,9 +67,12 @@
     </header>
 
     <main class="mb-auto">
-      <% flash.each do |message_type, message| %>
-        <div class="flash-message <%= message_type %>"><%= message %></div>
+      <% if flash[:notice] %>
+        <div class="alert alert-success text-center mx-auto mt-2" style="width: 70%;"><%= flash[:notice] %></div>
+      <% elsif flash[:alert] %>
+        <div class="alert alert-danger text-center mx-auto mt-2" style="width: 70%;"><%= flash[:alert] %></div>
       <% end %>
+
 
       <%= yield %>
     </main>

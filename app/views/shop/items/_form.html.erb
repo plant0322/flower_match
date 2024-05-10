@@ -41,6 +41,11 @@
         </tr>
       </tbody>
     </table>
+    <div class="bg-light">
+      <%= f.radio_button :is_active, true, class: "form-check-input" %><%= f.label :is_active, '公開', class: "form-check-label text-success" %>
+      <%= f.radio_button :is_active, false, class: "form-check-input" %><%= f.label :is_active, '非公開', class: "form-check-label text-danger" %>
+    </div>
+
   </div>
   <div class="d-flex flex-row my-3 mx-auto">
     <div class="col-6 d-grid p-2">
