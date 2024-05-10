@@ -1,17 +1,22 @@
 class Admin::ShopsController < ApplicationController
   before_action :authenticate_admin!
+  before_action :set_shop, only: [:show, :edit, :update]
+
   def show
-    @shop = Shop.find(params[:id])
     @items = Item.where(shop_id: @shop)
   end
 
   def edit
-    @shop = Shop.find(params[:id])
   end
 
   def update
-    @shop = Shop.update(shop_params)
-    redirect_to request.referer
+    if @shop.update(shop_params)
+      flash[:notice] = "ショップ情報を更新しました"
+      redirect_to request.referer
+    else
+      flash.now[:alert] = "ショップ情報の更新に失敗しました"
+      render :edit
+    end
   end
 
   def index
@@ -19,6 +24,10 @@ class Admin::ShopsController < ApplicationController
   end
 
   private
+
+  def set_shop
+    @shop = Shop.find(params[:id])
+  end
 
   def shop_params
     params.require(:shop).permit(:name, :name_kana, :introduction, :representative_name, :postal_code, :address, :opening_hour, :holiday, :parking, :note, :payment_method, :direction, :telephone_number, :is_active)

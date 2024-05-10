@@ -30,7 +30,13 @@
               </tr>
               <tr>
                 <th>会員ステータス</th>
-                <td><%= member.is_active %></td>
+                <td>
+                  <% if member.is_active = true %>
+                    有効
+                  <% else %>
+                    退会
+                  <% end %>
+                </td>
               </tr>
             </table>
           </div>

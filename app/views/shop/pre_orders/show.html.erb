@@ -8,8 +8,14 @@
         <td><%= render 'status', pre_order: @pre_order %></td>
         <td>
           <%= form_with model: @pre_order, url: shop_pre_order_path do |f| %>
-            <%= f.select :status, PreOrder.statuses.keys.map {|k| [I18n.t("enums.pre_order.status.#{k}"), k]}, class: "form-select" %>
-            <%= f.submit "更新する", class: "btn btn-info" %>
+            <div class="d-flex flex-row">
+              <div class="w-50 px-1">
+                <%= f.select :status, PreOrder.statuses_i18n.invert, { prompt: "" }, class: "form-select" %>
+              </div>
+              <div class="w-50 px-1">
+                <%= f.submit "更新する", class: "btn btn-info" %>
+              </div>
+            </div>
           <% end %>
         </td>
       </tr>
@@ -20,10 +26,8 @@
       <tr>
         <th>ショップ情報</th>
         <td colspan="2">
-          <%= link_to shop_path(@pre_order.item.shop.id) do %>
-            <%= @pre_order.item.shop.name %>
-            <%= @pre_order.item.shop.address %>
-          <% end %>
+          <%= @pre_order.item.shop.name %>
+          <%= @pre_order.item.shop.address %>
         </td>
       </tr>
       <tr>

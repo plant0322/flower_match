@@ -22,7 +22,6 @@ Rails.application.routes.draw do
   namespace :shop do
     get 'top' =>  'homes#top', as: 'top'
 
-    get "" => redirect("/shop/sign_up")
     get 'shops/information/edit'        => 'shops#edit', as: 'edit_information'
     patch 'shops/information'           => 'shops#update', as: 'update_information'
     get 'shops/unsubscribe'             => 'shops#unsubscribe', as: 'confirm_unsubscribe'

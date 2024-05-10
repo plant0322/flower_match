@@ -37,7 +37,13 @@
               </tr>
               <tr>
                 <th>会員ステータス</th>
-                <td><%= shop.is_active %></td>
+                <td>
+                  <% if shop.is_active = true %>
+                    有効
+                  <% else %>
+                    退会
+                  <% end %>
+                </td>
               </tr>
             </table>
           </div>

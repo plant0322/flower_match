@@ -1,16 +1,20 @@
 class Admin::MembersController < ApplicationController
   before_action :authenticate_admin!
+  before_action :set_member, only: [:show, :edit, :update]
   def show
-    @member = Member.find(params[:id])
   end
 
   def edit
-    @member = Member.find(params[:id])
   end
 
   def update
-    @member = Member.update(member_params)
-    redirect_to request.referer
+    if @member.update(member_params)
+      flash[:notice] = "ユーザー情報を更新しました"
+      redirect_to request.referer
+    else
+      flash.now[:alert] = "ユーザー情報の更新に失敗しました"
+      render :edit
+    end
   end
 
   def index
@@ -18,6 +22,10 @@ class Admin::MembersController < ApplicationController
   end
 
   private
+
+  def set_member
+    @member = Member.find(params[:id])
+  end
 
   def member_params
     params.require(:member).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :nickname, :postal_code, :address, :telephone_number, :is_active)

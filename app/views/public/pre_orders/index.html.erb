@@ -4,7 +4,7 @@
       <% @pre_orders.each do |pre_order| %>
         <li class="bg-secondary my-2 p-3">
           <div>
-            <span class="bg-info px-1"><%= pre_order.status %></span>
+            <span class="bg-info px-1"><%= pre_order.status_i18n %></span>
             来店日時:<%= pre_order.visit_day %> <%= pre_order.visit_time %>
           </div>
 

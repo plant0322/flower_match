@@ -19,7 +19,7 @@ class Shop::PreOrdersController < ApplicationController
   private
 
   def pre_order_params
-    params.require(:pre_order).permit(:status, :visit_day)
+    params.require(:pre_order).permit(:status)
   end
 
 end

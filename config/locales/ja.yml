@@ -40,6 +40,13 @@
           note: "パスワード"
           email: "メールアドレス"
           password: "パスワード"
+        item:
+          name: "商品名"
+          introduction: "商品紹介文"
+          size: "サイズ"
+          price: "販売価格（税込）"
+          stock: "在庫"
+          deadline: "キャンセル可能期限"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

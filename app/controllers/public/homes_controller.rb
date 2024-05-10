@@ -1,6 +1,7 @@
 class Public::HomesController < ApplicationController
   def top
-    @items = Item.all.order(id: "DESC")
+    @active_items = Item.where(is_active: true)
+    @items = @active_items.order(id: "DESC")
   end
 
   def about

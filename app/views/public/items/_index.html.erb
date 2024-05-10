@@ -9,8 +9,7 @@
           </div>
           <div class="card-body">
             <%= item.price.to_s(:delimited, delimiter: ',') %>円<br>
-            在庫<%= item.stock %>個<br>
-            <%= item.is_active %>
+            在庫<%= item.stock %>個
           </div>
         </div>
       <% end %>

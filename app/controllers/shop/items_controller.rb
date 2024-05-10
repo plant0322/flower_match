@@ -9,8 +9,13 @@ class Shop::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.shop_id = current_shop.id
-    @item.save
+    if @item.save
+      flash[:notice] = "商品を登録しました"
     redirect_to shop_item_path(@item)
+    else
+      flash.now[:alert] = "商品登録に失敗しました"
+      render :new
+    end
   end
 
   def index
@@ -25,8 +30,13 @@ class Shop::ItemsController < ApplicationController
   end
 
   def update
-    @item.update(item_params)
-    redirect_to shop_items_path
+    if @item.update(item_params)
+      flash[:notice] = "商品情報を更新しました"
+      redirect_to request.referer
+    else
+      flash.now[:alert] = "商品情報の更新に失敗しました"
+      render :edit
+    end
   end
 
   private

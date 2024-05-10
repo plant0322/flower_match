@@ -33,7 +33,13 @@
           </tr>
           <tr>
             <th>会員ステータス</th>
-            <td><%= @member.is_active %></td>
+            <td>
+              <% if @member.is_active = true %>
+                有効
+              <% else %>
+                退会
+              <% end %>
+            </td>
           </tr>
         </table>
         <%= link_to "このユーザー情報を編集する", edit_admin_member_path, class: "btn btn-info p-2" %>

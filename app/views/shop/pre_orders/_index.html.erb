@@ -1,0 +1,41 @@
+<% pre_orders.each do |pre_order| %>
+  <table class="table table-borderless table-secondary">
+    <tr>
+      <td colspan="2">
+        <%= render 'shop/pre_orders/status', pre_order: pre_order %>
+      </td>
+    </tr>
+    <tr>
+      <th>来店日時</th>
+      <td><%= pre_order.visit_day %> <%= pre_order.visit_time %></td>
+    </tr>
+    <tr>
+      <th>予約者名</th>
+      <td>
+        <%= link_to shop_member_path(pre_order.member_id) do %>
+          <%= pre_order.member.last_name %> <%= pre_order.member.first_name %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>予約商品</th>
+      <td>
+        <%= link_to shop_item_path(pre_order.item_id) do %>
+          <%= pre_order.item.name %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>用途</th>
+      <td><%= pre_order.purpose %></td>
+    </tr>
+    <tr>
+      <th>備考</th>
+      <td><%= pre_order.note %></td>
+    </tr>
+    <tr>
+      <td><%= link_to '予約内容の詳細を確認する', shop_pre_order_path(pre_order), class: "btn btn-info" %></td>
+      <td></td>
+    </tr>
+  </table>
+<% end %>

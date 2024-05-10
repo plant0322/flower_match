@@ -9,15 +9,20 @@ class Public::MembersController < ApplicationController
   end
 
   def update
-    @member = Member.update(member_params)
-    redirect_to request.referer
+    if @member.update(member_params)
+      flash[:notice] = "ユーザー情報を更新しました"
+      redirect_to request.referer
+    else
+      flash.now[:alert] = "ユーザー情報の更新に失敗しました"
+      render :edit
+    end
   end
 
   def unsubscribe
   end
 
   def withdraw
-    @member = Member.update(is_active: false)
+    @member.update(is_active: false)
     reset_session
     redirect_to root_path
   end

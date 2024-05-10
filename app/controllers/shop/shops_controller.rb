@@ -6,8 +6,13 @@ class Shop::ShopsController < ApplicationController
   end
 
   def update
-    @shop.update(shop_params)
-    redirect_to request.referer
+    if @shop.update(shop_params)
+      flash[:notice] = "ショップ情報を更新しました"
+      redirect_to request.referer
+    else
+      flash.now[:alert] = "ショップ情報の更新に失敗しました"
+      render :edit
+    end
   end
 
   def unsubscribe
