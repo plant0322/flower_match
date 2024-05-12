@@ -1,0 +1,23 @@
+<div class="d-flex flex-wrap">
+  <% items. each do |item| %>
+    <div class="col-4 card p-2">
+      <%= link_to shop_item_path(item) do %>
+        <%= image_tag item.get_item_image(200,200), class: "card-img-top" %>
+        <div class="card-body">
+          <div class="card-title h6">
+            <%= item.name %>
+          </div>
+          <div class="card-body">
+            <%= item.price.to_s(:delimited, delimiter: ',') %>円<br>
+            在庫<%= item.stock %>個<br>
+            <% if item.is_active %>
+              <p class="text-success">公開中</p>
+            <% else %>
+              <p class="text-danger">非公開</p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

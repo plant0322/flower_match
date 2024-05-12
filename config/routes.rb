@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     get 'shops/information/edit'        => 'shops#edit', as: 'edit_information'
     patch 'shops/information'           => 'shops#update', as: 'update_information'
     get 'shops/unsubscribe'             => 'shops#unsubscribe', as: 'confirm_unsubscribe'
-    patch 'shops/withdraw'                => 'shops#withdraw', as: 'withdraw_shop'
+    patch 'shops/withdraw'              => 'shops#withdraw', as: 'withdraw_shop'
     get 'members/:member_id/pre_orders' => 'pre_orders#index', as: 'member_pre_orders'
 
     resources :members, only: [:show]

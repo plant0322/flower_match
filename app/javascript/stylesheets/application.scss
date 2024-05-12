@@ -7,6 +7,18 @@ footer{
     color: #fff;
 }
 
-header{
+header,
+footer{
     color: #fff;
+    background-color: #deb068;
+}
+
+.admin-header,
+.admin-footer{
+    background-color: #ccc;
+}
+
+.shop-header,
+.shop-footer{
+    background-color: #84b9cb;
 }

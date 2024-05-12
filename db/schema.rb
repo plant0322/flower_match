@@ -98,8 +98,9 @@ ActiveRecord::Schema.define(version: 2024_05_03_090826) do
     t.integer "item_id", null: false
     t.string "name", null: false
     t.integer "total_payment", null: false
-    t.string "visit_day", null: false
-    t.integer "visit_time", null: false
+    t.integer "amount", null: false
+    t.date "visit_day", null: false
+    t.time "visit_time", null: false
     t.string "buy_day", null: false
     t.string "purpose", null: false
     t.text "note", null: false

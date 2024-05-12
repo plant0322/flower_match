@@ -5,7 +5,6 @@ class Member < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :pre_orders
-  has_one_attached :profile_image
 
   validates :last_name, presence: true
   validates :first_name, presence: true

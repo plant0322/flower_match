@@ -1,9 +1,8 @@
 <div class="container d-flex flex-row-reverse pt-3">
   <div class="col-9 px-3">
     <div class="d-flex flex-wrap">
-      <!--画像を登録できるようにする-->
       <div class="col-5 order-1">
-        <%= image_tag 'sample', size: '300x300', class: "w-100" %>
+        <%= image_tag @shop.get_shop_image(300,300), class: "w-100" %>
       </div>
       <!--詳細-->
       <div class="col-7 order-3 p-1">

@@ -1,69 +1,20 @@
 <div class="container d-flex flex-row-reverse pt-3">
   <div class="col-9 px-3">
-    <h1>予約一覧</h1>
-    <hr>
-<!--表示件数を数件にして一覧を見るで一覧に飛ばす。表の形を変える-->
-      <% @pre_orders.each do |pre_order| %>
-        <table class="table table-borderless table-secondary">
-          <tr>
-            <td colspan="2"><span class="bg-info px-1"><%= pre_order.status_i18n %></span></td>
-          </tr>
-          <tr>
-            <th>来店日時</th>
-            <td><%= pre_order.visit_day %> <%= pre_order.visit_time %></td>
-          </tr>
-          <tr>
-            <th>予約者名</th>
-            <td>
-              <%= link_to shop_member_path(pre_order.member_id) do %>
-                <%= pre_order.member.last_name %> <%= pre_order.member.first_name %>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <th>予約商品</th>
-            <td>
-              <%= link_to shop_item_path(pre_order) do %>
-                <%= pre_order.item.name %>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <th>用途</th>
-            <td><%= pre_order.purpose %></td>
-          </tr>
-          <tr>
-            <th>備考</th>
-            <td><%= pre_order.note %></td>
-          </tr>
-          <tr>
-            <td><%= link_to '予約内容の詳細を確認する', shop_pre_order_path(pre_order), class: "btn btn-info" %></td>
-            <td></td>
-          </tr>
-        </table>
-      <% end %>
-    <!--商品一覧※画像をもっと小さくして情報量を減らす。数件にして一覧に飛ばす。-->
-    <h2>Item</h2>
-    <hr>
-    <div class="d-flex flex-wrap">
-      <% @shop_items. each do |item| %>
-        <div class="col-4 card p-2">
-          <%= link_to item_path(item) do %>
-            <%= image_tag item.get_item_image(200,200), class: "card-img-top" %>
-            <div class="card-body">
-              <div class="card-title h6">
-                <%= item.name %>
-              </div>
-              <div class="card-body">
-                <%= item.price.to_s(:delimited, delimiter: ',') %>円<br>
-                在庫<%= item.stock %>個<br>
-                <%= item.is_active %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
+    <!--予約一覧-->
+    <div class="mb-5">
+      <h1>予約一覧</h1>
+      <hr>
+      <%= render 'shop/pre_orders/index', pre_orders: @pre_orders_3 %>
+      <%= link_to '全ての予約を見る', shop_pre_orders_path, class: "float-end" %>
     </div>
+    <!--商品一覧-->
+    <div class="mb-5">
+      <h2>商品一覧</h2>
+      <hr>
+      <%= render 'shop/items/index', items: @shop_items_3 %>
+      <%= link_to '全ての商品を見る', shop_items_path, class: "float-end" %>
+    </div>
+    <!--口コミ一覧-->
     <h2>口コミ一覧</h2>
     <hr>
 

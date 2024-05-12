@@ -2,40 +2,41 @@
   <div class="col-8 mx-auto px-3">
     <h2>商品を新しく登録する</h2>
     <hr>
-<%= form_with model: @pre_order, url: pre_orders_confirm_path, method: :post do |f| %>
-  <!--%= render "layouts/error_messages", obj: @pre_order %>-->
-  <div class="bg-secondary p-3">
-    <table class="table table-borderless table-secondary">
-      <tbody>
-        <tr>
-          <th><%= f.label :visit_day, "来店日" %></td>
-          <td><%= f.text_field :visit_day, autofocus: true, placeholder: "例）〇月〇日（水）", autocomplete: "visit_day", class: "form-control" %></td>
-        </tr>
-        <tr>
-          <th><%= f.label :visit_time, "来店時間" %></td>
-          <td ><%= f.text_field :visit_time, placeholder: "例）13時", autocomplete: "visit_time", class: "form-control" %></td>
-        </tr>
-        <tr>
-          <th><%= f.label :purpose, "用途" %></td>
-          <td><%= f.text_area :purpose, placeholder: "例）20代女性への誕生日プレゼント", autocomplete: "purpose", class: "form-control" %></td>
-        </tr>
-        <tr>
-          <th><%= f.label :note, "備考" %></td>
-          <td><%= f.text_area :note, placeholder: "例）黄色やオレンジ色ベースでお願いします", autocomplete: "note", class: "form-control" %></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="d-flex flex-row my-3 mx-auto">
-    <div class="col-6 d-grid p-2">
-      <%= link_to "商品情報へ戻る", item_path(@item.id), class: "btn btn-info p-2" %>
-    </div>
-    <div class="col-6 d-grid p-2">
-      <%= f.hidden_field :item_id, value: @item.id %>
-      <%= f.submit "予約情報を確認する", class: "btn btn-info p-2" %>
-    </div>
-  </div>
-<% end %>
+    <%= form_with model: @pre_order, url: pre_orders_confirm_path, method: :post do |f| %>
+      <!--%= render "layouts/error_messages", obj: @pre_order %>-->
+      <div class="bg-secondary p-3">
+        <table class="table table-borderless table-secondary">
+          <tbody>
+            <tr>
+              <th><%= f.label :visit_day, "来店日" %></td>
+              <td><%= f.date_field :visit_day, autofocus: true, placeholder: "例）〇月〇日（水）", autocomplete: "visit_day", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :visit_time, "来店時間" %></td>
+              <td ><%= f.time_field :visit_time, placeholder: "例）13時", autocomplete: "visit_time", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :purpose, "用途" %></td>
+              <td><%= f.text_area :purpose, placeholder: "例）20代女性への誕生日プレゼント", autocomplete: "purpose", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :note, "備考" %></td>
+              <td><%= f.text_area :note, placeholder: "例）黄色やオレンジ色ベースでお願いします", autocomplete: "note", class: "form-control" %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="d-flex flex-row my-3 mx-auto">
+        <div class="col-6 d-grid p-2">
+          <%= link_to "商品情報へ戻る", item_path(@item.id), class: "btn btn-info p-2" %>
+        </div>
+        <div class="col-6 d-grid p-2">
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <%= f.hidden_field :amount, value: @amount %>
+          <%= f.submit "予約情報を確認する", class: "btn btn-info p-2" %>
+        </div>
+      </div>
+    <% end %>
 
   </div>
 </div>

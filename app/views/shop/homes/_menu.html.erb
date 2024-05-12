@@ -3,6 +3,9 @@
     <th>ショップメニュー</th>
   </tr>
   <tr>
+    <td><%= image_tag current_shop.get_shop_image(300,300), class: "w-100" %></td>
+  </tr>
+  <tr>
     <td><%= link_to "商品一覧", shop_items_path %></td>
   </tr>
   <tr>

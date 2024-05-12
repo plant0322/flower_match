@@ -1,6 +1,6 @@
 <div class="container d-flex flex-row-reverse pt-3">
   <div class="col-9 px-3">
-    <h1>予約一覧</h1>
+    <h1>予約一覧<span class="h5">（全<%= @pre_orders.count %>件）</span></h1>
     <hr>
 
     <%= render 'index', pre_orders: @pre_orders %>

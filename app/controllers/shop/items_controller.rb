@@ -1,6 +1,6 @@
 class Shop::ItemsController < ApplicationController
   before_action :authenticate_shop!
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def new
     @item = Item.new

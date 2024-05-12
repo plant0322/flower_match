@@ -12,8 +12,12 @@
           </thead>
           <tbody>
             <tr>
+              <td><%= f.label :name, "アイキャッチ" %></td>
+              <td class="w-75"><%= f.file_field :shop_image, accept: "image/*", class: "form-control" %></td>
+            </tr>
+            <tr>
               <td><%= f.label :name, "ショップ名" %></td>
-              <td class="w-75"><%= f.text_field :name, autofocus: true, placeholder: "例）Flower Shop", autocomplete: "name", class: "form-control" %></td>
+              <td><%= f.text_field :name, autofocus: true, placeholder: "例）Flower Shop", autocomplete: "name", class: "form-control" %></td>
             </tr>
             <tr>
               <td><%= f.label :name_kana, "ショップ名（フリガナ）" %></td>

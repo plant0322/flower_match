@@ -9,7 +9,7 @@
       </tr>
       <tr>
         <th>来店日時</th>
-        <td>日にち：<%= @pre_order.visit_day %> 時間：<%= @pre_order.visit_time %></td>
+        <td>日にち：<%= @pre_order.visit_day %> 時間：<%= @pre_order.visit_time.strftime( "%H:%M" ) %></td>
       </tr>
       <tr>
         <th>ショップ情報</th>
@@ -29,8 +29,16 @@
         </td>
       </tr>
       <tr>
+        <th>金額</th>
+        <td><%= @pre_order.total_payment.to_s(:delimited) %>円</td>
+      </tr>
+      <tr>
+        <th>予約数</th>
+        <td><%= @pre_order.amount %>個</td>
+      </tr>
+      <tr>
         <th>お支払金額</th>
-        <td><%= @pre_order.total_payment.to_s(:delimited) %>円　※来店時にショップへお支払いください</td>
+        <td><%= (@pre_order.total_payment * @pre_order.amount).to_s(:delimited) %>円　※来店時にショップへお支払いください</td>
       </tr>
       <tr>
         <th>予約番号</th>

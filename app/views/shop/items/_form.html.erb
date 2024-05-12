@@ -1,5 +1,5 @@
 <%= form_with model: item, url: url do |f| %>
-  <%= render "layouts/error_messages", obj: item %>
+  <!--%= render "layouts/error_messages", obj: item %>-->
   <div class="bg-secondary p-3">
     <table class="table table-borderless table-secondary">
       <thead>
@@ -10,6 +10,13 @@
       <tbody>
         <tr>
           <td><%= f.label :item_image, "画像" %></td>
+          <td>
+            <% if controller.action_name == 'edit' %>
+              <%= image_tag item.get_item_image(100,100),class: "w-100" %>
+            <% else %>
+              <%= image_tag 'sample', size: '150x150' %>
+            <% end %>
+          </td>
           <td colspan="2" class="w-75"><%= f.file_field :item_image, accept: "image/*", class: "form-control" %></td>
         </tr>
         <tr>
