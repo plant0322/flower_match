@@ -40,7 +40,7 @@
           </tr>
           <tr>
             <th>電話番号</th>
-            <td><%= @shop.telephone_number.to_s.insert(3, "-").insert(7, "-") %></td>
+            <td><%= @shop.telephone_number.to_s.insert(3, "-").insert(8, "-") %></td>
           </tr>
           <tr>
             <th>支払方法</th>
@@ -58,6 +58,6 @@
   </div>
   <div class="col-3 px-3">
     <%= render 'public/members/info' %>
-    <%= render 'public/members/menu' %>
+    <%= render 'public/homes/menu' %>
   </div>
 </div>

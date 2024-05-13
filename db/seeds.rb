@@ -6,64 +6,52 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Admin.create!(
-  email: "admin@a",
-  password: "aaaaaa"
-)
+Admin.find_or_create_by!(email: "admin@a") do |admin|
+  admin.email = "admin@a"
+  admin.password = "aaaaaa"
+end
 
-Member.create!(
-  [
-    {
-      last_name: "原",
-      first_name: "由香子",
-      last_name_kana: "ハラ",
-      first_name_kana: "ユカコ",
-      nickname: "きつね",
-      email: "hara@h",
-      postal_code: "2345678",
-      address: "兵庫県姫路市4-28",
-      telephone_number: "11122223333",
-      is_active: true,
-      password: "hhhhhh",
-    },
-  ]
-)
+Member.find_or_create_by!(email: "hara@h") do |member|
+  member.last_name = "原"
+  member.first_name = "由香子"
+  member.last_name_kana = "ハラ"
+  member.first_name_kana = "ユカコ"
+  member.nickname = "きつね"
+  member.email = "hara@h"
+  member.postal_code = "2345678"
+  member.address = "兵庫県姫路市4-28"
+  member.telephone_number = "11122223333"
+  member.is_active = true
+  member.password = "hhhhhh"
+end
 
-Member.create!(
-  [
-    {
-      last_name: "小山",
-      first_name: "睦美",
-      last_name_kana: "コヤマ",
-      first_name_kana: "ムツミ",
-      nickname: "つきみ",
-      email: "koya@k",
-      postal_code: "3456789",
-      address: "京都府京都市9-30",
-      telephone_number: "44455556666",
-      is_active: true,
-      password: "kkkkkk",
-    },
-  ]
-)
+Member.find_or_create_by!(email: "koya@k") do |member|
+  member.last_name = "小山"
+  member.first_name = "睦美"
+  member.last_name_kana = "コヤマ"
+  member.first_name_kana = "ムツミ"
+  member.nickname = "つきみ"
+  member.email = "koya@k"
+  member.postal_code = "3456789"
+  member.address = "京都府京都市9-30"
+  member.telephone_number = "44455556666"
+  member.is_active = true
+  member.password = "kkkkkk"
+end
 
-Member.create!(
-  [
-    {
-      last_name: "野村",
-      first_name: "遠野",
-      last_name_kana: "ノムラ",
-      first_name_kana: "トオノ",
-      nickname: "雨宿り",
-      email: "nomu@n",
-      postal_code: "9876543",
-      address: "福島県福島市20-01",
-      telephone_number: "7777889999",
-      is_active: true,
-      password: "nnnnnn",
-    },
-  ]
-)
+Member.find_or_create_by!(email: "nomu@n") do |member|
+  member.last_name = "野村"
+  member.first_name = "遠野"
+  member.last_name_kana = "ノムラ"
+  member.first_name_kana = "トオノ"
+  member.nickname = "雨宿り"
+  member.email = "nomu@n"
+  member.postal_code = "9876543"
+  member.address = "福島県福島市20-01"
+  member.telephone_number = "7777889999"
+  member.is_active = true
+  member.password = "nnnnnn"
+end
 
 howell = Shop.find_or_create_by!(email: "sasaki@s") do |shop|
   shop.name = "flowerShop HOWELL"

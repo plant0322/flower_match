@@ -28,8 +28,9 @@
               <td>
                 <% if @stock == 0 %>
                   在庫切れのため購入できません
-                <% else %>
+                <% elsif member_signed_in? %>
                   <%= f.select :amount, @stock_array, { prompt: "個数を選択" }, class: "form-select" %>
+                <% else %>
                 <% end %>
               </td>
             </tr>
@@ -60,6 +61,6 @@
   </div>
   <div class="col-3 px-3">
     <%= render 'public/shops/info' %>
-    <%= render 'public/members/menu' %>
+    <%= render 'public/homes/menu' %>
   </div>
 </div>

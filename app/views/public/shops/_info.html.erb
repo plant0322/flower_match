@@ -59,7 +59,7 @@
     </th>
   </tr>
   <tr>
-    <td><%= @shop.telephone_number %></td>
+    <td><%= @shop.telephone_number.to_s.insert(3, "-").insert(8, "-") %></td>
   </tr>
   <tr>
     <th>

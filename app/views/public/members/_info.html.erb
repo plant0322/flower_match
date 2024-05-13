@@ -1,15 +1,40 @@
-<table class="table">
-  <tr>
-    <th>会員情報</th>
-  </tr>
-  <tr>
-    <th>
-      ニックネーム
-    </th>
-  </tr>
-  <tr>
-    <td>
-      <%= current_member.nickname %>
-    </td>
-  </tr>
-</table>
+<% if member_signed_in? %>
+  <table class="table">
+    <tr>
+      <th>会員情報</th>
+    </tr>
+    <tr>
+      <th>
+        ニックネーム
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <%= current_member.nickname %>
+      </td>
+    </tr>
+  </table>
+    <table class="table">
+    <tr>
+      <th>会員メニュー</th>
+    </tr>
+    <tr>
+      <td>お気に入りショップの新着</td>
+    </tr>
+    <tr>
+      <td>お気に入りショップ</td>
+    </tr>
+    <tr>
+      <td>ブックマークした商品</td>
+    </tr>
+    <tr>
+      <td><%= link_to "予約一覧", pre_orders_path %></td>
+    </tr>
+    <tr>
+      <td><%= link_to "会員情報編集", edit_information_path %></td>
+    </tr>
+    <tr>
+      <td><%= link_to "ログアウト", destroy_member_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？" %></td>
+    </tr>
+  </table>
+<% end %>
