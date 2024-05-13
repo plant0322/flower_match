@@ -1,14 +1,9 @@
 <div class="container d-flex flex-row-reverse pt-3">
   <div class="col-9 px-3">
-
-      <!--画像を登録できるようにする-->
       <% @members.each do |member| %>
         <div class="d-flex flex-wrap">
-          <div class="col-2 order-1">
-            <%= image_tag 'sample', size: '100x100', class: "w-100" %>
-          </div>
           <!--詳細-->
-          <div class="col-10 order-3 p-1">
+          <div class="col-12 order-3 p-1">
             <table class="table table-borderless table-secondary">
               <tr>
                 <th>名前</th>

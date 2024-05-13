@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2024_05_03_090826) do
     t.text "introduction", null: false
     t.integer "price", null: false
     t.string "size", null: false
-    t.integer "stock", null: false
+    t.integer "stock", default: 0, null: false
     t.integer "deadline", null: false
     t.boolean "is_active", default: false, null: false
     t.datetime "created_at", precision: 6, null: false

@@ -1,15 +1,11 @@
 <div class="container d-flex flex-row-reverse pt-3">
   <div class="col-9 px-3">
     <div class="d-flex flex-wrap">
-      <!--画像を登録できるようにする-->
-      <div class="col-5 order-1">
-        <%= image_tag 'sample', size: '300x300', class: "w-100" %>
-      </div>
       <!--詳細-->
-      <div class="col-7 order-3 p-1">
+      <div class="col-12 order-3 p-1">
         <table class="table table-borderless table-secondary">
           <tr>
-            <th>ショップ名</th>
+            <th>ユーザー名</th>
             <td>
               <%= @member.member_full_name %><br>
               <%= @member.member_full_name_kana %>
