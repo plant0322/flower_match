@@ -6,10 +6,10 @@
         <tr>
           <th><%= f.label :item_image, "画像" %></th>
           <td>
-            <% if controller.action_name == 'edit' %>
-              <%= image_tag item.get_item_image(100,100),class: "w-100" %>
-            <% else %>
+            <% if controller.action_name == 'new' %>
               <%= image_tag asset_path('sample'), size: '150x150' %>
+            <% else %>
+              <%= image_tag item.get_item_image(100,100),class: "w-100" %>
             <% end %>
           </td>
           <td colspan="2" class="w-75"><%= f.file_field :item_image, accept: "image/*", class: "form-control" %></td>
