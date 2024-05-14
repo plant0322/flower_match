@@ -18,6 +18,12 @@ class Shop::ShopsController < ApplicationController
   def unsubscribe
   end
 
+  def withdraw
+    @shop.update(is_active: false)
+    reset_session
+    redirect_to root_path
+  end
+
   private
 
   def set_current_shop
