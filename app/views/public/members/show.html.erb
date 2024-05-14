@@ -1,12 +1,26 @@
 <div class="container d-flex flex-row-reverse pt-3">
   <div class="col-9 px-3">
-    <h1>お気に入りショップの新着</h1>
+    <h1>マイページ</h1>
     <hr>
-    <p>新着商品を並べる</p>
+
+    <div class="my-5">
+      <h2>お気に入りショップの新着</h2>
+      <hr>
+      <p>お気に入りショップの登録がありません</p>
+      <%= link_to '商品を探す', root_path, class: "btn btn-info" %>
+    </div>
+
+    <div class="my-5">
+      <h2>ブックマークした商品一覧</h2>
+      <hr>
+      <p>ブックマークの登録がありません</p>
+      <%= link_to '商品を探す', root_path, class: "btn btn-info" %>
+    </div>
 
   </div>
   <div class="col-3 px-3">
     <%= render 'info' %>
     <%= render 'menu' %>
+    <%= render 'public/homes/menu' %>
   </div>
 </div>
