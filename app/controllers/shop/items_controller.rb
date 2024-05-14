@@ -1,6 +1,7 @@
 class Shop::ItemsController < ApplicationController
   before_action :authenticate_shop!
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :is_matching_login_shop, only: [:edit, :update]
 
   def new
     @item = Item.new
@@ -40,6 +41,13 @@ class Shop::ItemsController < ApplicationController
   end
 
   private
+
+  def is_matching_login_shop
+    item = Item.find(params[:id])
+    unless item.shop_id == current_shop.id
+      redirect_to shop_top_path
+    end
+  end
 
   def set_item
     @item = Item.find(params[:id])
