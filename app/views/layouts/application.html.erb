@@ -78,6 +78,12 @@
     </main>
 
     <footer class="text-center p-3 <%= (admin_signed_in? ? "admin-footer" : "" ) %> <%= (shop_signed_in? ? "shop-footer" : "" ) %> ">
+      <div class="d-flex justify-content-center">
+      <p class="px-4"><%= link_to 'About', about_path %></p>
+      <p class="px-4"><%= link_to 'ご利用ガイド', about_path %></p>
+      <p class="px-4"><%= link_to 'ご利用規約', about_path %></p>
+      <p class="px-4"><%= link_to 'プライバシーポリシー', about_path %></p>
+      </div>
       <small>
         Copyright © flowerMatch All Rights Reserved.<br>
         このサイト内の文章、画像などの無断複製、無断転載を禁止します。
