@@ -1,23 +1,29 @@
-<div class="d-flex flex-wrap">
-  <% items. each do |item| %>
-    <div class="col-4 card p-2">
-      <%= link_to shop_item_path(item) do %>
-        <%= image_tag item.get_item_image(200,200), class: "card-img-top" %>
-        <div class="card-body">
-          <div class="card-title h6">
-            <%= item.name %>
-          </div>
-          <div class="card-body">
-            <%= item.price.to_s(:delimited, delimiter: ',') %>円<br>
-            在庫<%= item.stock %>個<br>
-            <% if item.is_active %>
-              <p class="text-success">公開中</p>
-            <% else %>
-              <p class="text-danger">非公開</p>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>TOP</th>
+      <th>商品名</th>
+      <th>金額・在庫</th>
+      <th>公開/非公開</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% items. each do |item| %>
+      <tr onclick='window.location="<%= edit_shop_item_path(item) %>"' role="link">
+        <td><%= image_tag item.get_item_image(100,100) %></td>
+        <td><%= item.name %></td>
+        <td>
+          <%= item.price.to_s(:delimited, delimiter: ',') %>円<br>
+          在庫<%= item.stock %>個
+        </td>
+        <td>
+          <% if item.is_active %>
+            <p class="text-success">公開中</p>
+          <% else %>
+            <p class="text-danger">非公開</p>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     get 'members/:member_id/pre_orders' => 'pre_orders#index', as: 'member_pre_orders'
 
     resources :members, only: [:show]
-    resources :items
+    resources :items, except: [:show]
     resources :pre_orders, only: [:show, :index, :update]
   end
 

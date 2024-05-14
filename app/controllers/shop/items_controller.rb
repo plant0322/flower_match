@@ -1,6 +1,6 @@
 class Shop::ItemsController < ApplicationController
   before_action :authenticate_shop!
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:edit, :update, :destroy]
   before_action :is_matching_login_shop, only: [:edit, :update]
 
   def new
@@ -22,9 +22,6 @@ class Shop::ItemsController < ApplicationController
   def index
     @shop = Shop.find(current_shop.id)
     @items = @shop.items
-  end
-
-  def show
   end
 
   def edit
