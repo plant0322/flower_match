@@ -12,7 +12,7 @@ class Shop::ItemsController < ApplicationController
     @item.shop_id = current_shop.id
     if @item.save
       flash[:notice] = "商品を登録しました"
-    redirect_to shop_item_path(@item)
+      redirect_to item_path(@item)
     else
       flash.now[:alert] = "商品登録に失敗しました"
       render :new
@@ -32,8 +32,8 @@ class Shop::ItemsController < ApplicationController
       flash[:notice] = "商品情報を更新しました"
       redirect_to request.referer
     else
-      flash.now[:alert] = "商品情報の更新に失敗しました"
-      render :edit
+      flash[:alert] = @item.errors.full_messages
+      redirect_to request.referer
     end
   end
 

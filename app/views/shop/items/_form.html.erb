@@ -6,7 +6,7 @@
         <tr>
           <th><%= f.label :item_image, "画像" %></th>
           <td>
-            <% if controller.action_name == 'new' %>
+            <% unless controller.action_name == 'edit' %>
               <%= image_tag asset_path('sample.jpg'), size: '150x150' %>
             <% else %>
               <%= image_tag item.get_item_image(100,100),class: "w-100" %>
@@ -54,7 +54,7 @@
       <%= link_to "マイページへ戻る", shop_top_path, class: "btn btn-info p-2" %>
     </div>
     <div class="col-8 d-flex flex-row p-2">
-      <% if controller.action_name == 'new' %>
+      <% unless controller.action_name == 'edit' %>
         <%= f.submit "商品を登録する", class: "btn btn-info p-2" %>
       <% else %>
         <div class="col-6 d-grid px-1">
