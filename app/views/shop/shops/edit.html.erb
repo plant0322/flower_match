@@ -8,13 +8,15 @@
         <table class="table table-borderless table-secondary">
           <tbody>
             <tr>
-              <th><%= f.label :name, "アイキャッチ" %></th>
+              <th><%= f.label :shop_image, "アイキャッチ" %></th>
               <td>
-                <%= image_tag @shop.get_shop_image(100,100) %>
+                <% if controller.action_name == 'edit' %>
+                  <%= image_tag @shop.get_shop_image(100,100),class: "w-100" %>
+                <% else %>
+                  <%= image_tag asset_path('sample'), size: '150x150' %>
+                <% end %>
               </td>
-              <td class="w-75">
-                <%= f.file_field :shop_image, accept: "image/*", class: "form-control" %>
-              </td>
+              <td class="w-75"><%= f.file_field :shop_image, accept: "image/*", class: "form-control" %></td>
             </tr>
             <tr>
               <th><%= f.label :name, "ショップ名" %></th>

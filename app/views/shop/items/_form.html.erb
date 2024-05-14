@@ -2,47 +2,42 @@
   <%= render "layouts/error_messages", obj: item %>
   <div class="bg-secondary p-3">
     <table class="table table-borderless table-secondary">
-      <thead>
-        <th></th>
-        <th></th>
-        <th></th>
-      </thead>
       <tbody>
         <tr>
-          <td><%= f.label :item_image, "画像" %></td>
+          <th><%= f.label :item_image, "画像" %></th>
           <td>
             <% if controller.action_name == 'edit' %>
               <%= image_tag item.get_item_image(100,100),class: "w-100" %>
             <% else %>
-              <%= image_tag 'sample', size: '150x150' %>
+              <%= image_tag asset_path('sample'), size: '150x150' %>
             <% end %>
           </td>
           <td colspan="2" class="w-75"><%= f.file_field :item_image, accept: "image/*", class: "form-control" %></td>
         </tr>
         <tr>
-          <td><%= f.label :name, "商品名" %></td>
+          <th><%= f.label :name, "商品名" %></th>
           <td colspan="2"><%= f.text_field :name, autofocus: true, placeholder: "例）ミニ花束", autocomplete: "name", class: "form-control" %></td>
         </tr>
         <tr>
-          <td><%= f.label :introduction, "商品説明" %></td>
+          <th><%= f.label :introduction, "商品説明" %></th>
           <td colspan="2"><%= f.text_area :introduction, placeholder: "例）日常でも気軽にお花を楽しめる、小さな花束です。", autocomplete: "introduction", class: "form-control" %></td>
         </tr>
         <tr>
-          <td><%= f.label :size, "サイズ" %></td>
+          <th><%= f.label :size, "サイズ" %></th>
           <td colspan="2"><%= f.text_field :size, placeholder: "例）幅15×奥行き15×高さ20㎝", autocomplete: "size", class: "form-control" %></td>
         </tr>
         <tr>
-          <td><%= f.label :price, "値段" %></td>
+          <th><%= f.label :price, "値段" %></th>
           <td><%= f.text_field :price, placeholder: "例）1500円", autocomplete: "price", class: "form-control" %>※カンマ(,)なしの数字のみで入力してください</td>
           <td>円</td>
         </tr>
         <tr>
-          <td><%= f.label :stock, "在庫" %></td>
+          <th><%= f.label :stock, "在庫" %></th>
           <td><%= f.text_field :stock, placeholder: "例）5", autocomplete: "stock", class: "form-control" %>※対応可能な個数を入力してください</td>
           <td>個</td>
         </tr>
         <tr>
-          <td><%= f.label :deadline, "キャンセル可能期限" %></td>
+          <th><%= f.label :deadline, "キャンセル可能期限" %></th>
           <td><%= f.text_field :deadline, placeholder: "例）2", autocomplete: "deadline", class: "form-control" %> ※数字で入力してください</td>
           <td>日前まで可能</td>
         </tr>
@@ -58,14 +53,16 @@
     <div class="col-4 d-grid p-2">
       <%= link_to "マイページへ戻る", shop_top_path, class: "btn btn-info p-2" %>
     </div>
-    <div class="col-4 d-grid p-2">
-      <%= link_to "プレビューで確認する", item_path(item), target: :_blank, class: "btn btn-info p-2" %>
-    </div>
-    <div class="col-4 d-grid p-2">
+    <div class="col-8 d-flex flex-row p-2">
       <% if controller.action_name == 'new' %>
         <%= f.submit "商品を登録する", class: "btn btn-info p-2" %>
       <% else %>
-        <%= f.submit "商品を編集する", class: "btn btn-info p-2" %>
+        <div class="col-6 d-grid px-1">
+          <%= link_to "プレビューで確認する", item_path(item), target: :_blank, class: "btn btn-info p-2" %>
+        </div>
+        <div class="col-6 d-grid px-1">
+          <%= f.submit "商品を編集する", class: "btn btn-info p-2" %>
+        </div>
       <% end %>
     </div>
   </div>
