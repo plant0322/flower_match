@@ -13,8 +13,8 @@ class Public::MembersController < ApplicationController
       flash[:notice] = "ユーザー情報を更新しました"
       redirect_to request.referer
     else
-      flash.now[:alert] = "ユーザー情報の更新に失敗しました"
-      render :edit
+      flash[:alert] = @member.errors.full_messages
+      redirect_to request.referer
     end
   end
 
