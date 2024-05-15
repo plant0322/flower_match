@@ -2,7 +2,7 @@
   <div class="col-9 px-3">
     <!--予約一覧-->
     <div class="mb-5">
-      <h1>予約一覧</h1>
+      <h2>予約一覧</h2>
       <hr>
       <%= render 'shop/pre_orders/index', pre_orders: @pre_orders_3 %>
       <%= link_to '全ての予約を見る', shop_pre_orders_path, class: "float-end" %>
@@ -15,8 +15,10 @@
       <%= link_to '全ての商品を見る', shop_items_path, class: "float-end" %>
     </div>
     <!--口コミ一覧-->
-    <h2>口コミ一覧</h2>
-    <hr>
+    <div class="mb-5">
+      <h2>口コミ一覧</h2>
+      <hr>
+    </div>
 
   </div>
   <div class="col-3 px-3">

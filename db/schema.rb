@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 2024_05_03_090826) do
     t.integer "amount", null: false
     t.date "visit_day", null: false
     t.time "visit_time", null: false
-    t.string "buy_day", null: false
+    t.date "buy_day", null: false
     t.string "purpose", null: false
     t.text "note", null: false
     t.string "last_name", null: false

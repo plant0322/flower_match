@@ -8,7 +8,7 @@ class CreatePreOrders < ActiveRecord::Migration[6.1]
       t.integer :amount, null: false
       t.date :visit_day, null: false
       t.time :visit_time, null: false
-      t.string :buy_day, null: false
+      t.date :buy_day, null: false
       t.string :purpose, null: false
       t.text :note, null: false
       t.string :last_name, null: false

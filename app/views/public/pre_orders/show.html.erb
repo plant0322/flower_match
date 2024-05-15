@@ -49,7 +49,7 @@
       </tr>
       <tr>
         <th>商品単価</th>
-        <td><%= @pre_order.total_payment.to_s(:delimited) %>円</td>
+        <td><%= (@pre_order.total_payment / @pre_order.amount).to_s(:delimited) %>円</td>
       </tr>
       <tr>
         <th>予約数</th>
@@ -58,7 +58,7 @@
       <tr>
         <th>お支払予定金額</th>
         <td>
-          <span class="fw-bold"><%= (@pre_order.total_payment * @pre_order.amount).to_s(:delimited) %> 円</span><br>
+          <span class="fw-bold"><%= @pre_order.total_payment.to_s(:delimited) %> 円</span><br>
           ※来店時にショップへお支払いください
         </td>
       </tr>

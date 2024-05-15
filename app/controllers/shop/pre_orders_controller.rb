@@ -3,7 +3,7 @@ class Shop::PreOrdersController < ApplicationController
   def index
     @shop = current_shop
     @shop_items = Item.where(shop_id: @shop.id)
-    @pre_orders = PreOrder.where(item_id: @shop_items.pluck(:id))
+    @pre_orders = PreOrder.where(item_id: @shop_items.pluck(:id)).order(visit_day: "ASC")
   end
 
   def show
@@ -19,7 +19,7 @@ class Shop::PreOrdersController < ApplicationController
   private
 
   def pre_order_params
-    params.require(:pre_order).permit(:status)
+    params.require(:pre_order).permit(:status, :buy_day)
   end
 
 end

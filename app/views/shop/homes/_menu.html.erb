@@ -1,20 +1,33 @@
-<table class="table">
-  <tr>
-    <th>ショップメニュー</th>
-  </tr>
-  <tr>
-    <td><%= image_tag current_shop.get_shop_image(300,300), class: "w-100" %></td>
-  </tr>
-  <tr>
-    <td><%= link_to "商品一覧", shop_items_path %></td>
-  </tr>
-  <tr>
-    <td>口コミ</td>
-  </tr>
-  <tr>
-    <td><%= link_to "予約一覧", shop_pre_orders_path %></td>
-  </tr>
-  <tr>
-    <td><%= link_to "ショップ情報編集", shop_edit_information_path %></td>
-  </tr>
-</table>
+<% if shop_signed_in? %>
+  <table class="table">
+    <tr>
+      <th class="text-center bg-member <%= (admin_signed_in? ? "bg-admin" : "" ) %> <%= (shop_signed_in? ? "bg-shop" : "" ) %>">ショップメニュー</th>
+    </tr>
+    <tr>
+      <td class="text-center bg-gray">
+        <div class="d-flex align-items-center pb-2">
+          <div class="col-4">
+            <%= image_tag current_shop.get_shop_image(300,300), class: "w-100 pe-1" %>
+          </div>
+          <div class="col-8">
+             <%= link_to 'ショップページ確認 ▶', shop_path(current_shop), class: "btn btn-info p-1" %>
+          </div>
+        </div>
+        <span class="fw-bold"><%= current_shop.name %></span>
+
+      </td>
+    </tr>
+    <tr class="tr-menu" onclick='window.location="<%= shop_items_path %>"' role="link">
+      <td>ショップ商品管理</td>
+    </tr>
+    <tr class="tr-menu" onclick='window.location="<%= root_path %>"' role="link">
+      <td>口コミ管理(リンク未)</td>
+    </tr>
+    <tr class="tr-menu" onclick='window.location="<%= shop_pre_orders_path %>"' role="link">
+      <td>予約履歴管理</td>
+    </tr>
+    <tr class="tr-menu" onclick='window.location="<%= shop_edit_information_path %>"' role="link">
+      <td>ショップ情報編集</td>
+    </tr>
+  </table>
+<% end %>

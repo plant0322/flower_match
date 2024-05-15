@@ -29,7 +29,7 @@ class Public::PreOrdersController < ApplicationController
     @pre_order.item_id = item.id
     @pre_order.name = item.name
     @pre_order.amount = params[:pre_order][:amount]
-    @pre_order.total_payment = item.price
+    @pre_order.total_payment = item.price * @pre_order.amount
     @pre_order.last_name = current_member.last_name
     @pre_order.first_name = current_member.first_name
     @pre_order.last_name_kana = current_member.last_name_kana
@@ -37,7 +37,7 @@ class Public::PreOrdersController < ApplicationController
     @pre_order.telephone_number = current_member.telephone_number
     @pre_order.postal_code = current_member.postal_code
     @pre_order.address = current_member.address
-    @pre_order.buy_day = Time.zone.today
+    @pre_order.buy_day = @pre_order.visit_day
     if @pre_order.save
       item.decrement!(:stock, @pre_order.amount)
       redirect_to thanks_path

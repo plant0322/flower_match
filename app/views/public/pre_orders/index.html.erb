@@ -42,9 +42,9 @@
                 <tbody>
                   <tr>
                     <td><%= pre_order.name %></td>
-                    <td><%= pre_order.total_payment.to_s(:delimited) %>円</td>
+                    <td><%= (pre_order.total_payment / pre_order.amount).to_s(:delimited) %>円</td>
                     <td><%= pre_order.amount %> 個</td>
-                    <td><%= (pre_order.total_payment * pre_order.amount).to_s(:delimited) %>円</td>
+                    <td><%= pre_order.total_payment.to_s(:delimited) %>円</td>
                   </tr>
                 </tbody>
               </table>

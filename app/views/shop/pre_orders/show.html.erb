@@ -1,60 +1,102 @@
 <div class="container d-flex flex-row-reverse pt-3">
   <div class="col-9 px-3">
-    <h2>予約詳細</h2>
+    <h2>予約内容詳細</h2>
     <hr>
-    <table class="table table-borderless table-secondary">
+    <!--予約状況-->
+    <table class="table table-bordered table-light">
       <tr>
-        <th>予約状況</th>
+        <th class="w-25">予約状況</th>
         <td><%= render 'status', pre_order: @pre_order %></td>
         <td>
           <%= form_with model: @pre_order, url: shop_pre_order_path do |f| %>
             <div class="d-flex flex-row">
               <div class="w-50 px-1">
-                <%= f.select :status, PreOrder.statuses_i18n.invert, { prompt: "" }, class: "form-select" %>
+                <div class="pb-2">
+                  <%= f.select :status, PreOrder.statuses_i18n.invert, { prompt: "" }, class: "form-select" %>
+                </div>
+                <div>
+                  <%= f.label :buy_day, "実来店日（商品受け渡し）" %>
+                  <%= f.date_field :buy_day, class: "form-control" %>
+                </div>
               </div>
-              <div class="w-50 px-1">
+              <div class="w-50 px-1 mt-auto">
                 <%= f.submit "更新する", class: "btn btn-info" %>
               </div>
+            </div>
+            <div>
             </div>
           <% end %>
         </td>
       </tr>
       <tr>
-        <th>来店日時</th>
-        <td colspan="2">日にち：<%= @pre_order.visit_day %> 時間：<%= @pre_order.visit_time %></td>
+        <th>来店予定日</th>
+        <td colspan="2"><%= @pre_order.visit_day.strftime("%Y年%m月%d日") %> <%= @pre_order.visit_time.strftime( "%H時%M分" ) %></td>
       </tr>
       <tr>
-        <th>ショップ情報</th>
+        <th>予約者名</th>
         <td colspan="2">
-          <%= @pre_order.item.shop.name %>
-          <%= @pre_order.item.shop.address %>
+          <%= link_to shop_member_pre_orders_path(@pre_order.member_id) do %>
+            <%= @pre_order.order_full_name %> さま
+          <% end %>
+        </td>
+      </tr>
+    </table>
+    <!--予約商品情報-->
+    <table class="table table-bordered table-light">
+      <tr>
+        <th class="w-25">予約商品</th>
+        <td colspan="2">
+          <%= link_to item_path(@pre_order.item) do %>
+            <%= @pre_order.name %>
+            <small>[ <%= @pre_order.item.id %> ]</small>
+          <% end %>
         </td>
       </tr>
       <tr>
-        <th>ご予約商品</th>
-        <td colspan="2">
-          <%= @pre_order.name %>※キャンセルについて（ルール決める）<br>
-          用途：<%= @pre_order.purpose %><br>
-          備考：<%= @pre_order.note %>
+        <th>商品単価</th>
+        <td colspan="2"><%= (@pre_order.total_payment / @pre_order.amount).to_s(:delimited) %> 円</td>
+      </tr>
+      <tr>
+        <th>予約数</th>
+        <td colspan="2"><%= @pre_order.amount %> 個</td>
+      </tr>
+      <tr>
+        <th>受取予定金額</th>
+        <td colspan="2"><%= @pre_order.total_payment.to_s(:delimited) %>円</td>
+      </tr>
+      <tr>
+        <th class="w-25">用途</th>
+        <td><%= @pre_order.purpose %></td>
+      </tr>
+      <tr>
+        <th class="w-25">備考</th>
+        <td><%= @pre_order.note %></td>
+      </tr>
+      <tr>
+        <th class="w-25">キャンセル期限</th>
+        <td><%= @pre_order.item.deadline %>日前まで
         </td>
       </tr>
       <tr>
-        <th>お支払金額</th>
-        <td colspan="2"><%= @pre_order.total_payment.to_s(:delimited) %>円　※来店時にショップへお支払いください</td>
+        <th>キャンセル規定</th>
+        <td>
+          受取予定日の<%= @pre_order.item.deadline %>日前: 合計金額の100%<br>
+          無断: 合計金額の100%
+        </td>
       </tr>
       <tr>
         <th>予約番号</th>
-        <td colspan="2"><%= @pre_order.id %>　※ランダムで番号作るか検討</td>
+        <td colspan="2"><%= @pre_order.id %></td>
       </tr>
     </table>
     <!--予約者情報-->
-    <table class="table table-borderless table-secondary">
+    <table class="table table-bordered table-light">
       <tr>
-        <th>予約者名</th>
+        <th class="w-25">予約者名</th>
         <td>
           <%= link_to shop_member_path(@pre_order.member_id) do %>
             <%= @pre_order.order_full_name %> 様<br>
-            （<%= @pre_order.order_full_name_kana %>）
+            <%= @pre_order.order_full_name_kana %>
           <% end %>
         </td>
       </tr>
