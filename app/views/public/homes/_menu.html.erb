@@ -1,14 +1,22 @@
-<table class="table">
-  <tr>
-    <th><%= link_to 'アイテム一覧', root_path %></th>
-  </tr>
-  <tr>
-    <td>花束</td>
-  </tr>
-  <tr>
-    <td>アレンジ</td>
-  </tr>
-  <tr>
-    <td>母の日</td>
-  </tr>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th class="text-center bg-member <%= (admin_signed_in? ? "bg-admin" : "" ) %> <%= (shop_signed_in? ? "bg-shop" : "" ) %>">商品</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="tr-link" onclick='window.location="<%= root_path %>"' role="link">
+      <td>アイテム一覧</td>
+    </tr>
+    <tr class="tr-link">
+      <td>花束品(リンク未)</td>
+    </tr>
+    <tr class="tr-link">
+      <td>アレンジ品(リンク未)</td>
+    </tr>
+    <tr class="tr-link">
+      <td>母の日品(リンク未)</td>
+    </tr>
+  </tbody>
+
 </table>

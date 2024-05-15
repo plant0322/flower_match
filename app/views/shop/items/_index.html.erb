@@ -9,7 +9,7 @@
   </thead>
   <tbody>
     <% items. each do |item| %>
-      <tr onclick='window.location="<%= edit_shop_item_path(item) %>"' role="link">
+      <tr class="tr-link" onclick='window.location="<%= edit_shop_item_path(item) %>"' role="link">
         <td><%= image_tag item.get_item_image(100,100) %></td>
         <td><%= item.name %></td>
         <td>

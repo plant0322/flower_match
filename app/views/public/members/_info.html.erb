@@ -1,12 +1,7 @@
 <% if member_signed_in? %>
   <table class="table">
     <tr>
-      <th>会員情報</th>
-    </tr>
-    <tr>
-      <th>
-        ニックネーム
-      </th>
+      <th class="bg-member text-center">会員</th>
     </tr>
     <tr>
       <td>
@@ -14,27 +9,31 @@
       </td>
     </tr>
   </table>
-    <table class="table">
-    <tr>
-      <th>会員メニュー</th>
-    </tr>
-    <tr>
-      <td>お気に入りショップの新着</td>
-    </tr>
-    <tr>
-      <td>お気に入りショップ</td>
-    </tr>
-    <tr>
-      <td>ブックマークした商品</td>
-    </tr>
-    <tr>
-      <td><%= link_to "予約一覧", pre_orders_path %></td>
-    </tr>
-    <tr>
-      <td><%= link_to "会員情報編集", edit_information_path %></td>
-    </tr>
-    <tr>
-      <td><%= link_to "ログアウト", destroy_member_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？" %></td>
-    </tr>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th class="bg-member text-center">会員メニュー</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="tr-link">
+        <td>お気に入りショップの新着品(リンク未)</td>
+      </tr>
+      <tr class="tr-link">
+        <td>お気に入りショップ品(リンク未)</td>
+      </tr>
+      <tr class="tr-link">
+        <td>ブックマークした商品(リンク未)</td>
+      </tr>
+      <tr class="tr-link" onclick='window.location="<%= pre_orders_path %>"' role="link">
+        <td>予約一覧</td>
+      </tr>
+      <tr class="tr-link" onclick='window.location="<%= edit_information_path %>"' role="link">
+        <td>会員情報編集</td>
+      </tr>
+      <tr class="tr-link">
+        <td><%= link_to "ログアウト", destroy_member_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？" %></td>
+      </tr>
+    </tbody>
   </table>
 <% end %>

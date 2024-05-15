@@ -1,5 +1,6 @@
 <div class="container d-flex flex-row-reverse pt-3">
   <div class="col-9 px-3">
+    <%= render 'public/shops/info' %>
     <%= form_with url: new_pre_order_path, method: :get do |f| %>
       <div class="d-flex flex-wrap">
         <!--画像-->
@@ -7,60 +8,63 @@
           <%= image_tag @item.get_item_image(500,500),class: "w-100 p-1" %>
         </div>
         <!--詳細-->
-        <div class="col-5 order-3 p-1">
-          <table class="table table-borderless table-secondary">
-            <tr>
-              <th>商品名</th>
-              <td colspan="2"><h1><%= @item.name %></h1></td>
-            </tr>
-            <tr>
-              <th>販売価格</th>
-              <td colspan="2"><%= @item.price.to_s(:delimited, delimiter: ',') %>円</td>
-            </tr>
-            <tr>
-            <tr>
-              <th>サイズ</th>
-              <td colspan="2"><%= @item.size %></td>
-            </tr>
-            <tr>
-              <th>在庫</th>
-              <td><%= @stock %>個</td>
-              <td>
-                <% if @stock == 0 %>
-                  在庫切れのため購入できません
-                <% elsif member_signed_in? %>
-                  <%= f.select :amount, @stock_array, { prompt: "個数を選択" }, class: "form-select" %>
-                <% else %>
-                <% end %>
-              </td>
-            </tr>
-            <tr>
-              <th>キャンセル</th>
-              <td colspan="2"><%= @item.deadline %>日前まで</td>
-            </tr>
-          </table>
+        <div class="col-5 order-3 p-2">
+          <h2 class="h5 fw-bold">
+            <%= @item.name %>
+          </h2>
+          <p class="py-3">
+            価格: <span class="h3"><%= @item.price.to_s(:delimited, delimiter: ',') %></span> 円
+          </p>
+          <div class="d-flex align-items-center pb-1">
+            <div class="me-3">
+              在庫: <%= @stock %>個
+            </div>
+            <div>
+              <% if @stock == 0 %>
+                在庫切れのため購入できません
+              <% elsif member_signed_in? %>
+                <%= f.select :amount, @stock_array, { prompt: "個数を選択" }, class: "form-select" %>
+              <% else %>
+              <% end %>
+            </div>
+          </div>
+          <div class="my-3 mx-auto d-grid">
+            <% if @stock == 0 %>
+              <%= f.hidden_field :item_id, value: @item.id %>
+              <button class="btn btn-secondary p-2" disabled>在庫切れです</button>
+            <% elsif member_signed_in? %>
+              <%= f.hidden_field :item_id, value: @item.id %>
+              <%= f.submit 'この商品を予約する', name: '', class: "btn btn-info p-2" %>
+            <% else %>
+              <%= link_to 'ログインして予約する', new_member_session_path, class: "btn btn-info p-2" %>
+              ※予約にはログインが必要です
+            <% end %>
+          </div>
+          <!--商品紹介-->
+          <div class="bg-light p-3 mb-3">
+            <p class="fw-bold">商品紹介</p>
+            <p><%= @item.introduction %></p>
+          </div>
+          <!--商品詳細-->
+          <div class="bg-light p-3 mb-3">
+            <p class="fw-bold">詳細</p>
+            <div class="mb-2">
+              サイズ: <%= @item.size %>
+            </div>
+            <div>
+              キャンセル期限: <%= @item.deadline %>日前まで
+            </div>
+          </div>
+
+
+
+
         </div>
       </div>
-      <!--説明文-->
-      <div class="col-12 bg-secondary mt-3 p-3">
-        <p><%= @item.introduction %></p>
-      </div>
-      <div class="col-6 d-grid my-3 mx-auto">
-      <% if @stock == 0 %>
-        <%= f.hidden_field :item_id, value: @item.id %>
-        <button class="btn btn-secondary p-2" disabled>在庫切れです</button>
-      <% elsif member_signed_in? %>
-        <%= f.hidden_field :item_id, value: @item.id %>
-        <%= f.submit 'この商品を予約する', name: '', class: "btn btn-info p-2" %>
-      <% else %>
-        <%= link_to 'ログインして予約する', new_member_session_path, class: "btn btn-info p-2" %>
-        ※予約にはログインが必要です
-      <% end %>
-      </div>
+
     <% end %>
   </div>
   <div class="col-3 px-3">
-    <%= render 'public/shops/info' %>
     <%= render 'public/homes/menu' %>
   </div>
 </div>

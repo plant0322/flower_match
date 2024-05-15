@@ -1,46 +1,53 @@
 <div class="container d-flex flex-row-reverse pt-3">
   <div class="col-9 px-3">
-    <ul class="w-100">
-      <% @pre_orders.each do |pre_order| %>
-        <li class="bg-secondary my-2 p-3">
-          <div>
-            <span class="bg-info px-1"><%= pre_order.status_i18n %></span>
-            来店日時:<%= pre_order.visit_day %> <%= pre_order.visit_time.strftime( "%H:%M" ) %>
-          </div>
+    <h2>予約履歴一覧</h2>
+    <hr>
+    <% if @pre_orders.blank? %>
+      <p>まだ予約がありません</p>
+      <%= link_to '商品を探す', root_path, class: "btn btn-info" %>
+    <% else %>
+      <ul class="w-100">
+        <% @pre_orders.each do |pre_order| %>
+          <li class="bg-secondary my-2 p-3">
+            <div>
+              <span class="bg-info px-1"><%= pre_order.status_i18n %></span>
+              来店日時:<%= pre_order.visit_day %> <%= pre_order.visit_time.strftime( "%H:%M" ) %>
+            </div>
 
-          <%= link_to shop_path(pre_order.item.shop.id) do %>
-            <div class="d-flex flex-row">
-              <div class="text-white p-3">
-                <div>
-                  <%= pre_order.item.shop.name %>
-                </div>
-                <div class="col-8">
-                  <%= pre_order.item.shop.address %>
+            <%= link_to shop_path(pre_order.item.shop.id) do %>
+              <div class="d-flex flex-row">
+                <div class="text-white p-3">
+                  <div>
+                    <%= pre_order.item.shop.name %>
+                  </div>
+                  <div class="col-8">
+                    <%= pre_order.item.shop.address %>
+                  </div>
                 </div>
               </div>
+            <% end %>
+            <div class="bg-light my-2 p-2">
+              <div>
+                ご予約商品：
+                <%= pre_order.name %> <%= pre_order.total_payment.to_s(:delimited) %>円
+              </div>
+              <div>
+                個数：<%= pre_order.amount %> 個<br>
+                支払金額：<%= (pre_order.total_payment * pre_order.amount).to_s(:delimited) %>円<br>
+                用途：<%= pre_order.purpose %><br>
+                備考：<%= pre_order.note %><br>
+              </div>
             </div>
-          <% end %>
-          <div class="bg-light my-2 p-2">
-            <div>
-              ご予約商品：
-              <%= pre_order.name %> <%= pre_order.total_payment.to_s(:delimited) %>円
-            </div>
-            <div>
-              個数：<%= pre_order.amount %> 個<br>
-              支払金額：<%= (pre_order.total_payment * pre_order.amount).to_s(:delimited) %>円<br>
-              用途：<%= pre_order.purpose %><br>
-              備考：<%= pre_order.note %><br>
-            </div>
-          </div>
-          <%= link_to '予約内容の詳細を確認する', pre_order_path(pre_order), class: "btn btn-light" %>
-          <%= link_to 'このショップの商品を予約する', shop_path(pre_order.item.shop.id), class: "btn btn-info" %>
+            <%= link_to '予約内容の詳細を確認する', pre_order_path(pre_order), class: "btn btn-light" %>
+            <%= link_to 'このショップの商品を予約する', shop_path(pre_order.item.shop.id), class: "btn btn-info" %>
 
-        </li>
-      <% end %>
-    </ul>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
   </div>
   <div class="col-3 px-3">
     <%= render 'public/members/info' %>
-    <%= render 'public/members/menu' %>
+    <%= render 'public/homes/menu' %>
   </div>
 </div>

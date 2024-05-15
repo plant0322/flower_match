@@ -1,5 +1,6 @@
 class Public::PreOrdersController < ApplicationController
   before_action :authenticate_member!
+
   def new
     @item =  Item.find(params[:item_id])
     if params[:amount].blank?
@@ -65,6 +66,6 @@ class Public::PreOrdersController < ApplicationController
   private
 
   def pre_order_params
-    params.require(:pre_order).permit(:item_id, :visit_day, :visit_time, :purpose, :note)
+    params.require(:pre_order).permit(:item_id, :visit_day, :visit_time, :purpose, :note, :amount)
   end
 end

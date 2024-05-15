@@ -1,75 +1,22 @@
-<table class="table">
-  <tr>
-    <th>ショップ情報</th>
-  </tr>
-  <tr>
-    <td>
-      <%= image_tag @shop.get_shop_image(300,300), class: "w-100" %>
-    </td>
-  </tr>
-  <tr>
-    <th>
-      ショップ名
-    </th>
-  </tr>
-  <tr>
-    <td>
-      <%= @shop.name_kana %><br>
-      <%= @shop.name %>
-    </td>
-  </tr>
-  <tr>
-    <th>
-      住所
-    </th>
-  </tr>
-  <tr>
-    <td>
-      <%= @shop.postal_code.to_s.insert(3, "-") %><br>
-      <%= @shop.address %>
-    </td>
-  </tr>
-  <tr>
-    <th>
-      営業時間
-    </th>
-  </tr>
-  <tr>
-    <td><%= @shop.opening_hour %></td>
-  </tr>
-  <tr>
-    <th>
-      定休日
-    </th>
-  </tr>
-  <tr>
-    <td><%= @shop.holiday %></td>
-  </tr>
-  <tr>
-    <th>
-      支払方法
-    </th>
-  </tr>
-  <tr>
-    <td><%= @shop.payment_method %></td>
-  </tr>
-  <tr>
-    <th>
-      電話番号
-    </th>
-  </tr>
-  <tr>
-    <td><%= @shop.telephone_number.to_s.insert(3, "-").insert(8, "-") %></td>
-  </tr>
-  <tr>
-    <th>
-      駐車場
-    </th>
-  </tr>
-  <tr>
-    <td><%= @shop.parking %></td>
-  </tr>
-  <tr>
-    <td><%= link_to "ショップ情報を詳しく見る", shop_path(@shop) %></td>
-  </tr>
-</table>
+<div class="card d-flex flex-row p-2">
+  <div class="col-2">
+    <%= image_tag @shop.get_shop_image(100,100), class: "w-100 h-100" %>
+  </div>
+  <div class="col-7 d-flex flex-column px-2">
+    <div class="d-flex flex-row">
+      <h1 class="fw-bold h6"><%= @shop.name %></h1>
+      <small><%= @shop.name_kana %></small>
+    </div>
+    <small>
+      〒<%= @shop.postal_code.to_s.insert(3, "-") %><br>
+      <%= @shop.address %><br>
+      <%= @shop.direction %>
+    </small>
+  </div>
+  <div class="col-3">
+    <%= link_to 'ショップ情報を見る', shop_path(@shop), class: "btn btn-info mb-2 d-grid" %>
+    <%= link_to shop_path(@shop), class: "btn btn-info" do %>
+    <small>お気に入りショップに登録する（リンク未）</small>
+    <% end %>
+  </div>
+</div>
