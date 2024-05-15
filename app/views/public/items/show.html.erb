@@ -9,7 +9,7 @@
         </div>
         <!--詳細-->
         <div class="col-5 p-2">
-          <h2 class="h5 fw-bold"><%= @item.name %></h2>
+          <h2 class="h5 fw-bold"><%= @item.name %> <span class="text-black-50 h6">[ <%= @item.id %> ]</span></h2>
           <p class="py-3">
             価格: <span class="h3"><%= @item.price.to_s(:delimited, delimiter: ',') %></span> 円
           </p>

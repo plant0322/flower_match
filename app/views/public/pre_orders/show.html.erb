@@ -1,35 +1,54 @@
 <div class="container d-flex flex-row-reverse pt-3">
   <div class="col-9 px-3">
-    <h2>予約詳細</h2>
+    <h2>予約内容詳細</h2>
     <hr>
-    <table class="table table-borderless table-secondary">
+    <!--ショップ情報-->
+    <table class="table table-bordered table-light">
       <tr>
-        <th>予約状況</th>
-        <td><%= @pre_order.status_i18n %> ※来店済みだったらありがとうございましたにする？</td>
+        <th class="w-25">予約状況</th>
+        <td>
+          <span class="bg-info px-2 py-1 me-2"><%= @pre_order.status_i18n %></span>
+          <span class="fw-bold">
+            <% if @pre_order.status == 'visit' %>
+              ご来店ありがとうございました。
+            <% elsif @pre_order.status == 'before_visit' %>
+              ご来店お待ちしています。
+            <% else %>
+            <% end %>
+          </span>
+        </td>
       </tr>
       <tr>
         <th>来店日時</th>
-        <td>日にち：<%= @pre_order.visit_day %> 時間：<%= @pre_order.visit_time.strftime( "%H:%M" ) %></td>
+        <td><%= @pre_order.visit_day.strftime("%Y年%m月%d日") %> <%= @pre_order.visit_time.strftime( "%H時%M分" ) %></td>
       </tr>
       <tr>
         <th>ショップ情報</th>
         <td>
-          <%= link_to shop_path(@pre_order.item.shop.id) do %>
-            <%= @pre_order.item.shop.name %>
-            <%= @pre_order.item.shop.address %>
+          <%= link_to shop_path(@pre_order.item.shop.id), class: "text-decoration-none" do %>
+            <span class="fw-bold">
+              <%= @pre_order.item.shop.name %>
+            </span><br>
+            <span>
+              <%= @pre_order.item.shop.address %>
+            </span>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+    <!--商品情報-->
+    <table class="table table-bordered table-light">
+      <tr>
+        <th class="w-25">予約商品</th>
+        <td>
+          <%= link_to item_path(@pre_order.item), class: "text-decoration-none" do %>
+            <%= @pre_order.name %>
+            <small>[ <%= @pre_order.item.id %> ]</small>
           <% end %>
         </td>
       </tr>
       <tr>
-        <th>ご予約商品</th>
-        <td>
-          <%= @pre_order.name %>※キャンセルについて（ルール決める）<br>
-          用途：<%= @pre_order.purpose %><br>
-          備考：<%= @pre_order.note %>
-        </td>
-      </tr>
-      <tr>
-        <th>金額</th>
+        <th>商品単価</th>
         <td><%= @pre_order.total_payment.to_s(:delimited) %>円</td>
       </tr>
       <tr>
@@ -37,12 +56,39 @@
         <td><%= @pre_order.amount %>個</td>
       </tr>
       <tr>
-        <th>お支払金額</th>
-        <td><%= (@pre_order.total_payment * @pre_order.amount).to_s(:delimited) %>円　※来店時にショップへお支払いください</td>
+        <th>お支払予定金額</th>
+        <td>
+          <span class="fw-bold"><%= (@pre_order.total_payment * @pre_order.amount).to_s(:delimited) %> 円</span><br>
+          ※来店時にショップへお支払いください
+        </td>
+      </tr>
+      <tr>
+        <th class="w-25">用途</th>
+        <td><%= @pre_order.purpose %></td>
+      </tr>
+      <tr>
+        <th class="w-25">備考</th>
+        <td><%= @pre_order.note %></td>
+      </tr>
+    </table>
+
+    <table class="table table-bordered table-light">
+      <tr>
+        <th class="w-25">キャンセル期限</th>
+        <td><%= @pre_order.item.deadline %>日前まで
+        </td>
+      </tr>
+      <tr>
+        <th>キャンセル規定</th>
+        <td>
+          受取予定日の<%= @pre_order.item.deadline %>日前: 合計金額の100%<br>
+          無断: 合計金額の100%<br>
+          ※キャンセルの場合は期限日までに必ずショップへご連絡ください。
+        </td>
       </tr>
       <tr>
         <th>予約番号</th>
-        <td><%= @pre_order.id %>　※ランダムで番号作るか検討</td>
+        <td><%= @pre_order.id %></td>
       </tr>
     </table>
   </div>
