@@ -3,9 +3,18 @@ body {
   color: #404040;
 }
 
-.btn {
-    border-radius: 2px!important;
+// bootstrapの設定調整
+.btn,
+.card,
+.card-img-top,
+.list-group-item{
+    border-radius: 3px!important;
 }
+
+a {
+  color: #B32A6C!important;
+}
+
 
 // 背景色
 .bg-member {

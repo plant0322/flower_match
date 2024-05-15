@@ -77,7 +77,7 @@
       <%= yield %>
     </main>
 
-    <footer class="text-center p-3 <%= (admin_signed_in? ? "admin-footer" : "" ) %> <%= (shop_signed_in? ? "shop-footer" : "" ) %> ">
+    <footer class="text-center p-3 mt-5 <%= (admin_signed_in? ? "admin-footer" : "" ) %> <%= (shop_signed_in? ? "shop-footer" : "" ) %> ">
       <div class="d-flex justify-content-center">
       <p class="px-4"><%= link_to 'About', about_path, class: "text-decoration-none text-white " %></p>
       <p class="px-4"><%= link_to 'ご利用ガイド', about_path, class: "text-decoration-none text-white" %></p>

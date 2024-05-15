@@ -1,19 +1,23 @@
 <div class="container d-flex flex-row-reverse pt-3">
   <div class="col-9 px-3">
     <div class="d-flex flex-wrap">
-      <div class="col-5 order-1">
-        <%= image_tag @shop.get_shop_image(300,300), class: "w-100" %>
+      <!--画像-->
+      <div class="col-4">
+        <%= image_tag @shop.get_shop_image(500,500), class: "w-100 p-1" %>
       </div>
       <!--詳細-->
-      <div class="col-7 order-3 p-1">
-        <table class="table table-borderless table-secondary">
-          <tr>
-            <th>ショップ名</th>
-            <td>
-              <%= @shop.name_kana %><br>
-              <%= @shop.name %>
-            </td>
-          </tr>
+      <div class="col-8 p-1">
+        <h1 class="h3 fw-bold"><%= @shop.name %></h1>
+        <p class="h6"><%= @shop.name_kana %></p>
+        <!--ショップコメント-->
+        <div class="bg-light p-3 mb-3">
+          <p class="fw-bold mb-2">ショップコメント <i class="fa-solid fa-comment"></i></p>
+          <p><%= @shop.introduction %></p>
+        </div>
+
+        <hr>
+        <p class="fw-bold ms-3">ショップ情報</p>
+        <table class="table table-bordered table-light">
           <tr>
             <th>紹介文</th>
             <td><%= @shop.introduction %></td>
@@ -22,7 +26,7 @@
           <tr>
             <th>住所</th>
             <td>
-              <%= @shop.postal_code.to_s.insert(3, "-") %><br>
+              〒<%= @shop.postal_code.to_s.insert(3, "-") %><br>
               <%= @shop.address %>
             </td>
           </tr>
