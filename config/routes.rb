@@ -55,10 +55,12 @@ Rails.application.routes.draw do
     get 'pre_orders/confirm'       => 'pre_orders#error'
     get 'pre_orders/thanks'        => 'pre_orders#thanks', as: 'thanks'
     get 'bookmarks'                => 'bookmarks#bookmark_list', as: 'bookmarks'
+    get 'favorite_shops'           => 'favorite_shops#shop_list', as: 'favorite_shops'
 
     resources :shops, only: [:show]
     resources :items, only: [:show] do
       resource :bookmarks, only: [:create, :destroy]
+      resource :favorite_shop, only: [:create, :destroy]
     end
     resources :pre_orders, only: [:new, :show, :index, :create]
   end

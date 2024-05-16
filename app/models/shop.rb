@@ -5,6 +5,7 @@ class Shop < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items, dependent: :destroy
+  has_many :favorite_shops, dependent: :destroy
   has_one_attached :shop_image
 
   validates :name, presence: true
@@ -28,5 +29,9 @@ class Shop < ApplicationRecord
       shop_image.attach(io: File.open(file_path), filename: 'sample.jpg', content_type: 'image/jpeg')
     end
     shop_image.variant(resize_to_limit: [width, height]).processed
+  end
+
+  def favorite_shop_by?(member)
+    favorite_shop.exists?(member_id :member.id)
   end
 end
