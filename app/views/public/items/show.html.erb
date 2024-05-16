@@ -35,7 +35,15 @@
               <%= f.submit 'この商品を予約する', name: '', class: "btn btn-info p-2" %>
             <% else %>
               <%= link_to 'ログインして予約する', new_member_session_path, class: "btn btn-info p-2" %>
-              ※予約にはログインが必要です
+            <% end %>
+            <% if member_signed_in? %>
+              <% if @item.bookmark_by?(current_member) %>
+                <%= link_to 'ブックマーク済み', bookmarks_path, class: "btn btn-outline-info p-2 mt-2" %>
+              <% else %>
+                <%= link_to 'ブックマークする', item_bookmarks_path(@item), method: :post, class: "btn btn-outline-info p-2 mt-2" %>
+              <% end %>
+            <% else %>
+              <button class="btn btn-outline-secondary p-2 mt-2" disabled>ブックマークする</button>
             <% end %>
           </div>
           <!--商品紹介-->

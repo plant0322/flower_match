@@ -1,0 +1,36 @@
+<table class="table table-bordered">
+  <thead>
+    <tr class="text-center">
+      <th>ショップ</th>
+      <th class="w-50">商品</th>
+      <th>金額・在庫</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% items. each do |item| %>
+      <tr>
+        <td class="text-center">
+          <%= link_to shop_path(item.shop) do %>
+            <%= item.shop.name %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to item_path(item) do %>
+            <div class="d-flex flex-row">
+              <%= image_tag item.get_item_image(100,100), class: "col-2 pe-1" %>
+              <div class="col-10"><%= item.name %></div>
+            </div>
+          <% end %>
+          </td>
+        <td class="text-end">
+          <%= item.price.to_s(:delimited, delimiter: ',') %>円(税込)<br>
+          在庫<%= item.stock %>個
+        </td>
+        <td class="text-center">
+          <%= link_to '×', item_bookmarks_path(item), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-info py-0 px-1 mt-2" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

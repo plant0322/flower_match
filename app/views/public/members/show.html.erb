@@ -13,8 +13,13 @@
     <div class="my-5">
       <h2>ブックマークした商品一覧</h2>
       <hr>
-      <p>ブックマークの登録がありません</p>
-      <%= link_to '商品を探す', root_path, class: "btn btn-info" %>
+      <% unless @items.blank? %>
+        <%= render 'public/bookmarks/index', items: @items %>
+        <%= link_to '全てのブックマークを見る', bookmarks_path, class: "float-end" %>
+      <% else %>
+        <p>ブックマークの登録がありません</p>
+        <%= link_to '商品を探す', root_path, class: "btn btn-info" %>
+      <% end %>
     </div>
 
   </div>

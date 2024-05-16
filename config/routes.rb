@@ -54,9 +54,12 @@ Rails.application.routes.draw do
     post 'pre_orders/confirm'      => 'pre_orders#confirm'
     get 'pre_orders/confirm'       => 'pre_orders#error'
     get 'pre_orders/thanks'        => 'pre_orders#thanks', as: 'thanks'
+    get 'bookmarks'                => 'bookmarks#bookmark_list', as: 'bookmarks'
 
     resources :shops, only: [:show]
-    resources :items, only: [:show]
+    resources :items, only: [:show] do
+      resource :bookmarks, only: [:create, :destroy]
+    end
     resources :pre_orders, only: [:new, :show, :index, :create]
   end
 end
