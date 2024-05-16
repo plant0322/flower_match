@@ -3,6 +3,8 @@ class Public::MembersController < ApplicationController
   before_action :set_current_member
 
   def show
+    bookmark_items = Bookmark.where(member_id: current_member.id)
+    @items = Item.where(id: bookmark_items.pluck(:item_id)).order(created_at: "DESC").limit(3)
   end
 
   def edit

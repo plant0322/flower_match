@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
 
   has_many :pre_orders, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
   has_many :item_tags, dependent: :destroy
   belongs_to :shop
   has_one_attached :item_image
@@ -19,5 +20,9 @@ class Item < ApplicationRecord
       item_image.attach(io: File.open(file_path), filename: 'sample.jpg', content_type: 'image/jpeg')
     end
     item_image.variant(resize_to_limit: [width, height]).processed
+  end
+
+  def bookmark_by?(member)
+    bookmarks.exists?(member_id: member.id)
   end
 end

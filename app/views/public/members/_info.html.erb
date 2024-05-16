@@ -16,22 +16,22 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="tr-link">
+      <tr class="tr-menu">
         <td>お気に入りショップの新着品(リンク未)</td>
       </tr>
-      <tr class="tr-link">
+      <tr class="tr-menu">
         <td>お気に入りショップ品(リンク未)</td>
       </tr>
-      <tr class="tr-link">
-        <td>ブックマークした商品(リンク未)</td>
+      <tr class="tr-menu" onclick='window.location="<%= bookmarks_path %>"' role="link">
+        <td>ブックマークした商品</td>
       </tr>
-      <tr class="tr-link" onclick='window.location="<%= pre_orders_path %>"' role="link">
+      <tr class="tr-menu" onclick='window.location="<%= pre_orders_path %>"' role="link">
         <td>予約一覧</td>
       </tr>
-      <tr class="tr-link" onclick='window.location="<%= edit_information_path %>"' role="link">
+      <tr class="tr-menu" onclick='window.location="<%= edit_information_path %>"' role="link">
         <td>会員情報編集</td>
       </tr>
-      <tr class="tr-link">
+      <tr class="tr-menu">
         <td><%= link_to "ログアウト", destroy_member_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？" %></td>
       </tr>
     </tbody>

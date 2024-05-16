@@ -4,7 +4,8 @@ class Member < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :pre_orders
+  has_many :pre_orders, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   validates :last_name, presence: true
   validates :first_name, presence: true

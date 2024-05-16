@@ -4,18 +4,35 @@
     <div class="card p-1 h-100">
       <%= link_to item_path(item), class: "text-decoration-none" do %>
         <%= image_tag item.get_item_image(300,300), class: "card-img-top" %>
-        <div class="card-body">
-          <h3 class="card-title fw-bold h6 text-dark">
-            <%= item.name %>
-          </h3>
-          <div class="card-text">
-            <small class="text-body-secondary">
-              <span class="h6"><%= item.price.to_s(:delimited, delimiter: ',') %></span>円(税込)<br>
-              在庫<span class="h6"><%= item.stock %></span>点
-            </small>
+      <% end %>
+      <div class="card-body">
+        <div class="col-12 d-flex flex-row">
+          <div class="col-11">
+            <h3 class="fw-bold h6 pe-1 card-title">
+            <%= link_to item_path(item), class: "text-decoration-none text-dark" do %>
+              <%= item.name %>
+            <% end %>
+            </h3>
+          </div>
+          <div class="col-1">
+            <% if item.bookmark_by?(current_member) %>
+              <%= link_to bookmarks_path do %>
+                <i class="fa-solid fa-bookmark"></i>
+              <% end %>
+            <% else %>
+              <%= link_to item_bookmarks_path(item), method: :post do %>
+                <i class="fa-regular fa-bookmark"></i>
+              <% end %>
+            <% end %>
           </div>
         </div>
-      <% end %>
+        <div class="card-text">
+          <small class="text-body-secondary">
+            <span class="h6"><%= item.price.to_s(:delimited, delimiter: ',') %></span>円(税込)<br>
+            在庫<span class="h6"><%= item.stock %></span>点
+          </small>
+        </div>
+      </div>
     </div>
   </div>
 
