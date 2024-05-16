@@ -1,0 +1,17 @@
+<div class="container d-flex flex-row-reverse pt-3">
+  <div class="col-9 px-3">
+    <h2>お気に入りショップの商品</h2>
+    <hr>
+      <% unless @favorite_shop_items.blank? %>
+        <%= render 'public/items/index', items: @favorite_shop_items %>
+      <% else %>
+        <p>お気に入りショップの登録がありません</p>
+        <%= link_to '商品を探す', root_path, class: "btn btn-info" %>
+      <% end %>
+
+  </div>
+  <div class="col-3 px-3">
+    <%= render 'public/members/info' %>
+    <%= render 'public/homes/menu' %>
+  </div>
+</div>

@@ -6,6 +6,7 @@ class Member < ApplicationRecord
 
   has_many :pre_orders, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  has_many :favorite_shops, dependent: :destroy
 
   validates :last_name, presence: true
   validates :first_name, presence: true
