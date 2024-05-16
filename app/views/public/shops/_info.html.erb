@@ -15,8 +15,10 @@
   </div>
   <div class="col-3">
     <%= link_to 'ショップ情報を見る', shop_path(@shop), class: "btn btn-info mb-2 d-grid" %>
-    <%= link_to shop_path(@shop), class: "btn btn-info" do %>
-    <small>お気に入りショップに登録する（リンク未）</small>
+    <% if @shop.favorite_shop_by?(current_member) %>
+      <%= link_to 'お気に入り登録済み', favorite_shops_path, class: "btn btn-outline-info d-grid" %>
+    <% else %>
+      <%= link_to 'お気に入りに登録する', shop_favorite_shop_path(@shop), method: :post, class: "btn btn-outline-info d-grid" %>
     <% end %>
   </div>
 </div>

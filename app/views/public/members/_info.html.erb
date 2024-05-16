@@ -16,14 +16,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="tr-menu">
-        <td>お気に入りショップの新着品(リンク未)</td>
-      </tr>
-      <tr class="tr-menu">
-        <td>お気に入りショップ品(リンク未)</td>
-      </tr>
       <tr class="tr-menu" onclick='window.location="<%= bookmarks_path %>"' role="link">
         <td>ブックマークした商品</td>
+      </tr>
+      <tr class="tr-menu" onclick='window.location="<%= favorite_shop_items_path %>"' role="link">
+        <td>お気に入りショップの商品</td>
+      </tr>
+      <tr class="tr-menu" onclick='window.location="<%= favorite_shops_path %>"' role="link">
+        <td>お気に入りショップ</td>
       </tr>
       <tr class="tr-menu" onclick='window.location="<%= pre_orders_path %>"' role="link">
         <td>予約一覧</td>

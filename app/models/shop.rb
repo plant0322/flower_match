@@ -32,6 +32,6 @@ class Shop < ApplicationRecord
   end
 
   def favorite_shop_by?(member)
-    favorite_shop.exists?(member_id :member.id)
+    favorite_shops.exists?(member_id: member.id)
   end
 end

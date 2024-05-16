@@ -1,20 +1,25 @@
 <div class="container d-flex flex-row-reverse pt-3">
   <div class="col-9 px-3">
-    <h1>マイページ</h1>
+    <h2>マイページ</h2>
     <hr>
 
     <div class="my-5">
       <h2>お気に入りショップの新着</h2>
       <hr>
-      <p>お気に入りショップの登録がありません</p>
-      <%= link_to '商品を探す', root_path, class: "btn btn-info" %>
+      <% unless @favorite_shop_items.blank? %>
+        <%= render 'public/items/index', items: @favorite_shop_items %>
+        <%= link_to 'お気に入りショップの商品を見る', favorite_shop_items_path, class: "float-end" %>
+      <% else %>
+        <p>お気に入りショップの登録がありません</p>
+        <%= link_to '商品を探す', root_path, class: "btn btn-info" %>
+      <% end %>
     </div>
 
     <div class="my-5">
       <h2>ブックマークした商品一覧</h2>
       <hr>
-      <% unless @items.blank? %>
-        <%= render 'public/bookmarks/index', items: @items %>
+      <% unless @bookmark_items.blank? %>
+        <%= render 'public/bookmarks/index', items: @bookmark_items %>
         <%= link_to '全てのブックマークを見る', bookmarks_path, class: "float-end" %>
       <% else %>
         <p>ブックマークの登録がありません</p>
