@@ -66,6 +66,7 @@ Rails.application.routes.draw do
     resources :items, only: [:show] do
       resource :bookmarks, only: [:create, :destroy]
     end
+
     resources :pre_orders, only: [:new, :show, :index, :create]
   end
 end

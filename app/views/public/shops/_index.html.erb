@@ -1,0 +1,28 @@
+<% shops. each do |shop| %>
+  <div class="col-12 card d-flex flex-row p-2 mb-3">
+    <div class="col-3 pe-3">
+      <%= image_tag shop.get_shop_image(300,300), class: "w-100" %>
+    </div>
+    <div class="col-5 pe-3">
+      <h3 class="h5 fw-bold"><%= shop.name %></h3>
+      <p><%= shop.name_kana %></p>
+      <p class="shop-introduction"><%= shop.introduction %></p>
+    </div>
+    <div class="col-4">
+      <table class="table">
+        <tr>
+          <th>住所</th>
+          <td>〒<%= shop.postal_code.to_s.insert(3, "-") %><br><%= shop.address %></td>
+        </tr>
+        <tr>
+          <th>営業時間</th>
+          <td><%= shop.opening_hour %></td>
+        </tr>
+        <tr>
+          <th>定休日</th>
+          <td><%= shop.holiday %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+<% end %>

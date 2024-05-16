@@ -15,14 +15,18 @@
             </h3>
           </div>
           <div class="col-1">
-            <% if item.bookmark_by?(current_member) %>
-              <%= link_to bookmarks_path do %>
-                <i class="fa-solid fa-bookmark"></i>
+            <% if member_signed_in? %>
+              <% if item.bookmark_by?(current_member) %>
+                <%= link_to bookmarks_path do %>
+                  <i class="fa-solid fa-bookmark"></i>
+                <% end %>
+              <% else %>
+                <%= link_to item_bookmarks_path(item), method: :post do %>
+                  <i class="fa-regular fa-bookmark"></i>
+                <% end %>
               <% end %>
             <% else %>
-              <%= link_to item_bookmarks_path(item), method: :post do %>
-                <i class="fa-regular fa-bookmark"></i>
-              <% end %>
+              <i class="fa-regular fa-bookmark"></i>
             <% end %>
           </div>
         </div>
