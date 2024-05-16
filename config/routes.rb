@@ -57,6 +57,7 @@ Rails.application.routes.draw do
     get 'bookmarks'                => 'bookmarks#bookmark_list', as: 'bookmarks'
     get 'favorite_shops'           => 'favorite_shops#shop_list', as: 'favorite_shops'
     get 'favorite_shop_items'      => 'favorite_shops#item_list', as: 'favorite_shop_items'
+    get 'search'                   => 'searches#search'
 
     resources :shops, only: [:show] do
       resource :favorite_shop, only: [:create, :destroy]
@@ -65,6 +66,7 @@ Rails.application.routes.draw do
     resources :items, only: [:show] do
       resource :bookmarks, only: [:create, :destroy]
     end
+
     resources :pre_orders, only: [:new, :show, :index, :create]
   end
 end

@@ -97,3 +97,10 @@ footer{
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
 }
+
+.shop-introduction {
+    overflow: hidden;
+    display: -webkit-box; // Chrome、Safariのみ？
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
+}
