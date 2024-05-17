@@ -1,6 +1,6 @@
 <%= form_with url: shop_search_path, method: :get do |f| %>
   <div class="bg-light d-flex flex-row p-1 mb-3">
-    <% if controller_name == 'items' %>
+    <% if controller_name == 'items' || @type == 'item' || @type == 'item_name' %>
       <%= render 'shop/searches/select_item', f: f %>
     <% elsif controller_name == 'pre_orders' || @type == 'order_member' || @type == 'order_item_all' || @type == 'order_item' %>
       <%= render 'shop/searches/select_pre_order', f: f %>

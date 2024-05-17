@@ -1,7 +1,7 @@
 <div class="container d-flex flex-row-reverse pt-3">
   <div class="col-9 px-3">
     <%= render 'shop/searches/form' %>
-    <% if @type == 'item' %>
+    <% if @type == 'item' || @type == 'item_name' %>
       <h2>「<%= @content %>」<span class="h4">を含む商品の検索結果</span><span class="h6">（全<%= @records.count %>件）</span></h2>
       <hr>
       <% if @records.blank? %>
@@ -9,7 +9,7 @@
         該当する商品はありません
         </p>
       <% else %>
-        <%= render 'public/items/index', items: @records %>
+        <%= render 'shop/items/index', items: @records %>
       <% end %>
       <%= link_to '◀ 全てのショップ商品一覧へ戻る', shop_items_path %>
 
