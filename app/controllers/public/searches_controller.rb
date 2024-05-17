@@ -9,7 +9,7 @@ class Public::SearchesController < ApplicationController
       @records = Shop.where('name LIKE?', '%'+@content+'%')
     else #@model = 'tag'
       @records = Tag.search_items(@content)
-      @tags = Tag.all
+      @tags = Tag.joins(:item_tags).group(:id).order('COUNT(item_tags.tag_id) DESC').limit(10)
     end
   end
 end

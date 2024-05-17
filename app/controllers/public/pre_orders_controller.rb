@@ -57,10 +57,12 @@ class Public::PreOrdersController < ApplicationController
 
   def index
     @pre_orders = current_member.pre_orders.order(id: "DESC")
+    @tags = Tag.joins(:item_tags).group(:id).order('COUNT(item_tags.tag_id) DESC').limit(10)
   end
 
   def show
     @pre_order = PreOrder.find(params[:id])
+    @tags = Tag.joins(:item_tags).group(:id).order('COUNT(item_tags.tag_id) DESC').limit(10)
   end
 
   private
