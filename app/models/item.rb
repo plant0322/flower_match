@@ -25,4 +25,16 @@ class Item < ApplicationRecord
   def bookmark_by?(member)
     bookmarks.exists?(member_id: member.id)
   end
+
+  def self.search_for(content, method)
+    if method == 'partial'
+      Item.where('name LIKE?', '%'+content+'%')
+    elsif method == 'perfect'
+      Item.where(name: content)
+    elsif method == 'forward'
+      Item.where('name LIKE?', content+'%')
+    else
+      Item.where('name LIKE?', '%'+content)
+    end
+  end
 end

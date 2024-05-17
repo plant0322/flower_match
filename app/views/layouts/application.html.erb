@@ -33,6 +33,7 @@
         <% if shop_signed_in? %>
           <div class="col-1 bg-info p-3 m-2 w-25"><%= link_to new_shop_item_path do %>商品の新規登録<% end %></div>
           <div class="col-1 bg-info p-3 m-2 w-25"><%= link_to shop_top_path do %>ショップ管理画面<% end %></div>
+          <div class="col-1 bg-info p-3 m-2 w-25"><%= link_to shop_items_path do %>ショップ商品一覧<% end %></div>
           <div class="col-1 bg-info p-3 m-2 w-25"><%= link_to shop_pre_orders_path do %>予約一覧<% end %></div>
         <% elsif member_signed_in? %>
         <!--一般ユーザーログイン後-->

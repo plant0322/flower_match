@@ -1,0 +1,32 @@
+<div class="container d-flex flex-row-reverse pt-3">
+  <div class="col-9 px-3">
+    <%= render 'shop/searches/form' %>
+    <% if @type == 'item' %>
+      <h2>「<%= @content %>」<span class="h4">を含む商品の検索結果</span><span class="h6">（全<%= @records.count %>件）</span></h2>
+      <hr>
+      <% if @records.blank? %>
+        <p class="lh-lg">
+        該当する商品はありません
+        </p>
+      <% else %>
+        <%= render 'public/items/index', items: @records %>
+      <% end %>
+      <%= link_to '◀ 全てのショップ商品一覧へ戻る', shop_items_path %>
+
+    <% elsif @type == 'order_member' || @type == 'order_item_all' || @type == 'order_item' %>
+      <h2>「<%= @content %>」<span class="h4">を含む予約の検索結果</span><span class="h6">（全<%= @records.count %>件）</span></h2>
+      <hr>
+      <% if @records.blank? %>
+        <p>該当する予約履歴はありません</p>
+      <% else %>
+        <%= render 'shop/pre_orders/index', pre_orders: @records %>
+      <% end %>
+      <%= link_to '◀ 全ての予約履歴一覧へ戻る', shop_pre_orders_path %>
+
+    <% end %>
+
+  </div>
+  <div class="col-3 px-3">
+    <%= render 'shop/homes/menu' %>
+  </div>
+</div>

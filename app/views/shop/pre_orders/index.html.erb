@@ -2,6 +2,7 @@
   <div class="col-9 px-3">
     <h1>予約一覧<span class="h5">（全<%= @pre_orders.count %>件）</span></h1>
     <hr>
+    <%= render 'shop/searches/form' %>
 
     <%= render 'index', pre_orders: @pre_orders %>
 
