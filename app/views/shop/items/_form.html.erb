@@ -19,6 +19,16 @@
           <td colspan="2"><%= f.text_field :name, autofocus: true, placeholder: "例）ミニ花束", autocomplete: "name", class: "form-control" %></td>
         </tr>
         <tr>
+          <th><%= f.label :tag_name, "タグ" %></th>
+          <td colspan="2">
+            <%= f.text_field :tag_name, placeholder: "半角スペースを入れて複数のタグを追加できます", autocomplete: "tag_name", class: "form-control" %>
+            登録済のタグ:
+            <% @item.tags.each do |tag| %>
+            <%= tag.name %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
           <th><%= f.label :introduction, "商品説明" %></th>
           <td colspan="2"><%= f.text_area :introduction, placeholder: "例）日常でも気軽にお花を楽しめる、小さな花束です。", autocomplete: "introduction", class: "form-control" %></td>
         </tr>
