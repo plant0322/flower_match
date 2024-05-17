@@ -3,6 +3,7 @@ class Item < ApplicationRecord
   has_many :pre_orders, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :item_tags, dependent: :destroy
+  has_many :tags, through: :item_tags
   belongs_to :shop
   has_one_attached :item_image
 
@@ -35,6 +36,21 @@ class Item < ApplicationRecord
       Item.where('name LIKE?', content+'%')
     else
       Item.where('name LIKE?', '%'+content)
+    end
+  end
+
+  def save_tags(saveitem_tags)
+    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    old_tags = current_tags - saveitem_tags
+    new_tags = saveitem_tags - current_tags
+
+    old_tags.each do |old_name|
+      self.tags.delete Tag.find_by(name: old_name)
+    end
+
+    new_tags.each do |new_name|
+      item_tag = Tag.find_or_create_by(name: new_name)
+      self.tags << item_tag
     end
   end
 end

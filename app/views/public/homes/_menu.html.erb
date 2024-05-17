@@ -8,14 +8,21 @@
     <tr class="tr-menu" onclick='window.location="<%= root_path %>"' role="link">
       <td>アイテム一覧</td>
     </tr>
+    <% @tags.each do |tag| %>
     <tr class="tr-menu">
-      <td>花束品(リンク未)</td>
+      <td>
+        <%= link_to "/search?model=tag&content=#{tag.name}" do %>
+          <%= tag.name %>
+        <% end %>
+      </td>
     </tr>
-    <tr class="tr-menu">
-      <td>アレンジ品(リンク未)</td>
-    </tr>
-    <tr class="tr-menu">
-      <td>母の日品(リンク未)</td>
+    <% end %>
+    <tr>
+      <td>
+        <% unless shop_signed_in? %>
+          <%= render 'public/searches/tag_form' %>
+        <% end %>
+      </td>
     </tr>
   </tbody>
 

@@ -1,0 +1,9 @@
+<div class="d-flex flex-row">
+  <% tags.each do |tag| %>
+    <div class="pe-2">
+      <%= link_to "/search?model=tag&content=#{tag.name}", class: "px-2 py-0 btn btn-outline-info rounded-pill" do %>
+        # <%= tag.name %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

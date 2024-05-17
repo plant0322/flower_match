@@ -8,6 +8,7 @@ class Public::MembersController < ApplicationController
     favorite_shops = FavoriteShop.where(member_id: current_member.id)
     shop_ids = favorite_shops.pluck(:shop_id)
     @favorite_shop_items = Item.where(shop_id: shop_ids).order(created_at: "DESC").limit(6)
+    @tags = Tag.joins(:item_tags).group(:id).order('COUNT(item_tags.tag_id) DESC').limit(10)
   end
 
   def edit
@@ -24,6 +25,7 @@ class Public::MembersController < ApplicationController
   end
 
   def unsubscribe
+    @tags = Tag.joins(:item_tags).group(:id).order('COUNT(item_tags.tag_id) DESC').limit(10)
   end
 
   def withdraw

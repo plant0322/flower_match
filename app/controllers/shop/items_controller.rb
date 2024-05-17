@@ -10,7 +10,9 @@ class Shop::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.shop_id = current_shop.id
+    tag_list = params[:item][:tag_name].split(',')
     if @item.save
+      @item.save_tags(tag_list)
       flash[:notice] = "商品を登録しました"
       redirect_to item_path(@item)
     else
@@ -28,7 +30,9 @@ class Shop::ItemsController < ApplicationController
   end
 
   def update
+    tag_list = params[:item][:tag_name].split(' ')
     if @item.update(item_params)
+      @item.save_tags(tag_list)
       flash[:notice] = "商品情報を更新しました"
       redirect_to request.referer
     else

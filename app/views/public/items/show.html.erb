@@ -63,9 +63,11 @@
           </div>
         </div>
       </div>
+      <%= render 'public/searches/tag_btn', tags: @item_tags %>
     <% end %>
   </div>
   <div class="col-3 px-3">
+    <%= render 'public/members/info' %>
     <%= render 'public/homes/menu' %>
   </div>
 </div>
