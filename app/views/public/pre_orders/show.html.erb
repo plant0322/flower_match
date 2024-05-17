@@ -91,6 +91,17 @@
         <td><%= @pre_order.id %></td>
       </tr>
     </table>
+    <% if @pre_order.review %>
+      <button class="btn btn-secondary disabled">口コミの投稿ありがとうございます</button>
+    <% else %>
+      <%= form_with model: @review, url: pre_order_reviews_path(@pre_order), method: :post do |f| %>
+        <%= render "layouts/error_messages", obj: @review %>
+        <div class="col-5 my-2">
+          <%= f.text_area :content, placeholder: 'この商品やショップの口コミを入力してください', class: "form-control" %>
+          <%= f.submit '口コミを投稿する', class: "btn btn-info mt-2" %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
   <div class="col-3 px-3">
     <%= render 'public/members/info' %>

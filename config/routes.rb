@@ -68,6 +68,8 @@ Rails.application.routes.draw do
       resource :bookmarks, only: [:create, :destroy]
     end
 
-    resources :pre_orders, only: [:new, :show, :index, :create]
+    resources :pre_orders, only: [:new, :show, :index, :create] do
+      resource :reviews, only: [:create]
+    end
   end
 end

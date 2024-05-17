@@ -62,6 +62,7 @@ class Public::PreOrdersController < ApplicationController
 
   def show
     @pre_order = PreOrder.find(params[:id])
+    @review = Review.new
     @tags = Tag.joins(:item_tags).group(:id).order('COUNT(item_tags.tag_id) DESC').limit(10)
   end
 
