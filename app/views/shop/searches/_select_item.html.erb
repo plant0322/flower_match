@@ -1,0 +1,5 @@
+<div class="col-4">
+  <%= f.select :type, options_for_select({'商品を検索' => 'item','商品名を指定して検索' => 'item_name'}), {}, {:class => "form-control"} %>
+  ※商品名指定の場合のみ設置
+  <%= f.select :method, options_for_select({'部分一致' => 'partial', '完全一致' => 'perfect', '前方一致' => 'forward', '後方一致' => 'backward'}), {}, {:class => "form-control"} %>
+</div>

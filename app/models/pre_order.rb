@@ -17,4 +17,16 @@ class PreOrder < ApplicationRecord
   def order_full_name_kana
     last_name_kana + ' ' + first_name_kana
   end
+
+  def self.search_for(content, method)
+    if method == 'partial'
+      PreOrder.where('name LIKE?', '%'+content+'%')
+    elsif method == 'perfect'
+      PreOrder.where(name: content)
+    elsif method == 'forward'
+      PreOrder.where('name LIKE?', content+'%')
+    else
+      PreOrder.where('name LIKE?', '%'+content)
+    end
+  end
 end
