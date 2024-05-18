@@ -16,10 +16,11 @@ class Public::PreOrdersController < ApplicationController
     @amount =  params[:pre_order][:amount]
     @pre_order = PreOrder.new(pre_order_params)
     if params[:pre_order][:visit_day].blank? || params[:pre_order][:visit_time].blank?  || params[:pre_order][:purpose].blank?
-      flash.now[:alert] = '情報を正しく入力して下さい。'
+      flash.now[:alert] = '「来店日」「来店時間」「要望・用途」は必須項目です'
       render :new
-    else params[:note].blank?
+    elsif params[:pre_order][:note].blank?
       @pre_order.note = '特になし'
+    else
     end
   end
 

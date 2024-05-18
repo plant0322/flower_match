@@ -1,39 +1,67 @@
 <div class="container d-flex flex-column pt-3">
   <div class="col-8 mx-auto px-3">
-    <h2>商品を新しく登録する</h2>
+    <h2><span>step1</span> 予約内容入力</h2>
     <hr>
     <%= form_with model: @pre_order, url: pre_orders_confirm_path, method: :post do |f| %>
       <!--%= render "layouts/error_messages", obj: @pre_order %>-->
-      <div class="bg-secondary p-3">
-        <table class="table table-borderless table-secondary">
-          <tbody>
-            <tr>
-              <th><%= f.label :visit_day, "来店日" %></td>
-              <td><%= f.date_field :visit_day, autofocus: true, placeholder: "例）〇月〇日（水）", autocomplete: "visit_day", class: "form-control" %></td>
-            </tr>
-            <tr>
-              <th><%= f.label :visit_time, "来店時間" %></td>
-              <td ><%= f.time_field :visit_time, placeholder: "例）13時", autocomplete: "visit_time", class: "form-control" %></td>
-            </tr>
-            <tr>
-              <th><%= f.label :purpose, "用途" %></td>
-              <td><%= f.text_area :purpose, placeholder: "例）20代女性への誕生日プレゼント", autocomplete: "purpose", class: "form-control" %></td>
-            </tr>
-            <tr>
-              <th><%= f.label :note, "備考" %></td>
-              <td><%= f.text_area :note, placeholder: "例）黄色やオレンジ色ベースでお願いします", autocomplete: "note", class: "form-control" %></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <h3 class="bg-info p-1 h5">日時を指定する</h3>
+      <table class="table table-bordered table-light my-3">
+        <tr>
+          <th class="w-25"><%= f.label :visit_day, "来店日" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
+          <td><%= f.date_field :visit_day, autofocus: true, placeholder: "例）〇月〇日（水）", autocomplete: "visit_day", class: "form-control" %></td>
+        </tr>
+        <tr>
+          <th class="w-25"><%= f.label :visit_time, "来店時間" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
+          <td><%= f.time_field :visit_time, placeholder: "例）13時", autocomplete: "visit_time", class: "form-control" %></td>
+        </tr>
+      </table>
+
+      <h3 class="bg-info p-1 h5 mt-5">予約内容を入力する</h3>
+      <table class="table table-bordered table-light align-middle my-3">
+        <tr>
+          <th class="w-25">予約商品</th>
+          <td class="d-flex align-items-center">
+            <div class="col-2 pe-2">
+              <%= image_tag @item.get_item_image(100,100),class: "w-100 p-1" %>
+            </div>
+            <div class="col-10">
+              <%= @item.name %> <small>[ <%= @item.id %> ]</small>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th class="w-25">予約商品の単価</th>
+          <td><%= @item.price.to_s(:delimited) %> 円</td>
+        </tr>
+        <tr>
+          <th class="w-25">予約個数</th>
+          <td><%= @amount %> 個</td>
+        </tr>
+        <tr>
+          <th class="w-25"><%= f.label :purpose, "要望・用途" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
+          <td>
+            <%= f.text_area :purpose, placeholder: "例）20代女性への誕生日プレゼント", autocomplete: "purpose", class: "form-control" %>
+            <small>※商品に関するご要望や用途を入力してください。具体的な内容だと商品もより製作しやすくなる可能性があります。</small>
+          </td>
+        </tr>
+      </table>
+
+      <h3 class="bg-info p-1 h5 mt-5">その他</h3>
+      <table class="table table-bordered table-light my-3">
+        <tr>
+          <th class="w-25"><%= f.label :note, "備考" %></th>
+          <td><%= f.text_area :note, autocomplete: "note", class: "form-control" %></td>
+        </tr>
+      </table>
+
       <div class="d-flex flex-row my-3 mx-auto">
         <div class="col-6 d-grid p-2">
-          <%= link_to "商品情報へ戻る", item_path(@item.id), class: "btn btn-info p-2" %>
+          <%= link_to "商品情報へ戻る", item_path(@item.id), class: "btn btn-outline-info p-2" %>
         </div>
         <div class="col-6 d-grid p-2">
           <%= f.hidden_field :item_id, value: @item.id %>
           <%= f.hidden_field :amount, value: @amount %>
-          <%= f.submit "予約情報を確認する", class: "btn btn-info p-2" %>
+          <%= f.submit "予約内容を確認する", class: "btn btn-info p-2" %>
         </div>
       </div>
     <% end %>
