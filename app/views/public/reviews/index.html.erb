@@ -1,0 +1,29 @@
+<div class="container d-flex flex-row-reverse pt-3">
+  <div class="col-9 px-3">
+    <h2><span class="h4">口コミは</span> <%= @reviews.count %><span class="h4"> 件です</span></h2>
+    <hr>
+    <ul class="list-group">
+      <% @reviews.each do |review| %>
+        <li class="list-group-item mb-3">
+          <div class="d-flex row p-3 mb-2 bg-light">
+            <div class="col-3">
+              <i class="fa-regular fa-comment-dots"></i> <%= review.pre_order.member.nickname %>さん
+            </div>
+            <div class="col-9">
+             <%= review.content %>
+            </div>
+          </div>
+          <div>
+            <small>予約商品: <%= review.pre_order.name %></small>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+    <%= link_to '◀ ショップ情報に戻る', shop_path(@shop) %>
+  </div>
+
+  <div class="col-3 px-3">
+    <%= render 'public/members/info' %>
+    <%= render 'public/homes/menu' %>
+  </div>
+</div>

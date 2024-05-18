@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     patch 'shops/withdraw'              => 'shops#withdraw', as: 'withdraw_shop'
     get 'members/:member_id/pre_orders' => 'pre_orders#index', as: 'member_pre_orders'
     get 'search'                        => 'searches#search'
+    get 'review'                        => 'reviews#index', as: 'review'
 
     resources :members, only: [:show]
     resources :items, except: [:show]
@@ -59,6 +60,7 @@ Rails.application.routes.draw do
     get 'favorite_shops'           => 'favorite_shops#shop_list', as: 'favorite_shops'
     get 'favorite_shop_items'      => 'favorite_shops#item_list', as: 'favorite_shop_items'
     get 'search'                   => 'searches#search'
+    get ':id/review'               => 'reviews#index', as: 'review'
 
     resources :shops, only: [:show] do
       resource :favorite_shop, only: [:create, :destroy]
@@ -68,6 +70,8 @@ Rails.application.routes.draw do
       resource :bookmarks, only: [:create, :destroy]
     end
 
-    resources :pre_orders, only: [:new, :show, :index, :create]
+    resources :pre_orders, only: [:new, :show, :index, :create] do
+      resource :reviews, only: [:create]
+    end
   end
 end

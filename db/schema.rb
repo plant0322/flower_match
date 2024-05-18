@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_05_16_051615) do
+ActiveRecord::Schema.define(version: 2024_05_17_194906) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -53,15 +53,15 @@ ActiveRecord::Schema.define(version: 2024_05_16_051615) do
   end
 
   create_table "bookmarks", force: :cascade do |t|
-    t.integer "member_id"
-    t.integer "item_id"
+    t.integer "member_id", null: false
+    t.integer "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "favorite_shops", force: :cascade do |t|
-    t.integer "member_id"
-    t.integer "shop_id"
+    t.integer "member_id", null: false
+    t.integer "shop_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -126,6 +126,13 @@ ActiveRecord::Schema.define(version: 2024_05_16_051615) do
     t.string "address", null: false
     t.string "telephone_number", null: false
     t.integer "status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "content", null: false
+    t.integer "pre_order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
