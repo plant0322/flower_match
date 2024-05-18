@@ -9,11 +9,7 @@
         <hr>
         <%= form_with model: @member, url: member_session_path do |f| %>
           <div class="bg-secondary p-3">
-            <table class="table table-borderless table-secondary">
-              <thead>
-                <th></th>
-                <th></th>
-              </thead>
+            <table class="table">
               <tbody>
                 <tr>
                   <td><%= f.label :email, "メール" %></td>

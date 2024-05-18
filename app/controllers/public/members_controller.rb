@@ -1,6 +1,6 @@
 class Public::MembersController < ApplicationController
   before_action :authenticate_member!
-  before_action :set_current_member
+  before_action :set_current_member, only: [:edit, :update]
 
   def show
     bookmarks = Bookmark.where(member_id: current_member.id)
@@ -12,6 +12,7 @@ class Public::MembersController < ApplicationController
   end
 
   def edit
+    @tags = Tag.joins(:item_tags).group(:id).order('COUNT(item_tags.tag_id) DESC').limit(10)
   end
 
   def update
