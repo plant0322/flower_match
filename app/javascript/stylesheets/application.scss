@@ -1,6 +1,8 @@
 body {
   font-family: "游ゴシック", YuGothic, "メイリオ", Meiryo, "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro", "Hiragino Maru Gothic W4 JIS2004", "Helvetica Neue", Helvetica, Arial, sans-serif!important;
   color: #404040;
+  word-break: break-all;
+  overflow-wrap: break-word;
 }
 
 // bootstrapの設定調整

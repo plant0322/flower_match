@@ -1,5 +1,6 @@
 class Public::PreOrdersController < ApplicationController
   before_action :authenticate_member!
+  before_action :is_matching_login_member, only: [:show]
 
   def new
     @item =  Item.find(params[:item_id])
@@ -68,6 +69,13 @@ class Public::PreOrdersController < ApplicationController
   end
 
   private
+
+  def is_matching_login_member
+    pre_order = PreOrder.find(params[:id])
+    unless pre_order.member_id == current_member.id
+      redirect_to root_path
+    end
+  end
 
   def pre_order_params
     params.require(:pre_order).permit(:item_id, :visit_day, :visit_time, :purpose, :note, :amount)

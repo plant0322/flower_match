@@ -1,10 +1,16 @@
 <div class="container d-flex flex-row-reverse pt-3">
   <div class="col-9 px-3">
-    <h1>予約一覧<span class="h5">（全<%= @pre_orders.count %>件）</span></h1>
+    <h2>予約一覧<span class="h5">（全<%= @pre_orders.count %>件）</span></h2>
     <hr>
     <%= render 'shop/searches/form' %>
 
-    <%= render 'index', pre_orders: @pre_orders %>
+    <h3>現在の予約<span class="h5">（全<%= @before_visit_pre_orders.count %>件）</span></h3>
+    <hr>
+    <%= render 'index', pre_orders: @before_visit_pre_orders %>
+
+    <h3>過去の予約履歴<span class="h5">（全<%= @visit_or_cancel_pre_orders.count %>件）</span></h3>
+    <hr>
+    <%= render 'index', pre_orders: @visit_or_cancel_pre_orders %>
 
   </div>
   <div class="col-3 px-3">

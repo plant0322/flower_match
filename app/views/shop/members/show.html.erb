@@ -1,9 +1,55 @@
 <div class="container d-flex flex-row-reverse pt-3">
   <div class="col-9 px-3">
-    <h1><%= @member.member_full_name %>さまの予約一覧</h1>
+    <h1><%= @member.member_full_name %>さまの予約情報</h1>
     <hr>
+    <div class="d-flex flex-row pb-5">
+      <div class="col-6">
+        <table class="table table-bordered h-100">
+          <tr>
+            <th class="w-25">氏名</th>
+            <td colspan="4"><%= @member.member_full_name %> 様</td>
+          </tr>
+          <tr>
+            <th class="w-25">カナ</th>
+            <td><%= @member.member_full_name_kana %></td>
+          </tr>
+          <tr>
+            <th>ニックネーム</th>
+            <td colspan="4"><%= @member.nickname %></td>
+          </tr>
+        </table>
+      </div>
 
-    <%= render 'shop/pre_orders/index', pre_orders: @pre_orders %>
+      <div class="col-6">
+        <table class="table table-bordered h-100">
+          <tr>
+            <th class="w-25">電話番号</th>
+            <td colspan="4"><%= @member.telephone_number.to_s.insert(3, "-").insert(8, "-") %></td>
+          </tr>
+          <tr>
+            <th class="w-25">住所</th>
+            <td>〒 <%= @member.postal_code.to_s.insert(3, "-") %><br><%= @member.address %></td>
+          </tr>
+          <tr>
+            <th>口コミ</th>
+            <td colspan="4">
+              <%= link_to shop_review_path do %>
+                <%= @reviews.count %> 件の投稿あり
+              <% end %>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <h3>現在の予約<span class="h5">（全<%= @before_visit_pre_orders.count %>件）</span></h3>
+    <hr>
+    <%= render 'shop/pre_orders/index', pre_orders: @before_visit_pre_orders %>
+
+    <h3>過去の予約履歴<span class="h5">（全<%= @visit_or_cancel_pre_orders.count %>件）</span></h3>
+    <hr>
+    <%= render 'shop/pre_orders/index', pre_orders: @visit_or_cancel_pre_orders %>
+
 
   </div>
   <div class="col-3 px-3">
