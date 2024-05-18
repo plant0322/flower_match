@@ -1,22 +1,24 @@
 <div class="container d-flex flex-row-reverse pt-3">
-  <div class="col-9 px-3">
-    <h1>退会確認</h1>
+  <div class="col-9 px-3 mt-3">
+    <h2>退会確認</h2>
     <hr>
 
-    <div class="bg-secondary p-3">
+    <p class="text-center h4 mt-5">本当に退会しますか？</p>
+
+    <div class=" p-3">
       <div class="d-flex flex-row my-3 mx-auto">
         <div class="col-6 d-grid p-2">
           <%= link_to "マイページへ戻る", mypage_path, class: "btn btn-info p-2" %>
         </div>
         <div class="col-6 d-grid p-2">
-          <%= link_to "退会する", withdraw_member_path, method: :patch, "data-confirm" => "本当に退会しますか？", class: "btn btn-info p-2" %>
+          <%= link_to "退会する", withdraw_member_path, method: :patch, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-info p-2" %>
         </div>
       </div>
     </div>
 
   </div>
   <div class="col-3 px-3">
-    <%= render 'public/members/info' %>
-    <%= render 'public/homes/menu' %>
+    <%= render 'layouts/members_info' %>
+    <%= render 'layouts/homes_menu' %>
   </div>
 </div>

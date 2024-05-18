@@ -8,12 +8,8 @@
         <h3>ショップ登録がお済みの方</h3>
         <hr>
         <%= form_with model: @shop, url: shop_session_path do |f| %>
-          <div class="bg-secondary p-3">
-            <table class="table table-borderless table-secondary">
-              <thead>
-                <th></th>
-                <th></th>
-              </thead>
+          <div class="p-3">
+            <table class="table table-borderless table-light">
               <tbody>
                 <tr>
                   <td><%= f.label :email, "メール" %></td>
@@ -36,7 +32,7 @@
       <div class="col-6 px-3">
         <h3>ショップ登録がまだの方</h3>
         <hr>
-        <div class="bg-secondary p-3">
+        <div class="p-3">
           <div class="col-6 d-grid mx-auto">
             <%= link_to "ショップ新規登録はこちら", new_shop_registration_path, class: "btn btn-info p-2" %>
           </div>
