@@ -1,66 +1,95 @@
 <div class="container d-flex flex-column pt-3">
   <div class="col-8 mx-auto px-3">
-    <h2>予約情報をご確認ください</h2>
+    <h2><span>step2</span> 予約情報をご確認ください</h2>
     <hr>
-    <!--商品情報-->
-    <div class="bg-secondary p-3">
-      <table class="table table-borderless table-secondary">
-        <tbody>
-          <tr>
-            <th>来店日時</td>
-            <td><%= @pre_order.visit_day %> <%= @pre_order.visit_time.strftime( "%H:%M" ) %></td>
-          </tr>
-          <tr>
-            <th>予約商品</td>
-            <td ><%= @item.name %> <%= @item.price %>円 <%= @amount %>個</td>
-          </tr>
-          <tr>
-            <th>用途</td>
-            <td><%= @pre_order.purpose %></td>
-          </tr>
-          <tr>
-            <th>備考</td>
-            <td><%= @pre_order.note %></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <!--お客さま情報-->
-    <div class="bg-secondary p-3">
-      <table class="table table-borderless table-secondary">
-        <tbody>
-          <tr>
-            <th>予約者氏名</td>
-            <td><%= current_member.last_name %> <%= current_member.first_name %></td>
-          </tr>
-          <tr>
-            <th>予約者連絡先（電話番号）</td>
-            <td><%= current_member.telephone_number %></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <p class="text-danger fw-bold text-center">【 まだ予約は完了していません。 】</p>
+    <table class="table table-bordered table-light my-3">
+      <tr>
+        <th class="w-25">来店日時</th>
+        <td><%= @pre_order.visit_day %> <%= @pre_order.visit_time.strftime( "%H:%M" ) %></td>
+      </tr>
+    </table>
 
-  <div class="d-flex flex-row my-3 mx-auto">
-    <div class="col-6 d-grid p-2">
-      <%= form_with url: new_pre_order_path, method: :get do |f| %>
-        <%= f.hidden_field :item_id, value: @item.id %>
-        <%= f.hidden_field :amount, value: @amount %>
-        <%= f.submit '情報入力へ戻る', class: "btn btn-info p-2" %>
-      <% end %>
+    <table class="table table-bordered table-light my-3">
+      <tr>
+        <th class="w-25">予約商品</th>
+        <td class="d-flex align-items-center">
+          <div class="col-2 pe-2">
+            <%= image_tag @item.get_item_image(100,100),class: "w-100 p-1" %>
+          </div>
+          <div class="col-10">
+            <%= @item.name %> <small>[ <%= @item.id %> ]</small>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>予約商品の単価</th>
+        <td><%= @item.price.to_s(:delimited) %> 円</td>
+      </tr>
+      <tr>
+        <th>予約個数</th>
+        <td><%= @amount %> 個</td>
+      </tr>
+      <tr>
+        <th>支払予定金額</th>
+        <td><%= (@item.price * @pre_order.amount).to_s(:delimited) %> 円</td>
+      </tr>
+    </table>
+
+    <table class="table table-bordered table-light my-3">
+      <tr>
+        <th class="w-25">要望・用途</th>
+        <td><%= @pre_order.purpose %></td>
+      </tr>
+      <tr>
+        <th class="w-25">備考</th>
+        <td><%= @pre_order.note %></td>
+      </tr>
+    </table>
+
+    <h3 class="bg-info p-1 h5 mt-5">ご予約者情報</h3>
+    <table class="table table-bordered table-light my-3">
+      <tr>
+        <th class="w-25">ご予約者氏名</th>
+        <td><%= current_member.member_full_name %></td>
+      </tr>
+      <tr>
+        <th class="w-25">連絡可能な電話番号</th>
+        <td><%= current_member.telephone_number.to_s.insert(3, "-").insert(7, "-") %></td>
+      </tr>
+    </table>
+    <div class="col-12">
+      <small>
+        ご予約の際は、ご利用規約、プライバシーポリシーをご確認ください。
+      </small>
     </div>
-    <div class="col-6 d-grid p-2">
-      <%= form_with model: @pre_order, url: pre_orders_path do |f| %>
-        <%= f.hidden_field :item_id, value: @item.id %>
-        <%= f.hidden_field :amount, value: @amount %>
-        <%= f.hidden_field :visit_day, value: @pre_order.visit_day %>
-        <%= f.hidden_field :visit_time, value: @pre_order.visit_time %>
-        <%= f.hidden_field :purpose, value: @pre_order.purpose %>
-        <%= f.hidden_field :note, value: @pre_order.note %>
-        <%= f.submit "予約を確定する", class: "btn btn-info p-2" %>
-      <% end %>
+    <div class="d-flex flex-row my-3 mx-auto">
+      <div class="col-6 d-grid pe-1">
+        <%= form_with url: new_pre_order_path, method: :get do |f| %>
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <%= f.hidden_field :amount, value: @amount %>
+          <%= f.submit '情報入力へ戻る', class: "btn btn-outline-info p-2 w-100" %>
+        <% end %>
+      </div>
+      <div class="col-6 d-grid ps-1">
+        <%= form_with model: @pre_order, url: pre_orders_path do |f| %>
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <%= f.hidden_field :amount, value: @amount %>
+          <%= f.hidden_field :visit_day, value: @pre_order.visit_day %>
+          <%= f.hidden_field :visit_time, value: @pre_order.visit_time %>
+          <%= f.hidden_field :purpose, value: @pre_order.purpose %>
+          <%= f.hidden_field :note, value: @pre_order.note %>
+          <%= f.submit "上記に同意の上、予約を確定する", class: "btn btn-info p-2 w-100" %>
+        <% end %>
+      </div>
     </div>
-  </div>
+    <div class="col-12">
+      <small>
+        <b>注意事項</b><br>
+        ・緊急の際には、電話にて連絡することがあります。必ずご連絡のつく電話番号であるか確認してください。<br>
+        ・ご連絡のないキャンセルをされた場合、ご予約を承れなくなることがあります。
+      </small>
+    </div>
 
   </div>
 </div>

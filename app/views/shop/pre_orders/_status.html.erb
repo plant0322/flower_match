@@ -1,3 +1,13 @@
-<div class="bg-info px-1 text-center">
-  <%= pre_order.status_i18n %>
-</div>
+<% if pre_order.status == 'before_visit' %>
+  <div class="bg-danger px-1 text-center text-white fw-normal rounded-pill">
+    <%= pre_order.status_i18n %>
+  </div>
+<% elsif pre_order.status == 'visit' %>
+  <div class="bg-info px-1 text-center text-white fw-normal rounded-pill">
+    <%= pre_order.status_i18n %>
+  </div>
+<% else %><!--pre_order.status == 'cancel'-->
+  <div class="bg-secondary px-1 text-center text-white fw-normal rounded-pill">
+    <%= pre_order.status_i18n %>
+  </div>
+<% end %>

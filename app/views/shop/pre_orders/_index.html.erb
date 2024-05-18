@@ -1,45 +1,45 @@
 <% pre_orders.each do |pre_order| %>
-  <table class="table table-bordered">
-    <thead>
-      <tr class="text-center">
-        <th>来店日時</th>
-        <th>予約者名</th>
-        <th class="w-50">予約商品</th>
-        <th>商品単価</th>
-        <th>個数</th>
-        <th>合計金額</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="fw-bold">
-          <%= link_to shop_pre_order_path(pre_order) do %>
-            <%= pre_order.buy_day %><br>
-            <%= pre_order.visit_time.strftime( "%H時%M分" ) %>
-            <%= render 'shop/pre_orders/status', pre_order: pre_order %>
-            <small>(予定: <%= pre_order.visit_day.strftime("%Y年%m月%d日") %>)</small>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to shop_member_path(pre_order.member_id) do %>
-            <%= pre_order.member.member_full_name %> さま
-          <% end %>
-        </td>
-        <td>
-          <%= link_to item_path(pre_order.item_id) do %>
-            <%= pre_order.item.name %>
-          <% end %>
-        </td>
-        <td>
-          <%= pre_order.item.price.to_s(:delimited) %> 円
-        </td>
-        <td>
-          <%= pre_order.amount %> 個
-        </td>
-        <td>
-          <%= (pre_order.total_payment * pre_order.amount).to_s(:delimited) %> 円
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="bg-gray p-3 mb-4">
+    <div class="d-flex align-items-center pb-3">
+      <div class="col-6 d-flex align-items-center">
+        <div class="pe-2">
+          <%= render 'shop/pre_orders/status', pre_order: pre_order %>
+        </div>
+        <div>
+          来店日<br>
+          <span class="h5 fw-bold">
+            <%= pre_order.visit_day.strftime("%Y年%m月%d日") %> <%= pre_order.visit_time.strftime( "%H時%M分" ) %>
+          </span>
+        </div>
+      </div>
+      <div class="col-3 h5 fw-bold pt-2">
+        <p class="mb-0"><%= pre_order.order_full_name %> さま</p>
+        <p class="h6 mb-0">（<%= pre_order.order_full_name_kana %>）</p>
+      </div>
+      <div class="col-3">
+        <% unless controller_name == 'members' %>
+          <%= link_to 'お客様情報を見る', shop_member_path(pre_order.member_id), class: "btn btn-outline-info w-100 mb-2" %>
+        <% end %>
+        <%= link_to '予約詳細を見る', shop_pre_order_path(pre_order), class: "btn btn-info w-100" %>
+      </div>
+    </div>
+    <div>
+      <table class="table table-bordered">
+        <tr>
+          <th class="w-25">予約商品</th>
+          <td colspan="4"><%= pre_order.name %> <small>[<%= pre_order.item.id %>]</small></td>
+        </tr>
+        <tr>
+          <th>商品単価</th>
+          <td class="w-25"><%= (pre_order.total_payment / pre_order.amount).to_s(:delimited) %> 円</td>
+          <th class="w-25">予約個数</th>
+          <td><%= pre_order.amount %> 個</td>
+        </tr>
+        <tr>
+          <th>予約金額合計</th>
+          <td colspan="4"><%= (pre_order.total_payment * pre_order.amount).to_s(:delimited) %> 円</td>
+        </tr>
+      </table>
+    </div>
+  </div>
 <% end %>

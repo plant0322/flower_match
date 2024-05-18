@@ -1,5 +1,6 @@
 class Public::PreOrdersController < ApplicationController
   before_action :authenticate_member!
+  before_action :is_matching_login_member, only: [:show]
 
   def new
     @item =  Item.find(params[:item_id])
@@ -16,10 +17,11 @@ class Public::PreOrdersController < ApplicationController
     @amount =  params[:pre_order][:amount]
     @pre_order = PreOrder.new(pre_order_params)
     if params[:pre_order][:visit_day].blank? || params[:pre_order][:visit_time].blank?  || params[:pre_order][:purpose].blank?
-      flash.now[:alert] = '情報を正しく入力して下さい。'
+      flash.now[:alert] = '「来店日」「来店時間」「要望・用途」は必須項目です'
       render :new
-    else params[:note].blank?
+    elsif params[:pre_order][:note].blank?
       @pre_order.note = '特になし'
+    else
     end
   end
 
@@ -67,6 +69,13 @@ class Public::PreOrdersController < ApplicationController
   end
 
   private
+
+  def is_matching_login_member
+    pre_order = PreOrder.find(params[:id])
+    unless pre_order.member_id == current_member.id
+      redirect_to root_path
+    end
+  end
 
   def pre_order_params
     params.require(:pre_order).permit(:item_id, :visit_day, :visit_time, :purpose, :note, :amount)
