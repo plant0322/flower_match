@@ -10,7 +10,7 @@ class Shop::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.shop_id = current_shop.id
-    tag_list = params[:item][:tag_name].split(',')
+    tag_list = params[:item][:tag_name].split(' ')
     if @item.save
       @item.save_tags(tag_list)
       flash[:notice] = "商品を登録しました"
