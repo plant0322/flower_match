@@ -1,5 +1,4 @@
 class Public::ReviewsController < ApplicationController
-  before_action :authenticate_member!
 
   def new
     @pre_order = PreOrder.find(params[:pre_order_id])
@@ -20,9 +19,11 @@ class Public::ReviewsController < ApplicationController
   end
 
   def index
-    @pre_orders = PreOrder.where(member_id: current_member.id)
-    @review = Review.new
     @tags = Tag.joins(:item_tags).group(:id).order('COUNT(item_tags.tag_id) DESC').limit(10)
+    @shop = Shop.find(params[:id])
+    items = @shop.items
+    pre_orders = PreOrder.where(item_id: items)
+    @reviews = Review.where(pre_order_id: pre_orders)
   end
 
   private
