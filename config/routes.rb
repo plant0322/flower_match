@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     patch 'shops/withdraw'              => 'shops#withdraw', as: 'withdraw_shop'
     get 'members/:member_id/pre_orders' => 'pre_orders#index', as: 'member_pre_orders'
     get 'search'                        => 'searches#search'
+    get ':id/review'                    => 'review#index', as: 'review'
 
     resources :members, only: [:show]
     resources :items, except: [:show]
