@@ -2,7 +2,10 @@
   <div class="col-9 px-3">
     <h2>ショップ一覧</h2>
     <hr>
-    <%= render 'admin/searches/form' %>
+    <%= form_with url: admin_members_path, method: :get do |f| %>
+      <%= f.hidden_field :member %>
+      <%= render 'admin/searches/form' %>
+    <% end %>
 
     <%= render 'public/shops/index', shops: @shops %>
     <%= link_to "◀ 管理画面TOPへ戻る", admin_top_path %>

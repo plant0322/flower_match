@@ -1,17 +1,10 @@
-<%= form_with url: admin_search_path, method: :get do |f| %>
-  <div class="bg-light d-flex flex-row p-1 mb-3">
-    <div class="col-6">
-      <% if controller_name == 'shops' %>
-        <%= f.hidden_field :shop %>
-      <% elsif controller_name == 'members' %>
-        <%= f.hidden_field :member %>
-      <% end %>
-      <%= f.text_field :content, placeholder: 'キーワードから探す', class: "form-control" %>
-    </div>
-    <div class="col-2">
-    <%= button_tag type: 'submit', name: '', class: "form-control" do %>
-      <i class="fa-solid fa-magnifying-glass"></i>検索
-    <% end %>
-    </div>
+<div class="bg-light d-flex flex-row p-1 mb-3">
+  <div class="col-6">
+    <%= f.text_field :content, placeholder: 'キーワードから探す', class: "form-control" %>
   </div>
-<% end %>
+  <div class="col-2">
+  <%= button_tag type: 'submit', name: '', class: "form-control" do %>
+    <i class="fa-solid fa-magnifying-glass"></i>検索
+  <% end %>
+  </div>
+</div>

@@ -1,5 +1,9 @@
 <div class="container d-flex flex-row-reverse pt-3">
   <div class="col-9 px-3">
+    <%= form_with url: admin_members_path, method: :get do |f| %>
+      <%= f.hidden_field :member %>
+      <%= render 'admin/searches/form', f: f %>
+    <% end %>
     <!--詳細-->
     <div class="col-12 order-3 p-1">
       <table class="table table-bordered table-light">
@@ -13,34 +17,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @members.each do |member| %>
-            <tr>
-              <td>
-                <%= member.id %>
-              </td>
-              <td>
-                <%= link_to admin_member_path(member) do %>
-                  <%= member.member_full_name %><br>
-                  <%= member.member_full_name_kana %>
-                <% end %>
-              </td>
-              <td>
-                <%= member.nickname %>
-              </td>
-              <td>
-                TEL: <%= member.telephone_number.to_s.insert(3, "-").insert(7, "-") %><br>
-                〒 <%= member.postal_code.to_s.insert(3, "-") %><br>
-                <%= member.address %>
-              </td>
-              <td>
-               <% if member.is_active == true %>
-                  <span class="text-submit fw-bold">有効</span>
-                <% else %>
-                  <span class="text-danger fw-bold">退会</span>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
+          <%= render 'index', members: @members %>
         </tbody>
       </table>
     </div>

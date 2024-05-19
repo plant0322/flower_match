@@ -20,7 +20,11 @@ class Admin::ShopsController < ApplicationController
   end
 
   def index
-    @shops = Shop.all.order(id: 'DESC')
+    if params[:shop]
+      @shops = Shop.where('name LIKE ? OR name_kana LIKE ?', "%#{@content}%", "%#{@content}%").order(id: 'DESC')
+    else
+      @shops = Shop.all.order(id: 'DESC')
+    end
   end
 
   private

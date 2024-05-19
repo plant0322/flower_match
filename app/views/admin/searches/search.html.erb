@@ -1,0 +1,19 @@
+<div class="container d-flex flex-row-reverse pt-3">
+  <div class="col-9 px-3">
+    <%= render 'shop/searches/form' %>
+    <h2>「<%= @content %>」<span class="h4">を含むショップの検索結果</span><span class="h6">（全<%= @records.count %>件）</span></h2>
+    <hr>
+      <% if @records.blank? %>
+        <p class="lh-lg">
+        該当するショップはありません<br>
+        <%= link_to '◀ TOPへ戻る', root_path %>
+        </p>
+      <% else %>
+        <%= render 'public/shops/index', shops: @records %>
+      <% end %>
+
+  </div>
+  <div class="col-3 px-3">
+    <%= render 'layouts/admin_menu' %>
+  </div>
+</div>
