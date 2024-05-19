@@ -1,5 +1,6 @@
 class Shop::PreOrdersController < ApplicationController
-  before_action :authenticate_shop!
+  before_action :authenticate_shop!, unless: :authenticate_admin!
+
   def index
     @shop = current_shop
     @shop_items = Item.where(shop_id: @shop.id)

@@ -15,9 +15,22 @@
         <% end %>
         <%= link_to 'ショップの口コミを見る', review_path(@shop), class: "btn btn-outline-info d-grid mt-2" %>
         <% if current_shop == @shop %>
-          <%= link_to '編集する', shop_edit_information_path, class: "btn btn-outline-info d-grid mt-2" %>
+          <%= link_to '編集する', shop_edit_information_path, class: "btn btn-info d-grid mt-2" %>
         <% elsif admin_signed_in? %>
-          <%= link_to 'ショップ情報を編集', edit_admin_shop_path(@shop), class: "btn btn-outline-info d-grid mt-2" %>
+        <table class="table table-bordered my-3">
+          <tr>
+            <th>ショップ担当者</th>
+            <td><%= @shop.representative_name %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= @shop.email %></td>
+          </tr>
+          <tr>
+            <td colspan="2"><%= link_to 'ショップ情報を編集', edit_admin_shop_path(@shop), class: "btn btn-info d-grid mt-2" %></td>
+          </tr>
+        </table>
+
         <% end %>
       </div>
       <!--詳細-->
@@ -71,7 +84,9 @@
 
   </div>
   <div class="col-3 px-3">
-    <%= render 'layouts/members_info' %>
+    <%= render 'layouts/members_menu' %>
+    <%= render 'layouts/admin_menu' %>
+    <%= render 'layouts/shop_menu' %>
     <%= render 'layouts/homes_menu' %>
   </div>
 </div>
