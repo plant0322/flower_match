@@ -14,6 +14,11 @@
           <button class="btn btn-outline-secondary p-2 mt-2" disabled>お気に入りに登録する</button>
         <% end %>
         <%= link_to 'ショップの口コミを見る', review_path(@shop), class: "btn btn-outline-info d-grid mt-2" %>
+        <% if current_shop == @shop %>
+          <%= link_to '編集する', shop_edit_information_path, class: "btn btn-outline-info d-grid mt-2" %>
+        <% elsif admin_signed_in? %>
+          <%= link_to 'ショップ情報を編集', edit_admin_shop_path(@shop), class: "btn btn-outline-info d-grid mt-2" %>
+        <% end %>
       </div>
       <!--詳細-->
       <div class="col-8 p-1">
@@ -28,11 +33,6 @@
         <hr>
         <p class="fw-bold ms-3">ショップ情報</p>
         <table class="table table-bordered table-light">
-          <tr>
-            <th>紹介文</th>
-            <td><%= @shop.introduction %></td>
-          </tr>
-          <tr>
           <tr>
             <th>住所</th>
             <td>

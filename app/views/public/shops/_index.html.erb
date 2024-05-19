@@ -4,8 +4,10 @@
       <%= image_tag shop.get_shop_image(300,300), class: "w-100" %>
     </div>
     <div class="col-5 pe-3">
-      <h3 class="h5 fw-bold"><%= shop.name %></h3>
-      <p><%= shop.name_kana %></p>
+      <%= link_to shop_path(shop) do %>
+        <h3 class="h5 fw-bold"><%= shop.name %></h3>
+        <p><%= shop.name_kana %></p>
+      <% end %>
       <p class="shop-introduction"><%= shop.introduction %></p>
     </div>
     <div class="col-4">
