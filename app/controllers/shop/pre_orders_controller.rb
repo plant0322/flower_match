@@ -1,5 +1,5 @@
 class Shop::PreOrdersController < ApplicationController
-  before_action :authenticate_admin!, unless: :authenticate_shop!
+  before_action :authenticate_admin_or_shop!
 
   def index
     @shop = current_shop
@@ -21,6 +21,12 @@ class Shop::PreOrdersController < ApplicationController
   end
 
   private
+
+  def authenticate_admin_or_shop!
+    unless shop_signed_in? || admin_signed_in?
+      redirect_to root_path
+    end
+  end
 
   def pre_order_params
     params.require(:pre_order).permit(:status, :visit_day, :visit_time)

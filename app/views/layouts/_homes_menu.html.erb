@@ -1,31 +1,29 @@
-<% if admin_signed_in? %>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th class="text-center bg-member <%= (admin_signed_in? ? "bg-admin" : "" ) %> <%= (shop_signed_in? ? "bg-shop" : "" ) %>">商品</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="tr-menu" onclick='window.location="<%= root_path %>"' role="link">
-        <td>アイテム一覧</td>
-      </tr>
-      <% @tags.each do |tag| %>
-      <tr class="tr-menu">
-        <td>
-          <%= link_to "/search?model=tag&content=#{tag.name}" do %>
-            <%= tag.name %>
-          <% end %>
-        </td>
-      </tr>
-      <% end %>
-      <tr>
-        <td>
-          <% unless shop_signed_in? %>
-            <%= render 'public/searches/tag_form' %>
-          <% end %>
-        </td>
-      </tr>
-    </tbody>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th class="text-center bg-member <%= (admin_signed_in? ? "bg-admin" : "" ) %> <%= (shop_signed_in? ? "bg-shop" : "" ) %>">商品</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="tr-menu" onclick='window.location="<%= root_path %>"' role="link">
+      <td>アイテム一覧</td>
+    </tr>
+    <% @tags.each do |tag| %>
+    <tr class="tr-menu">
+      <td>
+        <%= link_to "/search?model=tag&content=#{tag.name}" do %>
+          <%= tag.name %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+      <td>
+        <% unless shop_signed_in? %>
+          <%= render 'public/searches/tag_form' %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
 
   </table>
-<% end %>

@@ -5,7 +5,9 @@
       <div class="col-4">
         <%= image_tag @shop.get_shop_image(500,500), class: "w-100 p-1" %>
         <%= render 'public/favorite_shops/btn', shop: @shop %>
-        <%= link_to 'ショップの口コミを見る', review_path(@shop), class: "btn btn-outline-info d-grid mt-2" %>
+        <%= link_to review_path(@shop), class: "btn btn-outline-info d-grid mt-2" do %>
+           ショップの口コミを見る (<%= @reviews.count %>)
+        <% end %>
         <% if current_shop == @shop %>
           <%= link_to '編集する', shop_edit_information_path, class: "btn btn-info d-grid mt-2" %>
         <% elsif admin_signed_in? %>

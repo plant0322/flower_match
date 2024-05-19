@@ -1,0 +1,42 @@
+<div class="container d-flex flex-row-reverse pt-3">
+  <div class="col-9 px-3">
+    <h2>全ての口コミ一覧</h2>
+    <hr>
+    <ul class="list-group">
+      <% @reviews.each do |review| %>
+        <li class="list-group-item mb-3">
+          <%= review.created_at.strftime("%Y年%-m月%-d日") %>
+          <div class="d-flex flex-row p-3 mb-2 <%= (review.is_active == true ? "bg-info-subtle" : "" ) %> <%= (review.is_active == false ? "bg-light" : "" ) %>">
+            <div class="col-9 d-flex row">
+              <div class="col-5">
+                <%= link_to shop_member_path(review.pre_order.member) do %>
+                  <p><i class="fa-regular fa-comment-dots"></i><%= review.pre_order.member.member_full_name%> さま</p>
+                  <p>(ニックネーム: <%= review.pre_order.member.nickname %>)</p>
+                <% end %>
+              </div>
+              <div class="col-7">
+               <%= review.content %>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="pt-2">
+                <%= form_with model: review, url: shop_pre_order_reviews_path(review) do |f| %>
+                  <%= f.radio_button :is_active, true, class: "form-check-input" %><%= f.label :is_active, '公開', class: "form-check-label" %>
+                  <%= f.radio_button :is_active, false, class: "form-check-input" %><%= f.label :is_active, '非公開', class: "form-check-label" %>
+                  <%= f.submit '変更する', class: "btn btn-outline-secondary p-2" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div>
+            <small>予約商品: <%= review.pre_order.name %></small>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+
+  </div>
+  <div class="col-3 px-3">
+    <%= render 'layouts/admin_menu' %>
+  </div>
+</div>
