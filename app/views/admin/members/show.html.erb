@@ -1,7 +1,7 @@
 <div class="container d-flex flex-row-reverse pt-3">
   <div class="col-9 px-3">
     <!--詳細-->
-    <h2><%= @member.member_full_name %>さまのお客様情報</h2>
+    <h2><%= @member.member_full_name %>さま詳細情報</h2>
     <hr>
     <div class="pb-5">
       <div class="d-flex flex-row">
@@ -43,7 +43,7 @@
           </table>
         </div>
       </div>
-      <%= link_to "このユーザー情報を編集する", edit_admin_member_path, class: "btn btn-info p-2 mt-2" %>
+      <%= link_to "退会状況の編集", edit_admin_member_path, class: "btn btn-outline-info p-2 mt-2" %>
     </div>
 
     <h3>現在の予約<span class="h5">（全<%= @before_visit_pre_orders.count %>件）</span></h3>
@@ -53,6 +53,8 @@
     <h3>過去の予約履歴<span class="h5">（全<%= @visit_or_cancel_pre_orders.count %>件）</span></h3>
     <hr>
     <%= render 'shop/pre_orders/index', pre_orders: @visit_or_cancel_pre_orders %>
+
+    <%= link_to "◀ ユーザー一覧へ戻る", admin_members_path %>
 
   </div>
 

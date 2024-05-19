@@ -7,31 +7,39 @@
       <tr>
         <th class="w-25">予約状況</th>
         <td><%= render 'status', pre_order: @pre_order %></td>
-        <td>
-          <%= form_with model: @pre_order, url: shop_pre_order_path do |f| %>
-            <div class="d-flex flex-row pb-2">
-              <div class="col-6 pe-2">
-                <%= f.label :visit_day, "来店日" %>
-                <%= f.date_field :visit_day, class: "form-control" %>
+        <% if shop_signed_in? %>
+          <td>
+            <%= form_with model: @pre_order, url: shop_pre_order_path do |f| %>
+              <div class="d-flex flex-row pb-2">
+                <div class="col-6 pe-2">
+                  <%= f.label :visit_day, "来店日" %>
+                  <%= f.date_field :visit_day, class: "form-control" %>
+                </div>
+                <div class="col-6">
+                  <%= f.label :visit_time, "来店時間" %>
+                  <%= f.time_field :visit_time, class: "form-control" %>
+                </div>
               </div>
-              <div class="col-6">
-                <%= f.label :visit_time, "来店時間" %>
-                <%= f.time_field :visit_time, class: "form-control" %>
+              <div class="d-flex flex-row px-1 w-100">
+                <div class="col-6 pe-2">
+                  <%= f.select :status, PreOrder.statuses_i18n.invert, { prompt: "" }, class: "form-select" %>
+                </div>
+                <div class="col-6 px-1 mt-auto d-grid">
+                  <%= f.submit "更新する", class: "btn btn-info" %>
+                </div>
               </div>
-            </div>
-            <div class="d-flex flex-row px-1 w-100">
-              <div class="col-6 pe-2">
-                <%= f.select :status, PreOrder.statuses_i18n.invert, { prompt: "" }, class: "form-select" %>
-              </div>
-              <div class="col-6 px-1 mt-auto d-grid">
-                <%= f.submit "更新する", class: "btn btn-info" %>
-              </div>
-            </div>
-          <% end %>
-        </td>
+            <% end %>
+          </td>
+        <% end %>
       </tr>
       <tr>
-        <th>来店予定日</th>
+        <th>
+          <% if @pre_order.status == 'visit' %>
+          来店日
+          <% else %>
+          来店予定日
+          <% end %>
+        </th>
         <td colspan="2"><%= @pre_order.visit_day.strftime("%Y年%m月%d日") %> <%= @pre_order.visit_time.strftime( "%H時%M分" ) %></td>
       </tr>
       <tr>
@@ -129,6 +137,13 @@
         </td>
       </tr>
     </table>
+    <% if admin_signed_in? %>
+      <%= link_to "◀ ユーザーの予約一覧へ戻る", admin_member_path(@pre_order.member) %>
+    <% else %>
+      <%= link_to "◀ TOPへ戻る", shop_top_path %>
+    <% end %>
+
+
   </div>
   <div class="col-3 px-3">
     <%= render 'layouts/shop_menu' %>

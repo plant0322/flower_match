@@ -3,91 +3,78 @@
     <h2>会員情報編集</h2>
     <hr>
 
+    <h3 class="bg-info p-1 h5">名前</h3>
+    <table class="table table-borderless table-light my-3">
+      <tr>
+        <th class="w-25">名前</th>
+        <td>
+          <%= @member.member_full_name %>
+        </td>
+      </tr>
+      <tr>
+        <th class="w-25">名前(カナ)</th>
+        <td>
+          <%= @member.member_full_name_kana %>
+        </td>
+      </tr>
+    </table>
+
+    <h3 class="bg-info p-1 h5">ユーザー情報</h3>
+    <table class="table table-borderless table-light my-3">
+      <tr>
+        <th class="w-25">郵便番号</th>
+        <td>
+          <%= @member.postal_code.to_s.insert(3, "-") %>
+        </td>
+      </tr>
+      <tr>
+        <th class="w-25">住所</th>
+        <td>
+          <%= @member.address %>
+        </td>
+      </tr>
+      <tr>
+        <th class="w-25">電話番号</th>
+        <td>
+          <%= @member.telephone_number.to_s.insert(3, "-").insert(8, "-") %>
+        </td>
+      </tr>
+    </table>
+
+    <h3 class="bg-info p-1 h5">ログイン情報</h3>
+    <table class="table table-borderless table-light my-3">
+      <tr>
+        <th class="w-25">ニックネーム</th>
+        <td colspan="2">
+          <%= @member.nickname %>
+        </td>
+      </tr>
+      <tr>
+        <th class="w-25">メール</th>
+        <td colspan="2">
+          <%= @member.email %>
+        </td>
+      </tr>
+    </table>
+
+    <h3 class="bg-info p-1 h5">会員ステータス</h3>
     <%= form_with model: @member, url: admin_member_path do |f| %>
-      <%= render "public/shared/error_messages", resource: @member %>
-        <h3 class="bg-info p-1 h5">名前</h3>
-        <table class="table table-borderless table-light my-3">
-          <tr>
-            <th class="w-25">名前<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
-            <td>
-              <%= f.text_field :last_name,autofocus: "true", autocomplete: "last_name", class: "form-control" %>
-              <small>例）山本</small>
-            </td>
-            <td>
-              <%= f.text_field :first_name, autocomplete: "first_name", class: "form-control" %>
-              <small>例）花子</small>
-            </td>
-          </tr>
-          <tr>
-            <th class="w-25">名前(カナ)<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
-            <td>
-              <%= f.text_field :last_name_kana, autocomplete: "last_name_kana", class: "form-control" %>
-              <small>例）ヤマモト</small>
-            </td>
-            <td>
-              <%= f.text_field :first_name_kana, autocomplete: "first_name_kana", class: "form-control" %>
-              <small>例）ハナコ</small>
-            </td>
-          </tr>
-        </table>
-
-        <h3 class="bg-info p-1 h5">ユーザー情報</h3>
-        <table class="table table-borderless table-light my-3">
-          <tr>
-            <th class="w-25">郵便番号<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
-            <td>
-              <%= f.text_field :postal_code,autocomplete: "postal_code", class: "form-control" %>
-              <small>例）1234567　※ハイフンは不要です</small>
-            </td>
-          </tr>
-          <tr>
-            <th class="w-25">住所<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
-            <td>
-              <%= f.text_field :address, autocomplete: "address", class: "form-control" %>
-            </td>
-          </tr>
-          <tr>
-            <th class="w-25">電話番号<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
-            <td>
-              <%= f.text_field :telephone_number, autocomplete: "telephone_number", class: "form-control" %>
-              <small>例）08000000000　※ハイフンは不要です。</small>
-            </td>
-          </tr>
-        </table>
-
-        <h3 class="bg-info p-1 h5">ログイン情報</h3>
-        <table class="table table-borderless table-light my-3">
-          <tr>
-            <th class="w-25">ニックネーム<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
-            <td colspan="2">
-              <%= f.text_field :nickname, autocomplete: "nickname", class: "form-control" %>
-              <small>※ニックネームは口コミ投稿時に表示される名前です。</small>
-            </td>
-          </tr>
-          <tr>
-            <th class="w-25">メール<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
-            <td colspan="2">
-              <%= f.text_field :email, autocomplete: "email", class: "form-control" %>
-              <small>例）xxx_sample@mail</small>
-            </td>
-          </tr>
-        </table>
-
-      <div class="bg-light p-3 mt-3">
-        <p>ショップの会員ステータスを変更する</p>
-        <%= f.radio_button :is_active, true, class: "form-check-input" %><%= f.label :is_active, '有効', class: "form-check-label" %>
-        <%= f.radio_button :is_active, false, class: "form-check-input" %><%= f.label :is_active, '退会', class: "form-check-label" %>
-      </div>
-
-      <div class="d-flex flex-row my-3 mx-auto">
-        <div class="col-6 d-grid p-2">
-          <%= link_to "ユーザー詳細へ戻る", admin_member_path(@member), class: "btn btn-outline-info p-2" %>
+        <div class="d-flex justify-content-center bg-light p-3 mt-3">
+        <div class="me-3">
+          <%= f.radio_button :is_active, true, class: "form-check-input" %><%= f.label :is_active, '有効', class: "form-check-label" %>
+          <%= f.radio_button :is_active, false, class: "form-check-input" %><%= f.label :is_active, '退会', class: "form-check-label" %>
         </div>
-        <div class="col-6 d-grid p-2">
-          <%= f.submit "この内容で更新する", class: "btn btn-info p-2" %>
+        <div>
+          <%= f.submit "変更する", class: "btn btn-info p-2" %>
         </div>
       </div>
     <% end %>
+
+      <div class="d-flex justify-content-center my-3">
+        <div class="col-6 d-grid p-2">
+          <%= link_to "ユーザーのお客様情報へ戻る", admin_member_path(@member), class: "btn btn-outline-info p-2" %>
+        </div>
+      </div>
 
   </div>
   <div class="col-3 px-3">
