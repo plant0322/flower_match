@@ -1,7 +1,7 @@
 <table class="table table-bordered">
   <thead>
     <tr class="text-center">
-      <th>ショップ</th>
+      <th class="w-50">ショップ</th>
       <th>住所</th>
       <th>営業時間</th>
       <th></th>
@@ -12,7 +12,7 @@
       <tr>
         <td>
           <%= link_to shop_path(shop) do %>
-            <%= image_tag shop.get_shop_image(100,100), class: "col-2 pe-1" %>
+            <%= image_tag shop.get_shop_image(200,200), class: "col-4 pe-1" %>
             <%= shop.name %>
           <% end %>
         </td>

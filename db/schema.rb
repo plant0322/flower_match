@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(version: 2024_05_17_194906) do
   create_table "reviews", force: :cascade do |t|
     t.text "content", null: false
     t.integer "pre_order_id", null: false
+    t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -58,7 +58,9 @@ class Public::PreOrdersController < ApplicationController
   end
 
   def index
-    @pre_orders = current_member.pre_orders.order(id: "DESC")
+    @pre_orders = current_member.pre_orders
+    @before_visit_pre_orders = @pre_orders.where(status: 'before_visit').order(visit_day: "DESC")
+    @visit_or_cancel_pre_orders = @pre_orders.where(status: 'visit') + @pre_orders.where(status: 'cancel').order(visit_day: "DESC")
     @tags = Tag.joins(:item_tags).group(:id).order('COUNT(item_tags.tag_id) DESC').limit(10)
   end
 

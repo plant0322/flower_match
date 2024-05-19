@@ -4,9 +4,10 @@ class Public::MembersController < ApplicationController
 
   def show
     bookmarks = Bookmark.where(member_id: current_member.id)
-    @bookmark_items = Item.where(id: bookmarks.pluck(:item_id)).order(created_at: "DESC").limit(3)
+    @bookmark_items = Item.where(id: bookmarks.pluck(:item_id)).order(created_at: "DESC").limit(4)
     favorite_shops = FavoriteShop.where(member_id: current_member.id)
     shop_ids = favorite_shops.pluck(:shop_id)
+    @favorite_shops = Shop.where(id: shop_ids).order(created_at: "DESC").limit(4)
     @favorite_shop_items = Item.where(shop_id: shop_ids).order(created_at: "DESC").limit(6)
     @tags = Tag.joins(:item_tags).group(:id).order('COUNT(item_tags.tag_id) DESC').limit(10)
   end

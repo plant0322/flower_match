@@ -1,0 +1,13 @@
+<% if member_signed_in? %>
+  <% if shop.favorite_shop_by?(current_member) %>
+    <%= link_to favorite_shops_path, class: "btn btn-info d-grid" do %>
+      <i class="fa-solid fa-heart"> <span class="fw-light"><%= shop.favorite_shops.count %></span></i>
+    <% end %>
+  <% else %>
+    <%= link_to shop_favorite_shop_path(shop), method: :post, class: "btn btn-outline-info d-grid" do %>
+      <i class="fa-regular fa-heart"> <span class="fw-light"><%= shop.favorite_shops.count %></span></i>
+    <% end %>
+  <% end %>
+<% else %>
+  <button class="btn btn-outline-secondary p-2 mt-2" disabled>お気に入りに登録する <span><%= shop.favorite_shops.count %></span></button>
+<% end %>

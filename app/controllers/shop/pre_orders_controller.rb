@@ -1,5 +1,5 @@
 class Shop::PreOrdersController < ApplicationController
-  before_action :authenticate_shop!, unless: :authenticate_admin!
+  before_action :authenticate_admin!, unless: :authenticate_shop!
 
   def index
     @shop = current_shop

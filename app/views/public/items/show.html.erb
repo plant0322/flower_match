@@ -38,12 +38,16 @@
             <% end %>
             <% if member_signed_in? %>
               <% if @item.bookmark_by?(current_member) %>
-                <%= link_to 'ブックマーク済み', bookmarks_path, class: "btn btn-outline-info p-2 mt-2" %>
+                <%= link_to  bookmarks_path, class: "btn btn-outline-info p-2 mt-2" do %>
+                  ブックマーク済み (<%= @item.bookmarks.count %>)
+                <% end %>
               <% else %>
-                <%= link_to 'ブックマークする', item_bookmarks_path(@item), method: :post, class: "btn btn-outline-info p-2 mt-2" %>
+                <%= link_to item_bookmarks_path(@item), method: :post, class: "btn btn-outline-info p-2 mt-2" do %>
+                  ブックマークする (<%= @item.bookmarks.count %>)
+                <% end %>
               <% end %>
             <% else %>
-              <button class="btn btn-outline-secondary p-2 mt-2" disabled>ブックマークする</button>
+              <button class="btn btn-outline-secondary p-2 mt-2" disabled>ブックマークする <%= @item.bookmarks.count %></button>
             <% end %>
           </div>
           <!--商品紹介-->
