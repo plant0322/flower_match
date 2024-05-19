@@ -9,8 +9,8 @@
           <div class="d-flex flex-row p-3 mb-2 <%= (review.is_active == true ? "bg-info-subtle" : "" ) %> <%= (review.is_active == false ? "bg-light" : "" ) %>">
             <div class="col-9 d-flex row">
               <div class="col-5">
-                <%= link_to shop_member_path(review.pre_order.member) do %>
-                  <p><i class="fa-regular fa-comment-dots"></i><%= review.pre_order.member.member_full_name%> さま</p>
+                <%= link_to admin_member_path(review.pre_order.member) do %>
+                  <p><i class="fa-regular fa-comment-dots"></i> <%= review.pre_order.member.member_full_name%> <small>[ <%= review.pre_order.member.id %> ] </small>さま</p>
                   <p>(ニックネーム: <%= review.pre_order.member.nickname %>)</p>
                 <% end %>
               </div>
@@ -20,7 +20,7 @@
             </div>
             <div class="col-3">
               <div class="pt-2">
-                <%= form_with model: review, url: shop_pre_order_reviews_path(review) do |f| %>
+                <%= form_with model: review, url: admin_review_path(review) do |f| %>
                   <%= f.radio_button :is_active, true, class: "form-check-input" %><%= f.label :is_active, '公開', class: "form-check-label" %>
                   <%= f.radio_button :is_active, false, class: "form-check-input" %><%= f.label :is_active, '非公開', class: "form-check-label" %>
                   <%= f.submit '変更する', class: "btn btn-outline-secondary p-2" %>
@@ -29,7 +29,17 @@
             </div>
           </div>
           <div>
-            <small>予約商品: <%= review.pre_order.name %></small>
+            <p><span class="fw-bold">
+              <%= link_to shop_path(review.pre_order.item.shop) do %>
+                <%= review.pre_order.item.shop.name %></span> <small>[ <%= review.pre_order.item.shop.id %> ]</small> への口コミ
+              <% end %>
+            </p>
+            <small>
+              予約商品:
+              <%= link_to item_path(review.pre_order.item) do %>
+                <%= review.pre_order.name %> <small>[ <%= review.pre_order.item.id %> ]</small>
+              <% end %>
+            </small>
           </div>
         </li>
       <% end %>

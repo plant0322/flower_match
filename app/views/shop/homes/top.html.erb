@@ -18,8 +18,8 @@
     <div class="mb-5">
       <h2>口コミ一覧</h2>
       <hr>
-      <%= render 'shop/reviews/index', reviews: @reviews %>
-      <%= link_to '全ての口コミを見る', shop_items_path, class: "float-end" %>
+      <%= render 'public/reviews/index', reviews: @reviews, shop: current_shop %>
+      <%= link_to '全ての口コミを見る', review_path(current_shop), class: "float-end" %>
     </div>
 
   </div>

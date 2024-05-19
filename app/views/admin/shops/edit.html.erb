@@ -6,6 +6,12 @@
       <h3 class="bg-info p-1 h5">ショップ基本情報</h3>
       <table class="table table-bordered table-light my-3">
         <tr>
+          <th class="w-25">ショップID</th>
+          <td colspan="2">
+            [ <%= @shop.id %> ]
+          </td>
+        </tr>
+        <tr>
           <th class="w-25">ショップ</th>
           <td>
             <%= image_tag @shop.get_shop_image(100,100) %>

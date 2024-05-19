@@ -2,6 +2,7 @@
   <div class="col-9 px-3">
     <h2>ショップ一覧</h2>
     <hr>
+    <%= render 'admin/searches/form' %>
 
     <%= render 'public/shops/index', shops: @shops %>
     <%= link_to "◀ 管理画面TOPへ戻る", admin_top_path %>

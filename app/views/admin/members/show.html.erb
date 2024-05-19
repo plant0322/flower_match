@@ -8,12 +8,15 @@
         <div class="col-6">
           <table class="table table-bordered h-100">
             <tr>
-              <th class="w-25">氏名</th>
-              <td colspan="4"><%= @member.member_full_name %> 様</td>
+              <th class="w-25">メンバーID</th>
+              <td colspan="4">[ <%= @member.id %> ]</td>
             </tr>
             <tr>
-              <th class="w-25">カナ</th>
-              <td><%= @member.member_full_name_kana %></td>
+              <th class="w-25">氏名</th>
+              <td>
+                <%= @member.member_full_name %> 様<br>
+                <%= @member.member_full_name_kana %>
+              </td>
             </tr>
             <tr>
               <th>ニックネーム</th>
@@ -35,7 +38,7 @@
             <tr>
               <th>口コミ</th>
               <td colspan="4">
-                <%= link_to shop_review_path do %>
+                <%= link_to admin_review_path do %>
                   <%= @reviews.count %> 件の投稿あり(リンク作成)
                 <% end %>
               </td>

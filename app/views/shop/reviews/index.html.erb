@@ -2,8 +2,8 @@
   <div class="col-9 px-3">
     <h2><span class="h4">口コミは</span> <%= @reviews.count %><span class="h4"> 件です</span></h2>
     <hr>
-    <%= render 'index', reviews: @reviews, shop: @shop %>
-    <%= link_to '◀ ショップ情報に戻る', shop_path(@shop) %>
+    <%= render 'public/reviews/index', reviews: @reviews, shop: current_shop %>
+    <%= link_to '◀ お客様情報に戻る', shop_member_path(@member) %>
   </div>
 
   <div class="col-3 px-3">

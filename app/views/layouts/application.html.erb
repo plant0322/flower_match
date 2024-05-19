@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FlowerMatching</title>
+    <title>花束やフラワーアレンジの予約｜花屋と顧客のマッチングサイト｜FlowerMatch</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -21,7 +21,7 @@
       </div>
       <!--検索フォーム-->
       <div class="col-3">
-        <% unless shop_signed_in? %>
+        <% unless shop_signed_in? || admin_signed_in? %>
           <%= render 'public/searches/form' %>
         <% end %>
       </div>

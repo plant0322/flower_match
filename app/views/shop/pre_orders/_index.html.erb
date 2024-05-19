@@ -1,7 +1,7 @@
 <% pre_orders.each do |pre_order| %>
   <div class="bg-gray p-3 mb-4">
     <% if admin_signed_in? %>
-      <div>ショップ名: <span class="h5 fw-bold"><%= pre_order.item.shop.name %></span></div>
+      <div>ショップ名: <span class="h5 fw-bold"><%= pre_order.item.shop.name %></span> <small>[ <%= pre_order.item.shop.id %> ]</small></div>
     <% end %>
     <div class="d-flex align-items-center pb-3">
       <div class="col-6 d-flex align-items-center">
