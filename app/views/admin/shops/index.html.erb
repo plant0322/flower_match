@@ -2,8 +2,7 @@
   <div class="col-9 px-3">
     <h2>ショップ一覧</h2>
     <hr>
-    <%= form_with url: admin_members_path, method: :get do |f| %>
-      <%= f.hidden_field :member %>
+    <%= form_with url: admin_shops_path, method: :get do |f| %>
       <%= render 'admin/searches/form', f: f %>
     <% end %>
 

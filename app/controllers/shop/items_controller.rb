@@ -10,7 +10,7 @@ class Shop::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.shop_id = current_shop.id
-    tag_list = params[:item][:tag_name].split(' ')
+    tag_list = params[:item][:tag_name].split(',')
     if @item.save
       @item.save_tags(tag_list)
       flash[:notice] = "商品を登録しました"
@@ -27,10 +27,11 @@ class Shop::ItemsController < ApplicationController
   end
 
   def edit
+    @tag_list = @item.tags.pluck(:name).join(',')
   end
 
   def update
-    tag_list = params[:item][:tag_name].split(' ')
+    tag_list = params[:item][:tag_name].split(',')
     if @item.update(item_params)
       @item.save_tags(tag_list)
       if params[:item][:first_is_active] == 'true'

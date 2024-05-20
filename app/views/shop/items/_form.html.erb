@@ -41,12 +41,9 @@
       <tr>
         <th><%= f.label :tag_name, "タグ" %></th>
         <td colspan="2">
-          <%= f.text_field :tag_name, placeholder: "半角スペースを入れて複数のタグを追加できます", autocomplete: "tag_name", class: "form-control" %>
+          <%= f.text_field :tag_name, value: tag_list, placeholder: "カンマ「,」で区切るとタグを複数追加できます", autocomplete: "tag_name", class: "form-control" %>
           <small>
-            登録中のタグ:
-            <% item.tags.each do |tag| %>
-              <%= tag.name %>
-            <% end %>
+            例）花束,バラ,赤い花
           </small>
         </td>
       </tr>
