@@ -3,7 +3,7 @@ class Tag < ApplicationRecord
   has_many :item_tags, dependent: :destroy, foreign_key: 'tag_id'
   has_many :items, through: :item_tags
 
-  validates :name, presence: true
+  validates :name, presence: true, length: { maximum: 12 }
 
   def self.search_items(content)
     scope :merge_items, -> (tags){}

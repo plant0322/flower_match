@@ -22,7 +22,8 @@ Rails.application.routes.draw do
   }
 
   namespace :shop do
-    get 'top' =>  'homes#top', as: 'top'
+    get 'top' => 'homes#top', as: 'top'
+    get ''    => 'homes#top', as: 'shops'
 
     get 'shops/information/edit'        => 'shops#edit', as: 'edit_information'
     patch 'shops/information'           => 'shops#update', as: 'update_information'

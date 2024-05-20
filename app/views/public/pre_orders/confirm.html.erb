@@ -6,7 +6,7 @@
     <table class="table table-bordered table-light my-3">
       <tr>
         <th class="w-25">来店日時</th>
-        <td><%= @pre_order.visit_day %> <%= @pre_order.visit_time.strftime( "%H:%M" ) %></td>
+        <td><%= @pre_order.visit_day.strftime("%Y年%-m月%-d日") %> <%= @pre_order.visit_time.strftime( "%H:%M" ) %></td>
       </tr>
     </table>
 
@@ -32,7 +32,7 @@
       </tr>
       <tr>
         <th>支払予定金額</th>
-        <td><%= (@item.price * @pre_order.amount).to_s(:delimited) %> 円</td>
+        <td><%#= (@item.price * @amount).to_s(:delimited) %> 円</td>
       </tr>
     </table>
 

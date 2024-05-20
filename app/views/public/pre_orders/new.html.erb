@@ -3,7 +3,6 @@
     <h2><span>step1</span> 予約内容入力</h2>
     <hr>
     <%= form_with model: @pre_order, url: pre_orders_confirm_path, method: :post do |f| %>
-      <!--%= render "layouts/error_messages", obj: @pre_order %>-->
       <h3 class="bg-info p-1 h5">日時を指定する</h3>
       <table class="table table-bordered table-light my-3">
         <tr>

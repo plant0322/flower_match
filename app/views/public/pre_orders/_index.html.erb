@@ -50,7 +50,7 @@
         </table>
       </div>
       <%= link_to '予約内容の詳細を確認する', pre_order_path(pre_order), class: "btn btn-outline-info" %>
-      <%= link_to 'このショップの商品を予約する', shop_path(pre_order.item.shop.id), class: "btn btn-info" %>
+      <%= link_to 'このショップの商品を予約する', shop_path(pre_order.item.shop), class: "btn btn-info" %>
       <% if pre_order.review %>
         <button class="btn btn-outline-secondary disabled">口コミの投稿ありがとうございます</button>
       <% elsif pre_order.visit_day < 1.week.ago %>
