@@ -32,7 +32,7 @@
       </tr>
       <tr>
         <th>支払予定金額</th>
-        <td><%#= (@item.price * @amount).to_s(:delimited) %> 円</td>
+        <td><%= (@item.price * @amount).to_s(:delimited) %> 円</td>
       </tr>
     </table>
 
