@@ -9,7 +9,16 @@
         <%= link_to '商品を探す', root_path, class: "btn btn-info" %>
       <% end %>
 
+      <!--ページネーション-->
+      <hr>
+      <div class="paginate d-flex align-items-center justify-content-center">
+        1件～<% if @favorite_shop_items.count < 12 %><%= @favorite_shop_items.count %><% else %>12<% end %>件（全<%= @favorite_shop_items.count %>件）
+        <span class="pt-2 ps-2"><%= paginate @favorite_shop_items, theme: 'bootstrap-5' %></span>
+      </div>
+      <hr>
+
   </div>
+  <!--左ナビ-->
   <div class="col-3 px-3">
     <%= render 'layouts/members_menu' %>
     <%= render 'layouts/homes_menu' %>

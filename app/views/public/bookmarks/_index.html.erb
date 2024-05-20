@@ -14,7 +14,7 @@
           <%= link_to item_path(item) do %>
             <div class="d-flex flex-row">
               <%= image_tag item.get_item_image(200,200), class: "col-4 pe-1" %>
-              <div class="col-10 ps-1"><%= item.name %> [ <%= item.id %> ]</div>
+              <div class="col-8 ps-1"><%= item.name %> [ <%= item.id %> ]</div>
             </div>
           <% end %>
         </td>

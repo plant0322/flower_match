@@ -10,7 +10,7 @@
         <%= render 'public/items/index', items: @favorite_shop_items %>
         <%= link_to 'お気に入りショップの商品を見る ▶', favorite_shop_items_path, class: "float-end" %>
       <% else %>
-        <p>お気に入りショップの登録がありません</p>
+        <p>お気に入りショップの商品がありません</p>
         <%= link_to '商品を探す', root_path, class: "btn btn-info" %>
       <% end %>
     </div>
@@ -22,7 +22,7 @@
         <%= render 'public/bookmarks/index', items: @bookmark_items %>
         <%= link_to '全てのブックマークを見る ▶', bookmarks_path, class: "float-end" %>
       <% else %>
-        <p>ブックマークの登録がありません</p>
+        <p>ブックマーク中の商品がありません</p>
         <%= link_to '商品を探す', root_path, class: "btn btn-info" %>
       <% end %>
     </div>
@@ -30,11 +30,11 @@
     <div class="pt-5">
       <h2><span class="h4">あなたの</span> <strong>お気に入りショップ</strong> <span class="h6">（全<%= @favorite_shops.count %>件）</span></h2>
       <hr>
-      <% unless @bookmark_items.blank? %>
+      <% unless @favorite_shops.blank? %>
         <%= render 'public/favorite_shops/index', shops: @favorite_shops %>
         <%= link_to '全てのお気に入りショップを見る ▶', favorite_shops_path, class: "float-end" %>
       <% else %>
-        <p>ブックマークの登録がありません</p>
+        <p>お気に入りショップの登録がありません</p>
         <%= link_to '商品を探す', root_path, class: "btn btn-info" %>
       <% end %>
     </div>

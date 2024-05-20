@@ -4,7 +4,16 @@
     <hr>
     <%= render 'index', shops: @shops %>
 
+    <!--ページネーション-->
+    <hr>
+    <div class="paginate d-flex align-items-center justify-content-center">
+      1件～<% if @shops.count < 12 %><%= @shops.count %><% else %>12<% end %>件（全<%= @shops.count %>件）
+      <span class="pt-2 ps-2"><%= paginate @shops, theme: 'bootstrap-5' %></span>
+    </div>
+    <hr>
+
   </div>
+  <!--左ナビ-->
   <div class="col-3 px-3">
     <%= render 'layouts/members_menu' %>
     <%= render 'layouts/homes_menu' %>

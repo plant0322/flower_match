@@ -27,7 +27,9 @@
             </div>
           </div>
           <div class="my-3 mx-auto d-grid">
-            <% if @stock == 0 %>
+            <% if @item.is_active == false %>
+              <button class="btn btn-secondary p-2" disabled>販売停止中です</button>
+            <% elsif @stock == 0 %>
               <%= f.hidden_field :item_id, value: @item.id %>
               <button class="btn btn-secondary p-2" disabled>在庫切れです</button>
             <% elsif member_signed_in? %>

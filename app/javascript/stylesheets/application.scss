@@ -106,3 +106,25 @@ footer{
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 6;
 }
+
+// ページネーション
+
+.paginate{
+    margin: -10px 0;
+}
+
+.pagination>li>a {
+    border: none;
+    color: #696969;
+    font-weight: normal;
+}
+
+.pagination>.active>a {
+    background: #D8D8D8;
+    border-radius: 5px;
+    font-weight: normal;
+}
+
+.pagination>li>a:hover {
+    border-radius: 5px;
+}

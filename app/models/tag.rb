@@ -6,8 +6,8 @@ class Tag < ApplicationRecord
   validates :name, presence: true
 
   def self.search_items(content)
-      scope :merge_items, -> (tags){}
-      tags = Tag.where('name LIKE?', '%'+content+'%')
-      return tags.inject(init = []) {|result,tag| result + tag.items}
-  end
+    scope :merge_items, -> (tags){}
+    tags = Tag.where('name LIKE?', '%'+content+'%')
+    return tags.inject(init = []) {|result,tag| result + tag.items}
+  end #tag.items,tag??
 end

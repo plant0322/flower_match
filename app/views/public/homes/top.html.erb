@@ -2,18 +2,20 @@
   <div class="col-9 px-3">
     <h2>New Item</h2>
     <hr>
-    <%= render 'public/items/index', items: @items %>
 
-    <h2>Ranking</h2>
-    <hr>
-    <h3>花束</h3>
-    <hr>
-    <h3>アレンジ</h3>
-    <hr>
-    <h3>お祝い</h3>
-    <hr>
+    <div>
+      <%= render 'public/items/index', items: @items %>
+
+      <!--ページネーション-->
+      <hr>
+      <div class="paginate d-flex align-items-center justify-content-center">
+        1件～<% if @items.count < 12 %><%= @items.count %><% else %>12<% end %>件（全<%= @items.count %>件）<span class="pt-2 ps-2"><%= paginate @items, theme: 'bootstrap-5' %></span>
+      </div>
+      <hr>
+    </div>
 
   </div>
+  <!--左ナビ-->
   <div class="col-3 px-3">
     <%= render 'layouts/members_menu' %>
     <%= render 'layouts/admin_menu' %>
