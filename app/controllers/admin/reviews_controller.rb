@@ -1,6 +1,6 @@
 class Admin::ReviewsController < ApplicationController
   def index
-    @reviews = Review.all.order(id: 'DESC')
+    @reviews = Review.all.order(id: 'DESC').page(params[:page])
   end
 
   def update

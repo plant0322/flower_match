@@ -23,7 +23,7 @@ class Shop::ItemsController < ApplicationController
 
   def index
     @shop = Shop.find(current_shop.id)
-    @items = @shop.items
+    @items = @shop.items.order(id: 'DESC').page(params[:page])
   end
 
   def edit

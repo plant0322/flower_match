@@ -24,7 +24,7 @@ class Public::ReviewsController < ApplicationController
     items = @shop.items
     pre_orders = PreOrder.where(item_id: items)
     @reviews = Review.where(pre_order_id: pre_orders)
-                     .where(is_active: true).order(id: 'DESC')
+                     .where(is_active: true).order(id: 'DESC').page(params[:page])
   end
 
   private

@@ -4,13 +4,21 @@
     <hr>
     <%= form_with url: admin_members_path, method: :get do |f| %>
       <%= f.hidden_field :member %>
-      <%= render 'admin/searches/form' %>
+      <%= render 'admin/searches/form', f: f %>
     <% end %>
 
     <%= render 'public/shops/index', shops: @shops %>
+
+    <!--ページネーション-->
+    <hr>
+    <div class="paginate d-flex align-items-center justify-content-center">
+      1件～<% if @shops.count < 12 %><%= @shops.count %><% else %>12<% end %>件（全<%= @shops.count %>件）<span class="pt-2 ps-2"><%= paginate @shops, theme: 'bootstrap-5' %></span>
+    </div>
+    <hr>
     <%= link_to "◀ 管理画面TOPへ戻る", admin_top_path %>
 
   </div>
+  <!--左ナビ-->
   <div class="col-3 px-3">
     <%= render 'layouts/admin_menu' %>
   </div>

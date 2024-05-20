@@ -21,9 +21,9 @@ class Admin::ShopsController < ApplicationController
 
   def index
     if params[:shop]
-      @shops = Shop.where('name LIKE ? OR name_kana LIKE ?', "%#{@content}%", "%#{@content}%").order(id: 'DESC')
+      @shops = Shop.where('name LIKE ? OR name_kana LIKE ?', "%#{@content}%", "%#{@content}%").order(id: 'DESC').page(params[:page])
     else
-      @shops = Shop.all.order(id: 'DESC')
+      @shops = Shop.all.order(id: 'DESC').page(params[:page])
     end
   end
 

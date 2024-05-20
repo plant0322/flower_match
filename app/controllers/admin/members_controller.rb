@@ -25,7 +25,7 @@ class Admin::MembersController < ApplicationController
     if params[:member]
       @members = Member.where('last_name LIKE? OR first_name LIKE? OR last_name_kana LIKE? OR first_name_kana LIKE? OR
                                telephone_number LIKE? OR postal_code LIKE? OR address LIKE?',
-                               "%#{@content}%", "%#{@content}%", "%#{@content}%", "%#{@content}%", "%#{@content}%", "%#{@content}%", "%#{@content}%").order(id: 'DESC')
+                               "%#{@content}%", "%#{@content}%", "%#{@content}%", "%#{@content}%", "%#{@content}%", "%#{@content}%", "%#{@content}%").order(id: 'DESC')#.page(params[:page])
     else
       @members = Member.all
     end
