@@ -120,6 +120,7 @@ Item.find_or_create_by!(name: "特別な記念日に贈る花束/ブーケ（大
   item.stock = "10"
   item.deadline = "1"
   item.is_active = true
+  item.first_is_active = true
   item.shop = howell
   item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop1-item1-1.jpg"), filename: "shop1-item1-1.jpg")
 end
@@ -131,11 +132,12 @@ Item.find_or_create_by!(name: "母の日のフラワーアレンジ/メッセー
   item.stock = "20"
   item.deadline = "3"
   item.is_active = true
+  item.first_is_active = true
   item.shop = howell
   item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop1-item2-1.jpg"), filename: "shop1-item2-1.jpg")
 end
 
-for i in 1..3 do
+for i in 1..2 do
   Item.find_or_create_by!(name: "寄せ植え体験#{i+1}" ) do |item|
     item.introduction ="簡単な寄せ植えを一緒に作ってみましょう。所要時間1時間。"
     item.size = "幅15×高さ20×奥行き15㎝"
@@ -143,6 +145,7 @@ for i in 1..3 do
     item.stock = "#{i*3}"
     item.deadline = "4"
     item.is_active = true
+    item.first_is_active = true
     item.shop = botanya
     item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop2-item1-1.jpg"), filename: "shop2-item1-1.jpg")
   end
@@ -156,12 +159,13 @@ for i in 1..3 do
     item.stock = "#{i*4}"
     item.deadline = "1"
     item.is_active = true
+    item.first_is_active = true
     item.shop = botanya
     item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop2-item2-1.jpg"), filename: "shop2-item2-1.jpg")
   end
 end
 
-for i in 1..3 do
+for i in 1.2 do
   Item.find_or_create_by!(name: "大きなお花をたっぷり使った高級感のある華やかな花束（おしゃれなブーケ）#{i+1}") do |item|
     item.introduction ="ちょっと珍しいお花を使った華やかなブーケです。色とりどりの大きなお花をたっぷり使用しているので、お祝い事にもピッタリ。華やかなお花に合わせてラッピングにもこだわっています。ラッピングや取り入れたいお花の色など、ご希望がありましたらお気軽にご相談ください。"
     item.size = "幅40×高さ50×奥行き40㎝"
@@ -169,6 +173,7 @@ for i in 1..3 do
     item.stock = "#{i*4}"
     item.deadline = "2"
     item.is_active = true
+    item.first_is_active = true
     item.shop = als
     item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop3-item1-1.jpg"), filename: "shop3-item1-1.jpg")
   end
@@ -182,12 +187,13 @@ for i in 1..3 do
     item.stock = "#{i*10}"
     item.deadline = "1"
     item.is_active = true
+    item.first_is_active = true
     item.shop = als
     item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop3-item2-1.jpg"), filename: "shop3-item2-1.jpg")
   end
 end
 
-for i in 1..3 do
+for i in 1..2 do
   Item.find_or_create_by!(name: "お任せブーケ。スタッフがお店のお花たちから厳選して作成する大きな花束）#{i+1}") do |item|
     item.introduction ="入荷したばかりのお花たちの中から厳選して、スタッフが心を込めて花束を作成します。予約時のご要望欄にご希望の色やイメージなどをご記入いただければ、ご要望に合わせてあなただけの花束を作成しますので、お気軽にご記入ください。"
     item.size = "幅40×高さ50×奥行き40㎝"
@@ -195,6 +201,7 @@ for i in 1..3 do
     item.stock = "#{i*10}"
     item.deadline = "2"
     item.is_active = true
+    item.first_is_active = true
     item.shop = als
     item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop3-item3-1.jpg"), filename: "shop3-item3-1.jpg")
   end
@@ -208,6 +215,7 @@ for i in 1..3 do
     item.stock = "#{i*10}"
     item.deadline = "5"
     item.is_active = true
+    item.first_is_active = true
     item.shop = als
     item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop3-item4-1.jpg"), filename: "shop3-item4-1.jpg")
   end
