@@ -4,21 +4,33 @@
       <!--画像-->
       <div class="col-4">
         <%= image_tag @shop.get_shop_image(500,500), class: "w-100 p-1" %>
-        <% if member_signed_in? %>
-          <% if @shop.favorite_shop_by?(current_member) %>
-            <%= link_to 'お気に入り登録済み', favorite_shops_path, class: "btn btn-outline-info d-grid" %>
-          <% else %>
-            <%= link_to 'お気に入りに登録する', shop_favorite_shop_path(@shop), method: :post, class: "btn btn-info d-grid" %>
-          <% end %>
-        <% else %>
-          <button class="btn btn-outline-secondary p-2 mt-2" disabled>お気に入りに登録する</button>
+        <%= render 'public/favorite_shops/btn', shop: @shop %>
+        <%= link_to review_path(@shop), class: "btn btn-outline-info d-grid mt-2" do %>
+           ショップの口コミを見る (<%= @reviews.count %>)
         <% end %>
-        <%= link_to 'ショップの口コミを見る', review_path(@shop), class: "btn btn-outline-info d-grid mt-2" %>
+        <% if current_shop == @shop %>
+          <%= link_to '編集する', shop_edit_information_path, class: "btn btn-info d-grid mt-2" %>
+        <% elsif admin_signed_in? %>
+        <table class="table table-bordered my-3">
+          <tr>
+            <th>ショップ担当者</th>
+            <td><%= @shop.representative_name %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= @shop.email %></td>
+          </tr>
+          <tr>
+            <td colspan="2"><%= link_to '退会状況の編集', edit_admin_shop_path(@shop), class: "btn btn-outline-info d-grid mt-2" %></td>
+          </tr>
+        </table>
+
+        <% end %>
       </div>
       <!--詳細-->
       <div class="col-8 p-1">
         <h1 class="h3 fw-bold"><%= @shop.name %></h1>
-        <p class="h6"><%= @shop.name_kana %></p>
+        <p class="h6"><%= @shop.name_kana %> <small>[ <%= @shop.id %> ]</small></p>
         <!--ショップコメント-->
         <div class="bg-light p-3 mb-3">
           <p class="fw-bold mb-2">ショップコメント <i class="fa-solid fa-comment"></i></p>
@@ -28,11 +40,6 @@
         <hr>
         <p class="fw-bold ms-3">ショップ情報</p>
         <table class="table table-bordered table-light">
-          <tr>
-            <th>紹介文</th>
-            <td><%= @shop.introduction %></td>
-          </tr>
-          <tr>
           <tr>
             <th>住所</th>
             <td>
@@ -68,10 +75,17 @@
       </div>
     </div>
     <%= render 'public/items/index', items: @items %>
+    <% if admin_signed_in? %>
+      <%= link_to "◀ ショップ一覧へ戻る", admin_shops_path %>
+    <% else %>
+      <%= link_to "◀ TOPへ戻る", root_path %>
+    <% end %>
 
   </div>
   <div class="col-3 px-3">
-    <%= render 'layouts/members_info' %>
+    <%= render 'layouts/members_menu' %>
+    <%= render 'layouts/admin_menu' %>
+    <%= render 'layouts/shop_menu' %>
     <%= render 'layouts/homes_menu' %>
   </div>
 </div>

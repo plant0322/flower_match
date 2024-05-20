@@ -3,12 +3,8 @@
     <h2>ログイン</h2>
     <hr>
       <%= form_with model: @admin, url: admin_session_path do |f| %>
-        <div class="bg-secondary p-3">
-          <table class="table table-borderless table-secondary">
-            <thead>
-              <th></th>
-              <th></th>
-            </thead>
+        <div class="p-3">
+          <table class="table table-borderless table-light">
             <tbody>
               <tr>
                 <td><%= f.label :email, "メール" %></td>

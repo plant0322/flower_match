@@ -1,8 +1,8 @@
 <table class="table table-bordered">
   <thead>
     <tr class="text-center">
-      <th>ショップ</th>
       <th class="w-50">商品</th>
+      <th>ショップ</th>
       <th>金額・在庫</th>
       <th></th>
     </tr>
@@ -10,17 +10,17 @@
   <tbody>
     <% items. each do |item| %>
       <tr>
-        <td class="text-center">
-          <%= link_to shop_path(item.shop) do %>
-            <%= item.shop.name %>
-          <% end %>
-        </td>
         <td>
           <%= link_to item_path(item) do %>
             <div class="d-flex flex-row">
-              <%= image_tag item.get_item_image(100,100), class: "col-2 pe-1" %>
-              <div class="col-10"><%= item.name %></div>
+              <%= image_tag item.get_item_image(200,200), class: "col-4 pe-1" %>
+              <div class="col-8 ps-1"><%= item.name %> [ <%= item.id %> ]</div>
             </div>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to shop_path(item.shop) do %>
+            <%= item.shop.name %>
           <% end %>
         </td>
         <td class="text-end">

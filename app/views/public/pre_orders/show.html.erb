@@ -7,12 +7,12 @@
       <tr>
         <th class="w-25">予約状況</th>
         <td>
-          <span class="bg-info px-2 py-1 me-2"><%= @pre_order.status_i18n %></span>
+          <div class="col-5 mb-2"><%= render 'shop/pre_orders/status', pre_order: @pre_order %></div>
           <span class="fw-bold">
             <% if @pre_order.status == 'visit' %>
               ご来店ありがとうございました。
             <% elsif @pre_order.status == 'before_visit' %>
-              ご来店お待ちしています。
+              <span class="text-danger">ご来店お待ちしています。</span>
             <% else %>
             <% end %>
           </span>
@@ -91,20 +91,19 @@
         <td><%= @pre_order.id %></td>
       </tr>
     </table>
-    <% if @pre_order.review && @pre_order.status != 'visit' %>
-      <button class="btn btn-secondary disabled">口コミの投稿ありがとうございます</button>
-    <% else %>
+    <% if @pre_order.status == 'visit' && @pre_order.review.blank? && @pre_order.visit_day > 1.week.ago %>
       <%= form_with model: @review, url: pre_order_reviews_path(@pre_order), method: :post do |f| %>
         <%= render "layouts/error_messages", obj: @review %>
         <div class="col-5 my-2">
           <%= f.text_area :content, placeholder: 'この商品やショップの口コミを入力してください', class: "form-control" %>
-          <%= f.submit '口コミを投稿する', class: "btn btn-info mt-2" %>
+          <%= f.submit '口コミを投稿する', "data-confirm" => "投稿は編集できません。この内容で投稿しますか？" , class: "btn btn-info mt-2" %>
         </div>
       <% end %>
+    <% else %>
     <% end %>
   </div>
   <div class="col-3 px-3">
-    <%= render 'layouts/members_info' %>
+    <%= render 'layouts/members_menu' %>
     <%= render 'layouts/homes_menu' %>
   </div>
 </div>

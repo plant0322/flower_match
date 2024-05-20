@@ -1,4 +1,11 @@
   ja:
+    views:
+      pagination:
+        first: <i class="fas fa-angle-double-left"></i>
+        last: <i class="fas fa-angle-double-right"></i>
+        previous: <i class="fas fa-angle-left"></i> 前の12件
+        next: 次の12件 <i class="fas fa-angle-right"></i>
+        truncate: "..."
     enums:
       pre_order:
         status:

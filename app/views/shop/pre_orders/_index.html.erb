@@ -1,5 +1,8 @@
 <% pre_orders.each do |pre_order| %>
   <div class="bg-gray p-3 mb-4">
+    <% if admin_signed_in? %>
+      <div>ショップ名: <span class="h5 fw-bold"><%= pre_order.item.shop.name %></span> <small>[ <%= pre_order.item.shop.id %> ]</small></div>
+    <% end %>
     <div class="d-flex align-items-center pb-3">
       <div class="col-6 d-flex align-items-center">
         <div class="pe-2">
@@ -27,7 +30,11 @@
       <table class="table table-bordered">
         <tr>
           <th class="w-25">予約商品</th>
-          <td colspan="4"><%= pre_order.name %> <small>[<%= pre_order.item.id %>]</small></td>
+          <td colspan="4">
+            <%= link_to item_path(pre_order.item) do %>
+              <%= pre_order.name %> <small>[<%= pre_order.item.id %>]</small>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <th>商品単価</th>

@@ -2,28 +2,23 @@
   <div class="col-9 px-3">
     <h2><span class="h4">口コミは</span> <%= @reviews.count %><span class="h4"> 件です</span></h2>
     <hr>
-    <ul class="list-group">
-      <% @reviews.each do |review| %>
-        <li class="list-group-item mb-3">
-          <div class="d-flex row p-3 mb-2 bg-light">
-            <div class="col-3">
-              <i class="fa-regular fa-comment-dots"></i> <%= review.pre_order.member.nickname %>さん
-            </div>
-            <div class="col-9">
-             <%= review.content %>
-            </div>
-          </div>
-          <div>
-            <small>予約商品: <%= review.pre_order.name %></small>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-    <%= link_to '◀ ショップ情報に戻る', shop_path(@shop) %>
-  </div>
+    <div>
+    <%= render 'index', reviews: @reviews, shop: @shop %>
 
+      <!--ページネーション-->
+      <hr>
+      <div class="paginate d-flex align-items-center justify-content-center">
+        1件～<% if @reviews.count < 12 %><%= @reviews.count %><% else %>12<% end %>件（全<%= @reviews.count %>件）<span class="pt-2 ps-2"><%= paginate @reviews, theme: 'bootstrap-5' %></span>
+      </div>
+      <hr>
+    </div>
+
+  </div>
+  <!--左ナビ-->
   <div class="col-3 px-3">
-    <%= render 'layouts/members_info' %>
+    <%= render 'layouts/members_menu' %>
+    <%= render 'layouts/admin_menu' %>
+    <%= render 'layouts/shop_menu' %>
     <%= render 'layouts/homes_menu' %>
   </div>
 </div>

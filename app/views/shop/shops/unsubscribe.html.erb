@@ -3,19 +3,21 @@
     <h1>退会確認</h1>
     <hr>
 
-    <div class="bg-secondary p-3">
+    <p class="text-center h4 mt-5">本当に退会しますか？</p>
+
+    <div class=" p-3">
       <div class="d-flex flex-row my-3 mx-auto">
         <div class="col-6 d-grid p-2">
           <%= link_to "ショップマイページへ戻る", shop_top_path, class: "btn btn-info p-2" %>
         </div>
         <div class="col-6 d-grid p-2">
-          <%= link_to "退会する", shop_withdraw_shop_path, method: :patch, "data-confirm" => "本当に退会しますか？", class: "btn btn-info p-2" %>
+          <%= link_to "退会する", shop_withdraw_shop_path, method: :patch, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-info p-2" %>
         </div>
       </div>
     </div>
 
   </div>
   <div class="col-3 px-3">
-    <%= render 'layouts/shop_homes_menu' %>
+    <%= render 'layouts/shop_menu' %>
   </div>
 </div>

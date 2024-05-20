@@ -1,28 +1,36 @@
 <% shops. each do |shop| %>
-  <div class="col-12 card d-flex flex-row p-2 mb-3">
-    <div class="col-3 pe-3">
-      <%= image_tag shop.get_shop_image(300,300), class: "w-100" %>
-    </div>
-    <div class="col-5 pe-3">
-      <h3 class="h5 fw-bold"><%= shop.name %></h3>
-      <p><%= shop.name_kana %></p>
-      <p class="shop-introduction"><%= shop.introduction %></p>
-    </div>
-    <div class="col-4">
-      <table class="table">
-        <tr>
-          <th>住所</th>
-          <td>〒<%= shop.postal_code.to_s.insert(3, "-") %><br><%= shop.address %></td>
-        </tr>
-        <tr>
-          <th>営業時間</th>
-          <td><%= shop.opening_hour %></td>
-        </tr>
-        <tr>
-          <th>定休日</th>
-          <td><%= shop.holiday %></td>
-        </tr>
-      </table>
+  <div class="col-12 card p-2 mb-3">
+    <% if admin_signed_in? %>
+      <div class="fw-bold"><small>ショップID:</small> <%= shop.id %></div>
+    <% end %>
+    <div class="d-flex flex-row">
+      <div class="col-2 pe-3">
+        <%= image_tag shop.get_shop_image(200,200), class: "w-100" %>
+        <div class="pt-2"><%= render 'public/favorite_shops/btn', shop: shop %></div>
+      </div>
+      <div class="col-5 pe-3">
+        <%= link_to shop_path(shop) do %>
+          <h3 class="h5 fw-bold"><%= shop.name %> <small>[ <%= shop.id %> ]</small></h3>
+          <p><%= shop.name_kana %></p>
+        <% end %>
+        <p class="shop-introduction"><%= shop.introduction %></p>
+      </div>
+      <div class="col-4">
+        <table class="table">
+          <tr>
+            <th>住所</th>
+            <td>〒<%= shop.postal_code.to_s.insert(3, "-") %><br><%= shop.address %></td>
+          </tr>
+          <tr>
+            <th>営業時間</th>
+            <td><%= shop.opening_hour %></td>
+          </tr>
+          <tr>
+            <th>定休日</th>
+            <td><%= shop.holiday %></td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 <% end %>

@@ -17,8 +17,8 @@ class Shop::MembersController < ApplicationController
 # current_shopの商品を一度も予約したことのないmemberのshow(予約履歴)は開けないようにする
   def is_matching_login_shop
     member = Member.find(params[:id])
-    item = Item.find_by(shop_id: current_shop.id)
-    pre_orders = PreOrder.where(item_id: item.id, member_id: member.id)
+    items = Item.find_by(shop_id: current_shop.id)
+    pre_orders = PreOrder.where(item_id: items.id) && PreOrder.where(member_id: member.id)
     unless pre_orders.exists?
       redirect_to shop_top_path
     end

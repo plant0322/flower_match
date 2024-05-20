@@ -4,26 +4,39 @@
     <div class="mb-5">
       <h2>予約一覧</h2>
       <hr>
-      <%= render 'shop/pre_orders/index', pre_orders: @pre_orders_3 %>
-      <%= link_to '全ての予約を見る', shop_pre_orders_path, class: "float-end" %>
+      <% unless @pre_orders_3.blank? %>
+        <%= render 'shop/pre_orders/index', pre_orders: @pre_orders_3 %>
+        <%= link_to '全ての予約を見る', shop_pre_orders_path, class: "float-end" %>
+      <% else %>
+        <p>予約がありません</p>
+      <% end %>
     </div>
     <!--商品一覧-->
     <div class="mb-5">
       <h2>商品一覧</h2>
       <hr>
-      <%= render 'shop/items/index', items: @shop_items_3 %>
-      <%= link_to '全ての商品を見る', shop_items_path, class: "float-end" %>
+      <% unless @shop_items_3.blank? %>
+        <%= render 'shop/items/index', items: @shop_items_3 %>
+        <%= link_to '全ての商品を見る', shop_items_path, class: "float-end" %>
+      <% else %>
+        <p>商品の登録がありません</p>
+        <%= link_to '商品を登録する', new_shop_item_path, class: "btn btn-info" %>
+      <% end %>
     </div>
     <!--口コミ一覧-->
-    <div class="mb-5">
+    <div class="b-5">
       <h2>口コミ一覧</h2>
       <hr>
-      <%= render 'shop/reviews/index', reviews: @reviews %>
-      <%= link_to '全ての口コミを見る', shop_items_path, class: "float-end" %>
+      <% unless @reviews.blank? %>
+        <%= render 'public/reviews/index', reviews: @reviews, shop: current_shop %>
+        <%= link_to '全ての口コミを見る', review_path(current_shop), class: "float-end" %>
+      <% else %>
+        <p>まだ口コミの投稿がありません</p>
+      <% end %>
     </div>
 
   </div>
   <div class="col-3 px-3">
-    <%= render 'layouts/shop_homes_menu' %>
+    <%= render 'layouts/shop_menu' %>
   </div>
 </div>

@@ -1,0 +1,66 @@
+<ul class="list-group w-100 mb-4">
+  <% pre_orders.each do |pre_order| %>
+    <li class="list-group-item bg-light my-2 p-3">
+      <div class="d-flex flex-row mb-2">
+        <div class="col-3 me-2">
+          <%= render 'shop/pre_orders/status', pre_order: pre_order %>
+        </div>
+        <div class="col-5">
+          <% if pre_order.status == 'before_visit' %>
+            来店予定日:<span class="text-danger fw-bold h5 ps-1"><%= pre_order.visit_day.strftime("%Y年%m月%d日") %> <%= pre_order.visit_time.strftime( "%H時%M分" ) %></span>
+          <% else %>
+            来店日:<span class="text-secondary h5 ps-1"><%= pre_order.visit_day.strftime("%Y年%m月%d日") %> <%= pre_order.visit_time.strftime( "%H時%M分" ) %></span>
+          <% end %>
+        </div>
+      </div>
+      <%= link_to shop_path(pre_order.item.shop.id), class: "text-decoration-none" do %>
+      <div class="d-flex flex-row mb-1">
+        <div class="col-1 me-3">
+          <%= image_tag pre_order.item.shop.get_shop_image(100,100), class: "w-100 h-100" %>
+        </div>
+        <div class="col-11">
+          <p class="fw-bold h5">
+            <%= pre_order.item.shop.name %>
+          </p>
+          <p>
+            <%= pre_order.item.shop.address %>
+          </p>
+        </div>
+      </div>
+      <% end %>
+      <hr>
+      <div class="mb-2">
+        <table class="table table-light table-bordered">
+          <thead>
+            <tr class="text-center">
+              <th>ご予約商品</th>
+              <th>商品単価</th>
+              <th>ご予約数</th>
+              <th>お支払予定金額</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= pre_order.name %></td>
+              <td><%= (pre_order.total_payment / pre_order.amount).to_s(:delimited) %>円</td>
+              <td><%= pre_order.amount %> 個</td>
+              <td><%= pre_order.total_payment.to_s(:delimited) %>円</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <%= link_to '予約内容の詳細を確認する', pre_order_path(pre_order), class: "btn btn-outline-info" %>
+      <%= link_to 'このショップの商品を予約する', shop_path(pre_order.item.shop.id), class: "btn btn-info" %>
+      <% if pre_order.review %>
+        <button class="btn btn-outline-secondary disabled">口コミの投稿ありがとうございます</button>
+      <% elsif pre_order.visit_day < 1.week.ago %>
+        <button class="btn btn-outline-secondary disabled">口コミの投稿期限が過ぎています</button>
+      <% elsif pre_order.status != 'visit' || pre_order.review %>
+        <button class="btn btn-outline-secondary disabled">口コミは投稿できません</button>
+      <% elsif pre_order.status == 'visit' && pre_order.review.blank? %>
+        <%= link_to '口コミを投稿する', pre_order_path(pre_order), class: "btn btn-info" %>
+      <% end %>
+
+    </li>
+  <% end %>
+</ul>

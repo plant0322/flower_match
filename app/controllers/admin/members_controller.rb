@@ -2,6 +2,10 @@ class Admin::MembersController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_member, only: [:show, :edit, :update]
   def show
+    member_pre_orders = PreOrder.where(member_id: @member)
+    @before_visit_pre_orders = member_pre_orders.where(status: 'before_visit')
+    @visit_or_cancel_pre_orders = member_pre_orders.where(status: 'visit') + member_pre_orders.where(status: 'cancel')
+    @reviews = Review.where(pre_order_id: member_pre_orders)
   end
 
   def edit
@@ -18,7 +22,13 @@ class Admin::MembersController < ApplicationController
   end
 
   def index
-    @members = Member.all
+    if params[:member]
+      @members = Member.where('last_name LIKE? OR first_name LIKE? OR last_name_kana LIKE? OR first_name_kana LIKE? OR
+                               telephone_number LIKE? OR postal_code LIKE? OR address LIKE?',
+                               "%#{@content}%", "%#{@content}%", "%#{@content}%", "%#{@content}%", "%#{@content}%", "%#{@content}%", "%#{@content}%").order(id: 'DESC')#.page(params[:page])
+    else
+      @members = Member.all
+    end
   end
 
   private

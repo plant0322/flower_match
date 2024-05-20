@@ -1,0 +1,22 @@
+<% if admin_signed_in? %>
+  <table class="table table-hover">
+    <tr>
+      <th class="text-center bg-member <%= (admin_signed_in? ? "bg-admin" : "" ) %> <%= (shop_signed_in? ? "bg-shop" : "" ) %>">管理者メニュー</th>
+    </tr>
+    <tr>
+      <td>連絡一覧</td>
+    </tr>
+    <tr>
+      <td><%= link_to "口コミ一覧", admin_reviews_path %></td>
+    </tr>
+    <tr>
+      <td>タグ一覧</td>
+    </tr>
+    <tr>
+      <td><%= link_to "ショップ一覧", admin_shops_path %></td>
+    </tr>
+    <tr>
+      <td><%= link_to "ユーザー一覧", admin_members_path %></td>
+    </tr>
+  </table>
+<% end %>

@@ -29,7 +29,7 @@
           <%= f.text_field :tag_name, placeholder: "半角スペースを入れて複数のタグを追加できます", autocomplete: "tag_name", class: "form-control" %>
           <small>
             登録中のタグ:
-            <% @item.tags.each do |tag| %>
+            <% item.tags.each do |tag| %>
               <%= tag.name %>
             <% end %>
           </small>

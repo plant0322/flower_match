@@ -1,49 +1,67 @@
 <div class="container d-flex flex-row-reverse pt-3">
   <div class="col-9 px-3">
-    <div class="d-flex flex-wrap">
-      <!--詳細-->
-      <div class="col-12 order-3 p-1">
-        <table class="table table-borderless table-secondary">
-          <tr>
-            <th>ユーザー名</th>
-            <td>
-              <%= @member.member_full_name %><br>
-              <%= @member.member_full_name_kana %>
-            </td>
-          </tr>
-          <tr>
-            <th>ユーザー名（ニックネーム）</th>
-            <td><%= @member.nickname %></td>
-          </tr>
-          <tr>
-          <tr>
-            <th>住所</th>
-            <td>
-              <%= @member.postal_code.to_s.insert(3, "-") %><br>
-              <%= @member.address %>
-            </td>
-          </tr>
-          <tr>
-            <th>電話番号</th>
-            <td><%= @member.telephone_number.to_s.insert(3, "-").insert(7, "-") %></td>
-          </tr>
-          <tr>
-            <th>会員ステータス</th>
-            <td>
-              <% if @member.is_active == true %>
-                有効
-              <% else %>
-                退会
-              <% end %>
-            </td>
-          </tr>
-        </table>
-        <%= link_to "このユーザー情報を編集する", edit_admin_member_path, class: "btn btn-info p-2" %>
+    <!--詳細-->
+    <h2><%= @member.member_full_name %>さま詳細情報</h2>
+    <hr>
+    <div class="pb-5">
+      <div class="d-flex flex-row">
+        <div class="col-6">
+          <table class="table table-bordered h-100">
+            <tr>
+              <th class="w-25">メンバーID</th>
+              <td colspan="4">[ <%= @member.id %> ]</td>
+            </tr>
+            <tr>
+              <th class="w-25">氏名</th>
+              <td>
+                <%= @member.member_full_name %> 様<br>
+                <%= @member.member_full_name_kana %>
+              </td>
+            </tr>
+            <tr>
+              <th>ニックネーム</th>
+              <td colspan="4"><%= @member.nickname %></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="col-6">
+          <table class="table table-bordered h-100">
+            <tr>
+              <th class="w-25">電話番号</th>
+              <td colspan="4"><%= @member.telephone_number.to_s.insert(3, "-").insert(8, "-") %></td>
+            </tr>
+            <tr>
+              <th class="w-25">住所</th>
+              <td>〒 <%= @member.postal_code.to_s.insert(3, "-") %><br><%= @member.address %></td>
+            </tr>
+            <tr>
+              <th>口コミ</th>
+              <td colspan="4">
+                <%= link_to admin_review_path do %>
+                  <%= @reviews.count %> 件の投稿あり(リンク作成)
+                <% end %>
+              </td>
+            </tr>
+          </table>
+        </div>
       </div>
+      <%= link_to "退会状況の編集", edit_admin_member_path, class: "btn btn-outline-info p-2 mt-2" %>
     </div>
 
+    <h3>現在の予約<span class="h5">（全<%= @before_visit_pre_orders.count %>件）</span></h3>
+    <hr>
+    <%= render 'shop/pre_orders/index', pre_orders: @before_visit_pre_orders %>
+
+    <h3>過去の予約履歴<span class="h5">（全<%= @visit_or_cancel_pre_orders.count %>件）</span></h3>
+    <hr>
+    <%= render 'shop/pre_orders/index', pre_orders: @visit_or_cancel_pre_orders %>
+
+    <%= link_to "◀ ユーザー一覧へ戻る", admin_members_path %>
+
   </div>
+
   <div class="col-3 px-3">
-    <%= render 'admin/homes/menu' %>
+    <%= render 'layouts/admin_menu' %>
   </div>
 </div>
