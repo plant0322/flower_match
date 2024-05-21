@@ -37,6 +37,14 @@
             <%= link_to "ショップ新規登録はこちら", new_shop_registration_path, class: "btn btn-info p-2" %>
           </div>
         </div>
+        <h3>お試しログイン</h3>
+        <hr>
+        <p>機能を試してみたい方にオススメ。仮ショップでお試しログインしてみましょう。</p>
+        <div class="p-3">
+          <div class="col-6 d-grid mx-auto">
+            <%= link_to "お試しログインはこちら", shop_guest_sign_in_path, method: :post, class: "btn btn-info p-2" %>
+          </div>
+        </div>
       </div>
     </div>
 

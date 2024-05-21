@@ -33,4 +33,22 @@ class Member < ApplicationRecord
   def member_full_name_kana
     last_name_kana + ' ' + first_name_kana
   end
+
+  # ゲストログイン用
+  GUEST_MEMBER_EMAIL = 'guest_member@example.com'
+
+  def self.guest
+    find_or_create_by!(email: GUEST_MEMBER_EMAIL) do |member|
+      member.password = SecureRandom.urlsafe_base64
+      member.last_name = 'お試し'
+      member.first_name = '花実'
+      member.last_name_kana = 'オタメシ'
+      member.first_name_kana = 'ハナミ'
+      member.nickname = 'おたみ'
+      member.postal_code = '0000000'
+      member.address = '○○県△△市□□町0-0'
+      member.telephone_number = '11111111111'
+      member.is_active = 'true'
+    end
+  end
 end
