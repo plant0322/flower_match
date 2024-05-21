@@ -26,11 +26,7 @@
 
     <!--ページネーション-->
     <% if false %>
-    <hr>
-    <div class="paginate d-flex align-items-center justify-content-center">
-      1件～<% if @members.count < 12 %><%= @members.count %><% else %>12<% end %>件（全<%= @members.count %>件）<span class="pt-2 ps-2"><%= paginate @members, theme: 'bootstrap-5' %></span>
-    </div>
-    <hr>
+      <%= render 'layouts/paginate', content: @members %>
     <% end %>
 
   </div>

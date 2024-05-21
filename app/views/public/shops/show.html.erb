@@ -75,6 +75,10 @@
       </div>
     </div>
     <%= render 'public/items/index', items: @items %>
+
+    <!--ページネーション-->
+    <%= render 'layouts/paginate', content: @items %>
+
     <% if admin_signed_in? %>
       <%= link_to "◀ ショップ一覧へ戻る", admin_shops_path %>
     <% else %>
@@ -86,6 +90,6 @@
     <%= render 'layouts/members_menu' %>
     <%= render 'layouts/admin_menu' %>
     <%= render 'layouts/shop_menu' %>
-    <%= render 'layouts/homes_menu' %>
+    <%= render 'layouts/homes_menu', tag_rank: @tag_rank %>
   </div>
 </div>

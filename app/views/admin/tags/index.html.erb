@@ -9,22 +9,10 @@
         <div>
           <table class="table table-hover">
             <tr>
-              <th class="text-center bg-member <%= (admin_signed_in? ? "bg-admin" : "" ) %> <%= (shop_signed_in? ? "bg-shop" : "" ) %>">管理者メニュー</th>
+              <th class="text-center bg-member <%= (admin_signed_in? ? "bg-admin" : "" ) %> <%= (shop_signed_in? ? "bg-shop" : "" ) %>">おすすめ商品</th>
             </tr>
             <tr>
-              <td>連絡一覧</td>
-            </tr>
-            <tr>
-              <td><%= link_to "口コミ管理", admin_reviews_path %></td>
-            </tr>
-            <tr>
-              <td><%= link_to "タグ管理", admin_tags_path %></td>
-            </tr>
-            <tr>
-              <td><%= link_to "ショップ管理", admin_shops_path %></td>
-            </tr>
-            <tr>
-              <td><%= link_to "一般メンバー管理", admin_members_path %></td>
+              <td>※後で機能追加予定</td>
             </tr>
           </table>
         </div>

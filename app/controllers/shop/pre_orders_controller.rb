@@ -6,7 +6,7 @@ class Shop::PreOrdersController < ApplicationController
     @shop_items = Item.where(shop_id: @shop.id)
     @pre_orders = PreOrder.where(item_id: @shop_items.pluck(:id)).order(visit_day: "ASC")
     @before_visit_pre_orders = @pre_orders.where(status: 'before_visit')
-    @visit_or_cancel_pre_orders = @pre_orders.where(status: 'visit') + @pre_orders.where(status: 'cancel').order(visit_day: "ASC")#.page(params[:page])
+    @visit_or_cancel_pre_orders = @pre_orders.where(status: ['visit', 'cancel']).order(visit_day: "DESC").page(params[:page])
   end
 
   def show

@@ -63,13 +63,13 @@ class Public::PreOrdersController < ApplicationController
     @pre_orders = current_member.pre_orders
     @before_visit_pre_orders = @pre_orders.where(status: 'before_visit').order(visit_day: "DESC")
     @visit_or_cancel_pre_orders = @pre_orders.where(status: ['visit', 'cancel']).order(visit_day: "DESC").page(params[:page])
-    @tags = Tag.joins(:item_tags).group(:id).order('COUNT(item_tags.tag_id) DESC').limit(10)
+    @tag_rank = Tag.tag_rank_item
   end
 
   def show
     @pre_order = PreOrder.find(params[:id])
     @review = Review.new
-    @tags = Tag.joins(:item_tags).group(:id).order('COUNT(item_tags.tag_id) DESC').limit(10)
+    @tag_rank = Tag.tag_rank_item
   end
 
   private

@@ -1,0 +1,5 @@
+<hr>
+<div class="paginate d-flex align-items-center justify-content-center">
+  1件～<% if content.count < 12 %><%= content.count %><% else %>12<% end %>件（全<%= content.count %>件）<span class="pt-2 ps-2"><%= paginate content, theme: 'bootstrap-5' %></span>
+</div>
+<hr>

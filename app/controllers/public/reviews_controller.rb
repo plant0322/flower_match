@@ -19,7 +19,7 @@ class Public::ReviewsController < ApplicationController
   end
 
   def index
-    @tags = Tag.joins(:item_tags).group(:id).order('COUNT(item_tags.tag_id) DESC').limit(10)
+    @tag_rank = Tag.tag_rank_item
     @shop = Shop.find(params[:shop_id])
     items = @shop.items
     pre_orders = PreOrder.where(item_id: items)

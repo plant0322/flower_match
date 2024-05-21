@@ -43,11 +43,7 @@
     <% end %>
     <!--ページネーション-->
     <% if @model != 'tag' %>
-      <hr>
-      <div class="paginate d-flex align-items-center justify-content-center">
-        1件～12件（全<%= @records.count %>件）<span class="pt-2 ps-2"><%= paginate @records, theme: 'bootstrap-5' %></span>
-      </div>
-      <hr>
+      <%= render 'layouts/paginate', content: @records %>
     <% end %>
 
   </div>
@@ -56,6 +52,6 @@
     <%= render 'layouts/members_menu' %>
     <%= render 'layouts/admin_menu' %>
     <%= render 'layouts/shop_menu' %>
-    <%= render 'layouts/homes_menu' %>
+    <%= render 'layouts/homes_menu', tag_rank: @tag_rank %>
   </div>
 </div>

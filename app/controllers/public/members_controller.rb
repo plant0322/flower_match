@@ -11,11 +11,11 @@ class Public::MembersController < ApplicationController
     @favorite_shops = Shop.where(id: shop_ids).order(created_at: "DESC").limit(4)
     @favorite_shop_items = Item.where(shop_id: shop_ids)
                                .where(is_active: true).order(created_at: "DESC").limit(6)
-    @tags = Tag.joins(:item_tags).group(:id).order('COUNT(item_tags.tag_id) DESC').limit(10)
+    @tag_rank = Tag.tag_rank_item
   end
 
   def edit
-    @tags = Tag.joins(:item_tags).group(:id).order('COUNT(item_tags.tag_id) DESC').limit(10)
+    @tag_rank = Tag.tag_rank_item
   end
 
   def update
@@ -29,7 +29,7 @@ class Public::MembersController < ApplicationController
   end
 
   def unsubscribe
-    @tags = Tag.joins(:item_tags).group(:id).order('COUNT(item_tags.tag_id) DESC').limit(10)
+    @tag_rank = Tag.tag_rank_item
   end
 
   def withdraw
