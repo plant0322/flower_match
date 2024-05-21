@@ -9,6 +9,7 @@ class Shop::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    @tag_list = @item.tags.pluck(:name).join(',')
     @item.shop_id = current_shop.id
     tag_list = params[:item][:tag_name].split(',')
     if @item.save

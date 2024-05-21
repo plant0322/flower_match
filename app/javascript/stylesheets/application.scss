@@ -1,6 +1,6 @@
 body {
   font-family: "游ゴシック", YuGothic, "メイリオ", Meiryo, "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro", "Hiragino Maru Gothic W4 JIS2004", "Helvetica Neue", Helvetica, Arial, sans-serif!important;
-  color: #404040;
+  color: #404040!important;
   word-break: break-all;
   overflow-wrap: break-word;
 }
@@ -17,8 +17,23 @@ body {
     background-color: #E6E6E6!important;
 }
 
+.btn-info {
+    background-color: #A3D2D1!important;
+    border: solid #A3D2D1!important;
+}
+
+.btn-outline-info {
+    background-color: #E1F0F0!important;
+    border: 1px solid #98CCCB!important;
+}
+
+// これ効かない…？
+.bg-info {
+    background-color: #A3D2D1!important;
+}
+
 a {
-  color: #1D4F8C!important;
+  color: #467675!important;
   text-decoration: none!important;
   font-weight: bold;
 }
@@ -31,10 +46,12 @@ a:hover {
 // 背景色
 .bg-member {
     background-color: #b0a88d!important;
+    color: #fff!important;
 }
 
 .bg-shop{
-    background-color: #84b9cb!important;
+    background-color: #8CAFB1!important;
+    color: #fff!important;
 }
 
 .bg-admin{
@@ -63,7 +80,7 @@ footer{
 
 .shop-header,
 .shop-footer{
-    background-color: #84b9cb;
+    background-color: #8CAFB1;
 }
 
 .member-btn a{
@@ -79,7 +96,7 @@ footer{
 }
 
 .shop-btn a{
-    background-color: #569eba!important;
+    background-color: #5E97A0!important;
     color: #fff!important;
     font-weight: bold;
 }

@@ -122,7 +122,9 @@
              <div>
               <%= f.radio_button :first_is_active, true, class: "form-check-input" %><%= f.label :first_is_active, '公開', class: "form-check-label text-success" %>
               <%= f.radio_button :first_is_active, false, class: "form-check-input" %><%= f.label :first_is_active, '非公開', class: "form-check-label text-danger" %>
-              <%= link_to '商品を削除する', shop_item_path(item), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger" %>
+              <% unless action_name == 'new' %>
+                <%= link_to '商品を削除する', shop_item_path(item), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger" %>
+              <% end %>
             </div>
             <small>※商品は一度公開すると削除できません。公開前に再度内容をご確認ください。</small>
             <% else %>
