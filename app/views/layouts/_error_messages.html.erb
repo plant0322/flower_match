@@ -1,6 +1,6 @@
 <% if obj.errors.any? %>
-  <div class="text-info p-0">
-    <ul>
+  <div class="text-error p-0 mx-5">
+    <ul class="rounded-3">
       <% obj.errors.full_messages_for(attribute).each do |message| %>
         <li><%= message %></li>
       <% end %>

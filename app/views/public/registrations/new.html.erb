@@ -1,8 +1,8 @@
 <div class="container d-flex flex-column pt-3">
   <div class="col-8 mx-auto px-3 mt-5">
-    <h2>ユーザーさま新規会員登録</h2>
+    <h2>一般ユーザーさま新規会員登録</h2>
     <hr>
-
+    <small>※こちらは「一般ユーザー」登録になります。商品を紹介したり予約を受け付けたい<%= link_to  new_shop_registration_path do%>「ショップ」さまの登録はこちら<% end %></small>
     <div class="pb-5">
       <%= form_with model: @member, url: member_registration_path do |f| %>
         <%#= render "public/shared/error_messages", resource: resource %>

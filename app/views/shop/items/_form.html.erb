@@ -5,7 +5,7 @@
     <h3 class="bg-info p-1 h5">商品情報</h3>
     <table class="table table-borderless table-light my-3">
       <tr>
-        <th class="w-25"><%= f.label :item_image, "画像" %></th>
+        <th class="w-25"><%= f.label :item_image, "画像" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
         <td>
           <% unless controller.action_name == 'edit' %>
             <%= image_tag asset_path('sample.jpg'), size: '150x150' %>
@@ -21,7 +21,7 @@
         </td>
       </tr>
       <tr>
-        <th><%= f.label :name, "商品名" %></th>
+        <th><%= f.label :name, "商品名" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
         <td colspan="2"><%= f.text_field :name, autocomplete: "name", class: "form-control" %></td>
       </tr>
       <tr>
@@ -30,7 +30,7 @@
         </td>
       </tr>
       <tr>
-        <th><%= f.label :introduction, "商品説明" %></th>
+        <th><%= f.label :introduction, "商品説明" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
         <td colspan="2"><%= f.text_area :introduction, autocomplete: "introduction", class: "form-control" %></td>
       </tr>
       <tr>
@@ -41,7 +41,7 @@
       <tr>
         <th><%= f.label :tag_name, "タグ" %></th>
         <td colspan="2">
-          <%= f.text_field :tag_name, value: tag_list, placeholder: "カンマ「,」で区切るとタグを複数追加できます", autocomplete: "tag_name", class: "form-control" %>
+          <%= f.text_field :tag_name, value: tag_list, placeholder: "カンマ「,」で区切ることでタグを複数追加できます", autocomplete: "tag_name", class: "form-control" %>
           <small>
             例）花束,バラ,赤い花
           </small>
@@ -59,7 +59,7 @@
     <h3 class="bg-info p-1 h5">商品詳細</h3>
     <table class="table table-borderless table-light my-3">
       <tr>
-        <th class="w-25"><%= f.label :size, "サイズ" %></th>
+        <th class="w-25"><%= f.label :size, "サイズ" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
         <td colspan="2">
           <%= f.text_field :size, autocomplete: "size", class: "form-control" %>
           <small>例）幅15×奥行き15×高さ20㎝</small>
@@ -71,7 +71,7 @@
         </td>
       </tr>
       <tr>
-        <th><%= f.label :price, "値段" %></th>
+        <th><%= f.label :price, "値段" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
         <td>
           <%= f.text_field :price, autocomplete: "price", class: "form-control" %>
           <small>例）5000　※入力された金額がそのまま商品ページへ反映されます。税込の販売価格を数字のみで入力してください</small>
@@ -84,7 +84,7 @@
         </td>
       </tr>
       <tr>
-        <th><%= f.label :stock, "在庫" %></th>
+        <th><%= f.label :stock, "在庫" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
         <td>
           <%= f.text_field :stock, autocomplete: "stock", class: "form-control" %>
           <small>※対応可能な個数を入力してください</small>
@@ -103,7 +103,7 @@
     <h3 class="bg-info p-1 h5">商品設定</h3>
     <table class="table table-borderless table-light my-3">
       <tr>
-        <th class="w-25"><%= f.label :deadline, "キャンセル可能期限" %></th>
+        <th class="w-25"><%= f.label :deadline, "キャンセル可能期限" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
         <td colspan="2">
           <%= f.text_field :deadline, autocomplete: "deadline", class: "form-control" %>
           <small>例）3　※数字で入力してください</small>
@@ -122,7 +122,7 @@
              <div>
               <%= f.radio_button :first_is_active, true, class: "form-check-input" %><%= f.label :first_is_active, '公開', class: "form-check-label text-success" %>
               <%= f.radio_button :first_is_active, false, class: "form-check-input" %><%= f.label :first_is_active, '非公開', class: "form-check-label text-danger" %>
-              <% unless action_name == 'new' %>
+              <% unless action_name == 'new' || action_name == 'create' %>
                 <%= link_to '商品を削除する', shop_item_path(item), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger" %>
               <% end %>
             </div>
@@ -142,7 +142,7 @@
     </div>
     <div class="col-8 d-flex flex-row p-2">
       <% unless controller.action_name == 'edit' %>
-        <%= f.submit "商品を登録する", class: "btn btn-info p-2" %>
+        <%= f.submit "商品を登録する", "data-confirm" => "この内容で商品を登録しても大丈夫ですか？", class: "btn btn-info p-2" %>
       <% else %>
         <div class="col-6 d-grid px-1">
           <%= link_to "プレビューで確認する", item_path(item), target: :_blank, class: "btn btn-outline-info p-2" %>

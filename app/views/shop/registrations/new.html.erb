@@ -2,7 +2,7 @@
   <div class="col-8 mx-auto px-3 mt-5">
     <h2>ショップさま新規登録</h2>
     <hr>
-
+    <small>※こちらは「ショップ」登録になります。投稿を見たりお花の予約をしたい<%= link_to  new_member_registration_path do%>「一般ユーザー」さまの登録はこちら<% end %></small>
     <div class="pb-5">
       <%= form_with model: @shop, url: shop_registration_path do |f| %>
         <%#= render "public/shared/error_messages", resource: resource %>
@@ -11,7 +11,7 @@
           <tr>
             <th class="w-25"><%= f.label :shop_image, "アイキャッチ" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td>
-              <%= f.file_field :shop_image, accept: "image/*", class: "form-control" %>
+              <%= f.file_field :shop_image, autofocus: true, accept: "image/*", class: "form-control" %>
               <small>※ショップのイメージ画像を登録してください</small>
             </td>
           </tr>
@@ -23,7 +23,7 @@
           <tr>
             <th class="w-25"><%= f.label :name, "ショップ名" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
-              <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+              <%= f.text_field :name, autocomplete: "name", class: "form-control" %>
               <small>例）Flower Shop</small>
             </td>
           </tr>
@@ -163,6 +163,11 @@
             <th class="w-25"><%= f.label :note, "備考欄" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.text_area :note, autocomplete: "note", class: "form-control" %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @shop, attribute: :payment_method %>
             </td>
           </tr>
         </table>

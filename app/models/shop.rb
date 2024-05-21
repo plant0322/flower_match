@@ -8,6 +8,7 @@ class Shop < ApplicationRecord
   has_many :favorite_shops, dependent: :destroy
   has_one_attached :shop_image
 
+  validates :shop_image, presence: true
   validates :name, presence: true
   validates :name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
   validates :introduction, presence: true
