@@ -1,5 +1,6 @@
 class Public::ItemsController < ApplicationController
   def show
+    session[:item_id] = params[:id]
     @item = Item.find(params[:id])
     @shop = @item.shop
     @stock = @item.stock.to_i

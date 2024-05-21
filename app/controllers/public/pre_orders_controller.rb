@@ -3,11 +3,10 @@ class Public::PreOrdersController < ApplicationController
   before_action :is_matching_login_member, only: [:show]
 
   def new
-    session[:item_id] = params[:item_id]
     @item =  Item.find(session[:item_id])
-    session[:amount] =  params[:amount]
-    @amount = session[:amount]
-    if @amount.blank?
+      session[:amount] =  params[:amount]
+      @amount = session[:amount].to_i
+    if @amount.blank? || @amount == 0
       flash[:alert] = "個数を選択してください"
       redirect_to item_path(@item)
     end
@@ -43,7 +42,7 @@ class Public::PreOrdersController < ApplicationController
     @pre_order.address = current_member.address
     if @pre_order.save
       item.decrement!(:stock, @pre_order.amount)
-      redirect_to thanks_path
+      render :thanks
     else
       render :new
     end
@@ -51,6 +50,8 @@ class Public::PreOrdersController < ApplicationController
 
   def error
     @item = Item.find_by(session[:item_id])
+    @amount = session[:amount].to_i
+    @pre_order = PreOrder.new
     flash.now[:alert] = '問題が発生しました。もう一度情報を入力してください。'
     render :new
   end

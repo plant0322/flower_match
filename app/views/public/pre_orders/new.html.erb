@@ -37,6 +37,11 @@
           <td><%= @amount %> 個</td>
         </tr>
         <tr>
+          <th class="w-25">支払予定金額合計</th>
+          <td><%= (@item.price * @amount).to_s(:delimited) %> 円</td>
+        </tr>
+        <tr>
+        <tr>
           <th class="w-25"><%= f.label :purpose, "要望・用途" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
           <td>
             <%= f.text_area :purpose, placeholder: "例）20代女性への誕生日プレゼント", autocomplete: "purpose", class: "form-control" %>
