@@ -1,3 +1,5 @@
+
+# 不要？
 class Shop::ReviewsController < ApplicationController
   before_action :authenticate_admin_or_shop!
 

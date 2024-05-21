@@ -16,18 +16,13 @@
     <% end %>
 
     <!--ページネーション-->
-    <hr>
-    <div class="paginate d-flex align-items-center justify-content-center">
-      1件～<% if @visit_or_cancel_pre_orders.count < 12 %><%= @visit_or_cancel_pre_orders.count %><% else %>12<% end %>件（全<%= @visit_or_cancel_pre_orders.count %>件）
-      <span class="pt-2 ps-2"><%= paginate @visit_or_cancel_pre_orders, theme: 'bootstrap-5' %></span>
-    </div>
-    <hr>
+    <%= render 'layouts/paginate', content: @visit_or_cancel_pre_orders %>
     <% if false %>
     <% end %>
   </div>
   <!--左ナビ-->
   <div class="col-3 px-3">
     <%= render 'layouts/members_menu' %>
-    <%= render 'layouts/homes_menu' %>
+    <%= render 'layouts/homes_menu', tag_rank: @tag_rank %>
   </div>
 </div>

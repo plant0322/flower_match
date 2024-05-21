@@ -1,0 +1,55 @@
+<div class="container d-flex flex-row-reverse pt-3">
+  <div class="col-9 px-3 mt-3">
+    <h2>タグ一覧タグ管理</h2>
+    <hr>
+    <div class="d-flex justify-content-center mt-5">
+      <div class="col-4 px-1">
+      <h3>ピックアップタグ</h3>
+      <hr>
+        <div>
+          <table class="table table-hover">
+            <tr>
+              <th class="text-center bg-member <%= (admin_signed_in? ? "bg-admin" : "" ) %> <%= (shop_signed_in? ? "bg-shop" : "" ) %>">おすすめ商品</th>
+            </tr>
+            <tr>
+              <td>※後で機能追加予定</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-4 px-1">
+      <h3>上位10件のタグ</h3>
+      <hr>
+        <div>
+          <%= render 'layouts/homes_menu', tag_rank: @tag_rank %>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-5">
+      <h3>現在登録されている全てのタグ</h3>
+      <hr>
+      <!--詳細-->
+      <div class="col-12 order-3 p-1">
+        <div class="d-flex flex-wrap">
+          <% @tags.each do |tag| %>
+          <div class="col-3 card d-flex flex-row p-2">
+            <%= link_to "/search?model=tag&content=#{tag.name}", target: :_blank do %>
+              <p># <%= tag.name %>（<%= tag.items.count %>）</p>
+            <% end %>
+            <%= link_to '×', admin_tag_path(tag), method: :delete, "data-confirm" => "「#{tag.name}」 を削除しますか？'", class: "btn btn-outline-secondary col-1 p-0 h-50" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <%= link_to "◀ 管理画面TOPへ戻る", admin_top_path %>
+
+  </div>
+  <!--左ナビ-->
+  <div class="col-3 px-3">
+    <%= render 'layouts/admin_menu' %>
+  </div>
+</div>

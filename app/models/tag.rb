@@ -5,9 +5,19 @@ class Tag < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 12 }
 
+
+  # タグの検索
   def self.search_items(content)
     scope :merge_items, -> (tags){}
     tags = Tag.where('name LIKE?', '%'+content+'%')
     return tags.inject(init = []) {|result,tag| result + tag.items}
-  end #tag.items,tag??
+  end
+
+  # 左ナビに表示する上位10件のタグを呼び出す
+  def self.tag_rank_item
+    joins(:item_tags)
+      .group(:id)
+      .order('COUNT(item_tags.tag_id) DESC')
+      .limit(10)
+  end
 end

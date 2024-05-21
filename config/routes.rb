@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :shops, only: [:show, :index, :edit, :update]
     resources :members, only: [:show, :index, :edit, :update]
     resources :reviews, only: [:index, :update]
+    resources :tags, only: [:index, :create, :update, :destroy]
   end
 
 
@@ -35,7 +36,7 @@ Rails.application.routes.draw do
     patch 'shops/withdraw'              => 'shops#withdraw', as: 'withdraw_shop'
     get 'members/:member_id/pre_orders' => 'pre_orders#index', as: 'member_pre_orders'
     get 'search'                        => 'searches#search'
-    get ':member_id/review'             => 'reviews#index', as: 'review'
+    #確認して消す get ':member_id/review'             => 'reviews#index', as: 'review'
 
     resources :members, only: [:show]
     resources :items, except: [:show]

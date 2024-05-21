@@ -46,11 +46,7 @@
     </ul>
 
     <!--ページネーション-->
-    <hr>
-    <div class="paginate d-flex align-items-center justify-content-center">
-      1件～<% if @reviews.count < 12 %><%= @reviews.count %><% else %>12<% end %>件（全<%= @reviews.count %>件）<span class="pt-2 ps-2"><%= paginate @reviews, theme: 'bootstrap-5' %></span>
-    </div>
-    <hr>
+      <%= render 'layouts/paginate', content: @reviews %>
 
   </div>
   <!--左ナビ-->

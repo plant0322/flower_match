@@ -30,7 +30,7 @@ a:hover {
 
 // 背景色
 .bg-member {
-    background-color: #E9CC70!important;
+    background-color: #b0a88d!important;
 }
 
 .bg-shop{
@@ -53,7 +53,7 @@ footer{
 header,
 footer{
     color: #fff;
-    background-color: #E9CC70;
+    background-color: #b0a88d;
 }
 
 .admin-header,
@@ -64,6 +64,24 @@ footer{
 .shop-header,
 .shop-footer{
     background-color: #84b9cb;
+}
+
+.member-btn a{
+    background-color: #8c8062!important;
+    color: #fff!important;
+    font-weight: bold;
+}
+
+.admin-btn a{
+    background-color: #A9A9A9!important;
+    color: #fff!important;
+    font-weight: bold;
+}
+
+.shop-btn a{
+    background-color: #569eba!important;
+    color: #fff!important;
+    font-weight: bold;
 }
 
 // tableのリンク

@@ -3,7 +3,8 @@ class Public::SearchesController < ApplicationController
   def search
     @content = params[:content]
     @model = params[:model]
-      @tags = Tag.joins(:item_tags).group(:id).order('COUNT(item_tags.tag_id) DESC').limit(10)
+    @tag_rank = Tag.tag_rank_item
+    @tags = Tag.tag_rank_item.limit(50)
     if @model == 'item'
       @records = Item.where('name LIKE? OR introduction LIKE?','%'+@content+'%','%'+@content+'%').order(id: 'DESC')
                      .where(is_active: true).page(params[:page])

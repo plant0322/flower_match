@@ -18,7 +18,7 @@ class Public::FavoriteShopsController < ApplicationController
     favorite_shops = FavoriteShop.where(member_id: current_member.id)
     @shops = Shop.where(id: favorite_shops.pluck(:shop_id))
                  .where(is_active: true).order(id: 'DESC').page(params[:page])
-    @tags = Tag.joins(:item_tags).group(:id).order('COUNT(item_tags.tag_id) DESC').limit(10)
+    @tag_rank = Tag.tag_rank_item
   end
 
   def item_list
@@ -26,6 +26,6 @@ class Public::FavoriteShopsController < ApplicationController
     shop_ids = favorite_shops.pluck(:shop_id)
     @favorite_shop_items = Item.where(shop_id: shop_ids)
                                .where(is_active: true).order(id: 'DESC').page(params[:page])
-    @tags = Tag.joins(:item_tags).group(:id).order('COUNT(item_tags.tag_id) DESC').limit(10)
+    @tag_rank = Tag.tag_rank_item
   end
 end
