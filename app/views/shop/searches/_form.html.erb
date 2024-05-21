@@ -40,7 +40,7 @@
             <% end %>
           </div>
         </div>
-      <% end %>
+      <% elsif %>
       <%= form_with url: shop_search_path, method: :get do |f| %>
         <div class="d-flex flex-row">
           <div class="col-3 mt-4">
@@ -54,6 +54,13 @@
             <% end %>
           </div>
         </div>
+      <% else %> <!--タグ検索-->
+      <div class="col-6">
+        <%= f.text_field :content, placeholder: 'キーワードから探す', class: "form-control" %>
+      </div>
+      <div class="col-2">
+        <%= button_tag type: 'submit', name: '', class: "form-control" do %>
+        <i class="fa-solid fa-magnifying-glass"></i>検索
       <% end %>
     <% end %>
   </div>
