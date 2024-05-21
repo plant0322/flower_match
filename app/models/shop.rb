@@ -20,7 +20,7 @@ class Shop < ApplicationRecord
   validates :note, presence: true
   validates :payment_method, presence: true
   validates :direction, presence: true
-  validates :telephone_number, presence: true, format: { with: /\A\d{10,11}\z/ }
+  validates :telephone_number, presence: true, uniqueness: true, format: { with: /\A\d{10,11}\z/ }
   validates :email, presence: true
 
   def get_shop_image(width, height)

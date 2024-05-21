@@ -16,7 +16,7 @@ class Member < ApplicationRecord
   validates :email, presence: true
   validates :postal_code, presence: true, format: { with: /\A\d{7}\z/ }
   validates :address, presence: true
-  validates :telephone_number, presence: true, format: { with: /\A\d{10,11}\z/ }
+  validates :telephone_number, presence: true, uniqueness: true, format: { with: /\A\d{10,11}\z/ }
 
   def get_profile_image(width, height)
   unless profile_image.attached?

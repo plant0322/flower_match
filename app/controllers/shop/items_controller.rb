@@ -10,7 +10,7 @@ class Shop::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.shop_id = current_shop.id
-    tag_list = params[:item][:tag_name].split(' ')
+    tag_list = params[:item][:tag_name].split(',')
     if @item.save
       @item.save_tags(tag_list)
       flash[:notice] = "商品を登録しました"
@@ -27,18 +27,29 @@ class Shop::ItemsController < ApplicationController
   end
 
   def edit
+    @tag_list = @item.tags.pluck(:name).join(',')
   end
 
   def update
-    tag_list = params[:item][:tag_name].split(' ')
+    tag_list = params[:item][:tag_name].split(',')
     if @item.update(item_params)
       @item.save_tags(tag_list)
+      if params[:item][:first_is_active] == 'true'
+        @item.update(is_active: true)
+      end
       flash[:notice] = "商品情報を更新しました"
       redirect_to request.referer
     else
       flash[:alert] = @item.errors.full_messages
       redirect_to request.referer
     end
+  end
+
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+    redirect_to shop_items_path
+    flash[:notice] = "商品を削除しました"
   end
 
   private
@@ -55,6 +66,6 @@ class Shop::ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:item_image, :name, :introduction, :size, :price, :stock, :deadline, :is_active)
+    params.require(:item).permit(:item_image, :name, :introduction, :size, :price, :stock, :deadline, :is_active, :first_is_active)
   end
 end

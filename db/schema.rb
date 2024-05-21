@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 2024_05_17_194906) do
     t.integer "stock", default: 0, null: false
     t.integer "deadline", null: false
     t.boolean "is_active", default: false, null: false
+    t.boolean "first_is_active", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -115,7 +116,6 @@ ActiveRecord::Schema.define(version: 2024_05_17_194906) do
     t.integer "amount", null: false
     t.date "visit_day", null: false
     t.time "visit_time", null: false
-    t.date "buy_day", null: false
     t.string "purpose", null: false
     t.text "note", null: false
     t.string "last_name", null: false
@@ -150,7 +150,7 @@ ActiveRecord::Schema.define(version: 2024_05_17_194906) do
     t.text "introduction", null: false
     t.string "postal_code", null: false
     t.string "address", null: false
-    t.string "direction", null: false
+    t.text "direction", null: false
     t.string "telephone_number", null: false
     t.string "parking", null: false
     t.string "opening_hour", null: false

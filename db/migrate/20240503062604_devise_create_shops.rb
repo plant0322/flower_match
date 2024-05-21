@@ -37,7 +37,7 @@ class DeviseCreateShops < ActiveRecord::Migration[6.1]
       t.text :introduction, null: false
       t.string :postal_code, null: false
       t.string :address, null: false
-      t.string :direction, null: false
+      t.text :direction, null: false
       t.string :telephone_number, null: false
       t.string :parking, null: false
       t.string :opening_hour, null: false

@@ -27,7 +27,11 @@
             </div>
           </div>
           <div class="my-3 mx-auto d-grid">
-            <% if @item.is_active == false %>
+            <% if admin_signed_in? %>
+              <%= link_to '× 削除', shop_item_path(@item), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger w-25" %>
+            <% elsif current_shop == @item.shop %>
+              <%= link_to 'この商品を編集する', edit_shop_item_path(current_shop), class: "btn btn-info p-2" %>
+            <% elsif @item.is_active == false %>
               <button class="btn btn-secondary p-2" disabled>販売停止中です</button>
             <% elsif @stock == 0 %>
               <%= f.hidden_field :item_id, value: @item.id %>

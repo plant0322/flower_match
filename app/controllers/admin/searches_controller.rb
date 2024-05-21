@@ -11,7 +11,7 @@ class Admin::SearchesController < ApplicationController
       @records = Member.where('last_name LIKE? OR first_name LIKE? OR last_name_kana LIKE? OR first_name_kana LIKE? OR
                                telephone_number LIKE? OR postal_code LIKE? OR address LIKE?',
                                "%#{@content}%", "%#{@content}%", "%#{@content}%", "%#{@content}%", "%#{@content}%", "%#{@content}%", "%#{@content}%").order(id: 'DESC')
-    elsif # params[:reviews]
+    else # params[:reviews]
       member_pre_orders = PreOrder.where(member_id: member)
       shop_items = Item.where(shop_id: shop)
       shop_pre_orders = PreOrder.where(item_id: shop_items)

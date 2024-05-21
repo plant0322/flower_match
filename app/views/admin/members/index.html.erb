@@ -1,7 +1,6 @@
 <div class="container d-flex flex-row-reverse pt-3">
   <div class="col-9 px-3">
     <%= form_with url: admin_members_path, method: :get do |f| %>
-      <%= f.hidden_field :member %>
       <%= render 'admin/searches/form', f: f %>
     <% end %>
     <!--詳細-->

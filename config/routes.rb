@@ -21,8 +21,13 @@ Rails.application.routes.draw do
     sessions: 'shop/sessions'
   }
 
+# 新規登録失敗後にリロードした際のルート設定
+  devise_scope :shop do
+    get 'shop', to: 'shop/registrations#new'
+  end
+
   namespace :shop do
-    get 'top' =>  'homes#top', as: 'top'
+    get 'top' => 'homes#top', as: 'top'
 
     get 'shops/information/edit'        => 'shops#edit', as: 'edit_information'
     patch 'shops/information'           => 'shops#update', as: 'update_information'

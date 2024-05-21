@@ -3,18 +3,20 @@ class Public::PreOrdersController < ApplicationController
   before_action :is_matching_login_member, only: [:show]
 
   def new
-    @item =  Item.find(params[:item_id])
-    if params[:amount].blank?
+    session[:item_id] = params[:item_id]
+    @item =  Item.find(session[:item_id])
+    session[:amount] =  params[:amount]
+    @amount = session[:amount]
+    if @amount.blank?
       flash[:alert] = "個数を選択してください"
       redirect_to item_path(@item)
     end
-    @amount =  params[:amount]
     @pre_order = PreOrder.new
   end
 
   def confirm
-    @item = Item.find(params[:pre_order][:item_id])
-    @amount =  params[:pre_order][:amount]
+    @amount = session[:amount].to_i
+    @item = Item.find(session[:item_id])
     @pre_order = PreOrder.new(pre_order_params)
     if params[:pre_order][:visit_day].blank? || params[:pre_order][:visit_time].blank?  || params[:pre_order][:purpose].blank?
       flash.now[:alert] = '「来店日」「来店時間」「要望・用途」は必須項目です'
@@ -30,7 +32,7 @@ class Public::PreOrdersController < ApplicationController
     item = Item.find(params[:pre_order][:item_id])
     @pre_order.item_id = item.id
     @pre_order.name = item.name
-    @pre_order.amount = params[:pre_order][:amount]
+    @pre_order.amount = session[:amount]
     @pre_order.total_payment = item.price * @pre_order.amount
     @pre_order.last_name = current_member.last_name
     @pre_order.first_name = current_member.first_name
@@ -39,7 +41,6 @@ class Public::PreOrdersController < ApplicationController
     @pre_order.telephone_number = current_member.telephone_number
     @pre_order.postal_code = current_member.postal_code
     @pre_order.address = current_member.address
-    @pre_order.buy_day = @pre_order.visit_day
     if @pre_order.save
       item.decrement!(:stock, @pre_order.amount)
       redirect_to thanks_path
@@ -49,7 +50,7 @@ class Public::PreOrdersController < ApplicationController
   end
 
   def error
-    @item = Item.find_by(params[:pre_order][:item_id])
+    @item = Item.find_by(session[:item_id])
     flash.now[:alert] = '問題が発生しました。もう一度情報を入力してください。'
     render :new
   end
@@ -60,7 +61,7 @@ class Public::PreOrdersController < ApplicationController
   def index
     @pre_orders = current_member.pre_orders
     @before_visit_pre_orders = @pre_orders.where(status: 'before_visit').order(visit_day: "DESC")
-    @visit_or_cancel_pre_orders = @pre_orders.where(status: 'visit') + @pre_orders.where(status: 'cancel').order(visit_day: "DESC")#.page(params[:page])
+    @visit_or_cancel_pre_orders = @pre_orders.where(status: ['visit', 'cancel']).order(visit_day: "DESC").page(params[:page])
     @tags = Tag.joins(:item_tags).group(:id).order('COUNT(item_tags.tag_id) DESC').limit(10)
   end
 

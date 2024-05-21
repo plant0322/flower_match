@@ -120,6 +120,7 @@ Item.find_or_create_by!(name: "特別な記念日に贈る花束/ブーケ（大
   item.stock = "10"
   item.deadline = "1"
   item.is_active = true
+  item.first_is_active = true
   item.shop = howell
   item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop1-item1-1.jpg"), filename: "shop1-item1-1.jpg")
 end
@@ -131,72 +132,91 @@ Item.find_or_create_by!(name: "母の日のフラワーアレンジ/メッセー
   item.stock = "20"
   item.deadline = "3"
   item.is_active = true
+  item.first_is_active = true
   item.shop = howell
   item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop1-item2-1.jpg"), filename: "shop1-item2-1.jpg")
 end
 
-Item.find_or_create_by!(name: "寄せ植え体験") do |item|
-  item.introduction ="簡単な寄せ植えを一緒に作ってみましょう。所要時間1時間。"
-  item.size = "幅15×高さ20×奥行き15㎝"
-  item.price = "4000"
-  item.stock = "5"
-  item.deadline = "4"
-  item.is_active = true
-  item.shop = botanya
-  item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop2-item1-1.jpg"), filename: "shop2-item1-1.jpg")
+for i in 1..2 do
+  Item.find_or_create_by!(name: "寄せ植え体験#{i+1}" ) do |item|
+    item.introduction ="簡単な寄せ植えを一緒に作ってみましょう。所要時間1時間。"
+    item.size = "幅15×高さ20×奥行き15㎝"
+    item.price = "#{i*1000}"
+    item.stock = "#{i*3}"
+    item.deadline = "4"
+    item.is_active = true
+    item.first_is_active = true
+    item.shop = botanya
+    item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop2-item1-1.jpg"), filename: "shop2-item1-1.jpg")
+  end
 end
 
-Item.find_or_create_by!(name: "ミニサボテン入荷") do |item|
-  item.introduction ="可愛いサボテンが入荷しました。個性豊かないろんな子が揃っています。来店いただいた方に先着順で販売致しますので、ご希望の鉢がある方は早めの日程でご予約ください。"
-  item.size = "約幅10×高さ15×奥行き10㎝"
-  item.price = "2000"
-  item.stock = "20"
-  item.deadline = "1"
-  item.is_active = true
-  item.shop = botanya
-  item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop2-item2-1.jpg"), filename: "shop2-item2-1.jpg")
+for i in 1..3 do
+  Item.find_or_create_by!(name: "ミニサボテン入荷#{i+1}") do |item|
+    item.introduction ="可愛いサボテンが入荷しました。個性豊かないろんな子が揃っています。来店いただいた方に先着順で販売致しますので、ご希望の鉢がある方は早めの日程でご予約ください。"
+    item.size = "約幅10×高さ15×奥行き10㎝"
+    item.price = "#{i*500}"
+    item.stock = "#{i*4}"
+    item.deadline = "1"
+    item.is_active = true
+    item.first_is_active = true
+    item.shop = botanya
+    item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop2-item2-1.jpg"), filename: "shop2-item2-1.jpg")
+  end
 end
 
-Item.find_or_create_by!(name: "大きなお花をたっぷり使った高級感のある華やかな花束（おしゃれなブーケ）") do |item|
-  item.introduction ="ちょっと珍しいお花を使った華やかなブーケです。色とりどりの大きなお花をたっぷり使用しているので、お祝い事にもピッタリ。華やかなお花に合わせてラッピングにもこだわっています。ラッピングや取り入れたいお花の色など、ご希望がありましたらお気軽にご相談ください。"
-  item.size = "幅40×高さ50×奥行き40㎝"
-  item.price = "6500"
-  item.stock = "10"
-  item.deadline = "2"
-  item.is_active = true
-  item.shop = als
-  item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop3-item1-1.jpg"), filename: "shop3-item1-1.jpg")
+for i in 1..2 do
+  Item.find_or_create_by!(name: "大きなお花をたっぷり使った高級感のある華やかな花束（おしゃれなブーケ）#{i+1}") do |item|
+    item.introduction ="ちょっと珍しいお花を使った華やかなブーケです。色とりどりの大きなお花をたっぷり使用しているので、お祝い事にもピッタリ。華やかなお花に合わせてラッピングにもこだわっています。ラッピングや取り入れたいお花の色など、ご希望がありましたらお気軽にご相談ください。"
+    item.size = "幅40×高さ50×奥行き40㎝"
+    item.price = "#{i*3000}"
+    item.stock = "#{i*4}"
+    item.deadline = "2"
+    item.is_active = true
+    item.first_is_active = true
+    item.shop = als
+    item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop3-item1-1.jpg"), filename: "shop3-item1-1.jpg")
+  end
 end
 
-Item.find_or_create_by!(name: "可愛いミニバラを使った上品な雰囲気の花束（贈り物にオススメのブーケ）") do |item|
-  item.introduction ="上品なミニ薔薇がたくさん入荷しました。大人な雰囲気のパステルカラーが可愛い薔薇の花束で、日ごろの感謝の気持ちを伝えてみませんか？ピンク以外にも、イエロー、オレンジ、ホワイトなどのカラーが揃っています。"
-  item.size = "幅30×高さ40×奥行き30㎝"
-  item.price = "3000"
-  item.stock = "10"
-  item.deadline = "1"
-  item.is_active = true
-  item.shop = als
-  item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop3-item2-1.jpg"), filename: "shop3-item2-1.jpg")
+for i in 1..3 do
+  Item.find_or_create_by!(name: "可愛いミニバラを使った上品な雰囲気の花束（贈り物にオススメのブーケ））#{i+1}") do |item|
+    item.introduction ="上品なミニ薔薇がたくさん入荷しました。大人な雰囲気のパステルカラーが可愛い薔薇の花束で、日ごろの感謝の気持ちを伝えてみませんか？ピンク以外にも、イエロー、オレンジ、ホワイトなどのカラーが揃っています。"
+    item.size = "幅30×高さ40×奥行き30㎝"
+    item.price = "#{i*2000}"
+    item.stock = "#{i*10}"
+    item.deadline = "1"
+    item.is_active = true
+    item.first_is_active = true
+    item.shop = als
+    item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop3-item2-1.jpg"), filename: "shop3-item2-1.jpg")
+  end
 end
 
-Item.find_or_create_by!(name: "お任せブーケ。スタッフがお店のお花たちから厳選して作成する大きな花束") do |item|
-  item.introduction ="入荷したばかりのお花たちの中から厳選して、スタッフが心を込めて花束を作成します。予約時のご要望欄にご希望の色やイメージなどをご記入いただければ、ご要望に合わせてあなただけの花束を作成しますので、お気軽にご記入ください。"
-  item.size = "幅40×高さ50×奥行き40㎝"
-  item.price = "5500"
-  item.stock = "15"
-  item.deadline = "2"
-  item.is_active = true
-  item.shop = als
-  item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop3-item3-1.jpg"), filename: "shop3-item3-1.jpg")
+for i in 1..2 do
+  Item.find_or_create_by!(name: "お任せブーケ。スタッフがお店のお花たちから厳選して作成する大きな花束）#{i+1}") do |item|
+    item.introduction ="入荷したばかりのお花たちの中から厳選して、スタッフが心を込めて花束を作成します。予約時のご要望欄にご希望の色やイメージなどをご記入いただければ、ご要望に合わせてあなただけの花束を作成しますので、お気軽にご記入ください。"
+    item.size = "幅40×高さ50×奥行き40㎝"
+    item.price = "#{i*1500}"
+    item.stock = "#{i*10}"
+    item.deadline = "2"
+    item.is_active = true
+    item.first_is_active = true
+    item.shop = als
+    item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop3-item3-1.jpg"), filename: "shop3-item3-1.jpg")
+  end
 end
 
-Item.find_or_create_by!(name: "母の日に贈るアンティーク調の落ち着いた色合いがおしゃれなブーケ（可愛い花束）") do |item|
-  item.introduction ="いつもと一味違う大人な雰囲気の漂う、アンティークカラーが可愛いカーネーションを使った花束。お花のかわいらしさが際立つように、ラッピングはホワイトカラーで上品に仕上げています。今年は、しっとりと楽しむ大人な母の日をプレゼントしてみませんか？"
-  item.size = "幅40×高さ50×奥行き40㎝"
-  item.price = "6700"
-  item.stock = "20"
-  item.deadline = "5"
-  item.is_active = true
-  item.shop = als
-  item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop3-item4-1.jpg"), filename: "shop3-item4-1.jpg")
+for i in 1..3 do
+  Item.find_or_create_by!(name: "母の日に贈るアンティーク調の落ち着いた色合いがおしゃれなブーケ（可愛い花束）#{i+1}") do |item|
+    item.introduction ="いつもと一味違う大人な雰囲気の漂う、アンティークカラーが可愛いカーネーションを使った花束。お花のかわいらしさが際立つように、ラッピングはホワイトカラーで上品に仕上げています。今年は、しっとりと楽しむ大人な母の日をプレゼントしてみませんか？"
+    item.size = "幅40×高さ50×奥行き40㎝"
+    item.price = "#{i*2500}"
+    item.stock = "#{i*10}"
+    item.deadline = "5"
+    item.is_active = true
+    item.first_is_active = true
+    item.shop = als
+    item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop3-item4-1.jpg"), filename: "shop3-item4-1.jpg")
+  end
 end

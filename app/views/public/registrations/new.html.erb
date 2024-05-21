@@ -5,7 +5,7 @@
 
     <div class="pb-5">
       <%= form_with model: @member, url: member_registration_path do |f| %>
-        <%= render "public/shared/error_messages", resource: resource %>
+        <%#= render "public/shared/error_messages", resource: resource %>
         <h3 class="bg-info p-1 h5">名前の登録</h3>
         <table class="table table-borderless table-light my-3">
           <tr>
@@ -20,6 +20,12 @@
             </td>
           </tr>
           <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @member, attribute: :last_name %>
+              <%= render "layouts/error_messages", obj: @member, attribute: :first_name %>
+            </td>
+          </tr>
+          <tr>
             <th class="w-25">名前(カナ)<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td>
               <%= f.text_field :last_name_kana, autocomplete: "last_name_kana", class: "form-control" %>
@@ -28,6 +34,12 @@
             <td>
               <%= f.text_field :first_name_kana, autocomplete: "first_name_kana", class: "form-control" %>
               <small>例）ハナコ</small>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @member, attribute: :last_name_kana %>
+              <%= render "layouts/error_messages", obj: @member, attribute: :first_name_kana %>
             </td>
           </tr>
         </table>
@@ -42,9 +54,19 @@
             </td>
           </tr>
           <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @member, attribute: :postal_code %>
+            </td>
+          </tr>
+          <tr>
             <th class="w-25">住所<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td>
               <%= f.text_field :address, autocomplete: "address", class: "form-control" %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @member, attribute: :address %>
             </td>
           </tr>
           <tr>
@@ -52,6 +74,11 @@
             <td>
               <%= f.text_field :telephone_number, autocomplete: "telephone_number", class: "form-control" %>
               <small>例）08000000000　※ハイフンは不要です。</small>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @member, attribute: :telephone_number %>
             </td>
           </tr>
         </table>
@@ -66,10 +93,20 @@
             </td>
           </tr>
           <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @member, attribute: :nickname %>
+            </td>
+          </tr>
+          <tr>
             <th class="w-25">メール<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.text_field :email, autocomplete: "email", class: "form-control" %>
               <small>例）xxx_sample@mail</small>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @member, attribute: :email %>
             </td>
           </tr>
         </table>
@@ -83,9 +120,19 @@
             </td>
           </tr>
           <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @member, attribute: :password %>
+            </td>
+          </tr>
+          <tr>
             <th class="w-25">パスワード(確認用)</th>
             <td colspan="2">
               <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @member, attribute: :password_confirmation %>
             </td>
           </tr>
         </table>

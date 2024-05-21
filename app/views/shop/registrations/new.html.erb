@@ -5,7 +5,7 @@
 
     <div class="pb-5">
       <%= form_with model: @shop, url: shop_registration_path do |f| %>
-        <%= render "public/shared/error_messages", resource: resource %>
+        <%#= render "public/shared/error_messages", resource: resource %>
         <h3 class="bg-info p-1 h5">ショップ基本情報</h3>
         <table class="table table-borderless table-light my-3">
           <tr>
@@ -16,10 +16,20 @@
             </td>
           </tr>
           <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @shop, attribute: :shop_image %>
+            </td>
+          </tr>
+          <tr>
             <th class="w-25"><%= f.label :name, "ショップ名" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
               <small>例）Flower Shop</small>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @shop, attribute: :name %>
             </td>
           </tr>
           <tr>
@@ -30,10 +40,20 @@
             </td>
           </tr>
           <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @shop, attribute: :name_kana %>
+            </td>
+          </tr>
+          <tr>
             <th class="w-25"><%= f.label :introduction, "ショップコメント" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.text_area :introduction, autocomplete: "introduction", class: "form-control" %>
               <small>例）フラワーアレンジのご要望承ります。</small>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @shop, attribute: :introduction %>
             </td>
           </tr>
         </table>
@@ -48,9 +68,19 @@
             </td>
           </tr>
           <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @shop, attribute: :postal_code %>
+            </td>
+          </tr>
+          <tr>
             <th class="w-25"><%= f.label :address, "ショップの住所" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.text_field :address, autocomplete: "address", class: "form-control" %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @shop, attribute: :address %>
             </td>
           </tr>
           <tr>
@@ -58,6 +88,11 @@
             <td colspan="2">
               <%= f.text_area :direction, autocomplete: "direction", class: "form-control" %>
               <small>例）スーパーの向かい側にある白い建物です</small>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @shop, attribute: :direction %>
             </td>
           </tr>
         </table>
@@ -72,10 +107,20 @@
             </td>
           </tr>
           <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @shop, attribute: :telephone_number %>
+            </td>
+          </tr>
+          <tr>
             <th class="w-25"><%= f.label :opening_hour, "営業時間" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.text_field :opening_hour, autocomplete: "opening_hour", class: "form-control" %>
               <small>例）火～日 9:30～18:00</small>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @shop, attribute: :opening_hour %>
             </td>
           </tr>
           <tr>
@@ -86,6 +131,11 @@
             </td>
           </tr>
           <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @shop, attribute: :holiday %>
+            </td>
+          </tr>
+          <tr>
             <th class="w-25"><%= f.label :parking, "駐車場" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.text_field :parking, autocomplete: "parking", class: "form-control" %>
@@ -93,10 +143,20 @@
             </td>
           </tr>
           <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @shop, attribute: :parking %>
+            </td>
+          </tr>
+          <tr>
             <th class="w-25"><%= f.label :payment_method, "支払方法" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.text_field :payment_method, autocomplete: "payment_method", class: "form-control" %>
               <small>例）現金/Visa／Mastercard／JCB／American Express／PayPay</small>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @shop, attribute: :payment_method %>
             </td>
           </tr>
           <tr>
@@ -117,10 +177,20 @@
             </td>
           </tr>
           <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @shop, attribute: :representative_name %>
+            </td>
+          </tr>
+          <tr>
             <th class="w-25"><%= f.label :email, "メール" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
               <small>例）xxx_sample@mail</small>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @shop, attribute: :email %>
             </td>
           </tr>
         </table>
@@ -134,9 +204,19 @@
             </td>
           </tr>
           <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @shop, attribute: :password %>
+            </td>
+          </tr>
+          <tr>
             <th class="w-25">パスワード(確認用)</th>
             <td colspan="2">
               <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <%= render "layouts/error_messages", obj: @shop, attribute: :password_confirmation %>
             </td>
           </tr>
         </table>
