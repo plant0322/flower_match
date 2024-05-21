@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :shops, only: [:show, :index, :edit, :update]
     resources :members, only: [:show, :index, :edit, :update]
     resources :reviews, only: [:index, :update]
+    resources :tags, only: [:index, :create, :update, :destroy]
   end
 
 

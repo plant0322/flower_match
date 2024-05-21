@@ -9,5 +9,5 @@ class Tag < ApplicationRecord
     scope :merge_items, -> (tags){}
     tags = Tag.where('name LIKE?', '%'+content+'%')
     return tags.inject(init = []) {|result,tag| result + tag.items}
-  end #tag.items,tag??
+  end
 end
