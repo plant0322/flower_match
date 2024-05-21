@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
 # 新規登録失敗後にリロードした際のルート設定
   devise_scope :shop do
-    get 'shop', to: 'shop/registrations#new'
+    get 'shop', to: 'shop/registrations#new', as: 'shop_registrations'
   end
 
   namespace :shop do
