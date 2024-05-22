@@ -59,4 +59,8 @@ class Shop < ApplicationRecord
       shop.shop_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample.jpg"), filename: "sample.jpg")
     end
   end
+
+  def guest_shop?
+    email == GUEST_SHOP_EMAIL
+  end
 end

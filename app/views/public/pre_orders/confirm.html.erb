@@ -72,14 +72,18 @@
         <% end %>
       </div>
       <div class="col-6 d-grid ps-1">
-        <%= form_with model: @pre_order, url: pre_orders_path do |f| %>
-          <%= f.hidden_field :item_id, value: @item.id %>
-          <%= f.hidden_field :amount, value: @amount %>
-          <%= f.hidden_field :visit_day, value: @pre_order.visit_day %>
-          <%= f.hidden_field :visit_time, value: @pre_order.visit_time %>
-          <%= f.hidden_field :purpose, value: @pre_order.purpose %>
-          <%= f.hidden_field :note, value: @pre_order.note %>
-          <%= f.submit "上記に同意の上、予約を確定する", class: "btn btn-info p-2 w-100" %>
+        <% unless current_member.guest_member? %>
+          <%= form_with model: @pre_order, url: pre_orders_path do |f| %>
+            <%= f.hidden_field :item_id, value: @item.id %>
+            <%= f.hidden_field :amount, value: @amount %>
+            <%= f.hidden_field :visit_day, value: @pre_order.visit_day %>
+            <%= f.hidden_field :visit_time, value: @pre_order.visit_time %>
+            <%= f.hidden_field :purpose, value: @pre_order.purpose %>
+            <%= f.hidden_field :note, value: @pre_order.note %>
+            <%= f.submit "上記に同意の上、予約を確定する", class: "btn btn-info p-2 w-100" %>
+          <% end %>
+        <% else %>
+            <div class="btn bg-danger p-2 w-100">※ここから先は会員登録が必要です</div>
         <% end %>
       </div>
     </div>

@@ -1,6 +1,7 @@
 class Shop::ShopsController < ApplicationController
   before_action :authenticate_shop!
   before_action :set_current_shop
+  before_action :ensure_guest_shop, only: [:edit, :unsubscribe]
 
   def edit
   end
@@ -28,6 +29,13 @@ class Shop::ShopsController < ApplicationController
 
   def set_current_shop
     @shop = current_shop
+  end
+
+  def ensure_guest_shop
+    @shop = current_shop
+    if @shop.guest_shop?
+      redirect_to shop_top_path, notice: 'お試しショップのため編集は出来ません。'
+    end
   end
 
   def shop_params

@@ -141,7 +141,9 @@
       <%= link_to "マイページへ戻る", shop_top_path, class: "btn btn-outline-info p-2" %>
     </div>
     <div class="col-8 d-flex flex-row p-2">
-      <% unless controller.action_name == 'edit' %>
+      <% if current_shop.guest_shop? %>
+        <div class="btn bg-danger p-2">※お試しログインでは商品の登録はできません</div>
+      <% elsif controller.action_name != 'edit' %>
         <%= f.submit "商品を登録する", "data-confirm" => "この内容で商品を登録しても大丈夫ですか？", class: "btn btn-info p-2" %>
       <% else %>
         <div class="col-6 d-grid px-1">

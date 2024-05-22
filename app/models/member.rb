@@ -51,4 +51,8 @@ class Member < ApplicationRecord
       member.is_active = 'true'
     end
   end
+
+  def guest_member?
+    email == GUEST_MEMBER_EMAIL
+  end
 end
