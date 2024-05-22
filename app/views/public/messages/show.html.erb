@@ -1,0 +1,25 @@
+<div class="container d-flex flex-row-reverse pt-3">
+  <div class="col-9 px-3">
+
+    <div>
+      <p id="chat_<%= @message.id %>"><%= @message.message %></p>
+      <%#= link_to "削除", message_path(@message), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    </div>
+
+    <%= form_with model: @message, url: messages_path do |f| %>
+      <%= f.text_area :message, class: "form-control" %>
+      <%= f.submit "送信", class: "btn btn-info" %>
+      <%= f.hidden_field :room_id %>
+    <% end %>
+
+
+
+
+      <%= link_to "◀ ショップ詳細へ戻る", shop_path(@shop) %>
+
+  </div>
+  <div class="col-3 px-3">
+    <%= render 'layouts/members_menu' %>
+    <%= render 'layouts/homes_menu', tag_rank: @tag_rank %>
+  </div>
+</div>
