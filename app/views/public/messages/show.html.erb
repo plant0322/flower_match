@@ -1,16 +1,24 @@
 <div class="container d-flex flex-row-reverse pt-3">
   <div class="col-9 px-3">
+    <div class="col-10">
+      <div class= "py-2">
+        <% @messages.each do |message| %>
+          <%= message.message %>
+          <%= link_to "削除", message_path(message), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+        <% end %>
+      </div>
 
-    <div>
-      <p id="chat_<%= @message.id %>"><%= @message.message %></p>
-      <%#= link_to "削除", message_path(@message), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+      <div class= "py-2">
+        <%= form_with model: @message, url: messages_path do |f| %>
+          <%= f.text_area :message, class: "form-control" %>
+          <div class= "py-2">
+            <%= f.submit "送信", class: "btn btn-info" %>
+          </div>
+          <%= f.hidden_field :room_id %>
+        <% end %>
+      </div>
+
     </div>
-
-    <%= form_with model: @message, url: messages_path do |f| %>
-      <%= f.text_area :message, class: "form-control" %>
-      <%= f.submit "送信", class: "btn btn-info" %>
-      <%= f.hidden_field :room_id %>
-    <% end %>
 
 
 

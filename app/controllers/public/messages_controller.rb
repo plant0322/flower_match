@@ -5,25 +5,28 @@ class Public::MessagesController < ApplicationController
   def show
     @tag_rank = Tag.tag_rank_item
     @shop = Shop.find(params[:id])
-    rooms = current_member.message_rooms.pluck(:room_id)
-    message_rooms = MessageRoom.find_by(shop_id: @shop, room_id: rooms)
-    unless message_rooms.nil?
-      @room = message_rooms.room
+    room = Room.find_by(member_id: current_member.id, shop_id: @shop)
+    unless room.nil?
+      @room = room
     else
       @room = Room.new
+      @room.member_id = current_member.id
+      @room.shop_id = @shop.id
       @room.save
-      MessageRoom.create(member_id: current_member.id, shop_id: @shop.id, room_id: @room.id)
+     # MessageRoom.create(member_id: current_member.id, shop_id: @shop.id, room_id: @room.id)
     end
-    @messages = @room.shop_messages && @room.member_messages
+    @messages = @room.member_messages # && @room.shop_messages
     @message = MemberMessage.new(room_id: @room.id)
   end
 
   def create
-    @message = current_member.member_messages.new(member_message_params)
+   # @message = current_member.member_messages.new(member_message_params)
+   @message = MemberMessage.new(member_message_params)
+   @message.member_id = current_member.id
     if @message.save
       redirect_to request.referer
     else
-      flash[:alert] = "商品登録に失敗しました"
+      flash[:alert] = "送信に失敗しました"
       redirect_to request.referer
     end
   end
@@ -31,6 +34,7 @@ class Public::MessagesController < ApplicationController
   def destroy
     message = MemberMessage.find(params[:id])
     message.destroy
+    redirect_to request.referer
   end
 
   private
