@@ -4,6 +4,7 @@ class Public::MembersController < ApplicationController
   before_action :ensure_guest_member, only: [:edit, :unsubscribe]
 
   def show
+    @recently_seen_item = Item.find(session[:item_id])
     bookmarks = Bookmark.where(member_id: current_member.id)
     @bookmark_items = Item.where(id: bookmarks.pluck(:item_id))
                           .where(is_active: true).order(created_at: "DESC").limit(4)

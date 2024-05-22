@@ -49,7 +49,7 @@ class Public::PreOrdersController < ApplicationController
   end
 
   def error
-    @item = Item.find_by(session[:item_id])
+    @item = Item.find(session[:item_id])
     @amount = session[:amount].to_i
     @pre_order = PreOrder.new
     flash.now[:alert] = '問題が発生しました。もう一度情報を入力してください。'

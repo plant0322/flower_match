@@ -4,6 +4,43 @@
     <hr>
 
     <div class="pt-5">
+      <h2><strong>最近見た</strong> <span class="h4">商品</span></h2>
+      <hr>
+      <% unless @recently_seen_item.blank? %>
+        <table class="table table-bordered">
+          <thead>
+            <tr class="text-center">
+              <th class="w-50">商品</th>
+              <th>ショップ</th>
+              <th>金額・在庫</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <td>
+                  <%= link_to item_path(@recently_seen_item) do %>
+                    <div class="d-flex flex-row">
+                      <%= image_tag @recently_seen_item.get_item_image(200,200), class: "col-4 pe-1" %>
+                      <div class="col-8 ps-1"><%= @recently_seen_item.name %> [ <%= @recently_seen_item.id %> ]</div>
+                    </div>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to shop_path(@recently_seen_item.shop) do %>
+                    <%= @recently_seen_item.shop.name %>
+                  <% end %>
+                </td>
+                <td class="text-end">
+                  <%= @recently_seen_item.price.to_s(:delimited, delimiter: ',') %>円(税込)<br>
+                  在庫<%= @recently_seen_item.stock %>個
+                </td>
+              </tr>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+
+    <div class="pt-5">
       <h2><span class="h4">お気に入りショップの</span> <strong>新着商品</strong> <span class="h6">（全<%= @favorite_shop_items.count %>件）</span></h2>
       <hr>
       <% unless @favorite_shop_items.blank? %>
