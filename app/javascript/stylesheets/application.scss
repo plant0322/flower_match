@@ -5,7 +5,7 @@ body {
   overflow-wrap: break-word;
 }
 
-// bootstrapの設定調整
+// bootstrapの設定変更
 .btn,
 .card,
 .card-img-top,
@@ -17,6 +17,11 @@ body {
     background-color: #E6E6E6!important;
 }
 
+.table-borderless th,
+                  td {
+    background-color: #EBEBEB!important;
+}
+
 .btn-info {
     background-color: #A3D2D1!important;
     border: solid #A3D2D1!important;
@@ -25,11 +30,36 @@ body {
 .btn-outline-info {
     background-color: #E1F0F0!important;
     border: 1px solid #98CCCB!important;
+    color: #98CCCB!important;
 }
 
-// これ効かない…？
-.bg-info {
+h3.bg-info {
     background-color: #A3D2D1!important;
+}
+
+div.bg-info {
+    background-color: #7EBAB9!important;
+}
+
+small.bg-info {
+    background-color: #A3D2D1!important;
+    font-size: 12px;
+}
+
+div.bg-danger {
+    background-color: #EAACA9!important;
+}
+
+.alert-danger {
+  color: #AE8280!important;
+  background-color: #EDD9D8!important;
+  border-color: #EDD9D8!important;
+}
+
+.alert-success {
+  color: #76521B!important;
+  background-color: #BEDEDE!important;
+  border-color: #BEDEDE!important;
 }
 
 a {
@@ -59,7 +89,7 @@ a:hover {
 }
 
 .bg-gray {
-    background-color: #F0F0F0!important;
+    background-color: #F9F9F9!important;
 }
 
 // ヘッダーフッター
@@ -101,11 +131,11 @@ footer{
     font-weight: bold;
 }
 
-// tableのリンク
+// 左ナビのリンク
 .tr-menu {
     cursor: pointer;
       td {
-      background-color: #F0F0F0!important;
+      background-color: #F9F9F9!important;
   }
 }
 
@@ -143,7 +173,6 @@ footer{
 }
 
 // ページネーション
-
 .paginate{
     margin: -10px 0;
 }
@@ -162,4 +191,12 @@ footer{
 
 .pagination>li>a:hover {
     border-radius: 5px;
+}
+
+// エラーメッセージ
+.text-error ul{
+    background-color: #EDD9D8!important;
+}
+.text-error li{
+    color: #AE8280!important;
 }

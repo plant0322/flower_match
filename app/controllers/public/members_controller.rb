@@ -1,6 +1,7 @@
 class Public::MembersController < ApplicationController
   before_action :authenticate_member!
   before_action :set_current_member, only: [:edit, :update]
+  before_action :ensure_guest_member, only: [:edit, :unsubscribe]
 
   def show
     bookmarks = Bookmark.where(member_id: current_member.id)
@@ -42,6 +43,13 @@ class Public::MembersController < ApplicationController
 
   def set_current_member
     @member = current_member
+  end
+
+  def ensure_guest_member
+    @member = current_member
+    if @member.guest_member?
+      redirect_to mypage_path, notice: 'お試メンバーのため編集は出来ません。'
+    end
   end
 
   def member_params

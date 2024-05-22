@@ -22,9 +22,10 @@ Rails.application.routes.draw do
     sessions: 'shop/sessions'
   }
 
-# 新規登録失敗後にリロードした際のルート設定
+# 新規登録失敗後にリロードした際のルート設定とゲストログイン用
   devise_scope :shop do
     get 'shop', to: 'shop/registrations#new', as: 'shop_registrations'
+    post 'shop/guest_sign_in', to: 'shop/sessions#guest_sign_in'
   end
 
   namespace :shop do
@@ -49,6 +50,11 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+
+  # ゲストログイン用
+  devise_scope :member do
+    post 'members/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
 
   scope module: :public do
     root 'homes#top'

@@ -26,8 +26,10 @@
     <tr class="tr-menu" onclick='window.location="<%= shop_pre_orders_path %>"' role="link">
       <td>予約履歴管理</td>
     </tr>
-    <tr class="tr-menu" onclick='window.location="<%= shop_edit_information_path %>"' role="link">
-      <td>ショップ情報編集</td>
-    </tr>
+    <% unless current_shop.guest_shop? %>
+      <tr class="tr-menu" onclick='window.location="<%= shop_edit_information_path %>"' role="link">
+        <td>ショップ情報編集</td>
+      </tr>
+    <% end %>
   </table>
 <% end %>

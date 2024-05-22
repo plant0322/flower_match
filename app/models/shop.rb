@@ -8,6 +8,7 @@ class Shop < ApplicationRecord
   has_many :favorite_shops, dependent: :destroy
   has_one_attached :shop_image
 
+  validates :shop_image, presence: true
   validates :name, presence: true
   validates :name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
   validates :introduction, presence: true
@@ -33,5 +34,33 @@ class Shop < ApplicationRecord
 
   def favorite_shop_by?(member)
     favorite_shops.exists?(member_id: member.id)
+  end
+
+  # ゲストログイン用
+  GUEST_SHOP_EMAIL = 'guest_shop@example.com'
+
+  def self.guest
+    find_or_create_by!(email: GUEST_SHOP_EMAIL) do |shop|
+      shop.password = SecureRandom.urlsafe_base64
+      shop.name = '【お試し】Flower Shop'
+      shop.name_kana = 'オタメシフラワーショップ'
+      shop.introduction = '※こちらは動作体験用のお試しアカウントです。'
+      shop.representative_name = 'お試し花子'
+      shop.postal_code = '0000000'
+      shop.address = '○○県△△市□□町0-0'
+      shop.opening_hour = '10:00～17:00'
+      shop.holiday = '火曜日'
+      shop.parking = '駐車場あり（3台分）'
+      shop.note = 'その他'
+      shop.payment_method = '現金/Visa／Mastercard／JCB／American Express／PayPay'
+      shop.direction = 'スーパーの向かい側にある白い建物です'
+      shop.telephone_number = '00000000000'
+      shop.is_active = 'true'
+      shop.shop_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample.jpg"), filename: "sample.jpg")
+    end
+  end
+
+  def guest_shop?
+    email == GUEST_SHOP_EMAIL
   end
 end

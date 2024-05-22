@@ -26,6 +26,12 @@ class Shop::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 
+  def guest_sign_in
+    shop = Shop.guest
+    sign_in shop
+    redirect_to shop_top_path, notice: "お試しショップでログインしました。"
+  end
+
   def after_sign_in_path_for(resource)
     shop_top_path
   end
