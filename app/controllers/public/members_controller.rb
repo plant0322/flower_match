@@ -4,15 +4,15 @@ class Public::MembersController < ApplicationController
   before_action :ensure_guest_member, only: [:edit, :unsubscribe]
 
   def show
+    active_shops = Shop.where(is_active: true)
     @recently_seen_item = Item.find(session[:item_id]) unless session[:item_id].blank?
     bookmarks = Bookmark.where(member_id: current_member.id)
     @bookmark_items = Item.where(id: bookmarks.pluck(:item_id))
-                          .where(is_active: true).order(created_at: "DESC").limit(4)
-    favorite_shops = FavoriteShop.where(member_id: current_member.id)
-    shop_ids = favorite_shops.pluck(:shop_id)
-    @favorite_shops = Shop.where(id: shop_ids).order(created_at: "DESC").limit(4)
-    @favorite_shop_items = Item.where(shop_id: shop_ids)
-                               .where(is_active: true).order(created_at: "DESC").limit(6)
+                          .where(is_active: true, shop_id: active_shops).order(created_at: "DESC").limit(4)
+    active_favorite_shops = FavoriteShop.where(member_id: current_member.id, shop_id: active_shops)
+    active_favorite_shops_ids = active_favorite_shops.pluck(:shop_id)
+    @favorite_shops = Shop.where(id: active_favorite_shops_ids).order(created_at: "DESC").limit(4)
+    @favorite_shop_items = Item.where(is_active: true, shop_id: active_favorite_shops_ids).order(created_at: "DESC").limit(6)
     @tag_rank = Tag.tag_rank_item
   end
 

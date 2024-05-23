@@ -16,16 +16,15 @@ class Public::FavoriteShopsController < ApplicationController
 
   def shop_list
     favorite_shops = FavoriteShop.where(member_id: current_member.id)
-    @shops = Shop.where(id: favorite_shops.pluck(:shop_id))
-                 .where(is_active: true).order(id: 'DESC').page(params[:page])
+    @shops = Shop.where(id: favorite_shops.pluck(:shop_id), is_active: true).order(id: 'DESC').page(params[:page])
     @tag_rank = Tag.tag_rank_item
   end
 
   def item_list
-    favorite_shops = FavoriteShop.where(member_id: current_member.id)
-    shop_ids = favorite_shops.pluck(:shop_id)
-    @favorite_shop_items = Item.where(shop_id: shop_ids)
-                               .where(is_active: true).order(id: 'DESC').page(params[:page])
+    active_shops = Shop.where(is_active: true)
+    acive_favorite_shops = FavoriteShop.where(member_id: current_member.id, shop_id: active_shops)
+    acive_favorite_shops_ids = acive_favorite_shops.pluck(:shop_id)
+    @favorite_shop_items = Item.where(is_active: true, shop_id: acive_favorite_shops_ids).order(id: 'DESC').page(params[:page])
     @tag_rank = Tag.tag_rank_item
   end
 end

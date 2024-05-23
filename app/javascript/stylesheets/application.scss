@@ -5,6 +5,35 @@ body {
   overflow-wrap: break-word;
 }
 
+// ボタンの色
+
+.member-btn a{
+    background-color: #8A764E!important;
+    color: #fff!important;
+}
+
+.admin-btn a{
+    background-color: #A9A9A9!important;
+    color: #fff!important;
+}
+
+.shop-btn a{
+    background-color: #3F8D99!important;
+    color: #fff!important;
+}
+
+.shop-btn .item-btn{
+    background-color: #D1E5E8!important;
+    color: #1B7785!important;
+}
+
+.member-btn a:hover,
+.admin-btn a:hover,
+.shop-btn a:hover{
+    background-color: #FCDEDD!important;
+    color: #FC7A80!important;
+}
+
 // bootstrapの設定変更
 .btn,
 .card,
@@ -100,6 +129,11 @@ a:hover {
     color: #E15C67!important;
 }
 
+img:hover {
+    opacity: 0.6;
+    transition-duration: 0.3s;
+}
+
 
 // 背景色
 .bg-member {
@@ -153,28 +187,6 @@ footer{
     background-color: #8CAFB1;
 }
 
-.member-btn a{
-    background-color: #8c8062!important;
-    color: #fff!important;
-}
-
-.member-btn a:hover,
-.admin-btn a:hover,
-.shop-btn a:hover{
-    background-color: #FCDEDD!important;
-    color: #FC7A80!important;
-}
-
-.admin-btn a{
-    background-color: #A9A9A9!important;
-    color: #fff!important;
-}
-
-.shop-btn a{
-    background-color: #5E97A0!important;
-    color: #fff!important;
-}
-
 // 左ナビのリンク
 .tr-menu {
     cursor: pointer;
@@ -221,6 +233,20 @@ footer{
     display: -webkit-box; // Chrome、Safariのみ？
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 6;
+}
+
+.btn-tag {
+    background-color: #E3F2F2!important;
+    border: 1px solid #81C0C0!important;
+    color: #81C0C0!important;
+    font-weight: normal!important;
+}
+
+.btn-tag:hover {
+    background-color: #F2E5E3!important;
+    border: 1px solid #CC9B98!important;
+    color: #CC9B98!important;
+    font-weight: normal!important;
 }
 
 // ページネーション

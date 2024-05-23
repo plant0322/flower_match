@@ -2,6 +2,7 @@ class Shop::HomesController < ApplicationController
   before_action :authenticate_shop!
 
   def top
+    @tag_rank = Tag.tag_rank_item
     @shop = current_shop
     @shop_items = @shop.items
     @shop_items_3 = @shop_items.order(id: "DESC").limit(3)
