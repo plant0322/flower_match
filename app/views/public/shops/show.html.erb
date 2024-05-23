@@ -83,12 +83,6 @@
     <!--ページネーション-->
     <%= render 'layouts/paginate', content: @items %>
 
-    <% if admin_signed_in? %>
-      <%= link_to "◀ ショップ一覧へ戻る", admin_shops_path %>
-    <% else %>
-      <%= link_to "◀ TOPへ戻る", root_path %>
-    <% end %>
-
   </div>
   <div class="col-3 px-3">
     <%= render 'layouts/members_menu' %>

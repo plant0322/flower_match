@@ -29,8 +29,9 @@
           <div class="my-3 mx-auto d-grid">
             <% if admin_signed_in? %>
               <%= link_to '× 削除', shop_item_path(@item), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger w-25" %>
+              <small class="text-danger">※削除すると紐づけられた予約情報も全て消えます。この商品の予約がないか確認してから削除してください。</small>
             <% elsif current_shop == @item.shop %>
-              <%= link_to 'この商品を編集する', edit_shop_item_path(current_shop), class: "btn btn-info p-2" %>
+              <%= link_to 'この商品を編集する', edit_shop_item_path(@item), class: "btn btn-info p-2" %>
             <% elsif @item.is_active == false %>
               <button class="btn btn-secondary p-2" disabled>販売停止中です</button>
             <% elsif @stock == 0 %>
@@ -49,11 +50,11 @@
                 <% end %>
               <% else %>
                 <%= link_to item_bookmarks_path(@item), method: :post, class: "btn btn-outline-info p-2 mt-2" do %>
-                  ブックマークする (<%= @item.bookmarks.count %>)
+                  ブックマークする<% if @item.bookmarks.count < 0 %> (<%= @item.bookmarks.count %>)<% end %>
                 <% end %>
               <% end %>
             <% else %>
-              <button class="btn btn-outline-secondary p-2 mt-2" disabled>ブックマークする <%= @item.bookmarks.count %></button>
+              <button class="btn btn-outline-secondary p-2 mt-2" disabled>ブックマーク <%= @item.bookmarks.count %>件</button>
             <% end %>
           </div>
           <!--商品紹介-->

@@ -33,8 +33,9 @@
           <tr>
             <th>口コミ</th>
             <td colspan="4">
+              <%= @reviews.count %> 件の投稿あり
               <%= link_to review_path(@member) do %>
-                <%= @reviews.count %> 件の投稿あり
+                <small>▶ ショップの口コミを見る</small>
               <% end %>
             </td>
           </tr>
@@ -46,9 +47,13 @@
     <hr>
     <%= render 'shop/pre_orders/index', pre_orders: @before_visit_pre_orders %>
 
-    <h3>過去の予約履歴<span class="h5">（全<%= @visit_or_cancel_pre_orders.count %>件）</span></h3>
-    <hr>
-    <%= render 'shop/pre_orders/index', pre_orders: @visit_or_cancel_pre_orders %>
+    <div class="pt-4">
+      <h3>過去の予約履歴<span class="h5">（全<%= @visit_or_cancel_pre_orders.count %>件）</span></h3>
+      <hr>
+      <div class="bg-secondary-subtle p-3">
+        <%= render 'shop/pre_orders/index', pre_orders: @visit_or_cancel_pre_orders %>
+      </div>
+    </div>
 
     <!--ページネーション-->
     <% if false %>

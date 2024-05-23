@@ -8,9 +8,13 @@
     <hr>
     <%= render 'index', pre_orders: @before_visit_pre_orders %>
 
-    <h3>過去の予約履歴<span class="h5">（全<%= @visit_or_cancel_pre_orders.count %>件）</span></h3>
-    <hr>
-    <%= render 'index', pre_orders: @visit_or_cancel_pre_orders %>
+    <div class="pt-4">
+      <h3>過去の予約履歴<span class="h5">（全<%= @visit_or_cancel_pre_orders.count %>件）</span></h3>
+      <hr>
+      <div class="bg-secondary-subtle p-3">
+        <%= render 'index', pre_orders: @visit_or_cancel_pre_orders %>
+      </div>
+    </div>
 
     <!--ページネーション-->
     <%= render 'layouts/paginate', content: @visit_or_cancel_pre_orders %>

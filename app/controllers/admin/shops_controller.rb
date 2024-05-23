@@ -11,10 +11,9 @@ class Admin::ShopsController < ApplicationController
 
   def update
     if @shop.update(shop_params)
-      flash[:notice] = "ショップ情報を更新しました"
+      flash[:notice] = "ショップステータスを変更しました"
       redirect_to request.referer
     else
-      flash.now[:alert] = "ショップ情報の更新に失敗しました"
       render :edit
     end
   end

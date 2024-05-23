@@ -13,7 +13,7 @@ class Public::ReviewsController < ApplicationController
       flash[:notice] = "口コミを投稿しました"
       redirect_to pre_orders_path
     else
-      flash[:alert] = "口コミの投稿に失敗しました"
+      flash[:alert] = "口コミの投稿は300文字以内となっています"
       redirect_to request.referer
     end
   end

@@ -9,7 +9,7 @@
           <table class="table table-bordered h-100">
             <tr>
               <th class="w-25">メンバーID</th>
-              <td colspan="4">[ <%= @member.id %> ]</td>
+              <td>[ <%= @member.id %> ]</td>
             </tr>
             <tr>
               <th class="w-25">氏名</th>
@@ -20,7 +20,17 @@
             </tr>
             <tr>
               <th>ニックネーム</th>
-              <td colspan="4"><%= @member.nickname %></td>
+              <td><%= @member.nickname %></td>
+            </tr>
+            <tr>
+              <th>状態</th>
+              <td>
+                <% if @member.is_active == true %>
+                  <span class="text-submit fw-bold">有効</span>
+                <% else %>
+                  <span class="text-danger fw-bold">退会</span>
+                <% end %>
+              </td>
             </tr>
           </table>
         </div>
@@ -29,18 +39,18 @@
           <table class="table table-bordered h-100">
             <tr>
               <th class="w-25">電話番号</th>
-              <td colspan="4"><%= @member.telephone_number.to_s.insert(3, "-").insert(8, "-") %></td>
+              <td><%= @member.telephone_number.to_s.insert(3, "-").insert(8, "-") %></td>
             </tr>
             <tr>
               <th class="w-25">住所</th>
               <td>〒 <%= @member.postal_code.to_s.insert(3, "-") %><br><%= @member.address %></td>
             </tr>
             <tr>
-              <th>口コミ</th>
+              <th>口コミ</th>              
               <td colspan="4">
-                <%= link_to admin_review_path do %>
-                  <%= @reviews.count %> 件の投稿あり(リンク作成)
-                <% end %>
+                <%#= link_to review_path(@member) do %>
+                  <%= @reviews.count %> 件の投稿あり
+                <%# end %>
               </td>
             </tr>
           </table>

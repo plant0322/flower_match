@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get 'top'    =>  'homes#top', as: 'top'
     get 'search' => 'searches#search'
 
-    resources :shops, only: [:show, :index, :edit, :update]
+    resources :shops, only: [:index, :edit, :update]
     resources :members, only: [:show, :index, :edit, :update]
     resources :reviews, only: [:index, :update]
     resources :tags, only: [:index, :create, :update, :destroy]

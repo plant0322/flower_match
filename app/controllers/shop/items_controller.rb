@@ -13,11 +13,14 @@ class Shop::ItemsController < ApplicationController
     @item.shop_id = current_shop.id
     tag_list = params[:item][:tag_name].split(',')
     if @item.save
+      if params[:item][:first_is_active]
+        @item.update(is_active: true)
+      end
       @item.save_tags(tag_list)
       flash[:notice] = "商品を登録しました"
       redirect_to item_path(@item)
     else
-      flash.now[:alert] = "商品登録に失敗しました"
+      flash.now[:alert] = "入力内容に誤りがあります"
       render :new
     end
   end
@@ -41,7 +44,7 @@ class Shop::ItemsController < ApplicationController
       flash[:notice] = "商品情報を更新しました"
       redirect_to request.referer
     else
-      flash[:alert] = @item.errors.full_messages
+      flash[:alert] = "編集内容に誤りがあります"
       redirect_to request.referer
     end
   end

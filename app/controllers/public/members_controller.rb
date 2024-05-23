@@ -1,12 +1,10 @@
 class Public::MembersController < ApplicationController
   before_action :authenticate_member!
-  before_action :set_current_member, only: [:edit, :update]
+  before_action :set_current_member, only: [:edit, :update, :withdraw]
   before_action :ensure_guest_member, only: [:edit, :unsubscribe]
 
   def show
-    if session[:item_id]
-      @recently_seen_item = Item.find(session[:item_id])
-    end
+    @recently_seen_item = Item.find(session[:item_id]) unless session[:item_id].blank?
     bookmarks = Bookmark.where(member_id: current_member.id)
     @bookmark_items = Item.where(id: bookmarks.pluck(:item_id))
                           .where(is_active: true).order(created_at: "DESC").limit(4)
@@ -27,7 +25,7 @@ class Public::MembersController < ApplicationController
       flash[:notice] = "ユーザー情報を更新しました"
       redirect_to request.referer
     else
-      flash[:alert] = @member.errors.full_messages
+      flash[:alert] = "編集内容に誤りがあります"
       redirect_to request.referer
     end
   end

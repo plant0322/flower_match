@@ -48,7 +48,7 @@ class Shop::SessionsController < Devise::SessionsController
     return unless shop.valid_password?(params[:shop][:password])
     unless shop.is_active
       flash[:alert] = "すでに退会されているアカウントです。申し訳ありませんが、管理者にお問い合わせください。"
-      redirect_to new_shop_registration_path
+      redirect_to new_shop_session_path
     end
   end
 
