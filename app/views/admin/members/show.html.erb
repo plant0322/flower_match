@@ -46,11 +46,11 @@
               <td>〒 <%= @member.postal_code.to_s.insert(3, "-") %><br><%= @member.address %></td>
             </tr>
             <tr>
-              <th>口コミ</th>
-              <td>
-                <%= link_to admin_review_path do %>
-                  <%= @reviews.count %> 件の投稿あり(リンク作成)
-                <% end %>
+              <th>口コミ</th>              
+              <td colspan="4">
+                <%#= link_to review_path(@member) do %>
+                  <%= @reviews.count %> 件の投稿あり
+                <%# end %>
               </td>
             </tr>
           </table>

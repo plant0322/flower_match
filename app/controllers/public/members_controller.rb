@@ -1,6 +1,6 @@
 class Public::MembersController < ApplicationController
   before_action :authenticate_member!
-  before_action :set_current_member, only: [:edit, :update]
+  before_action :set_current_member, only: [:edit, :update, :withdraw]
   before_action :ensure_guest_member, only: [:edit, :unsubscribe]
 
   def show
