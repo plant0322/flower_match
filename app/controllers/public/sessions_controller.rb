@@ -45,10 +45,9 @@ class Public::SessionsController < Devise::SessionsController
     member = Member.find_by(email: params[:member][:email])
     return if member.nil?
     return unless member.valid_password?(params[:member][:password])
-    if member.is_active
-    else
+    unless member.is_active
       flash[:alert] = "すでに退会されているアカウントです。申し訳ありませんが、管理者にお問い合わせください。"
-      redirect_to new_member_registration_path
+      redirect_to new_member_session_path
     end
   end
 

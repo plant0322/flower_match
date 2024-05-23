@@ -5,7 +5,7 @@
     <%= form_with model: @shop, url: shop_update_information_path do |f| %>
       <%= render "shop/shared/error_messages", resource: @shop %>
       <h3 class="bg-info p-1 h5">ショップ基本情報</h3>
-      <table class="table table-borderless table-light my-3">
+      <table class="table table-borderless table-shop my-3">
         <tr>
           <th class="w-25"><%= f.label :shop_image, "アイキャッチ" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
           <td>
@@ -40,7 +40,7 @@
       </table>
 
       <h3 class="bg-info p-1 h5">ショップ所在地情報</h3>
-      <table class="table table-borderless table-light my-3">
+      <table class="table table-borderless table-shop my-3">
         <tr>
           <th class="w-25"><%= f.label :postal_code, "ショップの郵便番号" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
           <td colspan="2">
@@ -64,7 +64,7 @@
       </table>
 
       <h3 class="bg-info p-1 h5">ショップ詳細情報</h3>
-      <table class="table table-borderless table-light my-3">
+      <table class="table table-borderless table-shop my-3">
         <tr>
           <th class="w-25"><%= f.label :telephone_number, "電話番号（ショップの連絡先）" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
           <td colspan="2">
@@ -102,7 +102,7 @@
       </table>
 
       <h3 class="bg-info p-1 h5">ログイン情報</h3>
-      <table class="table table-borderless table-light my-3">
+      <table class="table table-borderless table-shop my-3">
         <tr>
           <th class="w-25"><%= f.label :representative_name, "担当者名" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
           <td colspan="2">
@@ -121,7 +121,7 @@
 
       <div class="d-flex flex-row my-3 mx-auto">
         <div class="col-6 d-grid p-2">
-          <%= link_to "マイページへ戻る", shop_top_path, class: "btn btn-outline-info p-2" %>
+          <%= link_to "ショップ管理TOPへ戻る", shop_top_path, class: "btn btn-outline-info p-2" %>
         </div>
         <div class="col-6 d-grid p-2">
           <%= f.submit "この内容で更新する", class: "btn btn-info p-2" %>

@@ -25,7 +25,7 @@ class Public::MembersController < ApplicationController
       flash[:notice] = "ユーザー情報を更新しました"
       redirect_to request.referer
     else
-      flash[:alert] = @member.errors.full_messages
+      flash[:alert] = "編集内容に誤りがあります"
       redirect_to request.referer
     end
   end

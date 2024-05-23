@@ -2,6 +2,22 @@
   <div class="col-9 px-3">
     <h2>予約内容詳細</h2><%= @pre_order.order_full_name %>
     <hr>
+    <% if @pre_order.status == 'visit' && @pre_order.review.blank? && @pre_order.visit_day > 1.week.ago %>
+    <!--口コミ投稿-->
+      <%= form_with model: @review, url: pre_order_reviews_path(@pre_order), method: :post do |f| %>
+        <%#= render "layouts/error_messages", obj: @review %>
+        <div class="mt-2 mb-5 p-3 bg-light">
+          <p class="fw-bold">
+            ご購入いただいた商品はいかがでしたか？よろしければ、商品やショップへの感想をこちらからお送りください。
+            <small>(300字以内)</small>
+          </p>
+          <div class="d-flex flex-row">
+            <div class="col-10 pe-2"><%= f.text_area :content, autocomplete: "content", placeholder: 'この商品やショップの口コミを入力してください', class: "form-control" %></div>
+            <div class="col-2"><%= f.submit '口コミを投稿する', "data-confirm" => "投稿は編集できません。この内容で投稿しますか？" , class: "btn btn-info" %></div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
     <!--ショップ情報-->
     <table class="table table-bordered table-light">
       <tr>
@@ -83,7 +99,7 @@
         <td>
           受取予定日の<%= @pre_order.item.deadline %>日前: 合計金額の100%<br>
           無断: 合計金額の100%<br>
-          ※キャンセルの場合は期限日までに必ずショップへご連絡ください。
+          <small>※キャンセルの際は<b>期限日</b>までに<b>必ず</b>ショップへご連絡ください。</small>
         </td>
       </tr>
       <tr>
@@ -91,16 +107,25 @@
         <td><%= @pre_order.id %></td>
       </tr>
     </table>
-    <% if @pre_order.status == 'visit' && @pre_order.review.blank? && @pre_order.visit_day > 1.week.ago %>
-      <%= form_with model: @review, url: pre_order_reviews_path(@pre_order), method: :post do |f| %>
-        <%= render "layouts/error_messages", obj: @review %>
-        <div class="col-5 my-2">
-          <%= f.text_area :content, placeholder: 'この商品やショップの口コミを入力してください', class: "form-control" %>
-          <%= f.submit '口コミを投稿する', "data-confirm" => "投稿は編集できません。この内容で投稿しますか？" , class: "btn btn-info mt-2" %>
-        </div>
-      <% end %>
-    <% else %>
-    <% end %>
+
+    <table class="table table-bordered table-light">
+      <tr>
+        <th class="w-25">予約者氏名</th>
+        <td><%= @pre_order.order_full_name %>（<%= @pre_order.order_full_name_kana %>）
+        </td>
+      </tr>
+      <tr>
+        <th>予約者情報</th>
+        <td>
+          〒<%= @pre_order.postal_code.to_s.insert(3, "-") %><br>
+          <%= @pre_order.address %><br>
+        </td>
+      </tr>
+      <tr>
+        <th>予約者連絡先</th>
+        <td><%= @pre_order.telephone_number.to_s.insert(3, "-").insert(8, "-") %></td>
+      </tr>
+    </table>
   </div>
   <div class="col-3 px-3">
     <%= render 'layouts/members_menu' %>

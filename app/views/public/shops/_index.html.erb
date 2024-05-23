@@ -1,7 +1,18 @@
 <% shops. each do |shop| %>
   <div class="col-12 card p-2 mb-3">
     <% if admin_signed_in? %>
-      <div class="fw-bold"><small>ショップID:</small> <%= shop.id %></div>
+      <div class="d-flex flex-row fw-bold p-2 mb-2 bg-secondary-subtle">
+        <small>ショップID:</small><%= shop.id %>
+        <% if shop.is_active == true %>
+          <p class="h5 ps-2 fw-bold">
+            有効
+          </p>
+        <% else %>
+          <p class="h5 ps-2 fw-bold text-danger">
+            無効
+          </p>
+        <% end %>
+      </div>
     <% end %>
     <div class="d-flex flex-row">
       <div class="col-2 pe-3">
@@ -15,8 +26,8 @@
         <% end %>
         <p class="shop-introduction"><%= shop.introduction %></p>
       </div>
-      <div class="col-4">
-        <table class="table">
+      <div class="col-5">
+        <table class="table table-borderless">
           <tr>
             <th>住所</th>
             <td>〒<%= shop.postal_code.to_s.insert(3, "-") %><br><%= shop.address %></td>

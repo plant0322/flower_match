@@ -16,6 +16,7 @@ class Shop::PreOrdersController < ApplicationController
   def update
     @pre_order = PreOrder.find(params[:id])
     @pre_order.update(pre_order_params)
+    flash[:notice] = '予約状況を「' + @pre_order.status_i18n + '」に変更しました'
     redirect_to shop_pre_order_path(@pre_order)
   end
 
