@@ -1,6 +1,6 @@
 <div class="container d-flex flex-row-reverse pt-3">
   <div class="col-9 px-3">
-    <h2><%= @member.member_full_name %>さまの予約情報</h2>
+    <h2><%= @member.member_full_name %>様の予約情報</h2> <%= link_to 'メッセージを送る', shop_message_path(@member) %>
     <hr>
     <div class="d-flex flex-row pb-5">
       <div class="col-6">

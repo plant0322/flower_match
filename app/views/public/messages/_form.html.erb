@@ -1,0 +1,20 @@
+<div class="col-10">
+  <div class= "py-2">
+    <% messages.each do |message| %>
+      <div class="py-2">
+        <%= message.message %>
+        <%= link_to "削除", shop_message_path(message), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class= "py-2">
+    <%= form_with model: message, url: url do |f| %>
+      <%= f.text_area :message, class: "form-control" %>
+      <div class= "py-2">
+        <%= f.submit "送信", class: "btn btn-info" %>
+      </div>
+      <%= f.hidden_field :room_id %>
+    <% end %>
+  </div>
+</div>

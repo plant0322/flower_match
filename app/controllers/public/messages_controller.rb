@@ -15,7 +15,7 @@ class Public::MessagesController < ApplicationController
       @room.save
      # MessageRoom.create(member_id: current_member.id, shop_id: @shop.id, room_id: @room.id)
     end
-    @messages = @room.member_messages # && @room.shop_messages
+    @messages = (@room.member_messages + @room.shop_messages)
     @message = MemberMessage.new(room_id: @room.id)
   end
 
@@ -49,7 +49,7 @@ class Public::MessagesController < ApplicationController
   end
 
   def block_non_related_member
-    if room = MessageRoom.find_by(member_id: current_member, shop_id: @shop)
+    if room = Room.find_by(member_id: current_member, shop_id: @shop)
       redirect_to root_path
     end
   end
