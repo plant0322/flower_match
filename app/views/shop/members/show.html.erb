@@ -34,8 +34,8 @@
             <th>口コミ</th>
             <td colspan="4">
               <%= @reviews.count %> 件の投稿あり
-              <%= link_to review_path(@member) do %>
-                <small>▶ ショップの口コミを見る</small>
+              <%= link_to review_path(current_shop.id) do %>
+                <small>▶ ショップの口コミ一覧を見る</small>
               <% end %>
             </td>
           </tr>
@@ -56,14 +56,12 @@
     </div>
 
     <!--ページネーション-->
-    <% if false %>
     <hr>
     <div class="paginate d-flex align-items-center justify-content-center">
       1件～<% if @visit_or_cancel_pre_orders.count < 12 %><%= @visit_or_cancel_pre_orders.count %><% else %>12<% end %>件（全<%= @visit_or_cancel_pre_orders.count %>件）
       <span class="pt-2 ps-2"><%= paginate @visit_or_cancel_pre_orders, theme: 'bootstrap-5' %></span>
     </div>
     <hr>
-    <% end %>
 
 
   </div>

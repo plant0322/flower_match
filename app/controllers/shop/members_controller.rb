@@ -7,9 +7,10 @@ class Shop::MembersController < ApplicationController
     shop = current_shop
     shop_items = Item.where(shop_id: shop.id)
     @member = Member.find(params[:id])
-    pre_orders = PreOrder.where(item_id: shop_items.pluck(:id), member_id: @member)
+    pre_orders = PreOrder.where(item_id: shop_items, member_id: @member)
     @before_visit_pre_orders = pre_orders.where(status: 'before_visit')
-    @visit_or_cancel_pre_orders = pre_orders.where(status: 'visit') + pre_orders.where(status: 'cancel')
+    @visit_or_cancel_pre_orders = pre_orders.where(status: ['visit', 'cancel']).order(visit_day: "DESC").page(params[:page])
+    #@visit_or_cancel_pre_orders = pre_orders.where(status: 'visit') + pre_orders.where(status: 'cancel')
     @reviews = Review.where(pre_order_id: pre_orders)
   end
 
