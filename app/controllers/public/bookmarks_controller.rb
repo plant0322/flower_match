@@ -15,9 +15,10 @@ class Public::BookmarksController < ApplicationController
   end
 
   def bookmark_list
+    active_shops = Shop.where(is_active: true)
     bookmark_items = Bookmark.where(member_id: current_member.id)
     @items = Item.where(id: bookmark_items.pluck(:item_id))
-                 .where(is_active: true).order(id: 'DESC').page(params[:page])
+                 .where(is_active: true, shop_id: active_shops).order(id: 'DESC').page(params[:page])
     @tag_rank = Tag.tag_rank_item
   end
 end

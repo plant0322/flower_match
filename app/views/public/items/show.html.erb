@@ -1,6 +1,6 @@
 <div class="container d-flex flex-row-reverse pt-3">
   <div class="col-9 px-3">
-    <%= render 'public/shops/info' %>
+    <%= render 'public/shops/info', shop: @shop %>
     <%= form_with url: new_pre_order_path, method: :get do |f| %>
       <div class="d-flex flex-wrap">
         <!--画像-->
@@ -15,11 +15,12 @@
           </p>
           <div class="d-flex align-items-center pb-1">
             <div class="me-3">
-              在庫: <%= @stock %>個
+              在庫: <span class="h5"><%= @stock %></span> 個
             </div>
             <div>
               <% if @stock == 0 %>
                 在庫切れのため購入できません
+              <% elsif @item.is_active == false || @item.shop.is_active == false %>
               <% elsif member_signed_in? %>
                 <%= f.select :amount, @stock_array, { prompt: "個数を選択" }, class: "form-select" %>
               <% else %>
@@ -32,7 +33,7 @@
               <small class="text-danger">※削除すると紐づけられた予約情報も全て消えます。この商品の予約がないか確認してから削除してください。</small>
             <% elsif current_shop == @item.shop %>
               <%= link_to 'この商品を編集する', edit_shop_item_path(@item), class: "btn btn-info p-2" %>
-            <% elsif @item.is_active == false %>
+            <% elsif @item.is_active == false || @item.shop.is_active == false %>
               <button class="btn btn-secondary p-2" disabled>販売停止中です</button>
             <% elsif @stock == 0 %>
               <%= f.hidden_field :item_id, value: @item.id %>
@@ -50,7 +51,7 @@
                 <% end %>
               <% else %>
                 <%= link_to item_bookmarks_path(@item), method: :post, class: "btn btn-outline-info p-2 mt-2" do %>
-                  ブックマークする<% if @item.bookmarks.count < 0 %> (<%= @item.bookmarks.count %>)<% end %>
+                  ブックマークする<% if @item.bookmarks.count >= 1 %> (<%= @item.bookmarks.count %>)<% end %>
                 <% end %>
               <% end %>
             <% else %>

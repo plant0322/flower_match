@@ -1,5 +1,6 @@
 class Shop::PreOrdersController < ApplicationController
   before_action :authenticate_admin_or_shop!
+  before_action :set_tag_rank, only: [:show, :index]
 
   def index
     @shop = current_shop
@@ -26,6 +27,10 @@ class Shop::PreOrdersController < ApplicationController
     unless shop_signed_in? || admin_signed_in?
       redirect_to root_path
     end
+  end
+
+  def set_tag_rank
+    @tag_rank = Tag.tag_rank_item
   end
 
   def pre_order_params

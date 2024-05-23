@@ -2,6 +2,7 @@ class Shop::ItemsController < ApplicationController
   before_action :authenticate_shop!
   before_action :set_item, only: [:edit, :update, :destroy]
   before_action :is_matching_login_shop, only: [:edit, :update]
+  before_action :set_tag_rank, only: [:edit, :index, :new]
 
   def new
     @item = Item.new
@@ -67,6 +68,10 @@ class Shop::ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def set_tag_rank
+    @tag_rank = Tag.tag_rank_item
   end
 
   def item_params

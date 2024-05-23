@@ -1,20 +1,26 @@
-<div class="card d-flex flex-row p-2">
-  <div class="col-2">
-    <%= image_tag @shop.get_shop_image(100,100), class: "w-100 h-100" %>
-  </div>
-  <div class="col-7 d-flex flex-column px-2">
-    <div class="d-flex flex-row">
-      <h1 class="fw-bold h6"><%= @shop.name %></h1>
-      <small><%= @shop.name_kana %></small>
+<% if shop.is_active %>
+  <div class="card d-flex flex-row p-2">
+    <div class="col-2">
+      <%= image_tag shop.get_shop_image(100,100), class: "w-100 h-100" %>
     </div>
-    <small>
-      〒<%= @shop.postal_code.to_s.insert(3, "-") %><br>
-      <%= @shop.address %><br>
-      <%= @shop.direction %>
-    </small>
+    <div class="col-7 d-flex flex-column px-2">
+      <div class="d-flex flex-row">
+        <h1 class="fw-bold h6"><%= shop.name %></h1>
+        <small><%= shop.name_kana %></small>
+      </div>
+      <small>
+        〒<%= shop.postal_code.to_s.insert(3, "-") %><br>
+        <%= shop.address %><br>
+        <%= shop.direction %>
+      </small>
+    </div>
+    <div class="col-3">
+      <%= link_to 'ショップ情報を見る', shop_path(shop), class: "btn btn-info mb-2 d-grid" %>
+      <%= render 'public/favorite_shops/btn', shop: shop %>
+    </div>
   </div>
-  <div class="col-3">
-    <%= link_to 'ショップ情報を見る', shop_path(@shop), class: "btn btn-info mb-2 d-grid" %>
-    <%= render 'public/favorite_shops/btn', shop: @shop %>
-  </div>
+<% else %>
+<div class="bg-secondary-subtle p-2">
+  ※このショップは退会しているため、ショップ情報を見ることが出来ません。
 </div>
+<% end %>
