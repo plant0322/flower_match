@@ -13,6 +13,9 @@ class Shop::ItemsController < ApplicationController
     @item.shop_id = current_shop.id
     tag_list = params[:item][:tag_name].split(',')
     if @item.save
+      if params[:item][:first_is_active]
+        @item.update(is_active: true)
+      end
       @item.save_tags(tag_list)
       flash[:notice] = "商品を登録しました"
       redirect_to item_path(@item)
