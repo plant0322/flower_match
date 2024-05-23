@@ -3,6 +3,7 @@ class Shop::MembersController < ApplicationController
   before_action :is_matching_login_shop, only: [:show]
 
   def show
+    @tag_rank = Tag.tag_rank_item
     shop = current_shop
     shop_items = Item.where(shop_id: shop.id)
     @member = Member.find(params[:id])

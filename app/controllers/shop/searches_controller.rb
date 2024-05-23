@@ -2,6 +2,7 @@ class Shop::SearchesController < ApplicationController
   before_action :authenticate_shop!
 
   def search
+    @tag_rank = Tag.tag_rank_item
     @type = params[:type]
     @method = params[:method]
     @content = params[:content]

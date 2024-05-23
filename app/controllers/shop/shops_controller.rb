@@ -1,6 +1,6 @@
 class Shop::ShopsController < ApplicationController
   before_action :authenticate_shop!
-  before_action :set_current_shop
+  before_action :set_current_shop_tag
   before_action :ensure_guest_shop, only: [:edit, :unsubscribe]
 
   def edit
@@ -27,8 +27,9 @@ class Shop::ShopsController < ApplicationController
 
   private
 
-  def set_current_shop
+  def set_current_shop_tag
     @shop = current_shop
+    @tag_rank = Tag.tag_rank_item
   end
 
   def ensure_guest_shop
