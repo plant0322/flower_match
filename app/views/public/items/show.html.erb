@@ -49,11 +49,11 @@
                 <% end %>
               <% else %>
                 <%= link_to item_bookmarks_path(@item), method: :post, class: "btn btn-outline-info p-2 mt-2" do %>
-                  ブックマークする (<%= @item.bookmarks.count %>)
+                  ブックマークする<% if @item.bookmarks.count < 0 %> (<%= @item.bookmarks.count %>)<% end %>
                 <% end %>
               <% end %>
             <% else %>
-              <button class="btn btn-outline-secondary p-2 mt-2" disabled>ブックマークする <%= @item.bookmarks.count %></button>
+              <button class="btn btn-outline-secondary p-2 mt-2" disabled>ブックマーク <%= @item.bookmarks.count %>件</button>
             <% end %>
           </div>
           <!--商品紹介-->

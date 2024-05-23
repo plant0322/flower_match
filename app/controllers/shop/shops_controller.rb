@@ -11,7 +11,7 @@ class Shop::ShopsController < ApplicationController
       flash[:notice] = "ショップ情報を更新しました"
       redirect_to request.referer
     else
-      flash[:alert] = "ショップ情報の更新に失敗しました"
+      flash[:alert] = "編集内容に誤りがあります"
       redirect_to request.referer
     end
   end

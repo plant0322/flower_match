@@ -31,5 +31,11 @@
         <td>ショップ情報編集</td>
       </tr>
     <% end %>
+    <tr class="tr-menu" onclick='window.location="<%= shop_pre_orders_path %>"' role="link">
+      <td>予約履歴管理</td>
+    </tr>
+      <tr class="tr-menu">
+        <td><%= link_to "ログアウト", destroy_shop_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？" %></td>
+      </tr>
   </table>
 <% end %>

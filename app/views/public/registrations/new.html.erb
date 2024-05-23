@@ -7,7 +7,7 @@
       <%= form_with model: @member, url: member_registration_path do |f| %>
         <%#= render "public/shared/error_messages", resource: resource %>
         <h3 class="bg-info p-1 h5">名前の登録</h3>
-        <table class="table table-borderless table-light my-3">
+        <table class="table table-borderless table-member my-3">
           <tr>
             <th class="w-25">名前<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td>
@@ -45,7 +45,7 @@
         </table>
 
         <h3 class="bg-info p-1 h5">ユーザー情報の登録</h3>
-        <table class="table table-borderless table-light my-3">
+        <table class="table table-borderless table-member my-3">
           <tr>
             <th class="w-25">郵便番号<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td>
@@ -84,7 +84,7 @@
         </table>
 
         <h3 class="bg-info p-1 h5">ログイン情報の登録</h3>
-        <table class="table table-borderless table-light my-3">
+        <table class="table table-borderless table-member my-3">
           <tr>
             <th class="w-25">ニックネーム<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
@@ -111,7 +111,7 @@
           </tr>
         </table>
 
-        <table class="table table-borderless table-light my-3">
+        <table class="table table-borderless table-member my-3">
           <tr>
             <th class="w-25">パスワード<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
@@ -137,7 +137,7 @@
           </tr>
         </table>
         <div class="col-6 d-grid my-3 mx-auto">
-          <%= f.submit "登録する", class: "btn btn-info p-2" %>
+          <%= f.submit "登録する", class: "btn btn-info p-2 fw-bold" %>
         </div>
       <% end %>
     </div>
@@ -145,7 +145,7 @@
     <h2 class="mt-5">既に登録済みの方はこちら</h2>
     <hr>
     <div class="col-6 d-grid mx-auto py-3">
-      <%= link_to "ログインする", new_member_session_path, class: "btn btn-info p-2" %>
+      <%= link_to "ログインする", new_member_session_path, class: "btn btn-info p-2 fw-bold" %>
     </div>
 
 

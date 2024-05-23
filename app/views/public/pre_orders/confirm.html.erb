@@ -6,11 +6,27 @@
     <table class="table table-bordered table-light my-3">
       <tr>
         <th class="w-25">来店日時</th>
-        <td><%= @pre_order.visit_day.strftime("%Y年%-m月%-d日") %> <%= @pre_order.visit_time.strftime( "%H:%M" ) %></td>
+        <td><span class="text-danger fw-bold"><%= @pre_order.visit_day.strftime("%Y年%-m月%-d日") %> <%= @pre_order.visit_time.strftime( "%H:%M" ) %></span></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          ショップの営業時間: <%= @item.shop.opening_hour %><br>
+          ショップの定休日: <%= @item.shop.holiday %><br>
+          <small class="text-danger">※予約日時に間違いのないことを再度ご確認ください</small>
+        </td>
       </tr>
     </table>
 
     <table class="table table-bordered table-light my-3">
+      <tr>
+        <th class="w-25">予約ショップ</th>
+        <td class="d-flex align-items-center">
+          <div class="col-10">
+            <span class="text-danger fw-bold"><%= @item.shop.name %></span> <small>[ <%= @item.shop.id %> ]</small><br>
+            <small><%= @item.shop.address %></small>
+          </div>
+        </td>
+      </tr>
       <tr>
         <th class="w-25">予約商品</th>
         <td class="d-flex align-items-center">
@@ -18,7 +34,7 @@
             <%= image_tag @item.get_item_image(100,100),class: "w-100 p-1" %>
           </div>
           <div class="col-10">
-            <%= @item.name %> <small>[ <%= @item.id %> ]</small>
+            <span class="text-danger fw-bold"><%= @item.name %></span> <small>[ <%= @item.id %> ]</small>
           </div>
         </td>
       </tr>
@@ -32,7 +48,7 @@
       </tr>
       <tr>
         <th>支払予定金額</th>
-        <td><%= (@item.price * @amount).to_s(:delimited) %> 円</td>
+        <td><span class="text-danger fw-bold"><%= (@item.price * @amount).to_s(:delimited) %> 円</span></td>
       </tr>
     </table>
 

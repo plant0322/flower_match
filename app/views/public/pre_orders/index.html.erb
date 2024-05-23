@@ -10,9 +10,13 @@
       <hr>
       <%= render 'public/pre_orders/index', pre_orders: @before_visit_pre_orders %>
 
-      <h3>過去の予約履歴<span class="h5">（全<%= @visit_or_cancel_pre_orders.count %>件）</span></h3>
-      <hr>
-      <%= render 'public/pre_orders/index', pre_orders: @visit_or_cancel_pre_orders %>
+      <div class="pt-4">
+        <h3>過去の予約履歴<span class="h5">（全<%= @visit_or_cancel_pre_orders.count %>件）</span></h3>
+        <hr>
+        <div class="bg-secondary-subtle px-3 py-2">
+          <%= render 'public/pre_orders/index', pre_orders: @visit_or_cancel_pre_orders %>
+        </div>
+      </div>
     <% end %>
 
     <!--ページネーション-->

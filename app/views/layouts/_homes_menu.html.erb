@@ -1,4 +1,4 @@
-<table class="table table-hover">
+<table class="table">
   <thead>
     <tr>
       <th class="text-center bg-member <%= (admin_signed_in? ? "bg-admin" : "" ) %> <%= (shop_signed_in? ? "bg-shop" : "" ) %>">人気商品</th>
@@ -9,11 +9,9 @@
       <td>アイテム一覧</td>
     </tr>
     <% tag_rank.each do |tag| %>
-    <tr class="tr-menu">
+    <tr class="tr-menu" onclick='window.location="<%= "/search?model=tag&content=#{tag.name}" %>"' role="link">
       <td>
-        <%= link_to "/search?model=tag&content=#{tag.name}" do %>
-          <%= tag.name %>
-        <% end %>
+        <%= tag.name %> <small>(<%= tag.item_tags.count %>)</small>
       </td>
     </tr>
     <% end %>

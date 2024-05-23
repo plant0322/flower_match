@@ -32,6 +32,7 @@
           telephone_number: "電話番号"
           password: "パスワード"
         shop:
+          shop_image: "アイキャッチ"
           name: "ショップ名"
           name_kana: "ショップ名カナ"
           introduction: "ショップ紹介文"

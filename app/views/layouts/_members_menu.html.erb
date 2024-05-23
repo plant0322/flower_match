@@ -9,7 +9,7 @@
       </td>
     </tr>
   </table>
-  <table class="table table-hover">
+  <table class="table">
     <thead>
       <tr>
         <th class="bg-member text-center">会員メニュー</th>
@@ -33,6 +33,9 @@
           <td>会員情報編集</td>
         </tr>
       <% end %>
+        <tr class="tr-menu" onclick='window.location="<%= edit_information_path %>"' role="link">
+          <td>会員情報編集</td>
+        </tr>
       <tr class="tr-menu">
         <td><%= link_to "ログアウト", destroy_member_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？" %></td>
       </tr>
