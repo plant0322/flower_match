@@ -13,10 +13,9 @@ class Admin::MembersController < ApplicationController
 
   def update
     if @member.update(member_params)
-      flash[:notice] = "ユーザー情報を更新しました"
+      flash[:notice] = "会員ステータスを変更しました"
       redirect_to request.referer
     else
-      flash.now[:alert] = "ユーザー情報の更新に失敗しました"
       render :edit
     end
   end

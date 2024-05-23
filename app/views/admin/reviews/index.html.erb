@@ -2,9 +2,9 @@
   <div class="col-9 px-3">
     <h2>全ての口コミ一覧</h2>
     <hr>
-    <ul class="list-group">
+    <div class="list-group">
       <% @reviews.each do |review| %>
-        <li class="list-group-item mb-3">
+        <div class="card mb-3 p-3">
           <%= review.created_at.strftime("%Y年%-m月%-d日") %>
           <div class="d-flex flex-row p-3 mb-2 <%= (review.is_active == true ? "bg-info-subtle" : "" ) %> <%= (review.is_active == false ? "bg-light" : "" ) %>">
             <div class="col-9 d-flex row">
@@ -19,13 +19,13 @@
               </div>
             </div>
             <div class="col-3">
-              <div class="pt-2">
-                <%= form_with model: review, url: admin_review_path(review) do |f| %>
-                  <%= f.radio_button :is_active, true, class: "form-check-input" %><%= f.label :is_active, '公開', class: "form-check-label" %>
-                  <%= f.radio_button :is_active, false, class: "form-check-input" %><%= f.label :is_active, '非公開', class: "form-check-label" %>
-                  <%= f.submit '変更する', class: "btn btn-outline-secondary p-2" %>
-                <% end %>
-              </div>
+              <%= form_with model: review, url: admin_review_path(review) do |f| %>
+                <div class="d-flex align-items-center pt-2">
+                  <div class="pe-3 text-success"><%= f.radio_button :is_active, true, class: "form-check-input" %><%= f.label :is_active, '公開', class: "form-check-label ps-1" %></div>
+                  <div class="text-danger"><%= f.radio_button :is_active, false, class: "form-check-input" %><%= f.label :is_active, '非公開', class: "form-check-label ps-1" %></div>
+                </div>
+                <%= f.submit '変更する', class: "btn btn-outline-info p-2 mt-2 w-100" %>
+              <% end %>
             </div>
           </div>
           <div>
@@ -34,16 +34,14 @@
                 <%= review.pre_order.item.shop.name %></span> <small>[ <%= review.pre_order.item.shop.id %> ]</small> への口コミ
               <% end %>
             </p>
-            <small>
-              予約商品:
-              <%= link_to item_path(review.pre_order.item) do %>
-                <%= review.pre_order.name %> <small>[ <%= review.pre_order.item.id %> ]</small>
-              <% end %>
-            </small>
+            <%= link_to item_path(review.pre_order.item) do %>
+              予約時の商品名:<%= review.pre_order.name %> <small>[ <%= review.pre_order.item.id %> ]</small>
+            <% end %><br>
+            <small>(現在の商品名:<%= review.pre_order.item.name %>)</small>
           </div>
-        </li>
+        </div>
       <% end %>
-    </ul>
+    </div>
 
     <!--ページネーション-->
       <%= render 'layouts/paginate', content: @reviews %>

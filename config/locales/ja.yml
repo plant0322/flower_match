@@ -48,6 +48,7 @@
           note: "パスワード"
           email: "メールアドレス"
           password: "パスワード"
+          is_active: "会員ステータス"
         item:
           item_image: "商品画像"
           name: "商品名"

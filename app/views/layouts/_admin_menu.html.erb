@@ -1,25 +1,25 @@
 <% if admin_signed_in? %>
-  <table class="table table-hover">
+  <table class="table">
     <tr>
       <th class="text-center bg-member <%= (admin_signed_in? ? "bg-admin" : "" ) %> <%= (shop_signed_in? ? "bg-shop" : "" ) %>">管理者メニュー</th>
     </tr>
-    <tr>
+    <tr class="tr-menu">
       <td>連絡一覧</td>
     </tr>
-    <tr>
-      <td><%= link_to "口コミ管理", admin_reviews_path %></td>
+    <tr class="tr-menu" onclick='window.location="<%= admin_reviews_path %>"' role="link">
+      <td>口コミ管理</td>
     </tr>
-    <tr>
-      <td><%= link_to "タグ管理", admin_tags_path %></td>
+    <tr class="tr-menu" onclick='window.location="<%= admin_tags_path %>"' role="link">
+      <td>タグ管理</td>
     </tr>
-    <tr>
-      <td><%= link_to "ショップ管理", admin_shops_path %></td>
+    <tr class="tr-menu" onclick='window.location="<%= admin_shops_path %>"' role="link">
+      <td>ショップ管理</td>
     </tr>
-    <tr>
-      <td><%= link_to "一般メンバー管理", admin_members_path %></td>
+    <tr class="tr-menu" onclick='window.location="<%= admin_members_path %>"' role="link">
+      <td>一般メンバー管理</td>
     </tr>
-    <tr>
-      <td><%= link_to "ログアウト", destroy_admin_session_path %></td>
+    <tr class="tr-menu">
+      <td><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？" %></td>
     </tr>
   </table>
 <% end %>
