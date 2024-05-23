@@ -30,7 +30,7 @@
             <% if admin_signed_in? %>
               <%= link_to '× 削除', shop_item_path(@item), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger w-25" %>
             <% elsif current_shop == @item.shop %>
-              <%= link_to 'この商品を編集する', edit_shop_item_path(current_shop), class: "btn btn-info p-2" %>
+              <%= link_to 'この商品を編集する', edit_shop_item_path(@item), class: "btn btn-info p-2" %>
             <% elsif @item.is_active == false %>
               <button class="btn btn-secondary p-2" disabled>販売停止中です</button>
             <% elsif @stock == 0 %>
@@ -53,7 +53,7 @@
                 <% end %>
               <% end %>
             <% else %>
-              <button class="btn btn-outline-secondary p-2 mt-2" disabled>ブックマークする <%= @item.bookmarks.count %></button>
+              <button class="btn btn-outline-secondary p-2 mt-2" disabled>ブックマーク <%= @item.bookmarks.count %>件</button>
             <% end %>
           </div>
           <!--商品紹介-->
