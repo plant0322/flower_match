@@ -1,14 +1,14 @@
-<div class="container d-flex flex-row-reverse pt-3">
-  <div class="col-9 px-3">
+<div class="container d-flex flex-row-reverse flex-wrap pt-3">
+  <div class="main-content col-9 px-3">
     <%= render 'public/shops/info', shop: @shop %>
     <%= form_with url: new_pre_order_path, method: :get do |f| %>
       <div class="d-flex flex-wrap">
         <!--画像-->
-        <div class="col-7">
-          <%= image_tag @item.get_item_image(500,500),class: "w-100 p-1" %>
+        <div class="wide-item col-7">
+          <%= image_tag @item.get_item_image(500,500),class: "w-100 p-1 hover-none" %>
         </div>
         <!--詳細-->
-        <div class="col-5 p-2">
+        <div class="wide-item col-5 p-2">
           <h2 class="h5 fw-bold"><%= @item.name %> <span class="text-black-50 h6">[ <%= @item.id %> ]</span></h2>
           <p class="py-3">
             価格: <span class="h3"><%= @item.price.to_s(:delimited, delimiter: ',') %></span> 円
@@ -78,7 +78,7 @@
       <%= render 'public/searches/tag_btn', tags: @item_tags %>
     <% end %>
   </div>
-  <div class="col-3 px-3">
+  <div class="left-content col-3 px-3">
     <%= render 'layouts/members_menu' %>
     <%= render 'layouts/admin_menu' %>
     <%= render 'layouts/shop_menu' %>

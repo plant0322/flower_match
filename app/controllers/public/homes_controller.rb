@@ -11,5 +11,6 @@ class Public::HomesController < ApplicationController
   end
 
   def about
+    @search = OpenStruct.new(model: 'item')
   end
 end

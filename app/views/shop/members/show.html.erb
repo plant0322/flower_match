@@ -1,5 +1,5 @@
-<div class="container d-flex flex-row-reverse pt-3">
-  <div class="col-9 px-3">
+<div class="container d-flex flex-row-reverse flex-wrap pt-3">
+  <div class="main-content col-9 px-3">
     <h2><%= @member.member_full_name %>様の予約情報</h2> <%= link_to 'メッセージを送る', shop_message_path(@member) %>
     <hr>
     <div class="d-flex flex-row pb-5">
@@ -88,7 +88,7 @@
 
   </div>
   <!--左ナビ-->
-  <div class="col-3 px-3">
+  <div class="left-content col-3 px-3">
     <%= render 'layouts/shop_menu' %>
     <%= render 'layouts/pickup_menu', pick_up_tags: @pick_up_tags %>
     <%= render 'layouts/homes_menu',tag_rank: @tag_rank %>

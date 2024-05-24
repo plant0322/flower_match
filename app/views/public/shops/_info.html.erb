@@ -1,20 +1,22 @@
 <% if shop.is_active %>
-  <div class="card d-flex flex-row p-2">
-    <div class="col-2">
-      <%= image_tag shop.get_shop_image(100,100), class: "w-100 h-100" %>
-    </div>
-    <div class="col-7 d-flex flex-column px-2">
-      <div class="d-flex flex-row">
-        <h1 class="fw-bold h6"><%= shop.name %></h1>
-        <small><%= shop.name_kana %></small>
+  <div class="card d-flex flex-row flex-wrap p-2">
+    <div class="wide-item col-9 d-flex flex-row">
+      <div class="col-2">
+        <%= image_tag shop.get_shop_image(200,200), class: "w-100 hover-none" %>
       </div>
-      <small>
-        〒<%= shop.postal_code.to_s.insert(3, "-") %><br>
-        <%= shop.address %><br>
-        <%= shop.direction %>
-      </small>
+      <div class="col-10 d-flex flex-column px-2">
+        <div class="d-flex flex-row">
+          <h1 class="fw-bold h6"><%= shop.name %></h1>
+          <small><%= shop.name_kana %></small>
+        </div>
+        <small>
+          〒<%= shop.postal_code.to_s.insert(3, "-") %><br>
+          <%= shop.address %><br>
+          <%= shop.direction %>
+        </small>
+      </div>
     </div>
-    <div class="col-3">
+    <div class="wide-item col-3 mt-2">
       <%= link_to 'ショップ情報を見る', shop_path(shop), class: "btn btn-info mb-2 d-grid" %>
       <%= render 'public/favorite_shops/btn', shop: shop %>
     </div>

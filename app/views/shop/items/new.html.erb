@@ -1,12 +1,12 @@
-<div class="container d-flex flex-row-reverse pt-3">
-  <div class="col-9 px-5 mt-5">
+<div class="container d-flex flex-row-reverse flex-wrap pt-3">
+  <div class="main-content col-9 px-5 mt-5">
     <h2>商品を新しく登録する</h2>
     <hr>
 
     <%= render 'form', item: @item, url: shop_items_path, tag_list: @tag_list %>
 
   </div>
-  <div class="col-3 px-3">
+  <div class="left-content col-3 px-3">
     <%= render 'layouts/shop_menu' %>
     <%= render 'layouts/pickup_menu', pick_up_tags: @pick_up_tags %>
     <%= render 'layouts/homes_menu',tag_rank: @tag_rank %>

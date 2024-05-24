@@ -1,8 +1,8 @@
-<div class="container d-flex flex-row-reverse pt-3">
-  <div class="col-9 px-3">
+<div class="container d-flex flex-row-reverse flex-wrap pt-3">
+  <div class="main-content col-9 px-3">
     <div class="d-flex flex-wrap">
       <!--画像-->
-      <div class="col-4">
+      <div class="wide-item col-4">
         <%= image_tag @shop.get_shop_image(500,500), class: "w-100 p-1" %>
         <%= render 'public/favorite_shops/btn', shop: @shop %>
         <%= link_to review_path(@shop), class: "btn btn-outline-info d-grid mt-2" do %>
@@ -32,7 +32,7 @@
         <% end %>
       </div>
       <!--詳細-->
-      <div class="col-8 p-1">
+      <div class="wide-item col-8 p-1 pt-3">
         <h1 class="h3 fw-bold"><%= @shop.name %></h1>
         <p class="h6"><%= @shop.name_kana %> <small>[ <%= @shop.id %> ]</small></p>
         <!--ショップコメント-->
@@ -84,7 +84,7 @@
     <%= render 'layouts/paginate', content: @items %>
 
   </div>
-  <div class="col-3 px-3">
+  <div class="main-content col-3 px-3">
     <%= render 'layouts/members_menu' %>
     <%= render 'layouts/admin_menu' %>
     <%= render 'layouts/shop_menu' %>
