@@ -2,6 +2,7 @@
   <div class="col-9 px-3">
     <h2>New Item<span class="h6">（全<%= @items.total_count %>件）</span></h2>
     <hr>
+    <%= render 'pickup_img' %>
 
     <div>
       <%= render 'public/items/index', items: @items %>
