@@ -1,5 +1,5 @@
-<div class="container d-flex flex-row-reverse pt-3">
-  <div class="col-9 px-3">
+<div class="container d-flex flex-row-reverse flex-wrap pt-3">
+  <div class="main-content col-9 px-3">
     <h2>予約一覧<span class="h5">（全<%= @pre_orders.count %>件）</span></h2>
     <hr>
     <%= render 'shop/searches/form', search: @search_order %>
@@ -22,7 +22,7 @@
 
   </div>
   <!--左ナビ-->
-  <div class="col-3 px-3">
+  <div class="left-content col-3 px-3">
     <%= render 'layouts/shop_menu' %>
     <%= render 'layouts/pickup_menu', pick_up_tags: @pick_up_tags %>
     <%= render 'layouts/homes_menu',tag_rank: @tag_rank %>

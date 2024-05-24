@@ -1,12 +1,12 @@
-<div class="container d-flex flex-row-reverse pt-3">
-  <div class="col-9 px-5 mt-5">
+<div class="container d-flex flex-row-reverse flex-wrap pt-3">
+  <div class="main-content col-9 px-5 mt-5">
     <h2>会員情報編集</h2>
     <hr>
     <div class="pb-5">
       <%= form_with model: @member, url: update_information_path do |f| %>
         <%= render "public/shared/error_messages", resource: @member %>
         <h3 class="bg-info p-1 h5">名前</h3>
-        <table class="table table-borderless table-member my-3">
+        <table class="form-table table table-borderless table-member my-3">
           <tr>
             <th class="w-25">名前<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td>
@@ -32,7 +32,7 @@
         </table>
 
         <h3 class="bg-info p-1 h5">ユーザー情報</h3>
-        <table class="table table-borderless table-member my-3">
+        <table class="form-table table table-borderless table-member my-3">
           <tr>
             <th class="w-25">郵便番号<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td>
@@ -56,7 +56,7 @@
         </table>
 
         <h3 class="bg-info p-1 h5">ログイン情報</h3>
-        <table class="table table-borderless table-member my-3">
+        <table class="form-table table table-borderless table-member my-3">
           <tr>
             <th class="w-25">ニックネーム<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
@@ -84,10 +84,10 @@
 
       <% end %>
     </div>
-    <div><%= link_to "退会手続き", member_confirm_unsubscribe_path %></div>
+    <div class="mb-3"><%= link_to "退会手続き", member_confirm_unsubscribe_path %></div>
 
   </div>
-  <div class="col-3 px-3">
+  <div class="left-content col-3 px-3">
     <%= render 'layouts/members_menu' %>
     <%= render 'layouts/pickup_menu', pick_up_tags: @pick_up_tags %>
     <%= render 'layouts/homes_menu', tag_rank: @tag_rank %>

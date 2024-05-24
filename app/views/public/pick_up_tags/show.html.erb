@@ -1,5 +1,5 @@
-<div class="container d-flex flex-row-reverse pt-3">
-  <div class="col-9 px-3">
+<div class="container d-flex flex-row-reverse flex-wrap pt-3">
+  <div class="main-content col-9 px-3">
     <h1><%= @pick_up_tag.name %></h1>
     <% unless @pick_up_tag.is_active %>
       <small class="text-danger">(非公開中)</small>
@@ -25,7 +25,7 @@
 
 
   </div>
-  <div class="col-3 px-3">
+  <div class="left-content col-3 px-3">
     <%= render 'layouts/admin_menu' %>
     <%= render 'layouts/shop_menu' %>
     <%= render 'layouts/members_menu' %>

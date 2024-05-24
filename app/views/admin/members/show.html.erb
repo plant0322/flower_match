@@ -1,5 +1,5 @@
-<div class="container d-flex flex-row-reverse pt-3">
-  <div class="col-9 px-3">
+<div class="container d-flex flex-row-reverse flex-wrap pt-3">
+  <div class="main-content col-9 px-3">
     <!--詳細-->
     <h2><%= @member.member_full_name %>さま詳細情報</h2>
     <hr>
@@ -46,7 +46,7 @@
               <td>〒 <%= @member.postal_code.to_s.insert(3, "-") %><br><%= @member.address %></td>
             </tr>
             <tr>
-              <th>口コミ</th>              
+              <th>口コミ</th>
               <td colspan="4">
                 <%#= link_to review_path(@member) do %>
                   <%= @reviews.count %> 件の投稿あり
@@ -71,7 +71,7 @@
 
   </div>
 
-  <div class="col-3 px-3">
+  <div class="left-content col-3 px-3">
     <%= render 'layouts/admin_menu' %>
     <%= render 'layouts/pickup_menu', pick_up_tags: @pick_up_tags %>
     <%= render 'layouts/homes_menu', tag_rank: @tag_rank %>
