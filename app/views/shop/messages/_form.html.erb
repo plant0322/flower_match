@@ -4,16 +4,16 @@
       <div class="p-2 bg-info-subtle">
         <div class="bg-light p-2">
           <% if message.is_a?(MemberMessage) %>
-            <span class="btn btn-info px-1 py-0">
-              <%= message.member.member_full_name %> さま
+            <span class="btn btn-outline-info px-1 py-0">
+              <%= message.member.member_full_name %>
             </span>
           <% else %>
-            <span class="btn btn-outline-info px-1 py-0">
-              <%= message.shop.name %>
+            <span class="btn btn-info px-1 py-0">
+              <%= message.shop.name %> さん
             </span>
           <% end %>
           <%= message.message %>
-          <% if message.is_a?(MemberMessage) %>
+          <% if message.is_a?(ShopMessage) %>
             <%= link_to "削除", message_path(message), method: :delete, "data-confirm" => "本当に削除しますか？" %>
           <% else %>
           <% end %>

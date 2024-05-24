@@ -1,4 +1,5 @@
 class Public::MessagesController < ApplicationController
+  before_action :authenticate_member!
   before_action :block_non_related_member
 #  before_action :set_member_shop
 
@@ -15,8 +16,17 @@ class Public::MessagesController < ApplicationController
       @room.save
      # MessageRoom.create(member_id: current_member.id, shop_id: @shop.id, room_id: @room.id)
     end
-    @messages = (@room.member_messages + @room.shop_messages)
+    @messages = (@room.member_messages + @room.shop_messages).sort_by(&:created_at)
     @message = MemberMessage.new(room_id: @room.id)
+  end
+
+  def index
+    @tag_rank = Tag.tag_rank_item
+    rooms = Room.where(shop_id: current_shop)
+    shop_messages = ShopMessage.where(room_id: rooms)
+    member_messages = MemberMessage.where(room_id: rooms)
+    @messages = (shop_messages.to_a + member_messages.to_a).uniq
+    #@messages = ShopMessage.where(room_id: rooms).order(created_at: "DESC").page(params[:page])
   end
 
   def create

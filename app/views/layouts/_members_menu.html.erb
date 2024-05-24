@@ -28,6 +28,9 @@
       <tr class="tr-menu" onclick='window.location="<%= pre_orders_path %>"' role="link">
         <td>予約一覧</td>
       </tr>
+      <tr class="tr-menu" onclick='window.location="<%= messages_path %>"' role="link">
+        <td>ショップとのメッセージ</td>
+      </tr>
       <% unless current_member.guest_member? %>
         <tr class="tr-menu" onclick='window.location="<%= edit_information_path %>"' role="link">
           <td>会員情報編集</td>
