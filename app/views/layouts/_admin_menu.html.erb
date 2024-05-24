@@ -3,8 +3,8 @@
     <tr>
       <th class="text-center bg-member <%= (admin_signed_in? ? "bg-admin" : "" ) %> <%= (shop_signed_in? ? "bg-shop" : "" ) %>">管理者メニュー</th>
     </tr>
-    <tr class="tr-menu">
-      <td>連絡一覧</td>
+    <tr class="tr-menu" onclick='window.location="<%= admin_top_path %>"' role="link">
+      <td>管理画面TOP</td>
     </tr>
     <tr class="tr-menu" onclick='window.location="<%= admin_reviews_path %>"' role="link">
       <td>口コミ管理</td>

@@ -1,6 +1,8 @@
 class Admin::ReviewsController < ApplicationController
   def index
     @reviews = Review.all.order(id: 'DESC').page(params[:page])
+    @pick_up_tags = PickUpTag.where(is_active: true)
+    @tag_rank = Tag.tag_rank_item
   end
 
   def update

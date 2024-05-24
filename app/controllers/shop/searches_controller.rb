@@ -3,6 +3,7 @@ class Shop::SearchesController < ApplicationController
 
   def search
     @tag_rank = Tag.tag_rank_item
+    @pick_up_tags = PickUpTag.where(is_active: true)
     @type = params[:type]
     @method = params[:method]
     @content = params[:content]

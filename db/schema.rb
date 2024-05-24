@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_05_22_064117) do
+ActiveRecord::Schema.define(version: 2024_05_24_092613) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -88,9 +88,9 @@ ActiveRecord::Schema.define(version: 2024_05_22_064117) do
   end
 
   create_table "member_messages", force: :cascade do |t|
-    t.integer "member_id"
-    t.integer "room_id"
-    t.string "message"
+    t.integer "member_id", null: false
+    t.integer "room_id", null: false
+    t.string "message", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -120,6 +120,15 @@ ActiveRecord::Schema.define(version: 2024_05_22_064117) do
     t.integer "shop_id"
     t.integer "member_id"
     t.integer "room_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "pick_up_tags", force: :cascade do |t|
+    t.integer "tag_id", null: false
+    t.text "name", null: false
+    t.string "introduction", null: false
+    t.boolean "is_active", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -155,17 +164,17 @@ ActiveRecord::Schema.define(version: 2024_05_22_064117) do
   end
 
   create_table "rooms", force: :cascade do |t|
-    t.integer "member_id"
-    t.integer "shop_id"
+    t.integer "member_id", null: false
+    t.integer "shop_id", null: false
     t.boolean "is_take_care", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "shop_messages", force: :cascade do |t|
-    t.integer "shop_id"
-    t.integer "room_id"
-    t.string "message"
+    t.integer "shop_id", null: false
+    t.integer "room_id", null: false
+    t.string "message", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

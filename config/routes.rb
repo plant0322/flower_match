@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :members, only: [:show, :index, :edit, :update]
     resources :reviews, only: [:index, :update]
     resources :tags, only: [:index, :create, :update, :destroy]
+    resources :pick_up_tags, only: [:edit, :create, :update, :destroy]
   end
 
 
@@ -91,5 +92,6 @@ Rails.application.routes.draw do
     end
 
     resources :messages, only: [:show, :index, :create, :destroy]
+    resources :pick_up_tags, only: [:show]
   end
 end

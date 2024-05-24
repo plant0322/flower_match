@@ -7,6 +7,7 @@ class Public::ItemsController < ApplicationController
     @stock_array = Array(1..@stock)
     item_tags = ItemTag.where(item_id: @item.id)
     @item_tags = Tag.where(id: item_tags.pluck(:tag_id))
+    @pick_up_tags = PickUpTag.where(is_active: true)
     @tag_rank = Tag.tag_rank_item
   end
 end
