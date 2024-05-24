@@ -2,23 +2,18 @@
   <div class="col-9 px-3 mt-3">
     <h2>タグ一覧タグ管理</h2>
     <hr>
+    <h3>ピックアップイベント作成</h3>
+    <hr>
+    <%= render 'admin/pick_up_tags/form', pick_up_tag: @pick_up_tag, tags: @tags, url: admin_pick_up_tags_path %>
+
     <div class="d-flex justify-content-center mt-5">
       <div class="col-4 px-1">
-      <h3>ピックアップタグ</h3>
+      <h3>イベントタグ</h3>
       <hr>
-        <div>
-          <table class="table table-hover">
-            <tr>
-              <th class="text-center bg-member <%= (admin_signed_in? ? "bg-admin" : "" ) %> <%= (shop_signed_in? ? "bg-shop" : "" ) %>">おすすめ商品</th>
-            </tr>
-            <tr>
-              <td>※後で機能追加予定</td>
-            </tr>
-          </table>
-        </div>
-      </div>
+      <%= render 'layouts/pickup_menu', pick_up_tags: @pick_up_tags %>
+    </div>
 
-      <div class="col-4 px-1">
+    <div class="col-4 px-1">
       <h3>上位10件のタグ</h3>
       <hr>
         <div>

@@ -1,0 +1,22 @@
+<div class="container d-flex flex-row-reverse pt-3">
+  <div class="col-9 px-3">
+    <h1><%= @pick_up_tag.name %></h1>
+    <hr>
+    <%= image_tag @pick_up_tag.get_tag_image(900,300), class: "w-100 hover-none" %>
+    <div class="bg-light py-3 px-5 mb-3">
+      <p class="mx-5"><%= @pick_up_tag.introduction %></p>
+    </div>
+    <% if admin_signed_in? %>
+      <%= link_to 'このイベントを編集する', edit_admin_pick_up_tag_path, class: "btn btn-info p-2 w-100" %>
+    <% end %>
+
+
+    <%= render 'public/items/index', items: @items %>
+
+
+  </div>
+  <div class="col-3 px-3">
+    <%= render 'layouts/admin_menu' %>
+    <%= render 'layouts/homes_menu', tag_rank: @tag_rank %>
+  </div>
+</div>

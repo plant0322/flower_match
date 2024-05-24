@@ -1,0 +1,13 @@
+<div class="container d-flex flex-row-reverse pt-3">
+  <div class="col-9 px-3">
+    <h1>イベント編集</h1>
+    <hr>
+    <%= render 'admin/pick_up_tags/form', pick_up_tag: @pick_up_tag, tags: @tags, url: admin_pick_up_tag_path %>
+
+
+
+  </div>
+  <div class="col-3 px-3">
+    <%= render 'layouts/admin_menu' %>
+  </div>
+</div>

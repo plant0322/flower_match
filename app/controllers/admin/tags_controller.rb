@@ -15,6 +15,8 @@ class Admin::TagsController < ApplicationController
 
   def index
     @tags = Tag.all
+    @pick_up_tag = PickUpTag.new
+    @pick_up_tags = PickUpTag.all
     @tag_rank = Tag.joins(:item_tags).group(:id).order('COUNT(item_tags.tag_id) DESC').limit(10)
     #@tags = Tag.joins(:item_tags).group(:id).order('COUNT(item_tags.tag_id) DESC')
   end

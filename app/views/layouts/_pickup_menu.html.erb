@@ -1,0 +1,17 @@
+<div>
+  <table class="table">
+    <tr>
+      <th class="text-center bg-member <%= (admin_signed_in? ? "bg-admin" : "" ) %> <%= (shop_signed_in? ? "bg-shop" : "" ) %>">おすすめ商品</th>
+    </tr>
+    <% pick_up_tags.each do |tag| %>
+      <tr class="tr-menu" onclick='window.location="<%= pick_up_tag_path(tag) %>"' role="link">
+        <td><%= tag.name %></td>
+      </tr>
+      <% if admin_signed_in? %>
+        <tr>
+          <td><%= link_to '編集する', edit_admin_pick_up_tag_path(tag) %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>
