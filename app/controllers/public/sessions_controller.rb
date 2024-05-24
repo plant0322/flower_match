@@ -2,6 +2,7 @@
 
 class Public::SessionsController < Devise::SessionsController
   before_action :member_state, only: [:create]
+  before_action :set_search, only: [:new]
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -40,6 +41,10 @@ class Public::SessionsController < Devise::SessionsController
   end
 
   private
+
+  def set_search
+    @search = OpenStruct.new(model: 'item')
+  end
 
   def member_state
     member = Member.find_by(email: params[:member][:email])

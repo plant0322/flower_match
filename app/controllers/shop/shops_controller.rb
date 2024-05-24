@@ -31,6 +31,7 @@ class Shop::ShopsController < ApplicationController
     @shop = current_shop
     @pick_up_tags = PickUpTag.where(is_active: true)
     @tag_rank = Tag.tag_rank_item
+    @search = OpenStruct.new(model: 'item')
   end
 
   def ensure_guest_shop

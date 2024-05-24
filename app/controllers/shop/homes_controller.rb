@@ -10,5 +10,6 @@ class Shop::HomesController < ApplicationController
     @reviews = Review.where(pre_order_id: pre_orders).order(id: "DESC").limit(3)
     @pick_up_tags = PickUpTag.where(is_active: true)
     @tag_rank = Tag.tag_rank_item
+    @search = OpenStruct.new(model: 'item')
   end
 end

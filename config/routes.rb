@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'top'    =>  'homes#top', as: 'top'
-    get 'search' => 'searches#search'
+    #get 'search' => 'searches#search'
 
     resources :shops, only: [:index, :edit, :update]
     resources :members, only: [:show, :index, :edit, :update]
@@ -72,7 +72,7 @@ Rails.application.routes.draw do
     patch 'members/withdraw'       => 'members#withdraw', as: 'withdraw_member'
     post 'pre_orders/confirm'      => 'pre_orders#confirm'
     get 'pre_orders/confirm'       => 'pre_orders#error'
-    post 'pre_orders/thanks'        => 'pre_orders#thanks', as: 'thanks'
+    post 'pre_orders/thanks'       => 'pre_orders#thanks', as: 'thanks'
     get 'bookmarks'                => 'bookmarks#bookmark_list', as: 'bookmarks'
     get 'favorite_shops'           => 'favorite_shops#shop_list', as: 'favorite_shops'
     get 'favorite_shop_items'      => 'favorite_shops#item_list', as: 'favorite_shop_items'

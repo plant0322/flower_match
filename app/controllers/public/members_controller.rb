@@ -2,6 +2,7 @@ class Public::MembersController < ApplicationController
   before_action :authenticate_member!
   before_action :set_current_member, only: [:edit, :update, :withdraw]
   before_action :ensure_guest_member, only: [:edit, :unsubscribe]
+  before_action :set_search, only: [:show, :edit, :unsubscribe]
 
   def show
     active_shops = Shop.where(is_active: true)
@@ -44,6 +45,10 @@ class Public::MembersController < ApplicationController
   end
 
   private
+
+  def set_search
+    @search = OpenStruct.new(model: 'item')
+  end
 
   def set_current_member
     @member = current_member
