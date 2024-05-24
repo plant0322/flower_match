@@ -33,7 +33,7 @@
             <%= link_to "/search?model=tag&content=#{tag.name}", target: :_blank do %>
               <p># <%= tag.name %>（<%= tag.items.count %>）</p>
             <% end %>
-            <%= link_to '×', admin_tag_path(tag), method: :delete, "data-confirm" => "「#{tag.name}」 を削除しますか？'", class: "btn btn-outline-secondary col-1 p-0 h-50" %>
+            <span><%= link_to '×', admin_tag_path(tag), method: :delete, "data-confirm" => "「#{tag.name}」 を削除しますか？'", class: "btn btn-outline-info p-0" %></span>
           </div>
           <% end %>
         </div>

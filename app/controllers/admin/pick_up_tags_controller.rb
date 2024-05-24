@@ -30,6 +30,13 @@ class Admin::PickUpTagsController < ApplicationController
     end
   end
 
+  def destroy
+    pick_up_tag = PickUpTag.find(params[:id])
+    pick_up_tag.destroy
+    redirect_to admin_tags_path
+    flash[:notice] = "イベントを削除しました"
+  end
+
   private
 
   def pick_up_tag_params

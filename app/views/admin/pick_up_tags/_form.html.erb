@@ -31,8 +31,9 @@
         <% if controller.action_name != 'edit' %>
           <%= f.submit 'イベントを作成する', class: "btn btn-info p-2" %>
         <% else %>
-          <%= link_to 'プレビューで確認する', pick_up_tag_path(pick_up_tag), target: :_blank, class: "btn btn-outline-info p-2" %>
           <%= f.submit 'イベントを編集する', class: "btn btn-info p-2" %>
+          <%= link_to 'プレビューで確認する', pick_up_tag_path(pick_up_tag), target: :_blank, class: "btn btn-outline-info p-2" %>
+          <%= link_to '※削除する', admin_pick_up_tag_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-info p-2" %>
         <% end %>
       </td>
     </tr>
