@@ -19,9 +19,9 @@ class Tag < ApplicationRecord
   # 左ナビに表示する上位10件のタグを呼び出す
   def self.tag_rank_item
     active_shops = Shop.where(is_active: true)
-    active_items = Item.where(is_active: true, shop_id: active_shops)
+    active_items = Item.where(is_active: true, shop_id: active_shops).select(:id)
     joins(:item_tags)
-      .where(id: active_items)
+      .where(item_tags: { item_id: active_items })
       .group(:id)
       .order('COUNT(item_tags.tag_id) DESC')
       .limit(10)

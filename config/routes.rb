@@ -42,7 +42,8 @@ Rails.application.routes.draw do
     resources :members, only: [:show]
     resources :items, except: [:show]
     resources :pre_orders, only: [:show, :index, :update]
-    resources :messages, only: [:show, :index, :create, :destroy]
+    resources :messages, only: [:show, :index, :create, :update, :destroy]
+    #resources :rooms, only: [:update]
   end
 
 
