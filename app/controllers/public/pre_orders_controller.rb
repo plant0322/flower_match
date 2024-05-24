@@ -1,6 +1,7 @@
 class Public::PreOrdersController < ApplicationController
   before_action :authenticate_member!
   before_action :is_matching_login_member, only: [:show]
+  before_action :set_search, only: [:new, :confirm, :error, :thanks, :index, :show]
 
   def new
     @item =  Item.find(session[:item_id])
@@ -75,6 +76,10 @@ class Public::PreOrdersController < ApplicationController
   end
 
   private
+
+  def set_search
+    @search = OpenStruct.new(model: 'item')
+  end
 
   def is_matching_login_member
     pre_order = PreOrder.find(params[:id])

@@ -2,6 +2,7 @@
 
 class Shop::SessionsController < Devise::SessionsController
   before_action :shop_state, only: [:create]
+  before_action :set_search, only: [:new]
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -41,6 +42,10 @@ class Shop::SessionsController < Devise::SessionsController
   end
 
   private
+
+  def set_search
+    @search = OpenStruct.new(model: 'item')
+  end
 
   def shop_state
     shop = Shop.find_by(email: params[:shop][:email])

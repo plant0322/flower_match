@@ -6,5 +6,6 @@ class Public::PickUpTagsController < ApplicationController
     @items = @pick_up_tag.tag.items.where(is_active: true, shop_id: active_shop).order(id: 'DESC').page(params[:page])
     @pick_up_tags = PickUpTag.where(is_active: true)
     @tag_rank = Tag.tag_rank_item
+    @search = OpenStruct.new(model: 'item')
   end
 end

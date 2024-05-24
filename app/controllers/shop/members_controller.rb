@@ -14,6 +14,7 @@ class Shop::MembersController < ApplicationController
     @reviews = Review.where(pre_order_id: pre_orders)
     @pick_up_tags = PickUpTag.where(is_active: true)
     @tag_rank = Tag.tag_rank_item
+    @search = OpenStruct.new(model: 'item')
   end
 
   private
@@ -23,8 +24,6 @@ class Shop::MembersController < ApplicationController
     member = Member.find(params[:id])
     items = Item.where(shop_id: current_shop)
     pre_orders = PreOrder.where(item_id: items.pluck(:id)).where(member_id: member)
-    #items = Item.find_by(shop_id: current_shop)
-    #pre_orders = PreOrder.where(item_id: items) && PreOrder.where(member_id: member)
     unless pre_orders.exists?
       flash[:alert] = "このユーザーからの予約はまだありません"
       redirect_to shop_top_path

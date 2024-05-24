@@ -39,6 +39,7 @@ class Admin::MembersController < ApplicationController
   def set_tag
     @pick_up_tags = PickUpTag.where(is_active: true)
     @tag_rank = Tag.tag_rank_item
+    @search = OpenStruct.new(model: 'item')
   end
 
   def set_member

@@ -3,7 +3,7 @@
     <% if @type == 'item' || @type == 'item_name' %>
       <h2>「<%= @content %>」<span class="h4">を含む商品の検索結果</span><span class="h6">（全<%= @records.count %>件）</span></h2>
       <hr>
-      <%= render 'shop/searches/form' %>
+      <%= render 'shop/searches/form', search: @search_order %>
       <% if @records.blank? %>
         <p class="lh-lg">
         該当する商品はありません
@@ -15,7 +15,7 @@
     <% elsif @type == 'order_member' || @type == 'order_item_all' || @type == 'order_item' %>
       <h2>「<%= @content %>」<span class="h4">を含む予約の検索結果</span><span class="h6">（全<%= @records.count %>件）</span></h2>
       <hr>
-      <%= render 'shop/searches/form' %>
+      <%= render 'shop/searches/form', search: @search_order %>
       <% if @records.blank? %>
         <p>該当する予約履歴はありません</p>
       <% else %>

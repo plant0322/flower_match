@@ -1,4 +1,6 @@
 class Public::FavoriteShopsController < ApplicationController
+  before_action :authenticate_member!
+  before_action :set_search, only: [:shop_list, :item_list]
 
   def create
     shop = Shop.find(params[:shop_id])
@@ -28,5 +30,11 @@ class Public::FavoriteShopsController < ApplicationController
     @favorite_shop_items = Item.where(is_active: true, shop_id: acive_favorite_shops_ids).order(id: 'DESC').page(params[:page])
     @pick_up_tags = PickUpTag.where(is_active: true)
     @tag_rank = Tag.tag_rank_item
+  end
+
+  private
+
+  def set_search
+    @search = OpenStruct.new(model: 'item')
   end
 end

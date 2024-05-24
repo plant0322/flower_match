@@ -2,12 +2,15 @@ class Shop::SearchesController < ApplicationController
   before_action :authenticate_shop!
 
   def search
-    @tag_rank = Tag.tag_rank_item
-    @pick_up_tags = PickUpTag.where(is_active: true)
     @type = params[:type]
     @method = params[:method]
     @content = params[:content]
     shop_items = Item.where(shop_id: current_shop.id)
+    if @type.in?(['order_item_all', 'order_member'])
+      @search_order = OpenStruct.new(type: @type)
+    else
+      @search_order = OpenStruct.new(type: 'order_member')
+    end
 
     if @type == 'order_member'
       content_records = PreOrder.where('last_name LIKE? OR first_name LIKE? OR last_name_kana LIKE? OR first_name_kana LIKE? OR
@@ -35,5 +38,9 @@ class Shop::SearchesController < ApplicationController
       @records = Item.search_for(@content, @method)
                      .where(id: shop_items.pluck(:id)).order(id: "DESC").page(params[:page])
     end
+
+    @tag_rank = Tag.tag_rank_item
+    @pick_up_tags = PickUpTag.where(is_active: true)
+    @search = OpenStruct.new(model: 'item')
   end
 end

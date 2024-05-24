@@ -21,9 +21,7 @@
       </div>
       <!--検索フォーム-->
       <div class="col-3">
-        <% unless shop_signed_in? %>
-          <%= render 'public/searches/form' %>
-        <% end %>
+        <%= render 'public/searches/form', search: @search %>
       </div>
       <!--ヘッダーボタン-->
       <div class="col-5 d-flex justify-content-end pe-4 pt-4 member-btn <%= (admin_signed_in? ? "admin-btn" : "" ) %>  <%= (shop_signed_in? ? "shop-btn" : "" ) %>">

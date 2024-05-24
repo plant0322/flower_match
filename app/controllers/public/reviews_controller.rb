@@ -1,9 +1,9 @@
 class Public::ReviewsController < ApplicationController
 
-  def new
-    @pre_order = PreOrder.find(params[:pre_order_id])
-    @review = Review.new
-  end
+  #def new
+    #@pre_order = PreOrder.find(params[:pre_order_id])
+    #@review = Review.new
+  #end
 
   def create
     pre_order = PreOrder.find(params[:pre_order_id])
@@ -26,6 +26,7 @@ class Public::ReviewsController < ApplicationController
                      .where(is_active: true).order(id: 'DESC').page(params[:page])
     @pick_up_tags = PickUpTag.where(is_active: true)
     @tag_rank = Tag.tag_rank_item
+    @search = OpenStruct.new(model: 'item')
   end
 
   private

@@ -13,7 +13,6 @@ class Public::MessagesController < ApplicationController
       @room.member_id = current_member.id
       @room.shop_id = @shop.id
       @room.save
-     # MessageRoom.create(member_id: current_member.id, shop_id: @shop.id, room_id: @room.id)
     end
     @messages = (@room.member_messages + @room.shop_messages).sort_by(&:created_at).sort { |a, b| b.created_at <=> a.created_at }
     @message = MemberMessage.new(room_id: @room.id)
@@ -37,12 +36,9 @@ class Public::MessagesController < ApplicationController
       end
       @messages.sort_by!(&:created_at)
     end
-    #rooms = Room.where(member_id: current_member)
-    #@messages = ShopMessage.where(room_id: rooms).order(created_at: "DESC")
   end
 
   def create
-   # @message = current_member.member_messages.new(member_message_params)
    @message = MemberMessage.new(member_message_params)
    @message.member_id = current_member.id
     if @message.save
@@ -64,6 +60,7 @@ class Public::MessagesController < ApplicationController
   def set_tag_rank
     @pick_up_tags = PickUpTag.where(is_active: true)
     @tag_rank = Tag.tag_rank_item
+    @search = OpenStruct.new(model: 'item')
   end
 
   def member_message_params
