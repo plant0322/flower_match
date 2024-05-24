@@ -38,10 +38,22 @@ class Shop::MessagesController < ApplicationController
       @message.member_id = current_member.id
     end
     if @message.save
+      if @message.is_a?(MemberMessage)
+        Room.find_by(id: @message.room_id).update(is_take_care: false)
+      end
       redirect_to request.referer
     else
       flash[:alert] = "送信に失敗しました"
       redirect_to request.referer
+    end
+  end
+
+  def update
+    @room = Room.find(params[:id])
+    if @room.update(room_params)
+      flash[:notice] = "更新しました"
+      redirect_to request.referer
+    else
     end
   end
 
@@ -59,6 +71,10 @@ class Shop::MessagesController < ApplicationController
 
   def shop_message_params
     params.require(:shop_message).permit(:message, :room_id)
+  end
+
+  def room_params
+    params.require(:room).permit(:is_take_care)
   end
 
   def block_non_related_shop

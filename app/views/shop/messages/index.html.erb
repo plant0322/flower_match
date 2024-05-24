@@ -21,6 +21,15 @@
               <small><%= message.shop.name %> の返信:</small>
             <% end %>
             <%= message.message %>
+              <% if message.room.is_take_care %>
+                <span class="text-success ps-2">
+                  対応済み
+                </span>
+              <% else %>
+                <span class="text-danger ps-2">
+                  対応待ち
+                </span>
+              <% end %>
           </div>
         </div>
       <% end %>
