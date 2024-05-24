@@ -1,6 +1,8 @@
 class Admin::MembersController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_member, only: [:show, :edit, :update]
+  before_action :set_tag, only: [:show, :edit, :index]
+
   def show
     member_pre_orders = PreOrder.where(member_id: @member)
     @before_visit_pre_orders = member_pre_orders.where(status: 'before_visit')
@@ -33,6 +35,11 @@ class Admin::MembersController < ApplicationController
   end
 
   private
+
+  def set_tag
+    @pick_up_tags = PickUpTag.where(is_active: true)
+    @tag_rank = Tag.tag_rank_item
+  end
 
   def set_member
     @member = Member.find(params[:id])

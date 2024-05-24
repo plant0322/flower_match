@@ -1,3 +1,5 @@
+<!--消す？-->
+
 <div class="container d-flex flex-row-reverse pt-3">
   <div class="col-9 px-3">
     <%= render 'shop/searches/form' %>
@@ -23,5 +25,7 @@
   <!--左ナビ-->
   <div class="col-3 px-3">
     <%= render 'layouts/admin_menu' %>
+    <%= render 'layouts/pickup_menu', pick_up_tags: @pick_up_tags %>
+    <%= render 'layouts/homes_menu', tag_rank: @tag_rank %>
   </div>
 </div>

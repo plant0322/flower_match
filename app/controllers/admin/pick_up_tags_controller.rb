@@ -15,6 +15,8 @@ class Admin::PickUpTagsController < ApplicationController
   def edit
     @tags = Tag.all
     @pick_up_tag = PickUpTag.find(params[:id])
+    @pick_up_tags = PickUpTag.where(is_active: true)
+    @tag_rank = Tag.tag_rank_item
   end
 
   def update

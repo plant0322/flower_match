@@ -19,12 +19,13 @@ class Public::ReviewsController < ApplicationController
   end
 
   def index
-    @tag_rank = Tag.tag_rank_item
     @shop = Shop.find(params[:shop_id])
     items = @shop.items
     pre_orders = PreOrder.where(item_id: items)
     @reviews = Review.where(pre_order_id: pre_orders)
                      .where(is_active: true).order(id: 'DESC').page(params[:page])
+    @pick_up_tags = PickUpTag.where(is_active: true)
+    @tag_rank = Tag.tag_rank_item
   end
 
   private

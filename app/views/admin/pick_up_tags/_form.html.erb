@@ -1,39 +1,40 @@
-<table class="table table-borderless table-light my-3">
-  <%= form_with model: pick_up_tag, url: url do |f| %>
-  <tr>
-    <th>名前</th>
-    <td><%= f.text_field :name, autocomplete: "name", class: "form-control" %></td>
-  </tr>
-  <tr>
-    <th>タグ選択</th>
-    <td><%= f.collection_select :tag_id, tags, :id, :name, { prompt: "タグを選択してください" }, { class: "form-select" } %></td>
-  </tr>
-  <tr>
-    <th>イベント詳細</th>
-    <td><%= f.text_area :introduction, autocomplete: "introduction", class: "form-control" %></td>
-  </tr>
-  <tr>
-    <th>イメージ画像</th>
-    <td>
-      <%= f.file_field :tag_image, autocomplete: "tag_image", class: "form-control" %>
-      <small>※TOPとイベント詳細にアイキャッチとして表示されます</small>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" class="text-center">
-      <%= f.radio_button :is_active, true, class: "form-check-input" %><%= f.label :is_active, '公開', class: "form-check-label text-success pe-3" %>
-      <%= f.radio_button :is_active, false, class: "form-check-input" %><%= f.label :is_active, '非公開', class: "form-check-label text-danger" %>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" class="text-center">
-      <% if controller.action_name != 'edit' %>
-        <%= f.submit 'イベントを作成する', class: "btn btn-info p-2" %>
-      <% else %>
-        <%= link_to 'プレビューで確認する', pick_up_tag_path(pick_up_tag), target: :_blank, class: "btn btn-outline-info p-2" %>
-        <%= f.submit 'イベントを編集する', class: "btn btn-info p-2" %>
-      <% end %>
-    </td>
-  </tr>
-  <% end %>
-</table>
+
+<%= form_with model: pick_up_tag, url: url do |f| %>
+  <table class="table table-borderless table-light my-3">
+    <tr>
+      <th>名前</th>
+      <td><%= f.text_field :name, autocomplete: "name", class: "form-control" %></td>
+    </tr>
+    <tr>
+      <th>タグ選択</th>
+      <td><%= f.collection_select :tag_id, tags, :id, :name, { prompt: "タグを選択してください" }, { class: "form-select" } %></td>
+    </tr>
+    <tr>
+      <th>イベント詳細</th>
+      <td><%= f.text_area :introduction, autocomplete: "introduction", class: "form-control" %></td>
+    </tr>
+    <tr>
+      <th>イメージ画像</th>
+      <td>
+        <%= f.file_field :tag_image, autocomplete: "tag_image", class: "form-control" %>
+        <small>※TOPとイベント詳細にアイキャッチとして表示されます</small>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="text-center">
+        <%= f.radio_button :is_active, true, class: "form-check-input" %><%= f.label :is_active, '公開', class: "form-check-label text-success pe-3" %>
+        <%= f.radio_button :is_active, false, class: "form-check-input" %><%= f.label :is_active, '非公開', class: "form-check-label text-danger" %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="text-center">
+        <% if controller.action_name != 'edit' %>
+          <%= f.submit 'イベントを作成する', class: "btn btn-info p-2" %>
+        <% else %>
+          <%= link_to 'プレビューで確認する', pick_up_tag_path(pick_up_tag), target: :_blank, class: "btn btn-outline-info p-2" %>
+          <%= f.submit 'イベントを編集する', class: "btn btn-info p-2" %>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+<% end %>

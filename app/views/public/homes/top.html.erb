@@ -7,7 +7,7 @@
       <%= render 'public/items/index', items: @items %>
 
       <!--ページネーション-->
-      <%= render 'layouts/paginate', content: @items, content_all: @items_all %>
+      <%= render 'layouts/paginate', content: @items %>
     </div>
 
   </div>
@@ -16,6 +16,7 @@
     <%= render 'layouts/members_menu' %>
     <%= render 'layouts/admin_menu' %>
     <%= render 'layouts/shop_menu' %>
+    <%= render 'layouts/pickup_menu', pick_up_tags: @pick_up_tags %>
     <%= render 'layouts/homes_menu', tag_rank: @tag_rank %>
   </div>
 </div>

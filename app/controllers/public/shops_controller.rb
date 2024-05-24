@@ -10,6 +10,7 @@ class Public::ShopsController < ApplicationController
     shop_pre_order_ids = PreOrder.where(item_id: @items.pluck(:id)).pluck(:id)
     @reviews = Review.where(pre_order_id: shop_pre_order_ids)
                      .where(is_active: 'true')
+    @pick_up_tags = PickUpTag.where(is_active: true)
     @tag_rank = Tag.tag_rank_item
   end
 

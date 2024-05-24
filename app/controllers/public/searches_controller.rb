@@ -4,6 +4,7 @@ class Public::SearchesController < ApplicationController
     active_shops = Shop.where(is_active: true)
     @content = params[:content]
     @model = params[:model]
+    @pick_up_tags = PickUpTag.where(is_active: true)
     @tag_rank = Tag.tag_rank_item
     @tags = Tag.tag_rank_item.limit(50)
     if @model == 'item'

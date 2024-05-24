@@ -5,7 +5,14 @@
     </tr>
     <% pick_up_tags.each do |tag| %>
       <tr class="tr-menu" onclick='window.location="<%= pick_up_tag_path(tag) %>"' role="link">
-        <td><%= tag.name %></td>
+        <td>
+          <%= tag.name %>
+          <% if tag.is_active & admin_signed_in? %>
+            <small class="text-success">(公開中)</small>
+          <% elsif admin_signed_in? %>
+            <small class="text-danger">(非公開)</small>
+          <% end %>
+        </td>
       </tr>
       <% if admin_signed_in? %>
         <tr>

@@ -1,6 +1,7 @@
 class Admin::ShopsController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_shop, only: [:show, :edit, :update]
+  before_action :set_tag, only: [:index, :edit]
 
   def show
     @items = Item.where(shop_id: @shop)
@@ -28,6 +29,11 @@ class Admin::ShopsController < ApplicationController
   end
 
   private
+
+  def set_tag
+    @pick_up_tags = PickUpTag.where(is_active: true)
+    @tag_rank = Tag.tag_rank_item
+  end
 
   def set_shop
     @shop = Shop.find(params[:id])
