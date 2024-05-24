@@ -1,0 +1,14 @@
+<!--新規に送る用-->
+
+<div class="container d-flex flex-row-reverse pt-3">
+  <div class="col-9 px-3">
+    <h2><%= @shop.name %>さんとのメッセージ</h2>
+    <hr>
+    <%= render 'public/messages/form', messages: @messages, message: @message, url: messages_path %>
+
+  </div>
+  <div class="col-3 px-3">
+    <%= render 'layouts/members_menu' %>
+    <%= render 'layouts/homes_menu', tag_rank: @tag_rank %>
+  </div>
+</div>

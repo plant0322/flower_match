@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_05_17_194906) do
+ActiveRecord::Schema.define(version: 2024_05_22_064117) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -87,6 +87,14 @@ ActiveRecord::Schema.define(version: 2024_05_17_194906) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "member_messages", force: :cascade do |t|
+    t.integer "member_id"
+    t.integer "room_id"
+    t.string "message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "members", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -106,6 +114,14 @@ ActiveRecord::Schema.define(version: 2024_05_17_194906) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
+  end
+
+  create_table "message_rooms", force: :cascade do |t|
+    t.integer "shop_id"
+    t.integer "member_id"
+    t.integer "room_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "pre_orders", force: :cascade do |t|
@@ -134,6 +150,21 @@ ActiveRecord::Schema.define(version: 2024_05_17_194906) do
     t.text "content", null: false
     t.integer "pre_order_id", null: false
     t.boolean "is_active", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.integer "member_id"
+    t.integer "shop_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "shop_messages", force: :cascade do |t|
+    t.integer "shop_id"
+    t.integer "room_id"
+    t.string "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

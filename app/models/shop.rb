@@ -6,6 +6,9 @@ class Shop < ApplicationRecord
 
   has_many :items, dependent: :destroy
   has_many :favorite_shops, dependent: :destroy
+  has_many :shop_messages, dependent: :destroy
+  has_many :rooms, dependent: :destroy
+  #has_many :message_rooms, dependent: :destroy
   has_one_attached :shop_image
 
   validates :shop_image, presence: true

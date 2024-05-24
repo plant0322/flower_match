@@ -1,0 +1,37 @@
+<div class="container d-flex flex-row-reverse pt-3">
+  <div class="col-9 px-3">
+    <h2>新着メッセージ</h2>
+    <hr>
+
+    <% @messages.each do |message| %>
+      <%= link_to shop_message_path(message.room_id) do %>
+        <div class="d-flex flex-row bg-info-subtle p-3 my-3">
+          <div class="fw-bold pe-3">
+            <% if message.is_a?(MemberMessage) %>
+              <div class="btn btn-info hover-none">
+              <%= message.created_at.strftime("%Y年%m月%d日") %>
+                <%= message.room.shop.name %> さん
+              </div>
+              <small><%= message.member.member_full_name %> さんの返信:</small>
+            <% elsif message.is_a?(ShopMessage) %>
+              <div class="btn btn-info hover-none">
+                <%= message.created_at.strftime("%Y年%m月%d日") %>
+                <%= message.shop.name %> さん
+              </div>
+              <small><%= message.shop.name %> さん<small>[ <%= message.room.shop.id %> ]</small>から受信:</small>
+            <% end %>
+            <%= message.message %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <!--ページネーション-->
+    <%#= render 'layouts/paginate', content: @messages %>
+
+  </div>
+  <div class="col-3 px-3">
+    <%= render 'layouts/shop_menu' %>
+    <%= render 'layouts/homes_menu', tag_rank: @tag_rank %>
+  </div>
+</div>
