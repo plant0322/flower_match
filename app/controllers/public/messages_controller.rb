@@ -5,7 +5,7 @@ class Public::MessagesController < ApplicationController
 
   def show
     @tag_rank = Tag.tag_rank_item
-    @shop = Shop.find(params[:id])
+    #@shop = Shop.find(params[:id])
     room = Room.find_by(member_id: current_member.id, shop_id: @shop)
     unless room.nil?
       @room = room
@@ -22,10 +22,12 @@ class Public::MessagesController < ApplicationController
 
   def index
     @tag_rank = Tag.tag_rank_item
-    rooms = Room.where(shop_id: current_shop)
-    shop_messages = ShopMessage.where(room_id: rooms)
-    member_messages = MemberMessage.where(room_id: rooms)
-    @messages = (shop_messages.to_a + member_messages.to_a).uniq
+    rooms = Room.where(member_id: current_member)
+    @messages = ShopMessage.where(room_id: rooms).order(created_at: "DESC").page(params[:page])
+    #rooms = Room.where(shop_id: current_shop)
+    #shop_messages = ShopMessage.where(room_id: rooms)
+    #member_messages = MemberMessage.where(room_id: rooms)
+    #@messages = (shop_messages.to_a + member_messages.to_a).uniq
     #@messages = ShopMessage.where(room_id: rooms).order(created_at: "DESC").page(params[:page])
   end
 

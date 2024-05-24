@@ -4,19 +4,33 @@
       <div class="p-2 bg-info-subtle">
         <div class="bg-light p-2">
           <% if message.is_a?(MemberMessage) %>
-            <span class="btn btn-outline-info px-1 py-0">
-              <%= message.member.member_full_name %>
-            </span>
+            <% if member_signed_in? %>
+              <span class="btn btn-info hover-none px-1 py-0">
+                <%= message.member.member_full_name %>
+              </span>
+            <% else %>
+              <%= link_to shop_member_path(message.member), class: "btn btn-info px-1 py-0" do %>
+                <%= message.member.member_full_name %> 様
+              <% end %>
+            <% end %>
           <% else %>
-            <span class="btn btn-info px-1 py-0">
-              <%= message.shop.name %> さん
-            </span>
+            <% if shop_signed_in? %>
+              <span class="btn btn-outline-info hover-none px-1 py-0">
+                <%= message.shop.name %>
+              </span>
+            <% else %>
+              <%= link_to shop_path(message.shop), class: "btn btn-outline-info px-1 py-0" do %>
+                <%= message.shop.name %> さん
+              <% end %>
+            <% end %>
           <% end %>
           <%= message.message %>
-          <% if message.is_a?(ShopMessage) %>
-            <%= link_to "削除", message_path(message), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-          <% else %>
-          <% end %>
+            <% if message.is_a?(ShopMessage) && shop_signed_in? %>
+              <%= link_to "削除", shop_message_path(message), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+            <% elsif message.is_a?(MemberMessage) && member_signed_in? %>
+              <%= link_to "削除", shop_message_path(message), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+            <% else %>
+            <% end %>
           <small class="text-body-tertiary">(<%= message.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %>)</small>
         </div>
       </div>

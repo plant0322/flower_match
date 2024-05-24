@@ -17,6 +17,16 @@
             <th>ニックネーム</th>
             <td colspan="4"><%= @member.nickname %></td>
           </tr>
+            <tr>
+              <th>状態</th>
+              <td>
+                <% if @member.is_active == true %>
+                  <span class="text-submit fw-bold">有効</span>
+                <% else %>
+                  <span class="text-danger fw-bold">退会</span>
+                <% end %>
+              </td>
+            </tr>
         </table>
       </div>
 
@@ -30,6 +40,18 @@
             <th class="w-25">住所</th>
             <td>〒 <%= @member.postal_code.to_s.insert(3, "-") %><br><%= @member.address %></td>
           </tr>
+            <tr>
+              <th>メッセージ</th>
+              <td>
+                <% if @room.present? %>
+                  <%= link_to shop_message_path(@room.ids) do %>
+                    <span class="text-submit fw-bold">メッセージを見る</span>
+                  <% end %>
+                <% else %>
+                  <span>メッセージなし</span>
+                <% end %>
+              </td>
+            </tr>
           <tr>
             <th>口コミ</th>
             <td colspan="4">

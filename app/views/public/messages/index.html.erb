@@ -4,12 +4,12 @@
     <hr>
 
     <% @messages.each do |message| %>
-      <%= link_to message_path(message.room_id) do %>
+      <%= link_to shop_message_path(message.room_id) do %>
         <div class="d-flex flex-row bg-info-subtle p-2 my-3">
           <div class="fw-bold pe-3">
             <%= message.created_at.strftime("%Y年%m月%d日") %>
             <%= message.shop.name %> からのメッセージ
-            <%= message.shop.id %>
+            <small>[ <%= message.shop.id %> ]</small>
           </div>
           <%= message.message %>
         </div>

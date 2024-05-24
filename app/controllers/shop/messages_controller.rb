@@ -1,7 +1,6 @@
 class Shop::MessagesController < ApplicationController
-  before_action :authenticate_shop!
   before_action :set_tag_rank, only: [:show, :index]
-  before_action :block_non_related_shop, only: [:show, :create, :destroy]
+  before_action :block_non_related_shop, only: [:show, :destroy]
 
   def show
     @room = Room.find(params[:id])
@@ -15,8 +14,13 @@ class Shop::MessagesController < ApplicationController
   end
 
   def create
-   @message = ShopMessage.new(shop_message_params)
-   @message.shop_id = current_shop.id
+    if shop_signed_in?
+      @message = ShopMessage.new(shop_message_params)
+      @message.shop_id = current_shop.id
+    elsif member_signed_in?
+      @message = MemberMessage.new(shop_message_params)
+      @message.member_id = current_member.id
+    end
     if @message.save
       redirect_to request.referer
     else
@@ -43,7 +47,7 @@ class Shop::MessagesController < ApplicationController
 
   def block_non_related_shop
     room = Room.find(params[:id])
-    if room.shop_id != current_shop.id
+    if (shop_signed_in? && room.shop_id != current_shop.id) || (member_signed_in? && room.member_id != current_member.id)
       redirect_to root_path
     end
   end

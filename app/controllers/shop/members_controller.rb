@@ -11,6 +11,7 @@ class Shop::MembersController < ApplicationController
     @before_visit_pre_orders = pre_orders.where(status: 'before_visit')
     @visit_or_cancel_pre_orders = pre_orders.where(status: ['visit', 'cancel']).order(visit_day: "DESC").page(params[:page])
     #@visit_or_cancel_pre_orders = pre_orders.where(status: 'visit') + pre_orders.where(status: 'cancel')
+    @room = Room.where(shop_id: current_shop, member_id: @member)
     @reviews = Review.where(pre_order_id: pre_orders)
   end
 
@@ -19,9 +20,12 @@ class Shop::MembersController < ApplicationController
 # current_shopの商品を一度も予約したことのないmemberのshow(予約履歴)は開けないようにする
   def is_matching_login_shop
     member = Member.find(params[:id])
-    items = Item.find_by(shop_id: current_shop.id)
-    pre_orders = PreOrder.where(item_id: items.id) && PreOrder.where(member_id: member.id)
+    items = Item.where(shop_id: current_shop)
+    pre_orders = PreOrder.where(item_id: items.pluck(:id)).where(member_id: member)
+    #items = Item.find_by(shop_id: current_shop)
+    #pre_orders = PreOrder.where(item_id: items) && PreOrder.where(member_id: member)
     unless pre_orders.exists?
+      flash[:alert] = "このユーザーからの予約はまだありません"
       redirect_to shop_top_path
     end
   end
