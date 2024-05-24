@@ -1,8 +1,19 @@
 <div class="col-12">
+  <!--送信フォーム-->
+  <div class= "py-2">
+    <%= form_with model: message, url: url do |f| %>
+      <%= f.text_area :message, class: "form-control" %>
+      <div class= "py-2 text-end">
+        <%= f.submit "送信", class: "btn btn-info" %>
+      </div>
+      <%= f.hidden_field :room_id %>
+    <% end %>
+  </div>
+  <!--メッセージ-->
   <div class= "py-2">
     <% messages.each do |message| %>
-      <div class="p-2 bg-info-subtle">
-        <div class="bg-light p-2">
+      <div class="px-2 py-3 bg-info-subtle">
+        <div class="bg-light p-3">
           <% if message.is_a?(MemberMessage) %>
             <% if member_signed_in? %>
               <span class="btn btn-info hover-none px-1 py-0">
@@ -34,16 +45,6 @@
           <small class="text-body-tertiary">(<%= message.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %>)</small>
         </div>
       </div>
-    <% end %>
-  </div>
-
-  <div class= "py-2">
-    <%= form_with model: message, url: url do |f| %>
-      <%= f.text_area :message, class: "form-control" %>
-      <div class= "py-2">
-        <%= f.submit "送信", class: "btn btn-info" %>
-      </div>
-      <%= f.hidden_field :room_id %>
     <% end %>
   </div>
 </div>

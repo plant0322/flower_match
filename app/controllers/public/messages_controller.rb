@@ -1,11 +1,10 @@
 class Public::MessagesController < ApplicationController
   before_action :authenticate_member!
   before_action :block_non_related_member
-#  before_action :set_member_shop
+  before_action :set_tag_rank, only: [:show, :index]
 
   def show
-    @tag_rank = Tag.tag_rank_item
-    #@shop = Shop.find(params[:id])
+    @shop = Shop.find(params[:id])
     room = Room.find_by(member_id: current_member.id, shop_id: @shop)
     unless room.nil?
       @room = room
@@ -16,19 +15,30 @@ class Public::MessagesController < ApplicationController
       @room.save
      # MessageRoom.create(member_id: current_member.id, shop_id: @shop.id, room_id: @room.id)
     end
-    @messages = (@room.member_messages + @room.shop_messages).sort_by(&:created_at)
+    @messages = (@room.member_messages + @room.shop_messages).sort_by(&:created_at).sort { |a, b| b.created_at <=> a.created_at }
     @message = MemberMessage.new(room_id: @room.id)
   end
 
   def index
-    @tag_rank = Tag.tag_rank_item
-    rooms = Room.where(member_id: current_member)
-    @messages = ShopMessage.where(room_id: rooms).order(created_at: "DESC").page(params[:page])
-    #rooms = Room.where(shop_id: current_shop)
-    #shop_messages = ShopMessage.where(room_id: rooms)
-    #member_messages = MemberMessage.where(room_id: rooms)
-    #@messages = (shop_messages.to_a + member_messages.to_a).uniq
-    #@messages = ShopMessage.where(room_id: rooms).order(created_at: "DESC").page(params[:page])
+    @rooms = Room.where(member_id: current_member)
+    @messages = []
+
+    @rooms.each do |room|
+      new_member_message = MemberMessage.where(room_id: room.id).order(created_at: "DESC").first
+      new_shop_message = ShopMessage.where(room_id: room.id).order(created_at: "DESC").first
+
+      if new_member_message && new_shop_message
+        new_message = [new_member_message, new_shop_message].max_by(&:created_at)
+        @messages << new_message
+      elsif new_member_message
+        @messages << new_member_message
+      elsif new_shop_message
+        @messages << new_shop_message
+      end
+      @messages.sort_by!(&:created_at)
+    end
+    #rooms = Room.where(member_id: current_member)
+    #@messages = ShopMessage.where(room_id: rooms).order(created_at: "DESC")
   end
 
   def create
@@ -51,10 +61,9 @@ class Public::MessagesController < ApplicationController
 
   private
 
- # def set_member_shop
- #   @member = Member.find(params[:member_id])
- #   @shop = Member.find(params[:shop_id])
- # end
+  def set_tag_rank
+    @tag_rank = Tag.tag_rank_item
+  end
 
   def member_message_params
     params.require(:member_message).permit(:message, :room_id)

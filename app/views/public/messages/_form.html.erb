@@ -1,4 +1,15 @@
 <div class="col-12">
+  <!--送信フォーム-->
+  <div class= "py-2">
+    <%= form_with model: message, url: url do |f| %>
+      <%= f.text_area :message, class: "form-control" %>
+      <div class= "py-2 text-end">
+        <%= f.submit "送信", class: "btn btn-info" %>
+      </div>
+      <%= f.hidden_field :room_id %>
+    <% end %>
+  </div>
+  <!--メッセージ-->
   <div class= "py-2">
     <% messages.each do |message| %>
       <div class="p-2 bg-info-subtle">
@@ -20,16 +31,6 @@
           <small class="text-body-tertiary">(<%= message.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %>)</small>
         </div>
       </div>
-    <% end %>
-  </div>
-
-  <div class= "py-2">
-    <%= form_with model: message, url: url do |f| %>
-      <%= f.text_area :message, class: "form-control" %>
-      <div class= "py-2">
-        <%= f.submit "送信", class: "btn btn-info" %>
-      </div>
-      <%= f.hidden_field :room_id %>
     <% end %>
   </div>
 </div>
