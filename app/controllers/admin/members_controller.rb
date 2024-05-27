@@ -25,10 +25,10 @@ class Admin::MembersController < ApplicationController
   def index
     unless params[:content].blank?
       @content = params[:content]
-      @members = Member.where('last_name LIKE? OR first_name LIKE? OR last_name_kana LIKE? OR first_name_kana LIKE? OR
-                               telephone_number LIKE? OR postal_code LIKE? OR address LIKE?',
-                                '%'+@content+'%' '%'+@content+'%' '%'+@content+'%' '%'+@content+'%' '%'+@content+'%' '%'+@content+'%' '%'+@content+'%')
-                       .order(id: "DESC").page(params[:page])
+      @members = Member.where('last_name LIKE ? OR first_name LIKE ? OR last_name_kana LIKE ? OR first_name_kana LIKE ? OR telephone_number LIKE ? OR postal_code LIKE ? OR address LIKE ?',
+                        '%'+@content+'%', '%'+@content+'%', '%'+@content+'%', '%'+@content+'%', '%'+@content+'%', '%'+@content+'%', '%'+@content+'%')
+                       .order(id: :desc)
+                       .page(params[:page])
     else
       @members = Member.all.order(id: 'DESC').page(params[:page])
     end

@@ -4,7 +4,7 @@
       <div class="swiper-slide">
         <%= link_to pick_up_tag_path(pick_up_tag) do %>
           <div>
-            <%= image_tag pick_up_tag.get_tag_image(900,300), class: "w-100 mb-4" %>
+            <%= image_tag pick_up_tag.get_tag_image(900,300), class: "pickup_img-ratio mb-4" %>
             <div class="position-absolute bottom-0 start-0 end-0 text-white p-4 fw-bold h4">
               <%= pick_up_tag.name %>
             </div>

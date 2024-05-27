@@ -3,12 +3,12 @@
     <h2>ログイン</h2>
     <hr>
 
-    <div class="d-flex flex-row">
-      <div class="col-6 px-3">
+    <div class="d-flex flex-row flex-wrap">
+      <div class="login-content col-6 px-3 pt-3 pb-5">
         <h3>会員登録がお済みの方</h3>
         <hr>
         <%= form_with model: @member, url: member_session_path do |f| %>
-          <div class="p-3">
+          <div class="pt-2">
             <table class="table table-borderless table-member">
               <tbody>
                 <tr>
@@ -29,10 +29,10 @@
         <% end %>
       </div>
 
-      <div class="col-6 px-3">
+      <div class="login-content col-6 px-3 pt-3">
         <h3>会員登録がまだの方</h3>
         <hr>
-        <div class="p-3 mb-5">
+        <div class="pt-3 mb-5">
           <div class="col-6 d-grid mx-auto">
             <%= link_to "ユーザーさま新規登録はこちら", new_member_registration_path, class: "btn btn-info p-2" %>
           </div>
@@ -40,7 +40,7 @@
         <h3>お試しログイン</h3>
         <hr>
         <p>機能を試してみたい方にオススメ。仮ユーザーでお試しログインしてみましょう。</p>
-        <div class="p-3">
+        <div class="pt-3">
           <div class="col-6 d-grid mx-auto">
             <%= link_to "お試しログインはこちら", members_guest_sign_in_path, method: :post, class: "btn btn-info p-2" %>
           </div>
