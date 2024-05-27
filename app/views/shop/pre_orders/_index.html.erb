@@ -3,8 +3,8 @@
     <% if admin_signed_in? %>
       <div>ショップ名: <span class="h5 fw-bold"><%= pre_order.item.shop.name %></span> <small>[ <%= pre_order.item.shop.id %> ]</small></div>
     <% end %>
-    <div class="d-flex align-items-center pb-3">
-      <div class="col-6 d-flex align-items-center">
+    <div class="d-flex align-items-center flex-wrap pb-3">
+      <div class="main-content col-6 d-flex align-items-center">
         <div class="pe-2">
           <%= render 'shop/pre_orders/status', pre_order: pre_order %>
         </div>
@@ -15,11 +15,11 @@
           </span>
         </div>
       </div>
-      <div class="col-3 h5 fw-bold pt-2">
+      <div class="main-content col-3 h5 fw-bold pt-2">
         <p class="mb-0"><%= pre_order.order_full_name %> さま</p>
         <p class="h6 mb-0">（<%= pre_order.order_full_name_kana %>）</p>
       </div>
-      <div class="col-3">
+      <div class="main-content col-3">
         <% unless controller_name == 'members' %>
           <%= link_to 'お客様情報を見る', shop_member_path(pre_order.member_id), class: "btn btn-outline-info w-100 mb-2" %>
         <% end %>

@@ -8,9 +8,11 @@
         <%= link_to review_path(@shop), class: "btn btn-outline-info d-grid mt-2" do %>
            ショップの口コミを見る (<%= @reviews.count %>)
         <% end %>
-        <% if member_signed_in? %>
-          <%= link_to 'ショップにメッセージを送る', message_path(@shop) %>
-        <% end %>
+          <% if member_signed_in? %>
+            <% unless current_member.guest_member? %>
+              <%= link_to 'ショップにメッセージを送る', message_path(@shop) %>
+            <% end %>
+          <% end %>
         <% if current_shop == @shop %>
           <% unless current_shop.guest_shop? %>
             <%= link_to '編集する', shop_edit_information_path, class: "btn btn-info d-grid mt-2" %>

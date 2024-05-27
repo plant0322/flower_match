@@ -1,5 +1,6 @@
 <div class="container d-flex flex-row-reverse flex-wrap pt-3">
   <div class="main-content col-9 px-3">
+
     <% if @model == 'item' %>
     <!--商品検索-->
       <h2>「<%= @content %>」<span class="h4">を含む商品の検索結果</span><span class="h6">（全<%= @records.count %>件）</span></h2>

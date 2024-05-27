@@ -2,7 +2,6 @@
   <thead>
     <tr class="text-center">
       <th class="w-50">ショップ</th>
-      <th>住所</th>
       <th>営業時間</th>
       <th></th>
     </tr>
@@ -10,17 +9,17 @@
   <tbody>
     <% shops. each do |shop| %>
       <tr>
-        <td>
+        <td class="fw-bold">
           <%= link_to shop_path(shop) do %>
             <%= image_tag shop.get_shop_image(200,200), class: "col-4 pe-1" %>
             <%= shop.name %>
-          <% end %>
+          <% end %><br>
+          <small>
+            〒<%= shop.postal_code.to_s.insert(3, "-") %><br>
+            <%= shop.address %>
+          </small>
         </td>
-        <td>
-          〒<%= shop.postal_code.to_s.insert(3, "-") %><br>
-          <%= shop.address %>
-        </td>
-        <td>
+        <td class="fw-bold">
           <%= shop.opening_hour %><br>
           定休日: <%= shop.holiday %>
         </td>

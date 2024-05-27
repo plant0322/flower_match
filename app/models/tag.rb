@@ -14,7 +14,6 @@ class Tag < ApplicationRecord
     tags.inject([]) do |result, tag|
       result + tag.items.where(id: active_items.ids)
     end.uniq
-    #return tags.inject(init = []) {|result,tag| result + tag.items}.uniq
   end
 
   # 左ナビに表示する上位10件のタグを呼び出す

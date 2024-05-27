@@ -1,0 +1,19 @@
+<ol class="breadcrumb d-flex flex-row" itemscope itemtype="https://schema.org/BreadcrumbList">
+  <!-- 1つめ -->
+  <li itemprop="itemListElement" itemscope
+      itemtype="https://schema.org/ListItem">
+    <%= link_to root_path do %>
+      <span itemprop="name">TOP</span>
+    <% end %>
+    <meta itemprop="position" content="1" />
+  </li>
+
+  <!-- 2つめ -->
+  <li itemprop="itemListElement" itemscope
+      itemtype="https://schema.org/ListItem">
+    <%= link_to pick_up_tag_path(content) do %>
+      <span itemprop="name"><%= content.name %></span>
+    <% end %>
+    <meta itemprop="position" content="2" />
+  </li>
+</ol>

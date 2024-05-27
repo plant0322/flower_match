@@ -2,7 +2,6 @@
   <thead>
     <tr class="text-center">
       <th class="w-50">商品</th>
-      <th>ショップ</th>
       <th>金額・在庫</th>
       <th></th>
     </tr>
@@ -13,15 +12,11 @@
         <td>
           <%= link_to item_path(item) do %>
             <div class="d-flex flex-row">
-              <%= image_tag item.get_item_image(200,200), class: "col-4 pe-1" %>
+              <div class="col-4"><%= image_tag item.get_item_image(200,200), class: "pe-1 w-100" %></div>
               <div class="col-8 ps-1"><%= item.name %> [ <%= item.id %> ]</div>
             </div>
           <% end %>
-        </td>
-        <td>
-          <%= link_to shop_path(item.shop) do %>
-            <%= item.shop.name %>
-          <% end %>
+          <small class="fw-bold">(ショップ: <%= link_to shop_path(item.shop) do %><%= item.shop.name %><% end %>)</small>
         </td>
         <td class="text-end">
           <%= item.price.to_s(:delimited, delimiter: ',') %>円(税込)<br>

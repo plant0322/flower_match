@@ -12,8 +12,8 @@
   <!--メッセージ-->
   <div class= "py-2">
     <% messages.each do |message| %>
-      <div class="px-2 py-3 bg-info-subtle">
-        <div class="bg-light p-3">
+      <div class="px-2 py-3 bg-light">
+        <div class="bg-info-subtle p-3">
           <% if message.is_a?(MemberMessage) %>
             <% if member_signed_in? %>
               <span class="btn btn-info hover-none px-1 py-0">

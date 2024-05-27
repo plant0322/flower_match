@@ -1,10 +1,10 @@
 <div class="bg-light d-flex flex-row p-1 mb-3">
-  <div class="col-6">
+  <div class="col-10">
     <%= f.text_field :content, placeholder: 'キーワードから探す', class: "form-control" %>
   </div>
-  <div class="col-2">
-  <%= button_tag type: 'submit', name: '', class: "form-control" do %>
-    <i class="fa-solid fa-magnifying-glass"></i>検索
+  <div class="col-2 admin-btn">
+  <%= button_tag type: 'submit', name: '', class: "btn form-control" do %>
+    <i class="fa-solid fa-magnifying-glass"></i>
   <% end %>
   </div>
 </div>

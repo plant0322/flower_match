@@ -6,16 +6,16 @@
     <hr>
     <%= render 'admin/pick_up_tags/form', pick_up_tag: @pick_up_tag, tags: @tags, url: admin_pick_up_tags_path %>
 
-    <div class="d-flex justify-content-center mt-5">
-      <div class="col-4 px-1">
-      <h3>イベントタグ</h3>
-      <hr>
-      <%= render 'layouts/pickup_menu', pick_up_tags: @pick_up_tags %>
-    </div>
+    <div class="d-flex justify-content-center flex-wrap mt-5">
+      <div class="wide-item col-4 px-1 pb-5">
+        <h3>イベントタグ</h3>
+        <hr>
+        <%= render 'layouts/pickup_menu', pick_up_tags: @pick_up_tags %>
+      </div>
 
-    <div class="col-4 px-1">
-      <h3>上位10件のタグ</h3>
-      <hr>
+      <div class="wide-item col-4 px-1">
+        <h3>上位10件のタグ</h3>
+        <hr>
         <div>
           <%= render 'layouts/homes_menu', tag_rank: @tag_rank %>
         </div>

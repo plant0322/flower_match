@@ -1,5 +1,5 @@
 <div class="container d-flex flex-column pt-3">
-  <div class="col-8 mx-auto px-3 mt-3">
+  <div class="login-content col-8 mx-auto px-3 mt-3">
     <h2>ショップさま新規登録</h2>
     <hr>
     <small>※こちらは「ショップ」登録になります。投稿を見たりお花の予約をしたい<%= link_to  new_member_registration_path do%>「一般ユーザー」さまの登録はこちら<% end %></small>
@@ -7,12 +7,12 @@
       <%= form_with model: @shop, url: shop_registration_path do |f| %>
         <%#= render "public/shared/error_messages", resource: resource %>
         <h3 class="bg-info p-1 h5">ショップ基本情報</h3>
-        <table class="table table-borderless table-shop my-3">
+        <table class="form-table table table-borderless table-shop my-3">
           <tr>
             <th class="w-25"><%= f.label :shop_image, "アイキャッチ" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td>
               <%= f.file_field :shop_image, autofocus: true, accept: "image/*", class: "form-control" %>
-              <small>※ショップのイメージ画像を登録してください</small>
+              <small class="text-secondary">※ショップのイメージ画像をjpegで登録してください</small>
             </td>
           </tr>
           <tr>
@@ -24,7 +24,7 @@
             <th class="w-25"><%= f.label :name, "ショップ名" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.text_field :name, autocomplete: "name", class: "form-control" %>
-              <small>例）Flower Shop</small>
+              <small class="text-secondary">例）Flower Shop</small>
             </td>
           </tr>
           <tr>
@@ -36,7 +36,7 @@
             <th class="w-25"><%= f.label :name_kana, "ショップ名（フリガナ）" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.text_field :name_kana, autocomplete: "name_kana", class: "form-control" %>
-              <small>例）フラワーショップ</small>
+              <small class="text-secondary">例）フラワーショップ</small>
             </td>
           </tr>
           <tr>
@@ -48,7 +48,7 @@
             <th class="w-25"><%= f.label :introduction, "ショップコメント" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.text_area :introduction, autocomplete: "introduction", class: "form-control" %>
-              <small>例）フラワーアレンジのご要望承ります。</small>
+              <small class="text-secondary">例）フラワーアレンジのご要望承ります。</small>
             </td>
           </tr>
           <tr>
@@ -59,12 +59,12 @@
         </table>
 
         <h3 class="bg-info p-1 h5">ショップ所在地情報</h3>
-        <table class="table table-borderless table-shop my-3">
+        <table class="form-table table table-borderless table-shop my-3">
           <tr>
             <th class="w-25"><%= f.label :postal_code, "ショップの郵便番号" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.text_field :postal_code, placeholder: "", autocomplete: "postal_code", class: "form-control" %>
-              <small>例）1234567　※ハイフンは不要です</small>
+              <small class="text-secondary">例）1234567　※ハイフンは不要です</small>
             </td>
           </tr>
           <tr>
@@ -87,7 +87,7 @@
             <th class="w-25"><%= f.label :direction, "アクセス・道案内" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.text_area :direction, autocomplete: "direction", class: "form-control" %>
-              <small>例）スーパーの向かい側にある白い建物です</small>
+              <small class="text-secondary">例）スーパーの向かい側にある白い建物です</small>
             </td>
           </tr>
           <tr>
@@ -98,12 +98,12 @@
         </table>
 
         <h3 class="bg-info p-1 h5">ショップ詳細情報</h3>
-        <table class="table table-borderless table-shop my-3">
+        <table class="form-table table table-borderless table-shop my-3">
           <tr>
             <th class="w-25"><%= f.label :telephone_number, "電話番号（ショップの連絡先）" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.text_field :telephone_number, autocomplete: "telephone_number", class: "form-control" %>
-              <small>例）08000000000　※ハイフンは不要です。</small>
+              <small class="text-secondary">例）08000000000　※ハイフンは不要です。</small>
             </td>
           </tr>
           <tr>
@@ -115,7 +115,7 @@
             <th class="w-25"><%= f.label :opening_hour, "営業時間" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.text_field :opening_hour, autocomplete: "opening_hour", class: "form-control" %>
-              <small>例）火～日 9:30～18:00</small>
+              <small class="text-secondary">例）火～日 9:30～18:00</small>
             </td>
           </tr>
           <tr>
@@ -127,7 +127,7 @@
             <th class="w-25"><%= f.label :holiday, "定休日" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.text_field :holiday, autocomplete: "holiday", class: "form-control" %>
-              <small>例）月曜日</small>
+              <small class="text-secondary">例）月曜日</small>
             </td>
           </tr>
           <tr>
@@ -139,7 +139,7 @@
             <th class="w-25"><%= f.label :parking, "駐車場" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.text_field :parking, autocomplete: "parking", class: "form-control" %>
-              <small>例）駐車場あり（3台分）</small>
+              <small class="text-secondary">例）駐車場あり（3台分）</small>
             </td>
           </tr>
           <tr>
@@ -151,7 +151,7 @@
             <th class="w-25"><%= f.label :payment_method, "支払方法" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.text_field :payment_method, autocomplete: "payment_method", class: "form-control" %>
-              <small>例）現金/Visa／Mastercard／JCB／American Express／PayPay</small>
+              <small class="text-secondary">例）現金/Visa／Mastercard／JCB／American Express／PayPay</small>
             </td>
           </tr>
           <tr>
@@ -173,12 +173,12 @@
         </table>
 
         <h3 class="bg-info p-1 h5">ログイン情報</h3>
-        <table class="table table-borderless table-shop my-3">
+        <table class="form-table table table-borderless table-shop my-3">
           <tr>
             <th class="w-25"><%= f.label :representative_name, "担当者名" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.text_field :representative_name, autocomplete: "representative_name", class: "form-control" %>
-              <small>※担当者名はページ上には表示されません</small>
+              <small class="text-secondary">※担当者名はページ上には表示されません</small>
             </td>
           </tr>
           <tr>
@@ -190,7 +190,7 @@
             <th class="w-25"><%= f.label :email, "メール" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
-              <small>例）xxx_sample@mail</small>
+              <small class="text-secondary">例）xxx_sample@mail</small>
             </td>
           </tr>
           <tr>
@@ -200,12 +200,12 @@
           </tr>
         </table>
 
-        <table class="table table-borderless table-shop my-3">
+        <table class="form-table table table-borderless table-shop my-3">
           <tr>
             <th class="w-25">パスワード<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
-              <small>※<%= @minimum_password_length %> 文字以上の英数字で入力してください</small>
+              <small class="text-secondary">※<%= @minimum_password_length %> 文字以上の英数字で入力してください</small>
             </td>
           </tr>
           <tr>

@@ -15,10 +15,12 @@ class Admin::TagsController < ApplicationController
   end
 
   def index
-    @tags = Tag.all
+    @tags = Tag.left_joins(:item_tags)
+               .group(:id)
+               .order('COUNT(item_tags.tag_id) DESC')
     @pick_up_tag = PickUpTag.new
     @pick_up_tags = PickUpTag.all
-    @tag_rank = Tag.joins(:item_tags).group(:id).order('COUNT(item_tags.tag_id) DESC').limit(10)
+    @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')
   end
 end

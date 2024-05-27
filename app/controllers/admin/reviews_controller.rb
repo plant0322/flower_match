@@ -2,7 +2,17 @@ class Admin::ReviewsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @reviews = Review.all.order(id: 'DESC').page(params[:page])
+    unless params[:content].blank?
+      @content = params[:content]
+      review_messages = Review.where('content LIKE?','%'+@content+'%').order(id: 'DESC').page(params[:page])
+      members = Member.where('last_name LIKE? OR first_name LIKE? OR last_name_kana LIKE? OR first_name_kana LIKE? OR nickname LIKE?',
+                                    '%'+@content+'%', '%'+@content+'%', '%'+@content+'%', '%'+@content+'%', '%'+@content+'%')
+      member_pre_order_ids = PreOrder.where(member_id: members)
+      member_reviews = Review.where(pre_order_id: member_pre_order_ids)
+      @reviews = Kaminari.paginate_array((review_messages + member_reviews).uniq.shuffle).page(params[:page])
+    else
+      @reviews = Review.all.order(id: 'DESC').page(params[:page])
+    end
     @pick_up_tags = PickUpTag.where(is_active: true)
     @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')

@@ -1,8 +1,34 @@
 <div class="container d-flex flex-row-reverse flex-wrap pt-3">
   <div class="main-content col-9 px-3">
-    <h1>管理画面TOP</h1>
+    <h2>開催中イベント</h2>
     <hr>
+    <div class="pb-5">
+      <table class="table">
+        <tr>
+          <th colspan="2" class="text-center bg-admin">ピックアップイベント</th>
+        </tr>
+        <% @pick_up_tags.each do |tag| %>
+          <tr>
+            <td>
+              <%= link_to pick_up_tag_path(tag) do %>
+                <%= tag.name %>
+                <% if tag.is_active & admin_signed_in? %>
+                  <small class="text-success">(公開中)</small>
+                <% elsif admin_signed_in? %>
+                  <small class="text-danger">(非公開)</small>
+                <% end %>
+              <% end %>
+            </td>
+            <td><%= link_to '編集する', edit_admin_pick_up_tag_path(tag) %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
 
+    <h2>新着の口コミ</h2>
+    <hr>
+    <%= render 'admin/reviews/index', reviews: @reviews %>
+    <%= link_to '全ての口コミを見る ▶', admin_reviews_path, class: "float-end" %>
 
 
   </div>
