@@ -33,24 +33,79 @@
         <div class="header-nav col-8 d-flex justify-content-end pt-4 pe-4 member-btn <%= (admin_signed_in? ? "admin-btn" : "" ) %>  <%= (shop_signed_in? ? "shop-btn" : "" ) %>">
           <!--ショップユーザーログイン後-->
           <% if shop_signed_in? %>
-            <div class="px-2"><%= link_to new_shop_item_path, class: "col-1 btn item-btn py-2 px-3 w-100" do %>商品の新規登録<% end %></div>
-            <div class="px-2"><%= link_to shop_top_path, class: "col-1 btn py-2 px-3 w-100" do %>管理画面TOP<% end %></div>
-            <div class="px-2"><%= link_to shop_items_path, class: "col-1 btn py-2 px-3 w-100" do %>商品管理<% end %></div>
-            <div class="px-2"><%= link_to shop_pre_orders_path, class: "col-1 btn py-2 px-3 w-100" do %>予約管理<% end %></div>
+            <div class="header-icon px-2 justify-content-center">
+              <%= link_to new_shop_item_path, class: "col-1 btn item-btn py-2 px-3 w-100" do %>
+                <i class="fa-solid fa-square-plus"></i><br>
+                <small>商品登録</small>
+              <% end %>
+            </div>
+            <div class="header-icon px-2">
+              <%= link_to shop_top_path, class: "col-1 btn py-2 px-3 w-100" do %>
+                <i class="fa-solid fa-house"></i><br>
+                <small>管理画面</small>
+              <% end %>
+            </div>
+            <div class="header-icon px-2">
+              <%= link_to shop_items_path, class: "col-1 btn py-2 px-3 w-100" do %>
+                <i class="fa-solid fa-clover"></i><br>
+                <small>商品管理</small>
+              <% end %>
+            </div>
+            <div class="header-icon px-2">
+              <%= link_to shop_pre_orders_path, class: "col-1 btn py-2 px-3 w-100" do %>
+                <i class="fa-regular fa-calendar"></i><br>
+                <small>予約管理</small>
+              <% end %>
+            </div>
           <% elsif member_signed_in? %>
           <!--一般ユーザーログイン後-->
-            <div class="px-2"><%= link_to about_path, class: "col-1 btn py-2 px-3 w-100" do %>About<% end %></div>
-            <div class="px-2"><%= link_to mypage_path, class: "col-1 btn py-2 px-3 w-100" do %>ユーザーマイページ<% end %></div>
-            <div class="px-2"><%= link_to pre_orders_path, class: "col-1 btn py-2 px-3 w-100" do %>予約一覧<% end %></div>
+            <div class="header-icon px-2">
+              <%= link_to mypage_path, class: "col-1 btn py-2 px-3 w-100" do %>
+                <i class="fa-solid fa-user"></i><br>
+                <small>マイページ</small>
+              <% end %>
+            </div>
+            <div class="header-icon px-2">
+              <%= link_to pre_orders_path, class: "col-1 btn py-2 px-3 w-100" do %>
+                <i class="fa-regular fa-calendar"></i><br>
+                <small>予約一覧</small>
+              <% end %>
+            </div>
+            <div class="header-icon px-2">
+              <%= link_to messages_path, class: "col-1 btn py-2 px-3 w-100" do %>
+                <i class="fa-solid fa-message"></i><br>
+                <small>メッセージ</small>
+              <% end %>
+            </div>
           <% elsif admin_signed_in? %>
             <!--管理者ログイン後…口コミ一覧・連絡一覧を追加する-->
-            <div class="px-2"><%= link_to admin_shops_path, class: "col-1 btn py-2 px-3 w-100" do %>ショップ管理<% end %></div>
-            <div class="px-2"><%= link_to admin_members_path, class: "col-1 btn py-2 px-3 w-100" do %>一般メンバー管理<% end %></div>
-            <div class="px-2"><%= link_to destroy_admin_session_path, class: "col-1 btn py-2 px-3 w-100", method: :delete, "data-confirm" => "本当にログアウトしますか？" do %>ログアウト<% end %></div>
+            <div class="px-2">
+              <%= link_to admin_shops_path, class: "col-1 btn py-2 px-3 w-100" do %>
+                ショップ管理
+              <% end %>
+            </div>
+            <div class="px-2">
+              <%= link_to admin_members_path, class: "col-1 btn py-2 px-3 w-100" do %>
+                一般メンバー管理
+              <% end %>
+            </div>
+            <div class="px-2">
+              <%= link_to destroy_admin_session_path, class: "col-1 btn py-2 px-3 w-100", method: :delete, "data-confirm" => "本当にログアウトしますか？" do %>
+                ログアウト
+              <% end %>
+            </div>
           <% else %>
             <!--ログイン前-->
-            <div class="px-2"><%= link_to about_path, class: "col-1 btn py-2 px-3 w-100" do %>About<% end %></div>
-            <div class="px-2"><%= link_to new_member_session_path, class: "col-1 btn py-2 px-3 w-100" do %>ログイン<% end %></div>
+            <div class="px-2">
+              <%= link_to about_path, class: "col-1 btn py-2 px-3 w-100" do %>
+                About
+              <% end %>
+            </div>
+            <div class="px-2">
+              <%= link_to new_member_session_path, class: "col-1 btn py-2 px-3 w-100" do %>
+                ログイン
+              <% end %>
+            </div>
           <% end %>
         </div>
       </div>

@@ -239,6 +239,14 @@ footer{
     background-color: #8CAFB1;
 }
 
+.header-icon i {
+    font-size: 2em;
+}
+
+.header-nav small {
+    font-size: 0.8em!important;
+}
+
 // 左ナビのリンク
 .tr-menu {
     cursor: pointer;
@@ -390,6 +398,10 @@ footer{
 
     div.header-nav {
         padding: 12px 0 6px!important;
+    }
+
+    div.header-icon {
+        padding: 12px 3px!important;
     }
 
     footer p {
