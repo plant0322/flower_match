@@ -1,17 +1,17 @@
 <%= form_with url: search_path, method: :get do |f| %>
-  <div class="p-1">
+  <div class="px-2">
     <div class="col-12 pb-1">
       <label class="form-check-label text-white fw-bold pe-2"><%= f.radio_button :model, 'item', checked: search.model == 'item', class: "form-check-input" %> 商品</label>
       <label class="form-check-label text-white fw-bold pe-2"><%= f.radio_button :model, 'address', checked: search.model == 'address', class: "form-check-input" %> 住所</label>
       <label class="form-check-label text-white fw-bold pe-2"><%= f.radio_button :model, 'shop', checked: search.model == 'shop', class: "form-check-input" %> ショップ</label>
     </div>
     <div class="d-flex flex-row">
-      <div class="col-9">
+      <div class="col-10">
         <%= f.text_field :content, placeholder: 'キーワードから探す', class: "form-control" %>
       </div>
-      <div class="col-3">
-      <%= button_tag type: 'submit', name: '', class: "form-control" do %>
-        <i class="fa-solid fa-magnifying-glass"></i>検索
+      <div class="col-2 member-btn <%= (admin_signed_in? ? "admin-btn" : "" ) %>  <%= (shop_signed_in? ? "shop-btn" : "" ) %>">
+      <%= button_tag type: 'submit', name: '', class: "btn form-control" do %>
+        <i class="fa-solid fa-magnifying-glass"></i>
       <% end %>
       </div>
     </div>

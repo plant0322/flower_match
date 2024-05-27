@@ -6,11 +6,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <script src="https://kit.fontawesome.com/d3818fb7f0.js" crossorigin="anonymous"></script>
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="style.css" />
-    
+
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -18,40 +18,43 @@
 
   <body class="d-flex flex-column vh-100">
     <!--ヘッダーここから-->
-    <header class="d-flex flex-row p-2 <%= (admin_signed_in? ? "admin-header" : "" ) %>  <%= (shop_signed_in? ? "shop-header" : "" ) %>">
-      <div class="col-4 pt-4 ps-4">
+    <header class="d-flex flex-row flex-wrap px-2 pb-2 pt-3 <%= (admin_signed_in? ? "admin-header" : "" ) %>  <%= (shop_signed_in? ? "shop-header" : "" ) %>">
+      <div class="site-title col-3 pt-2 ps-4">
         <%= link_to root_path do %>
           <p class="h1 text-white">FlowerMatch</p>
         <% end %>
       </div>
-      <!--検索フォーム-->
-      <div class="col-3">
-        <%= render 'public/searches/form', search: @search %>
+      <div class="site-title d-flex flex-row flex-wrap col-9">
+        <!--検索フォーム-->
+        <div class="header-nav col-4 ps-3">
+          <%= render 'public/searches/form', search: @search %>
+        </div>
+        <!--ヘッダーボタン-->
+        <div class="header-nav col-8 d-flex justify-content-end pt-4 pe-4 member-btn <%= (admin_signed_in? ? "admin-btn" : "" ) %>  <%= (shop_signed_in? ? "shop-btn" : "" ) %>">
+          <!--ショップユーザーログイン後-->
+          <% if shop_signed_in? %>
+            <div class="px-2"><%= link_to new_shop_item_path, class: "col-1 btn item-btn py-2 px-3 w-100" do %>商品の新規登録<% end %></div>
+            <div class="px-2"><%= link_to shop_top_path, class: "col-1 btn py-2 px-3 w-100" do %>管理画面TOP<% end %></div>
+            <div class="px-2"><%= link_to shop_items_path, class: "col-1 btn py-2 px-3 w-100" do %>商品管理<% end %></div>
+            <div class="px-2"><%= link_to shop_pre_orders_path, class: "col-1 btn py-2 px-3 w-100" do %>予約管理<% end %></div>
+          <% elsif member_signed_in? %>
+          <!--一般ユーザーログイン後-->
+            <div class="px-2"><%= link_to about_path, class: "col-1 btn py-2 px-3 w-100" do %>About<% end %></div>
+            <div class="px-2"><%= link_to mypage_path, class: "col-1 btn py-2 px-3 w-100" do %>ユーザーマイページ<% end %></div>
+            <div class="px-2"><%= link_to pre_orders_path, class: "col-1 btn py-2 px-3 w-100" do %>予約一覧<% end %></div>
+          <% elsif admin_signed_in? %>
+            <!--管理者ログイン後…口コミ一覧・連絡一覧を追加する-->
+            <div class="px-2"><%= link_to admin_shops_path, class: "col-1 btn py-2 px-3 w-100" do %>ショップ管理<% end %></div>
+            <div class="px-2"><%= link_to admin_members_path, class: "col-1 btn py-2 px-3 w-100" do %>一般メンバー管理<% end %></div>
+            <div class="px-2"><%= link_to destroy_admin_session_path, class: "col-1 btn py-2 px-3 w-100", method: :delete, "data-confirm" => "本当にログアウトしますか？" do %>ログアウト<% end %></div>
+          <% else %>
+            <!--ログイン前-->
+            <div class="px-2"><%= link_to about_path, class: "col-1 btn py-2 px-3 w-100" do %>About<% end %></div>
+            <div class="px-2"><%= link_to new_member_session_path, class: "col-1 btn py-2 px-3 w-100" do %>ログイン<% end %></div>
+          <% end %>
+        </div>
       </div>
-      <!--ヘッダーボタン-->
-      <div class="col-5 d-flex justify-content-end pe-4 pt-4 member-btn <%= (admin_signed_in? ? "admin-btn" : "" ) %>  <%= (shop_signed_in? ? "shop-btn" : "" ) %>">
-        <!--ショップユーザーログイン後-->
-        <% if shop_signed_in? %>
-          <div class="px-2"><%= link_to new_shop_item_path, class: "col-1 btn item-btn py-2 px-3 w-100" do %>商品の新規登録<% end %></div>
-          <div class="px-2"><%= link_to shop_top_path, class: "col-1 btn py-2 px-3 w-100" do %>管理ページTOP<% end %></div>
-          <div class="px-2"><%= link_to shop_items_path, class: "col-1 btn py-2 px-3 w-100" do %>商品管理<% end %></div>
-          <div class="px-2"><%= link_to shop_pre_orders_path, class: "col-1 btn py-2 px-3 w-100" do %>予約管理<% end %></div>
-        <% elsif member_signed_in? %>
-        <!--一般ユーザーログイン後-->
-          <div class="px-2"><%= link_to about_path, class: "col-1 btn py-2 px-3 w-100" do %>About<% end %></div>
-          <div class="px-2"><%= link_to mypage_path, class: "col-1 btn py-2 px-3 w-100" do %>ユーザーマイページ<% end %></div>
-          <div class="px-2"><%= link_to pre_orders_path, class: "col-1 btn py-2 px-3 w-100" do %>予約一覧<% end %></div>
-        <% elsif admin_signed_in? %>
-          <!--管理者ログイン後…口コミ一覧・連絡一覧を追加する-->
-          <div class="px-2"><%= link_to admin_shops_path, class: "col-1 btn py-2 px-3 w-100" do %>ショップ管理<% end %></div>
-          <div class="px-2"><%= link_to admin_members_path, class: "col-1 btn py-2 px-3 w-100" do %>一般メンバー管理<% end %></div>
-          <div class="px-2"><%= link_to destroy_admin_session_path, class: "col-1 btn py-2 px-3 w-100", method: :delete, "data-confirm" => "本当にログアウトしますか？" do %>ログアウト<% end %></div>
-        <% else %>
-          <!--ログイン前-->
-          <div class="px-2"><%= link_to about_path, class: "col-1 btn py-2 px-3 w-100" do %>About<% end %></div>
-          <div class="px-2"><%= link_to new_member_session_path, class: "col-1 btn py-2 px-3 w-100" do %>ログイン<% end %></div>
-        <% end %>
-      </div>
+
     </header>
 
     <main class="mb-auto">
@@ -66,7 +69,7 @@
     </main>
 
     <footer class="text-center p-3 mt-5 <%= (admin_signed_in? ? "admin-footer" : "" ) %> <%= (shop_signed_in? ? "shop-footer" : "" ) %> ">
-      <div class="d-flex justify-content-center">
+      <div class="d-flex flex-wrap justify-content-center">
       <p class="px-4"><%= link_to 'About', about_path, class: "text-decoration-none text-white " %></p>
       <p class="px-4"><%= link_to 'ご利用ガイド', about_path, class: "text-decoration-none text-white" %></p>
       <p class="px-4"><%= link_to 'ご利用規約', about_path, class: "text-decoration-none text-white" %></p>

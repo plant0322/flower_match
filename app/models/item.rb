@@ -20,7 +20,7 @@ class Item < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/sample.jpg')
       item_image.attach(io: File.open(file_path), filename: 'sample.jpg', content_type: 'image/jpeg')
     end
-    item_image.variant(resize_to_limit: [width, height]).processed
+    item_image.variant(resize_to_fill: [width, height]).processed
   end
 
   def bookmark_by?(member)

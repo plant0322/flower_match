@@ -3,7 +3,7 @@
   <div class="item-index col-4 p-1">
     <div class="card p-1 h-100">
       <%= link_to item_path(item), class: "text-decoration-none" do %>
-        <%= image_tag item.get_item_image(300,300), class: "card-img-top" %>
+        <%= image_tag item.get_item_image(300,300), class: "item-img-ratio card-img-top" %>
       <% end %>
       <div class="card-body">
         <div class="col-12 d-flex flex-row">
