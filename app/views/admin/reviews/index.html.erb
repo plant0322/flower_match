@@ -2,6 +2,9 @@
   <div class="main-content col-9 px-3">
     <h2>全ての口コミ一覧</h2>
     <hr>
+    <%= form_with url: admin_reviews_path, method: :get do |f| %>
+      <%= render 'admin/searches/form', f: f %>
+    <% end %>
     <div class="list-group">
       <% @reviews.each do |review| %>
         <div class="card mb-3 p-3">

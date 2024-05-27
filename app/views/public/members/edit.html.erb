@@ -11,22 +11,22 @@
             <th class="w-25">名前<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td>
               <%= f.text_field :last_name,autofocus: "true", autocomplete: "last_name", class: "form-control" %>
-              <small>例）山本</small>
+              <small class="text-secondary">例）山本</small>
             </td>
             <td>
               <%= f.text_field :first_name, autocomplete: "first_name", class: "form-control" %>
-              <small>例）花子</small>
+              <small class="text-secondary">例）花子</small>
             </td>
           </tr>
           <tr>
             <th class="w-25">名前(カナ)<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td>
               <%= f.text_field :last_name_kana, autocomplete: "last_name_kana", class: "form-control" %>
-              <small>例）ヤマモト</small>
+              <small class="text-secondary">例）ヤマモト</small>
             </td>
             <td>
               <%= f.text_field :first_name_kana, autocomplete: "first_name_kana", class: "form-control" %>
-              <small>例）ハナコ</small>
+              <small class="text-secondary">例）ハナコ</small>
             </td>
           </tr>
         </table>
@@ -37,7 +37,7 @@
             <th class="w-25">郵便番号<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td>
               <%= f.text_field :postal_code,autocomplete: "postal_code", class: "form-control" %>
-              <small>例）1234567　※ハイフンは不要です</small>
+              <small class="text-secondary">例）1234567　※ハイフンは不要です</small>
             </td>
           </tr>
           <tr>
@@ -50,7 +50,7 @@
             <th class="w-25">電話番号<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td>
               <%= f.text_field :telephone_number, autocomplete: "telephone_number", class: "form-control" %>
-              <small>例）08000000000　※ハイフンは不要です。</small>
+              <small class="text-secondary">例）08000000000　※ハイフンは不要です。</small>
             </td>
           </tr>
         </table>
@@ -61,14 +61,14 @@
             <th class="w-25">ニックネーム<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.text_field :nickname, autocomplete: "nickname", class: "form-control" %>
-              <small>※ニックネームは口コミ投稿時に表示される名前です。</small>
+              <small class="text-secondary">※ニックネームは口コミ投稿時に表示される名前です。</small>
             </td>
           </tr>
           <tr>
             <th class="w-25">メール<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.text_field :email, autocomplete: "email", class: "form-control" %>
-              <small>例）xxx_sample@mail</small>
+              <small class="text-secondary">例）xxx_sample@mail</small>
             </td>
           </tr>
         </table>

@@ -1,12 +1,15 @@
 <div class="container d-flex flex-row-reverse flex-wrap pt-3">
   <div class="main-content col-9 px-3">
+    <!--ぱんくず-->
+    <%= render 'public/homes/breadcrumbs', content: @pick_up_tag %>
+
     <h1><%= @pick_up_tag.name %></h1>
     <% unless @pick_up_tag.is_active %>
       <small class="text-danger">(非公開中)</small>
     <% end %>
     <hr>
     <%= image_tag @pick_up_tag.get_tag_image(900,300), class: "w-100 hover-none" %>
-    <div class="bg-light py-3 px-5 mb-3">
+    <div class="wide-pickup bg-light py-3 px-5 mb-3">
       <p class="mx-5"><%= @pick_up_tag.introduction %></p>
     </div>
     <% if admin_signed_in? %>

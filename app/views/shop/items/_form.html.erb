@@ -15,7 +15,7 @@
         </td>
         <td>
           <%= f.file_field :item_image, accept: "image/*", class: "form-control" %>
-          <small>※商品画像をjpegで登録してください</small>
+          <small class="text-secondary">※商品画像をjpegで登録してください</small>
         </td>
       </tr>
       <tr>
@@ -45,9 +45,7 @@
         <th><%= f.label :tag_name, "タグ" %></th>
         <td colspan="2">
           <%= f.text_field :tag_name, value: tag_list, placeholder: "カンマ「,」で区切ることでタグを複数追加できます", autocomplete: "tag_name", class: "form-control" %>
-          <small>
-            例）花束,バラ,赤い花
-          </small>
+          <small class="text-secondary">例）花束,バラ,赤い花</small>
         </td>
       </tr>
       <tr>
@@ -65,7 +63,7 @@
         <th class="w-25"><%= f.label :size, "サイズ" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
         <td colspan="2">
           <%= f.text_field :size, autocomplete: "size", class: "form-control" %>
-          <small>例）幅15×奥行き15×高さ20㎝</small>
+          <small class="text-secondary">例）幅15×奥行き15×高さ20㎝</small>
         </td>
       </tr>
       <tr>
@@ -77,7 +75,7 @@
         <th><%= f.label :price, "値段" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
         <td>
           <%= f.text_field :price, autocomplete: "price", class: "form-control" %>
-          <small>例）5000　※入力された金額がそのまま商品ページへ反映されます。税込の販売価格を数字のみで入力してください</small>
+          <small class="text-secondary">例）5000　※入力された金額がそのまま商品ページへ反映されます。税込の販売価格を数字のみで入力してください</small>
         </td>
         <td>円</td>
       </tr>
@@ -90,7 +88,7 @@
         <th><%= f.label :stock, "在庫" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
         <td>
           <%= f.text_field :stock, autocomplete: "stock", class: "form-control" %>
-          <small>※対応可能な個数を入力してください</small>
+          <small class="text-secondary">※対応可能な個数を入力してください</small>
         </td>
         <td>個</td>
       </tr>
@@ -109,7 +107,7 @@
         <th class="w-25"><%= f.label :deadline, "キャンセル可能期限" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
         <td colspan="2">
           <%= f.text_field :deadline, autocomplete: "deadline", class: "form-control" %>
-          <small>例）3　※数字で入力してください</small>
+          <small class="text-secondary">例）3　※数字で入力してください</small>
           <td>日前まで可能</td>
         </td>
       </tr>

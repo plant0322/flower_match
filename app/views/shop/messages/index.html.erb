@@ -6,6 +6,17 @@
     <% @messages.each do |message| %>
       <%= link_to shop_message_path(message.room_id) do %>
         <div class="d-flex flex-row bg-info-subtle p-3 my-3">
+          <div class="pe-2">
+            <% if message.room.is_take_care %>
+              <span class="text-success">
+                対応済み
+              </span>
+            <% else %>
+              <span class="text-danger">
+                対応待ち
+              </span>
+            <% end %>
+          </div>
           <div class="fw-bold pe-3">
             <% if message.is_a?(MemberMessage) %>
               <div class="btn btn-info hover-none">
@@ -21,15 +32,6 @@
               <small><%= message.shop.name %> の返信:</small>
             <% end %>
             <%= message.message %>
-              <% if message.room.is_take_care %>
-                <span class="text-success ps-2">
-                  対応済み
-                </span>
-              <% else %>
-                <span class="text-danger ps-2">
-                  対応待ち
-                </span>
-              <% end %>
           </div>
         </div>
       <% end %>

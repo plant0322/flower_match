@@ -5,7 +5,8 @@ body {
   overflow-wrap: break-word;
 }
 
-input {
+input,
+.form-select {
     border-radius: 3px!important;
 }
 
@@ -28,8 +29,29 @@ img:hover {
     transition-duration: 0.3s;
 }
 
-// ボタンの色
+h1.page-title{
+    font-size: 0.7em;
+    padding: 3px 10px;
+    background-color: #E3DECC;
+    color: #968582;
+}
 
+// パンくず
+.breadcrumb {
+    list-style: none;
+}
+
+.breadcrumb li:after {
+    content: '>';
+    padding: 0 0.2em;
+    color: #B7B7B7;
+}
+
+.breadcrumb li:last-child:after{
+    content: '';
+}
+
+// ボタンの色
 .member-btn .btn{
     background-color: #8A764E!important;
     color: #fff!important;
@@ -147,7 +169,7 @@ div.bg-danger {
 .alert-success {
     color: #0A9191!important;
     background-color: #CFEDED!important;
-    border-color: #ccc!important;
+    border-color: #CFEDED!important;
 }
 
 .text-danger,
@@ -331,9 +353,10 @@ footer{
 
 
 @media (max-width: 992px) {
-    .container {
+    div.container {
         width: 100%!important;
         max-width: 900px!important;
+        padding: 0px 5px 0!important;
     }
 
     div.main-content,
@@ -378,6 +401,14 @@ footer{
     }
 
     .wide-item {
+        width: 100%!important;
+    }
+
+    div.wide-pickup {
+        padding: 5px!important;
+    }
+
+    .wide-btn {
         width: 100%!important;
     }
 

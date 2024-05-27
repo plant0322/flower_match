@@ -1,17 +1,17 @@
-<ul class="list-group">
+<div>
   <% reviews.each do |review| %>
-    <li class="list-group-item mb-3">
-      <%= review.created_at.strftime("%Y年%-m月%-d日") %>
-      <div class="d-flex flex-row p-3 mb-2 bg-info-subtle %>">
-        <div class="col-5">
-          <p><i class="fa-regular fa-comment-dots"></i><%= review.pre_order.member.nickname %> さん</p>
+    <div class="card mb-3 p-2">
+      <span class="text-secondary"><%= review.created_at.strftime("%Y年%-m月%-d日") %></span>
+      <div class="d-flex flex-row flex-wrap p-3 mb-2 bg-info-subtle %>">
+        <div class="main-content col-5">
+          <p class="text-secondary"><i class="fa-regular fa-comment-dots"></i> <%= review.pre_order.member.nickname %> さん</p>
           <% if current_shop == shop %>
             <%= link_to shop_member_path(review.pre_order.member) do %>
-              <p>(<%= review.pre_order.member.member_full_name%> さまの投稿)</p>
+              <small>(<%= review.pre_order.member.member_full_name%> さまの投稿)</small>
             <% end %>
           <% end %>
         </div>
-        <div class="col-7">
+        <div class="main-content col-7">
          <%= review.content %>
         </div>
       </div>
@@ -24,6 +24,6 @@
           <small>予約商品: <%= review.pre_order.name %></small>
         <% end %>
       </div>
-    </li>
+    </div>
   <% end %>
-</ul>
+</div>
