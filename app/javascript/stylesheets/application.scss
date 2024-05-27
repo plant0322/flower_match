@@ -337,7 +337,8 @@ footer{
     }
 
     .main-content,
-    .left-content{
+    .left-content,
+    .login-content{
         width: 100%!important;
     }
 
@@ -371,6 +372,10 @@ footer{
 
     .wide-item {
         width: 100%!important;
+    }
+
+    .login-content div.col-6 {
+        width: 100%;
     }
 
     // 投稿フォーム
