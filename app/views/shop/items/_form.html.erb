@@ -13,7 +13,10 @@
             <%= image_tag item.get_item_image(100,100),class: "w-100" %>
           <% end %>
         </td>
-        <td><%= f.file_field :item_image, accept: "image/*", class: "form-control" %></td>
+        <td>
+          <%= f.file_field :item_image, accept: "image/*", class: "form-control" %>
+          <small>※商品画像をjpegで登録してください</small>
+        </td>
       </tr>
       <tr>
         <td colspan="3">

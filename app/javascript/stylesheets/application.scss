@@ -336,10 +336,17 @@ footer{
         max-width: 900px!important;
     }
 
-    .main-content,
-    .left-content,
-    .login-content{
+    div.main-content,
+    div.left-content,
+    div.login-content,{
         width: 100%!important;
+        padding: 18px 0 0!important;
+    }
+
+    .alert-danger,
+    .alert-success{
+        width: 90%!important;
+        padding: 18px!important;
     }
 
     .header-nav {
@@ -389,6 +396,6 @@ footer{
     }
 
     .form-table th {
-        padding: 30px 0 10px!important;
+        padding: 10px!important;
     }
 }

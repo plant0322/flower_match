@@ -14,19 +14,15 @@
             <td><%= @member.member_full_name_kana %></td>
           </tr>
           <tr>
-            <th>ニックネーム</th>
-            <td colspan="4"><%= @member.nickname %></td>
+            <th>状態</th>
+            <td>
+              <% if @member.is_active == true %>
+                <span class="text-submit fw-bold">有効</span>
+              <% else %>
+                <span class="text-danger fw-bold">退会</span>
+              <% end %>
+            </td>
           </tr>
-            <tr>
-              <th>状態</th>
-              <td>
-                <% if @member.is_active == true %>
-                  <span class="text-submit fw-bold">有効</span>
-                <% else %>
-                  <span class="text-danger fw-bold">退会</span>
-                <% end %>
-              </td>
-            </tr>
         </table>
       </div>
 

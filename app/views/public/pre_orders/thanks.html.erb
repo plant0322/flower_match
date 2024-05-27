@@ -1,5 +1,24 @@
-<div class="container d-flex flex-row-reverse pt-3 mt-5">
-  <div class="col-9 px-3">
+<div class="container d-flex flex-column pt-3">
+  <div class="login-content col-8 mx-auto px-3">
+
+    <!--3step-->
+    <div class="d-flex justify-content-center align-items-center pb-5">
+      <div class="col-3 bg-secondary-subtle text-center p-1 text-body-tertiary rounded-3">
+        <small class="fw-bold">step.1</small><br>
+        <span class="fw-bold">予約内容入力</span>
+      </div>
+      <div class="col-1 text-center text-body-tertiary">▶</div>
+      <div class="col-3 bg-secondary-subtle text-center p-1 rounded-3 text-body-tertiary">
+        <small class="fw-bold">step.2</small><br>
+        <span class="fw-bold">予約内容確認</span>
+      </div>
+      <div class="col-1 text-center text-body-tertiary">▶</div>
+      <div class="col-3 bg-info text-center p-1 rounded-3 text-white">
+        <small>finish</small><br>
+        <span class="fw-bold">予約完了</span>
+      </div>
+    </div>
+
     <h2>ご予約が完了しました。ありがとうございます。</h2>
     <%= link_to '予約状況を確認する', pre_orders_path, class: "btn btn-info mt-5" %>
   </div>

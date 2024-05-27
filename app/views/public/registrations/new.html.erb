@@ -1,13 +1,12 @@
 <div class="container d-flex flex-column pt-3">
-  <div class="col-8 mx-auto px-3 mt-3">
+  <div class="login-content col-8 mx-auto px-3 mt-3">
     <h2>一般ユーザーさま新規会員登録</h2>
     <hr>
     <small>※こちらは「一般ユーザー」登録になります。商品を紹介したり予約を受け付けたい<%= link_to  new_shop_registration_path do%>「ショップ」さまの登録はこちら<% end %></small>
     <div class="pb-5">
       <%= form_with model: @member, url: member_registration_path do |f| %>
-        <%#= render "public/shared/error_messages", resource: resource %>
         <h3 class="bg-info p-1 h5">名前の登録</h3>
-        <table class="table table-borderless table-member my-3">
+        <table class="form-table table table-borderless table-member my-3">
           <tr>
             <th class="w-25">名前<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td>
@@ -45,7 +44,7 @@
         </table>
 
         <h3 class="bg-info p-1 h5">ユーザー情報の登録</h3>
-        <table class="table table-borderless table-member my-3">
+        <table class="form-table table table-borderless table-member my-3">
           <tr>
             <th class="w-25">郵便番号<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td>
@@ -84,7 +83,7 @@
         </table>
 
         <h3 class="bg-info p-1 h5">ログイン情報の登録</h3>
-        <table class="table table-borderless table-member my-3">
+        <table class="form-table table table-borderless table-member my-3">
           <tr>
             <th class="w-25">ニックネーム<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
@@ -111,7 +110,7 @@
           </tr>
         </table>
 
-        <table class="table table-borderless table-member my-3">
+        <table class="form-table table table-borderless table-member my-3">
           <tr>
             <th class="w-25">パスワード<small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">

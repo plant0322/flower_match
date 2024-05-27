@@ -1,10 +1,29 @@
 <div class="container d-flex flex-column pt-3">
-  <div class="col-8 mx-auto px-3">
+  <div class="login-content col-8 mx-auto px-3">
+
+    <!--3step-->
+    <div class="d-flex justify-content-center align-items-center pb-3">
+      <div class="col-3 bg-info text-center p-1 rounded-3 text-white">
+        <small class="fw-bold">step.1</small><br>
+        <span class="fw-bold">予約内容入力</span>
+      </div>
+      <div class="col-1 text-center text-body-tertiary">▶</div>
+      <div class="col-3 bg-secondary-subtle text-center p-1 rounded-3 text-body-tertiary">
+        <small>step.2</small><br>
+        <span class="fw-bold">予約内容確認</span>
+      </div>
+      <div class="col-1 text-center text-body-tertiary">▶</div>
+      <div class="col-3 bg-secondary-subtle text-center p-1 rounded-3 text-body-tertiary">
+        <small>finish</small><br>
+        <span class="fw-bold">予約完了</span>
+      </div>
+    </div>
+
     <h2><span>step1</span> 予約内容入力</h2>
     <hr>
     <%= form_with model: @pre_order, url: pre_orders_confirm_path, method: :post do |f| %>
       <h3 class="bg-info p-1 h5">日時を指定する</h3>
-      <table class="table table-bordered table-light my-3">
+      <table class="form-table table table-bordered table-light my-3">
         <tr>
           <th class="w-25"><%= f.label :visit_day, "来店日" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
           <td><%= f.date_field :visit_day, autofocus: true, placeholder: "例）〇月〇日（水）", autocomplete: "visit_day", class: "form-control" %></td>
@@ -23,7 +42,7 @@
       </table>
 
       <h3 class="bg-info p-1 h5 mt-5">予約内容を入力する</h3>
-      <table class="table table-bordered table-light align-middle my-3">
+      <table class="form-table table table-bordered table-light align-middle my-3">
         <tr>
           <th class="w-25">予約ショップ</th>
           <td class="d-flex align-items-center">
@@ -67,21 +86,21 @@
       </table>
 
       <h3 class="bg-info p-1 h5 mt-5">その他</h3>
-      <table class="table table-bordered table-light my-3">
+      <table class="form-table table table-bordered table-light my-3">
         <tr>
           <th class="w-25"><%= f.label :note, "備考" %></th>
           <td><%= f.text_area :note, autocomplete: "note", class: "form-control" %></td>
         </tr>
       </table>
 
-      <div class="d-flex flex-row my-3 mx-auto">
-        <div class="col-6 d-grid p-2">
-          <%= link_to "商品情報へ戻る", item_path(@item.id), class: "btn btn-outline-info p-2" %>
-        </div>
+      <div class="d-flex flex-row-reverse flex-wrap my-3 mx-auto">
         <div class="col-6 d-grid p-2">
           <%= f.hidden_field :item_id, value: @item.id %>
           <%= f.hidden_field :amount, value: @amount %>
           <%= f.submit "予約内容を確認する", class: "btn btn-info p-2" %>
+        </div>
+        <div class="col-6 d-grid p-2">
+          <%= link_to "商品情報へ戻る", item_path(@item.id), class: "btn btn-outline-info p-2" %>
         </div>
       </div>
     <% end %>
