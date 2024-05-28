@@ -1,5 +1,5 @@
 class Shop::ItemsController < ApplicationController
-  before_action :authenticate_shop!
+  before_action :authenticate_shop!, except: [:destroy]
   before_action :set_item, only: [:edit, :update, :destroy]
   before_action :is_matching_login_shop, only: [:edit, :update]
   before_action :set_tag_rank, only: [:edit, :index, :new, :create]
@@ -53,7 +53,7 @@ class Shop::ItemsController < ApplicationController
   def destroy
     item = Item.find(params[:id])
     item.destroy
-    redirect_to shop_items_path
+    redirect_to root_path
     flash[:notice] = "商品を削除しました"
   end
 
