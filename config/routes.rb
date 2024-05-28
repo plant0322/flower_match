@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'top'    =>  'homes#top', as: 'top'
-    #get 'search' => 'searches#search'
 
     resources :shops, only: [:index, :edit, :update]
     resources :members, only: [:show, :index, :edit, :update]
@@ -38,13 +37,11 @@ Rails.application.routes.draw do
     patch 'shops/withdraw'              => 'shops#withdraw', as: 'withdraw_shop'
     get 'members/:member_id/pre_orders' => 'pre_orders#index', as: 'member_pre_orders'
     get 'search'                        => 'searches#search'
-    #確認して消す get ':member_id/review'             => 'reviews#index', as: 'review'
 
     resources :members, only: [:show]
     resources :items, except: [:show]
     resources :pre_orders, only: [:show, :index, :update]
     resources :messages, only: [:show, :index, :create, :update, :destroy]
-    #resources :rooms, only: [:update]
   end
 
 
@@ -63,7 +60,7 @@ Rails.application.routes.draw do
     root 'homes#top'
     get 'about' => 'homes#about', as: 'about'
 
-    get "members" => redirect("/members/sign_up")
+    get "members"                  => redirect("/members/sign_up")
     get 'members/mypage'           => 'members#show', as: 'mypage'
     get 'members/information/edit' => 'members#edit', as: 'edit_information'
     patch 'members/information'    => 'members#update', as: 'update_information'
@@ -78,6 +75,8 @@ Rails.application.routes.draw do
     get 'favorite_shop_items'      => 'favorite_shops#item_list', as: 'favorite_shop_items'
     get 'search'                   => 'searches#search'
     get ':shop_id/review'          => 'reviews#index', as: 'review'
+    get 'privacypolicy'            => 'homes#privacypolicy'
+    get 'guide'                    => 'homes#guide'
 
     resources :shops, only: [:show] do
       resource :favorite_shop, only: [:create, :destroy]

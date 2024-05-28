@@ -45,7 +45,12 @@
         <th><%= f.label :tag_name, "タグ" %></th>
         <td colspan="2">
           <%= f.text_field :tag_name, value: tag_list, placeholder: "カンマ「,」で区切ることでタグを複数追加できます", autocomplete: "tag_name", class: "form-control" %>
-          <small class="text-secondary">例）花束,バラ,赤い花</small>
+          <small class="text-success">
+            開催中のイベント:
+            <% pick_up_tags.each do |pick_up_tag| %>
+              <%= pick_up_tag.tag.name %>,
+            <% end %>
+          </small>
         </td>
       </tr>
       <tr>

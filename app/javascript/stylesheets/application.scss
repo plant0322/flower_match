@@ -29,11 +29,31 @@ img:hover {
     transition-duration: 0.3s;
 }
 
-h1.page-title{
+h1.page-title {
     font-size: 0.7em;
     padding: 3px 10px;
     background-color: #E3DECC;
     color: #968582;
+}
+
+// Aboutページ
+.about-content h2 {
+    font-size: 1.5em!important;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #67ABAA;
+}
+
+.about-item {
+    background-color: #fff;
+    padding: 20px 40px;
+    margin-bottom: 30px;
+    border-radius: 3px!important;
+    line-height: 1.8em;
+}
+
+.about-content .shop-content {
+    
 }
 
 // パンくず
@@ -221,6 +241,7 @@ label.text-success {
 // ヘッダーフッター
 footer{
     color: #fff;
+    font-size: 0.8em!important;
 }
 
 header,
@@ -369,7 +390,8 @@ footer{
 
     div.main-content,
     div.left-content,
-    div.login-content,{
+    div.login-content,
+    div.about-content {
         width: 100%!important;
         padding: 18px 0 0!important;
     }

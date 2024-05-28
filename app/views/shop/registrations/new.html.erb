@@ -225,9 +225,12 @@
             </td>
           </tr>
         </table>
+        <small>
+          ご登録の際は、<%= link_to guide_path, target: :_blank do %>ご利用ガイド<% end %>、<%= link_to privacypolicy_path, target: :_blank do %>プライバシーポリシー<% end %>をご確認ください。
+        </small>
 
         <div class="col-6 d-grid my-3 mx-auto">
-          <%= f.submit "この内容で登録する", class: "btn btn-info p-2" %>
+          <%= f.submit "上記に同意して登録する", class: "btn btn-info p-2" %>
         </div>
       <% end %>
     </div>

@@ -1,4 +1,6 @@
 class Public::HomesController < ApplicationController
+  before_action :set_search
+
   def top
     active_shops = Shop.where(is_active: true)
     active_items = Item.where(is_active: true)
@@ -11,6 +13,18 @@ class Public::HomesController < ApplicationController
   end
 
   def about
+  end
+
+  def guide
+  end
+
+  def privacypolicy
+  end
+
+  private
+
+  def set_search
     @search = OpenStruct.new(model: 'item')
   end
+
 end

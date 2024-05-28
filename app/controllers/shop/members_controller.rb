@@ -9,7 +9,6 @@ class Shop::MembersController < ApplicationController
     pre_orders = PreOrder.where(item_id: shop_items, member_id: @member)
     @before_visit_pre_orders = pre_orders.where(status: 'before_visit')
     @visit_or_cancel_pre_orders = pre_orders.where(status: ['visit', 'cancel']).order(visit_day: "DESC").page(params[:page])
-    #@visit_or_cancel_pre_orders = pre_orders.where(status: 'visit') + pre_orders.where(status: 'cancel')
     @room = Room.where(shop_id: current_shop, member_id: @member)
     @reviews = Review.where(pre_order_id: pre_orders)
     @pick_up_tags = PickUpTag.where(is_active: true).order(id: 'DESC')

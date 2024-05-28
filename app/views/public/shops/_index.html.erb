@@ -14,18 +14,20 @@
         <% end %>
       </div>
     <% end %>
-    <div class="d-flex flex-row">
-      <div class="col-2 pe-3">
-        <%= image_tag shop.get_shop_image(200,200), class: "w-100" %>
+    <div class="d-flex flex-row flex-wrap">
+      <div class="main-content col-6 d-flex flex-row flex-wrap">
+        <div class="col-4 pe-3">
+          <%= image_tag shop.get_shop_image(200,200), class: "w-100" %>
+        </div>
+        <div class="col-8 pe-3">
+          <%= link_to shop_path(shop) do %>
+            <h3 class="h5 fw-bold"><%= shop.name %> <small>[ <%= shop.id %> ]</small></h3>
+            <p><%= shop.name_kana %></p>
+          <% end %>
+        </div>
+      <p class="shop-introduction"><%= shop.introduction %></p>
       </div>
-      <div class="col-5 pe-3">
-        <%= link_to shop_path(shop) do %>
-          <h3 class="h5 fw-bold"><%= shop.name %> <small>[ <%= shop.id %> ]</small></h3>
-          <p><%= shop.name_kana %></p>
-        <% end %>
-        <p class="shop-introduction"><%= shop.introduction %></p>
-      </div>
-      <div class="col-5">
+      <div class="main-content col-6">
         <table class="table table-borderless">
           <tr>
             <th>住所</th>
