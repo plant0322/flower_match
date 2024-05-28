@@ -43,7 +43,7 @@ class Shop::SessionsController < Devise::SessionsController
 
   private
 
-  def set_search
+  def set_search_check_login
     @search = OpenStruct.new(model: 'item')
     if member_signed_in?
       flash[:alert] = "一般ユーザーでログイン中のためショップにログインできません。"
