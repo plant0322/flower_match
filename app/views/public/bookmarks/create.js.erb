@@ -1,5 +1,5 @@
 <% if request.referrer.include?(item_path(@item)) %>
   $(".bookmark-btn").html("<%= j(render 'public/bookmarks/btn_text', item: @item) %>");
-<% elsif request.referrer.include?(root_path) %>
+<% else %>
   $("#item_<%= @item.id %> .bookmark-btn").html("<%= j(render 'public/bookmarks/btn_ribbon', item: @item) %>");
 <% end %>

@@ -1,5 +1,5 @@
 <% shops. each do |shop| %>
-  <div class="col-12 card p-2 mb-3">
+  <div id="shop_<%= shop.id %>" class="col-12 card p-2 mb-3">
     <% if admin_signed_in? %>
       <div class="d-flex flex-row fw-bold p-2 mb-2 bg-secondary-subtle">
         <small>ショップID:</small><%= shop.id %>
@@ -17,7 +17,6 @@
     <div class="d-flex flex-row">
       <div class="col-2 pe-3">
         <%= image_tag shop.get_shop_image(200,200), class: "w-100" %>
-        <div class="pt-2"><%= render 'public/favorite_shops/btn', shop: shop %></div>
       </div>
       <div class="col-5 pe-3">
         <%= link_to shop_path(shop) do %>
@@ -41,6 +40,7 @@
             <td><%= shop.holiday %></td>
           </tr>
         </table>
+        <div class="favorite-btn pt-2"><%= render 'public/favorite_shops/btn', shop: shop %></div>
       </div>
     </div>
   </div>

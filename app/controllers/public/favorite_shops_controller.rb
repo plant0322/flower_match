@@ -3,10 +3,9 @@ class Public::FavoriteShopsController < ApplicationController
   before_action :set_search, only: [:shop_list, :item_list]
 
   def create
-    shop = Shop.find(params[:shop_id])
-    favorite_shop = current_member.favorite_shops.new(shop_id: shop.id)
+    @shop = Shop.find(params[:shop_id])
+    favorite_shop = current_member.favorite_shops.new(shop_id: @shop.id)
     favorite_shop.save
-    redirect_to request.referer
   end
 
   def destroy
