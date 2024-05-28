@@ -1,10 +1,9 @@
 class Public::BookmarksController < ApplicationController
 
   def create
-    item = Item.find(params[:item_id])
-    bookmark = current_member.bookmarks.new(item_id: item.id)
+    @item = Item.find(params[:item_id])
+    bookmark = current_member.bookmarks.new(item_id: @item.id)
     bookmark.save
-    redirect_to request.referer
   end
 
   def destroy

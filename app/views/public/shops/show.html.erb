@@ -1,10 +1,12 @@
 <div class="container d-flex flex-row-reverse flex-wrap pt-3">
   <div class="main-content col-9 px-3">
-    <div class="d-flex flex-wrap">
+    <div id="shop_<%= @shop.id %>" class="d-flex flex-wrap">
       <!--画像-->
       <div class="wide-item col-4">
         <%= image_tag @shop.get_shop_image(500,500), class: "w-100 p-1" %>
-        <%= render 'public/favorite_shops/btn', shop: @shop %>
+        <div class="favorite-btn">
+          <%= render 'public/favorite_shops/btn', shop: @shop %>
+        </div>
         <%= link_to review_path(@shop), class: "btn btn-outline-info d-grid mt-2" do %>
            ショップの口コミを見る (<%= @reviews.count %>)
         <% end %>
