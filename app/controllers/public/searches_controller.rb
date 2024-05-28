@@ -29,7 +29,7 @@ class Public::SearchesController < ApplicationController
       @records = Tag.search_items(@content, active_items)
     end
 
-    @pick_up_tags = PickUpTag.where(is_active: true)
+    @pick_up_tags = PickUpTag.where(is_active: true).order(id: 'DESC')
     @tag_rank = Tag.tag_rank_item
     @tags = Tag.tag_rank_item.limit(50)
   end

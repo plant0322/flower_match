@@ -40,7 +40,7 @@ class Shop::SearchesController < ApplicationController
     end
 
     @tag_rank = Tag.tag_rank_item
-    @pick_up_tags = PickUpTag.where(is_active: true)
+    @pick_up_tags = PickUpTag.where(is_active: true).order(id: 'DESC')
     @search = OpenStruct.new(model: 'item')
   end
 end

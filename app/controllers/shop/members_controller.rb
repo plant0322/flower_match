@@ -12,7 +12,7 @@ class Shop::MembersController < ApplicationController
     #@visit_or_cancel_pre_orders = pre_orders.where(status: 'visit') + pre_orders.where(status: 'cancel')
     @room = Room.where(shop_id: current_shop, member_id: @member)
     @reviews = Review.where(pre_order_id: pre_orders)
-    @pick_up_tags = PickUpTag.where(is_active: true)
+    @pick_up_tags = PickUpTag.where(is_active: true).order(id: 'DESC')
     @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')
   end
