@@ -2,7 +2,7 @@ class Shop::ItemsController < ApplicationController
   before_action :authenticate_shop!
   before_action :set_item, only: [:edit, :update, :destroy]
   before_action :is_matching_login_shop, only: [:edit, :update]
-  before_action :set_tag_rank, only: [:edit, :index, :new]
+  before_action :set_tag_rank, only: [:edit, :index, :new, :create]
 
   def new
     @item = Item.new
