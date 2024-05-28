@@ -1,6 +1,8 @@
 <hr>
-<div class="paginate d-flex align-items-center justify-content-center">
-  <%= (content.current_page - 1) * content.limit_value + 1 %>件～<%= [content.current_page * content.limit_value, content.total_count].min %>件（全<%= content.total_count %>件）
-  <span class="pt-2 ps-2"><%= paginate content, theme: 'bootstrap-5' %></span>
+<div class="paginate d-flex align-items-center justify-content-center flex-wrap-reverse">
+  <small class="paginate-total text-center">
+    <%= (content.current_page - 1) * content.limit_value + 1 %>件～<%= [content.current_page * content.limit_value, content.total_count].min %>件（全<%= content.total_count %>件）
+  </small>
+  <div class="pt-2 ps-2"><%= paginate content, theme: 'bootstrap-5' %></div>
 </div>
 <hr>

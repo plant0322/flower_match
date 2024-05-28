@@ -19,6 +19,7 @@ class Public::ShopsController < ApplicationController
 
   def check_shop_is_active
     @shop = Shop.find(params[:id])
+    return if admin_signed_in?
     unless @shop.is_active
       redirect_to root_path
     end
