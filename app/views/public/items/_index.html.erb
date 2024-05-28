@@ -5,7 +5,7 @@
       <%= link_to item_path(item), class: "text-decoration-none" do %>
         <%= image_tag item.get_item_image(300,300), class: "item-img-ratio card-img-top" %>
       <% end %>
-      <div class="card-body">
+      <div id="item_<%= item.id %>" class="card-body">
         <div class="col-12 d-flex flex-row">
           <div class="col-11">
             <h3 class="fw-bold h6 pe-1 card-title">
@@ -14,17 +14,9 @@
             <% end %>
             </h3>
           </div>
-          <div class="col-1">
+          <div class="bookmark-btn col-1">
             <% if member_signed_in? %>
-              <% if item.bookmark_by?(current_member) %>
-                <%= link_to bookmarks_path do %>
-                  <i class="fa-solid fa-bookmark"></i>
-                <% end %>
-              <% else %>
-                <%= link_to item_bookmarks_path(item), method: :post do %>
-                  <i class="fa-regular fa-bookmark"></i>
-                <% end %>
-              <% end %>
+              <%= render 'public/bookmarks/btn_ribbon', item: item %>
             <% else %>
               <i class="fa-regular fa-bookmark text-black text-opacity-25"></i>
             <% end %>

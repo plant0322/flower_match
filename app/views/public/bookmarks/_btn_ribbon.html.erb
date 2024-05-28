@@ -1,0 +1,9 @@
+<% if item.bookmark_by?(current_member) %>
+  <%= link_to bookmarks_path do %>
+    <i class="fa-solid fa-bookmark"></i>
+  <% end %>
+<% else %>
+  <%= link_to item_bookmarks_path(item), remote: true, method: :post do %>
+    <i class="fa-regular fa-bookmark"></i>
+  <% end %>
+<% end %>
