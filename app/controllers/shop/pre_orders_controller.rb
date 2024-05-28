@@ -5,8 +5,9 @@ class Shop::PreOrdersController < ApplicationController
   def index
     @shop = current_shop
     @shop_items = Item.where(shop_id: @shop.id)
-    @pre_orders = PreOrder.where(item_id: @shop_items.pluck(:id)).order(visit_day: "ASC")
+    @pre_orders = PreOrder.where(item_id: @shop_items.pluck(:id))
     @before_visit_pre_orders = @pre_orders.where(status: 'before_visit')
+                                          .order(visit_day: "ASC")
     @visit_or_cancel_pre_orders = @pre_orders.where(status: ['visit', 'cancel'])
                                              .order(visit_day: "DESC").page(params[:page])
     @search_order = OpenStruct.new(type: 'order_member')

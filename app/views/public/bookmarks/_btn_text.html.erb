@@ -1,9 +1,9 @@
 <% if item.bookmark_by?(current_member) %>
   <%= link_to  bookmarks_path, class: "btn btn-outline-info p-2 mt-2 w-100" do %>
-    ブックマーク済み (<%= item.bookmarks.count %>)
+    ブックマーク済み <i class="fa-solid fa-bookmark"></i> <%= item.bookmarks.count %>
   <% end %>
 <% else %>
   <%= link_to item_bookmarks_path(item), remote: true, method: :post, class: "btn btn-outline-info p-2 mt-2 w-100" do %>
-    ブックマークする<% if item.bookmarks.count >= 1 %> (<%= item.bookmarks.count %>)<% end %>
+    ブックマークする <i class="fa-regular fa-bookmark"></i> <% if item.bookmarks.count > 1 %> <%= item.bookmarks.count %><% end %>
   <% end %>
 <% end %>

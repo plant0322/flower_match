@@ -2,7 +2,7 @@
 
 class Public::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
-  before_action :set_search, only: [:new, :create]
+  before_action :set_search_check_login, only: [:new, :create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -62,8 +62,12 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
   private
 
-  def set_search
+  def set_search_check_login
     @search = OpenStruct.new(model: 'item')
+    if shop_signed_in?
+      flash[:alert] = "ショップでログイン中のため一般ユーザーではログインできません。"
+      redirect_to root_path
+    end
   end
 
   # The path used after sign up for inactive accounts.

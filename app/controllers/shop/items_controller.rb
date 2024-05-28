@@ -14,7 +14,7 @@ class Shop::ItemsController < ApplicationController
     @item.shop_id = current_shop.id
     tag_list = params[:item][:tag_name].split(',')
     if @item.save
-      if params[:item][:first_is_active]
+      if params[:item][:first_is_active] == 'true'
         @item.update(is_active: true)
       end
       @item.save_tags(tag_list)

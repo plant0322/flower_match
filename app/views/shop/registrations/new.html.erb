@@ -151,7 +151,7 @@
             <th class="w-25"><%= f.label :payment_method, "支払方法" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
               <%= f.text_field :payment_method, autocomplete: "payment_method", class: "form-control" %>
-              <small class="text-secondary">例）現金/Visa／Mastercard／JCB／American Express／PayPay</small>
+              <small class="text-secondary">例）現金/Visa/Mastercard/JCB/American Express/PayPay</small>
             </td>
           </tr>
           <tr>
@@ -167,7 +167,7 @@
           </tr>
           <tr>
             <td colspan="3">
-              <%= render "layouts/error_messages", obj: @shop, attribute: :payment_method %>
+              <%= render "layouts/error_messages", obj: @shop, attribute: :note %>
             </td>
           </tr>
         </table>

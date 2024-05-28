@@ -22,8 +22,8 @@
     </tr>
     <tr>
       <td colspan="2" class="text-center">
-        <%= f.radio_button :is_active, true, class: "form-check-input" %><%= f.label :is_active, '公開', class: "form-check-label text-success pe-3" %>
-        <%= f.radio_button :is_active, false, class: "form-check-input" %><%= f.label :is_active, '非公開', class: "form-check-label text-danger" %>
+        <label class="form-check-label text-success fw-bold pe-2"><%= f.radio_button :is_active, true, class: "form-check-input" %> 公開</label>
+        <label class="form-check-label text-danger fw-bold pe-2"><%= f.radio_button :is_active, false, class: "form-check-input" %> 非公開</label>
       </td>
     </tr>
     <tr>

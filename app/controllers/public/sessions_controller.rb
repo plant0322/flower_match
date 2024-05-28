@@ -2,7 +2,7 @@
 
 class Public::SessionsController < Devise::SessionsController
   before_action :member_state, only: [:create]
-  before_action :set_search, only: [:new]
+  before_action :set_search_check_login, only: [:new, :create]
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -42,8 +42,12 @@ class Public::SessionsController < Devise::SessionsController
 
   private
 
-  def set_search
+  def set_search_check_login
     @search = OpenStruct.new(model: 'item')
+    if shop_signed_in?
+      flash[:alert] = "ショップでログイン中のため一般ユーザーでログインできません。"
+      redirect_to root_path
+    end
   end
 
   def member_state

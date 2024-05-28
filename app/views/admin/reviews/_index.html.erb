@@ -17,8 +17,8 @@
         <div class="col-3">
           <%= form_with model: review, url: admin_review_path(review) do |f| %>
             <div class="d-flex align-items-center pt-2">
-              <div class="pe-3 text-success"><%= f.radio_button :is_active, true, class: "form-check-input" %><%= f.label :is_active, '公開', class: "form-check-label ps-1" %></div>
-              <div class="text-danger"><%= f.radio_button :is_active, false, class: "form-check-input" %><%= f.label :is_active, '非公開', class: "form-check-label ps-1" %></div>
+              <div class="pe-3 text-success"><label class="form-check-label text-success fw-bold pe-2"><%= f.radio_button :is_active, true, class: "form-check-input" %> 公開</label></div>
+              <div class="text-danger"><label class="form-check-label text-danger fw-bold pe-2"><%= f.radio_button :is_active, false, class: "form-check-input" %> 非公開</label></div>
             </div>
             <%= f.submit '変更する', class: "btn btn-outline-info p-2 mt-2 w-100" %>
           <% end %>

@@ -18,11 +18,11 @@ class Public::PreOrdersController < ApplicationController
     @amount = session[:amount].to_i
     @item = Item.find(session[:item_id])
     @pre_order = PreOrder.new(pre_order_params)
-    if params[:pre_order][:visit_day].to_date <  Date.today
-      flash.now[:alert] = '今日以前の日付を指定することはできません'
-      render :new
-    elsif params[:pre_order][:visit_day].blank? || params[:pre_order][:visit_time].blank?  || params[:pre_order][:purpose].blank?
+    if params[:pre_order][:visit_day].blank? || params[:pre_order][:visit_time].blank?  || params[:pre_order][:purpose].blank?
       flash.now[:alert] = '「来店日」「来店時間」「要望・用途」は必須項目です'
+      render :new
+    elsif params[:pre_order][:visit_day].to_date <  Date.today
+      flash.now[:alert] = '今日以前の日付を指定することはできません'
       render :new
     elsif params[:pre_order][:note].blank?
       @pre_order.note = '特になし'
@@ -66,7 +66,7 @@ class Public::PreOrdersController < ApplicationController
 
   def index
     @pre_orders = current_member.pre_orders
-    @before_visit_pre_orders = @pre_orders.where(status: 'before_visit').order(visit_day: "DESC")
+    @before_visit_pre_orders = @pre_orders.where(status: 'before_visit').order(visit_day: "ASC")
     @visit_or_cancel_pre_orders = @pre_orders.where(status: ['visit', 'cancel']).order(visit_day: "DESC").page(params[:page])
     @pick_up_tags = PickUpTag.where(is_active: true).order(id: 'DESC')
     @tag_rank = Tag.tag_rank_item
