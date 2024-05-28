@@ -45,7 +45,7 @@
           payment_method: "支払方法"
           direction: "道案内"
           telephone_number: "電話番号"
-          note: "パスワード"
+          note: "備考欄"
           email: "メールアドレス"
           password: "パスワード"
           is_active: "会員ステータス"

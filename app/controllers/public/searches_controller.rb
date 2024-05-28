@@ -16,7 +16,7 @@ class Public::SearchesController < ApplicationController
                      .where(is_active: true, shop_id: active_shops).page(params[:page])
     elsif @model == 'address'
       @records = Item.joins(:shop)
-                     .where('items.name LIKE :content OR items.introduction LIKE :content OR shops.address LIKE :content', content: "%#{@content}%")
+                     .where('shops.address LIKE :content', content: "%#{@content}%")
                      .where(is_active: true, shop_id: active_shops)
                      .order(updated_at: 'DESC').page(params[:page])
     elsif @model == 'shop'

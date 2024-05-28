@@ -11,9 +11,9 @@
         <td class="text-center">
           <%= image_tag item.get_item_image(100,100) %>
           <% if item.is_active %>
-            <p class="text-success">公開中</p>
+            <p class="text-success fw-bold">公開中</p>
           <% else %>
-            <p class="text-danger">非公開</p>
+            <p class="text-danger fw-bold">非公開</p>
           <% end %>
         </td>
         <td>
