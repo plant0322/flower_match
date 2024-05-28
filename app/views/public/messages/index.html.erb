@@ -12,7 +12,7 @@
                 <%= message.created_at.strftime("%Y年%m月%d日") %>
                   <%= message.room.shop.name %> さん
                 </div>
-                <small><%= message.member.member_full_name %> さんの返信:</small>
+                <small><%= message.member.member_full_name %> さんから送信:</small>
               <% elsif message.is_a?(ShopMessage) %>
                 <div class="btn btn-info hover-none">
                   <%= message.created_at.strftime("%Y年%m月%d日") %>
@@ -20,7 +20,7 @@
                 </div>
                 <small><%= message.shop.name %> さん<small>[ <%= message.room.shop.id %> ]</small>から受信:</small>
               <% end %>
-              <%= message.message %>
+              <p class="pt-1"><%= message.message %></p>
             </div>
           </div>
         <% end %>

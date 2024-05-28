@@ -35,7 +35,7 @@
               <% end %>
             <% end %>
           <% end %>
-          <%= message.message %>
+          <p class="pt-1"><%= message.message %></p>
             <% if message.is_a?(ShopMessage) && shop_signed_in? %>
               <%= link_to "削除", shop_message_path(message), method: :delete, "data-confirm" => "本当に削除しますか？" %>
             <% elsif message.is_a?(MemberMessage) && member_signed_in? %>

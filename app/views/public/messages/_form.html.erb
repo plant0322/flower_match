@@ -23,7 +23,7 @@
               <%= message.shop.name %> さん
             </span>
           <% end %>
-          <%= message.message %>
+          <p class="pt-1"><%= message.message %></p>
           <% if message.is_a?(MemberMessage) %>
             <%= link_to "削除", message_path(message), method: :delete, "data-confirm" => "本当に削除しますか？" %>
           <% else %>

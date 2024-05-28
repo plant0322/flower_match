@@ -6,7 +6,7 @@
     <% @messages.each do |message| %>
       <%= link_to shop_message_path(message.room_id) do %>
         <div class="d-flex flex-row bg-info-subtle p-3 my-3">
-          <div class="pe-2">
+          <div class="col-1 pe-2">
             <% if message.room.is_take_care %>
               <span class="text-success">
                 対応済み
@@ -17,7 +17,7 @@
               </span>
             <% end %>
           </div>
-          <div class="fw-bold pe-3">
+          <div class="col-11 fw-bold pe-3">
             <% if message.is_a?(MemberMessage) %>
               <div class="btn btn-info hover-none">
               <%= message.created_at.strftime("%Y年%m月%d日") %>
@@ -29,9 +29,9 @@
                 <%= message.created_at.strftime("%Y年%m月%d日") %>
                 <%= message.room.member.member_full_name %> 様
               </div>
-              <small><%= message.shop.name %> の返信:</small>
+              <small><%= message.shop.name %> からの送信:</small>
             <% end %>
-            <%= message.message %>
+            <p class="pt-1"><%= message.message %></p>
           </div>
         </div>
       <% end %>
