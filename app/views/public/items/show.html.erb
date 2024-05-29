@@ -16,7 +16,9 @@
           </p>
           <div class="d-flex align-items-center pb-1">
             <div class="me-3">
-              在庫: <span class="h5"><%= @stock %></span> 個
+              <% unless @stock == 0 %>
+                在庫: <span class="h5"><%= @stock %></span> 点
+              <% end %>
             </div>
             <div>
               <% if @stock == 0 %>

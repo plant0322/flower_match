@@ -21,7 +21,7 @@ class Public::PreOrdersController < ApplicationController
     if params[:pre_order][:visit_day].blank? || params[:pre_order][:visit_time].blank?  || params[:pre_order][:purpose].blank?
       flash.now[:alert] = '「来店日」「来店時間」「要望・用途」は必須項目です'
       render :new
-    elsif params[:pre_order][:visit_day].to_date <  Date.today
+    elsif params[:pre_order][:visit_day].to_date < Date.today
       flash.now[:alert] = '今日以前の日付を指定することはできません'
       render :new
     elsif params[:pre_order][:note].blank?

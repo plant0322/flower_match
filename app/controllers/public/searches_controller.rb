@@ -26,7 +26,8 @@ class Public::SearchesController < ApplicationController
     else #@model = 'tag'
       active_shops = Shop.where(is_active: true)
       active_items = Item.where(is_active: true, shop_id: active_shops)
-      @records = Tag.search_items(@content, active_items)
+      tag_items = Tag.search_items(@content, active_items)
+      @records = Kaminari.paginate_array(tag_items).page(params[:page])
     end
 
     @pick_up_tags = PickUpTag.where(is_active: true).order(id: 'DESC')

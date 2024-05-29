@@ -9,10 +9,10 @@ class Tag < ApplicationRecord
 
   # タグの検索
   def self.search_items(content, active_items)
-    #scope :merge_items, -> (tags){}
     tags = Tag.where('name LIKE?', '%'+content+'%')
     tags.inject([]) do |result, tag|
       result + tag.items.where(id: active_items.ids)
+                        .order(updated_at: 'DESC')
     end.uniq
   end
 
@@ -25,5 +25,11 @@ class Tag < ApplicationRecord
       .group(:id)
       .order('COUNT(item_tags.tag_id) DESC')
       .limit(10)
+  end
+
+  def tag_count
+    active_shops = Shop.where(is_active: true)
+    active_items = Item.where(is_active: true, shop_id: active_shops).select(:id)
+    item_tags.where(item_id: active_items).count
   end
 end

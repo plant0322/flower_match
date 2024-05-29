@@ -8,10 +8,13 @@ class Shop::MembersController < ApplicationController
     @member = Member.find(params[:id])
     pre_orders = PreOrder.where(item_id: shop_items, member_id: @member)
     @before_visit_pre_orders = pre_orders.where(status: 'before_visit')
-    @visit_or_cancel_pre_orders = pre_orders.where(status: ['visit', 'cancel']).order(visit_day: "DESC").page(params[:page])
+                                         .order(visit_day: "ASC")
+    @visit_or_cancel_pre_orders = pre_orders.where(status: ['visit', 'cancel'])
+                                            .order(visit_day: "DESC").page(params[:page])
     @room = Room.where(shop_id: current_shop, member_id: @member)
     @reviews = Review.where(pre_order_id: pre_orders)
-    @pick_up_tags = PickUpTag.where(is_active: true).order(id: 'DESC')
+    @pick_up_tags = PickUpTag.where(is_active: true)
+                             .order(id: 'DESC')
     @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')
   end
@@ -22,7 +25,8 @@ class Shop::MembersController < ApplicationController
   def is_matching_login_shop
     member = Member.find(params[:id])
     items = Item.where(shop_id: current_shop)
-    pre_orders = PreOrder.where(item_id: items.pluck(:id)).where(member_id: member)
+    pre_orders = PreOrder.where(item_id: items.pluck(:id))
+                         .where(member_id: member)
     unless pre_orders.exists?
       flash[:alert] = "このユーザーからの予約はまだありません"
       redirect_to shop_top_path

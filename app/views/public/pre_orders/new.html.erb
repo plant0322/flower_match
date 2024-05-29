@@ -56,7 +56,7 @@
           <th class="w-25">予約商品</th>
           <td class="d-flex align-items-center">
             <div class="col-2 pe-2">
-              <%= image_tag @item.get_item_image(100,100),class: "w-100 p-1" %>
+              <%= image_tag @item.get_item_image(100,100),class: "w-100 p-1 hover-none" %>
             </div>
             <div class="col-10">
               <span class="fw-bold"><%= @item.name %></span> <small>[ <%= @item.id %> ]</small>

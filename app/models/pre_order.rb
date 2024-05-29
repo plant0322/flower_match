@@ -2,7 +2,7 @@ class PreOrder < ApplicationRecord
 
   belongs_to :member
   belongs_to :item
-  has_one :review
+  has_one :review, dependent: :destroy
 
   validates :amount, presence: true
   validates :visit_day, presence: true
