@@ -20,7 +20,7 @@
                 <td>
                   <%= link_to item_path(@recently_seen_item) do %>
                     <div class="d-flex flex-row">
-                      <%= image_tag @recently_seen_item.get_item_image(200,200), class: "col-4 pe-1" %>
+                      <div class="col-4"><%= image_tag @recently_seen_item.get_item_image(200,200), class: "pe-1 w-100" %></div>
                       <div class="col-8 ps-1"><%= @recently_seen_item.name %> [ <%= @recently_seen_item.id %> ]</div>
                     </div>
                   <% end %>

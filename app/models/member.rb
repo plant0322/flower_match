@@ -8,8 +8,8 @@ class Member < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :favorite_shops, dependent: :destroy
   has_many :member_messages, dependent: :destroy
-  #has_many :message_rooms, dependent: :destroy
   has_many :rooms, dependent: :destroy
+
 
   validates :last_name, presence: true
   validates :first_name, presence: true

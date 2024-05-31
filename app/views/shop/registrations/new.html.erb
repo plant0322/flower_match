@@ -1,11 +1,17 @@
 <div class="container d-flex flex-column pt-3">
   <div class="login-content col-8 mx-auto px-3 mt-3">
-    <h2>ショップさま新規登録</h2>
+
+    <h2>既に登録済みの方はこちら</h2>
+    <hr>
+    <div class="col-6 d-grid mx-auto py-3">
+      <%= link_to "ログインする", new_shop_session_path, class: "btn btn-info p-2" %>
+    </div>
+
+    <h2 class="mt-5">ショップさま新規登録</h2>
     <hr>
     <small>※こちらは「ショップ」登録になります。投稿を見たりお花の予約をしたい<%= link_to  new_member_registration_path do%>「一般ユーザー」さまの登録はこちら<% end %></small>
     <div class="pb-5">
       <%= form_with model: @shop, url: shop_registration_path do |f| %>
-        <%#= render "public/shared/error_messages", resource: resource %>
         <h3 class="bg-info p-1 h5">ショップ基本情報</h3>
         <table class="form-table table table-borderless table-shop my-3">
           <tr>
@@ -233,12 +239,6 @@
           <%= f.submit "上記に同意して登録する", class: "btn btn-info p-2" %>
         </div>
       <% end %>
-    </div>
-
-    <h2 class="mt-5">既に登録済みの方はこちら</h2>
-    <hr>
-    <div class="col-6 d-grid mx-auto py-3">
-      <%= link_to "ログインする", new_shop_session_path, class: "btn btn-info p-2" %>
     </div>
 
 

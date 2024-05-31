@@ -11,7 +11,7 @@
     <% tag_rank.each do |tag| %>
     <tr class="tr-menu" onclick='window.location="<%= "/search?model=tag&content=#{tag.name}" %>"' role="link">
       <td>
-        <%= tag.name %> <small>(<%= tag.item_tags.count %>)</small>
+        <%= tag.name %> <small>(<%= tag.tag_count %>)</small>
       </td>
     </tr>
     <% end %>
