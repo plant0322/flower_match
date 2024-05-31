@@ -51,10 +51,10 @@
             <th colspan="2" class="w-25">
               <div class="d-flex flex-row flex-wrap">
                 <div class="pe-3">
-                  <%= f.radio_button :type, 'order_member', checked: search.type == 'order_member', class: "form-check-input" %><%= f.label :type_order_member, "お客様情報から検索", class: "form-check-label text-secondary fw-bold ps-2" %>
+                  <%= f.radio_button :type, 'order_member', checked: search[:type] == 'order_member', class: "form-check-input" %><%= f.label :type_order_member, "お客様情報から検索", class: "form-check-label text-secondary fw-bold ps-2" %>
                 </div>
                 <div class="pe-3">
-                  <%= f.radio_button :type, 'order_item_all', checked: search.type == 'order_item_all', class: "form-check-input" %><%= f.label :type_order_item_all, "商品情報から検索", class: "form-check-label text-secondary fw-bold ps-2" %>
+                  <%= f.radio_button :type, 'order_item_all', checked: search[:type] == 'order_item_all', class: "form-check-input" %><%= f.label :type_order_item_all, "商品情報から検索", class: "form-check-label text-secondary fw-bold ps-2" %>
                 </div>
               </div>
             </th>
