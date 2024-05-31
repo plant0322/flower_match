@@ -66,9 +66,13 @@
     <h3 class="bg-info p-1 h5">会員ステータス</h3>
     <%= form_with model: @member, url: admin_member_path do |f| %>
         <div class="d-flex justify-content-center bg-light p-3 mt-3">
-        <div class="me-3">
-          <label class="form-check-label text-success fw-bold pe-2"><%= f.radio_button :is_active, true, class: "form-check-input" %> 有効</label>
-          <label class="form-check-label text-danger fw-bold pe-2"><%= f.radio_button :is_active, false, class: "form-check-input" %> 退会</label>
+        <div class="d-flex flex-row flex-wrap me-3">
+          <div class="pe-2">
+            <%= f.radio_button :is_active, true, class: "form-check-input" %><%= f.label :is_active_true, "有効", class: "form-check-label text-success fw-bold ps-1" %>
+          </div>
+          <div class="pe-2">
+            <%= f.radio_button :is_active, false, class: "form-check-input" %><%= f.label :is_active_false, "退会", class: "form-check-label text-danger fw-bold ps-1" %>
+          </div>
         </div>
         <div>
           <%= f.submit '変更する', class: "btn btn-info p-2" %>

@@ -11,9 +11,13 @@
     <% if shop_signed_in? %>
       <%= form_with model: @room, url: shop_message_path do |f| %>
         <div class="d-flex justify-content-center bg-light p-3 mt-3 mb-3">
-          <div class="me-3">
-            <label class="form-check-label text-success fw-bold pe-2"><%= f.radio_button :is_take_care, true, class: "form-check-input" %> 対応済み</label>
-            <label class="form-check-label text-danger fw-bold pe-2"><%= f.radio_button :is_take_care, false, class: "form-check-input" %> 対応待ち</label>
+          <div class="d-flex flex-row flex-wrap me-3">
+            <div class="pe-2">
+              <%= f.radio_button :is_take_care, true, class: "form-check-input" %><%= f.label :is_take_care_true, "対応済み", class: "form-check-label text-success fw-bold ps-2" %>
+            </div>
+            <div class="pe-2">
+              <%= f.radio_button :is_take_care, false, class: "form-check-input" %><%= f.label :is_take_care_false, "対応待ち", class: "form-check-label text-danger fw-bold ps-2" %>
+            </div>
           </div>
           <div>
             <%= f.submit "変更する", class: "btn btn-info p-2" %>

@@ -1,9 +1,15 @@
 <%= form_with url: search_path, method: :get do |f| %>
   <div class="px-2">
-    <div class="col-12 pb-1">
-      <label class="form-check-label text-white fw-bold pe-2"><%= f.radio_button :model, 'item', checked: search.model == 'item', class: "form-check-input" %> 商品</label>
-      <label class="form-check-label text-white fw-bold pe-2"><%= f.radio_button :model, 'address', checked: search.model == 'address', class: "form-check-input" %> 住所</label>
-      <label class="form-check-label text-white fw-bold pe-2"><%= f.radio_button :model, 'shop', checked: search.model == 'shop', class: "form-check-input" %> ショップ</label>
+    <div class="col-12 d-flex flex-row flex-wrap pb-1">
+      <div class="pe-3">
+        <%= f.radio_button :model, 'item', checked: search.model == 'item', class: "form-check-input" %><%= f.label :model_item, "商品", class: "form-check-label text-white fw-bold ps-2" %>
+      </div>
+      <div class="pe-3">
+        <%= f.radio_button :model, 'address', checked: search.model == 'address', class: "form-check-input" %><%= f.label :model_address, "住所", class: "form-check-label text-white fw-bold ps-2" %>
+      </div>
+      <div class="pe-3">
+        <%= f.radio_button :model, 'shop', checked: search.model == 'shop', class: "form-check-input" %><%= f.label :model_shop, "ショップ", class: "form-check-label text-white fw-bold ps-2" %>
+      </div>
     </div>
     <div class="d-flex flex-row">
       <div class="col-10">
