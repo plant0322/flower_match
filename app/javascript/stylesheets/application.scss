@@ -53,7 +53,7 @@ h1.page-title {
 }
 
 .about-content .shop-content {
-    
+
 }
 
 // パンくず
@@ -292,10 +292,6 @@ footer{
     padding-left: 5px;
 }
 
-// .tr-link {
-    // cursor: pointer;
-// }
-
 // 商品一覧
 .card-img-top {
     object-fit: cover;
@@ -328,6 +324,21 @@ footer{
     border: 1px solid #CC9B98!important;
     color: #CC9B98!important;
     font-weight: normal!important;
+}
+
+// メッセージ詳細
+.my-message {
+    background-color: #CCE4E4;
+    width: 85%;
+    margin-left: auto;
+    border-radius: 15px 15px 2px 15px;
+}
+
+.other-message {
+    background-color: #EAEAEA;
+    width: 85%;
+    margin-right: auto;
+    border-radius: 15px 15px 15px 2px;
 }
 
 // ページネーション

@@ -14,7 +14,7 @@ class Public::MessagesController < ApplicationController
       @room.shop_id = @shop.id
       @room.save
     end
-    @messages = (@room.member_messages + @room.shop_messages).sort_by(&:created_at).sort { |a, b| b.created_at <=> a.created_at }
+    @messages = (@room.member_messages + @room.shop_messages).sort_by(&:created_at)
     @message = MemberMessage.new(room_id: @room.id)
   end
 

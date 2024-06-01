@@ -4,7 +4,7 @@ class Shop::MessagesController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
-    @messages = (@room.member_messages + @room.shop_messages).sort_by(&:created_at).sort { |a, b| b.created_at <=> a.created_at }
+    @messages = (@room.member_messages + @room.shop_messages).sort_by(&:created_at)
     @message = ShopMessage.new(room_id: @room.id)
   end
 
@@ -26,17 +26,11 @@ class Shop::MessagesController < ApplicationController
       end
       @messages.sort_by!(&:created_at)
     end
-    #@messages = MemberMessage.where(room_id: rooms).order(created_at: "DESC").page(params[:page])
   end
 
   def create
-    if shop_signed_in?
-      @message = ShopMessage.new(shop_message_params)
-      @message.shop_id = current_shop.id
-    elsif member_signed_in?
-      @message = MemberMessage.new(shop_message_params)
-      @message.member_id = current_member.id
-    end
+    @message = ShopMessage.new(shop_message_params)
+    @message.shop_id = current_shop.id
     if @message.save
       if @message.is_a?(MemberMessage)
         Room.find_by(id: @message.room_id).update(is_take_care: false)
