@@ -4,36 +4,25 @@
     <hr>
     <% unless @messages.blank? %>
       <% @messages.each do |message| %>
-          <div class="d-flex flex-row bg-info-subtle p-3 my-3">
-            <div class="fw-bold pe-3">
+        <%= link_to message_path(message.room.shop) do %>
+          <div class="col-12 d-flex flex-row flex-wrap my-3 p-3 <%= (message.is_a?(ShopMessage) ? "my-message" : "" ) %> <%= (message.is_a?(MemberMessage) ? "other-message" : "" ) %>">
+            <div class="col-9">
               <% if message.is_a?(MemberMessage) %>
-                <%= link_to message_path(message.room.shop) do %>
-                  <div class="btn btn-info hover-none">
-                  <%= message.created_at.strftime("%Y年%m月%d日") %>
-                    <%= message.room.shop.name %> さん
-                  </div>
-                  <small><%= message.member.member_full_name %> さんから送信:</small>
-                <% end %>
+                <%= message.room.shop.name %> さん
               <% elsif message.is_a?(ShopMessage) %>
-                <%= link_to message_path(message.shop) do %>
-                  <div class="btn btn-info hover-none">
-                    <%= message.created_at.strftime("%Y年%m月%d日") %>
-                    <%= message.shop.name %> さん
-                  </div>
-                  <small><%= message.shop.name %> さん<small>[ <%= message.room.shop.id %> ]</small>から受信:</small>
-                <% end %>
+                <%= message.shop.name %> さん
               <% end %>
               <p class="pt-1"><%= message.message %></p>
             </div>
+            <div class="col-3">
+              <small class="text-secondary"><%= message.created_at.strftime("%Y年%m月%d %H:%M:%S") %></small>
+            </div>
           </div>
+      <% end %>
       <% end %>
     <% else %>
       <p>メッセージはまだありません</p>
     <% end %>
-
-
-    <!--ページネーション-->
-    <%#= render 'layouts/paginate', content: @messages %>
 
   </div>
   <div class="left-content col-3 px-3">

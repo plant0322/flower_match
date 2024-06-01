@@ -1,11 +1,10 @@
-<!--新規に送る用-->
 <div class="container d-flex flex-row-reverse flex-wrap pt-3">
-  <div class="main-content col-9 px-3">
+  <div id="messages-top" class="main-content col-9 px-3">
     <h2><%= @shop.name %>さんとのメッセージ</h2>
     <hr>
     <div class="col-12">
       <!--メッセージ-->
-      <div class= "py-2">
+      <div id="messages-container" class= "py-2 messages-container">
         <% @messages.each do |message| %>
           <div class="bg-light p-2">
             <div class="p-3 <%= (message.is_a?(MemberMessage) ? "my-message" : "" ) %> <%= (message.is_a?(ShopMessage) ? "other-message" : "" ) %>">

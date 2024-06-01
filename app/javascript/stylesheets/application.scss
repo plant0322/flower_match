@@ -341,6 +341,11 @@ footer{
     border-radius: 15px 15px 15px 2px;
 }
 
+.messages-container {
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
 // ページネーション
 .paginate{
     margin: -10px 0;

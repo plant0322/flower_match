@@ -1,12 +1,6 @@
 <div class="container d-flex flex-row-reverse flex-wrap pt-3">
-  <div class="main-content col-9 px-3">
-    <h2>
-      <% if shop_signed_in? %>
-        <%= @room.member.member_full_name %> 様とのメッセージ
-      <% else %>
-        <%= @room.shop.name %> さんとのメッセージ
-      <% end %>
-    </h2>
+  <div id="messages-top" class="main-content col-9 px-3 pt-2">
+    <h2><%= @room.member.member_full_name %> 様とのメッセージ</h2>
     <hr>
     <% if shop_signed_in? %>
       <%= form_with model: @room, url: shop_message_path do |f| %>
@@ -28,7 +22,7 @@
 
     <div class="col-12">
       <!--メッセージ-->
-      <div class= "py-2">
+      <div id="messages-container" class="py-2 messages-container">
         <% @messages.each do |message| %>
           <div class="bg-light p-2">
             <div class="p-3 <%= (message.is_a?(ShopMessage) ? "my-message" : "" ) %> <%= (message.is_a?(MemberMessage) ? "other-message" : "" ) %>">
