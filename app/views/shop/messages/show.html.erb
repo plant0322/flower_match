@@ -1,12 +1,6 @@
 <div class="container d-flex flex-row-reverse flex-wrap pt-3">
-  <div class="main-content col-9 px-3">
-    <h2>
-      <% if shop_signed_in? %>
-        <%= @room.member.member_full_name %> 様とのメッセージ
-      <% else %>
-        <%= @room.shop.name %> さんとのメッセージ
-      <% end %>
-    </h2>
+  <div id="messages-top" class="main-content col-9 px-3 pt-2">
+    <h2><%= @room.member.member_full_name %> 様とのメッセージ</h2>
     <hr>
     <% if shop_signed_in? %>
       <%= form_with model: @room, url: shop_message_path do |f| %>
@@ -26,7 +20,41 @@
       <% end %>
     <% end %>
 
-    <%= render 'shop/messages/form', messages: @messages, message: @message, url: shop_messages_path %>
+    <div class="col-12">
+      <!--メッセージ-->
+      <div id="messages-container" class="py-2 messages-container">
+        <% @messages.each do |message| %>
+          <div class="bg-light p-2">
+            <div class="p-3 <%= (message.is_a?(ShopMessage) ? "my-message" : "" ) %> <%= (message.is_a?(MemberMessage) ? "other-message" : "" ) %>">
+              <% unless message.is_a?(ShopMessage) %>
+                <span class="px-1 py-0">
+                  <%= link_to shop_member_path(message.member) do %>
+                    <%= message.member.member_full_name %> 様
+                  <% end %>
+                </span>
+              <% end %>
+              <p class="pt-1">
+                <%= message.message %>
+              </p>
+              <small class="text-body-tertiary">(<%= message.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %>)</small>
+              <% unless message.is_a?(MemberMessage) %>
+                <%= link_to "削除", shop_message_path(message), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <!--送信フォーム-->
+      <div class= "py-2">
+        <%= form_with model: @message, url: shop_messages_path do |f| %>
+          <%= f.text_area :message, class: "form-control" %>
+          <div class= "py-2 text-end">
+            <%= f.submit "送信", class: "btn btn-info" %>
+          </div>
+          <%= f.hidden_field :room_id %>
+        <% end %>
+      </div>
+    </div>
 
   </div>
   <div class="left-content col-3 px-3">

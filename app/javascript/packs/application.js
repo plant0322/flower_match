@@ -10,6 +10,8 @@ import "channels"
 import "jquery";
 import "../stylesheets/application";
 
+import "./scroll_messages";
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

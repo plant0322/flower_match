@@ -5,7 +5,7 @@ class Public::MessagesController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
-    room = Room.find_by(member_id: current_member.id, shop_id: @shop)
+    room = Room.find_by(member_id: current_member, shop_id: @shop)
     unless room.nil?
       @room = room
     else
@@ -14,7 +14,7 @@ class Public::MessagesController < ApplicationController
       @room.shop_id = @shop.id
       @room.save
     end
-    @messages = (@room.member_messages + @room.shop_messages).sort_by(&:created_at).sort { |a, b| b.created_at <=> a.created_at }
+    @messages = (@room.member_messages + @room.shop_messages).sort_by(&:created_at)
     @message = MemberMessage.new(room_id: @room.id)
   end
 
@@ -34,7 +34,7 @@ class Public::MessagesController < ApplicationController
       elsif new_shop_message
         @messages << new_shop_message
       end
-      @messages.sort_by!(&:created_at)
+      @messages.sort! { |a, b| b.created_at <=> a.created_at }
     end
   end
 
@@ -42,6 +42,7 @@ class Public::MessagesController < ApplicationController
    @message = MemberMessage.new(member_message_params)
    @message.member_id = current_member.id
     if @message.save
+      Room.find_by(id: @message.room_id).update(is_take_care: false)
       redirect_to request.referer
     else
       flash[:alert] = "送信に失敗しました"
