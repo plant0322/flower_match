@@ -79,6 +79,12 @@ class Public::PreOrdersController < ApplicationController
     @tag_rank = Tag.tag_rank_item
   end
 
+  def update
+    pre_order = PreOrder.find(params[:id])
+    pre_order.update(status: 'cancel')
+    redirect_to pre_order_path(pre_order)
+  end
+
   private
 
   def set_search

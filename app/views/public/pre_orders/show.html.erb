@@ -29,6 +29,8 @@
               ご来店ありがとうございました。
             <% elsif @pre_order.status == 'before_visit' %>
               <span class="text-danger">ご来店お待ちしています。</span>
+            <% elsif @pre_order.status == 'cancel' %>
+              <span class="text-secondary">キャンセル日: <%= @pre_order.updated_at.strftime("%Y年%m月%d日 %H時%M分") %></span>
             <% else %>
             <% end %>
           </span>
@@ -99,7 +101,14 @@
         <td>
           受取予定日の<%= @pre_order.item.deadline %>日前: 合計金額の100%<br>
           無断: 合計金額の100%<br>
-          <small>※キャンセルの際は<b>期限日</b>までに<b>必ず</b>ショップへご連絡ください。</small>
+          <small>
+            ※キャンセルの際は<b>期限日</b>までに<b>必ず</b>ショップへご連絡ください。
+            <% if @pre_order.status == 'before_visit' %>
+              <span data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-success">
+                キャンセルはこちら
+              </span>
+            <% end %>
+          </small>
         </td>
       </tr>
       <tr>
@@ -133,3 +142,5 @@
     <%= render 'layouts/homes_menu', tag_rank: @tag_rank %>
   </div>
 </div>
+
+<%= render 'cancel_check', pre_order: @pre_order %>
