@@ -6,8 +6,13 @@ body {
 }
 
 input,
+textarea,
 .form-select {
     border-radius: 3px!important;
+}
+
+textarea {
+    height: 7.5em;
 }
 
 ::placeholder {

@@ -10,7 +10,7 @@
     <hr>
     <%= image_tag @pick_up_tag.get_tag_image(900,300), class: "w-100 hover-none" %>
     <div class="wide-pickup bg-light py-3 px-5 mb-3">
-      <p class="mx-5"><%= @pick_up_tag.introduction %></p>
+      <p class="mx-5"><%= simple_format(h(@pick_up_tag.introduction)) %></p>
     </div>
     <% if admin_signed_in? %>
       <div class="d-flex justify-content-center px-3">

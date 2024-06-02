@@ -60,7 +60,7 @@
           <!--商品紹介-->
           <div class="bg-light p-3 mb-3">
             <p class="fw-bold">商品紹介</p>
-            <p><%= @item.introduction %></p>
+            <p><%= simple_format(h(@item.introduction)) %></p>
           </div>
           <!--商品詳細-->
           <div class="bg-light p-3 mb-3">
