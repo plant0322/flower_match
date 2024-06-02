@@ -1,0 +1,18 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title fs-5 fw-bold" id="exampleModalLabel">再度ご確認ください</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        一度キャンセルすると、同じ商品でも再度予約する必要があります。<br>
+        キャンセルする内容に間違いはありませんか？
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-bs-dismiss="modal">予約詳細に戻る</button>
+        <%= link_to '予約をキャンセルする', pre_order_path(pre_order), 'data-confirm' => '本当にキャンセルしますか？', method: :patch, class: "btn btn-outline-info" %>
+      </div>
+    </div>
+  </div>
+</div>

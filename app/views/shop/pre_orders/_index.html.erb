@@ -9,10 +9,17 @@
           <%= render 'shop/pre_orders/status', pre_order: pre_order %>
         </div>
         <div>
-          来店日<br>
-          <span class="h5 fw-bold">
-            <%= pre_order.visit_day.strftime("%Y年%m月%d日") %> <%= pre_order.visit_time.strftime( "%H時%M分" ) %>
-          </span>
+          <p>
+            来店日<br>
+            <span class="h5 fw-bold">
+              <%= pre_order.visit_day.strftime("%Y年%m月%d日") %> <%= pre_order.visit_time.strftime( "%H時%M分" ) %>
+            </span>
+          </p>
+          <p class="text-danger fw-bold">
+            <% if pre_order.status == 'cancel' %>
+              キャンセル日: <%= pre_order.updated_at.strftime("%Y年%m月%d日 %H:%M:%S") %>
+            <% end %>
+          </p>
         </div>
       </div>
       <div class="main-content col-3 h5 fw-bold pt-2">
