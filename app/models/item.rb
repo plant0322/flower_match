@@ -21,7 +21,7 @@ class Item < ApplicationRecord
   end
 
   def get_item_image_webp(width, height)
-    item_image_webp.variant(resize_to_fill: [width, height]).processed if item_image_webp.attached?
+    item_image_webp.variant(resize_to_fill: [width, height], format: :webp).processed if item_image_webp.attached?
   end
 
   def bookmark_by?(member)

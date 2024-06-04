@@ -53,6 +53,22 @@ class Shop::ItemsController < ApplicationController
 
   def update
     tag_list = params[:item][:tag_name].split(',')
+    # 画像を圧縮してjpegとwebpで保存
+    if params[:item][:item_image].present?
+      resized_images = resize_image_set_dpi(params[:item][:item_image])
+      original_filename_base = File.basename(params[:item][:item_image].original_filename, ".*")
+      @item.item_image.attach(
+        io: resized_images[:jpg],
+        filename: "#{original_filename_base}.jpg",
+        content_type: params[:item][:item_image].content_type
+        )
+      @item.item_image_webp.attach(
+        io: resized_images[:webp],
+        filename: "#{original_filename_base}.webp",
+        content_type: 'image/webp'
+        )
+    end
+
     if @item.update(item_params)
       @item.save_tags(tag_list)
       if params[:item][:first_is_active] == 'true'

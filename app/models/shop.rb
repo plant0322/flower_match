@@ -28,11 +28,7 @@ class Shop < ApplicationRecord
   validates :email, presence: true
 
   def get_shop_image(width, height)
-    unless shop_image.attached?
-      file_path = Rails.root.join('app/assets/images/sample.jpg')
-      shop_image.attach(io: File.open(file_path), filename: 'sample.jpg', content_type: 'image/jpeg')
-    end
-    shop_image.variant(resize_to_limit: [width, height]).processed
+    shop_image.variant(resize_to_fill: [width, height]).processed
   end
 
   def favorite_shop_by?(member)

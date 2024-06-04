@@ -7,6 +7,17 @@ class Shop::ShopsController < ApplicationController
   end
 
   def update
+    # 画像を圧縮して保存
+    if params[:shop][:shop_image].present?
+      resized_image = resize_image_set_dpi(params[:shop][:shop_image])
+      original_filename_base = File.basename(params[:shop][:shop_image].original_filename, ".*")
+      @shop.shop_image.attach(
+        io: resized_image,
+        filename: "#{original_filename_base}.jpg",
+        content_type: params[:shop][:shop_image].content_type
+        )
+    end
+
     if @shop.update(shop_params)
       flash[:notice] = "ショップ情報を更新しました"
       redirect_to request.referer
@@ -39,6 +50,16 @@ class Shop::ShopsController < ApplicationController
     if @shop.guest_shop?
       redirect_to shop_top_path, notice: 'お試しショップのため編集は出来ません。'
     end
+  end
+
+  def resize_image_set_dpi(uploaded_file)
+    image = MiniMagick::Image.read(uploaded_file.tempfile)
+    image.resize 'x1080'
+    image.density '96'
+    tempfile = Tempfile.new(['resized','.jpg'])
+    image.write (tempfile.path)
+    tempfile.rewind
+    tempfile
   end
 
   def shop_params
