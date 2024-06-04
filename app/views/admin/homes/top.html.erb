@@ -25,6 +25,11 @@
       </table>
     </div>
 
+    <h2>新着の商品</h2>
+    <hr>
+    <%= render 'admin/items/index', items: @items %>
+    <%= link_to '全ての商品を見る ▶', admin_items_path, class: "float-end" %>
+
     <h2>新着の口コミ</h2>
     <hr>
     <%= render 'admin/reviews/index', reviews: @reviews %>
