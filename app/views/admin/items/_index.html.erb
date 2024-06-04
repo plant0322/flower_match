@@ -1,0 +1,39 @@
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr class="text-center">
+      <th>公開/非公開</th>
+      <th class="w-50">商品</th>
+      <th>ショップ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% items. each do |item| %>
+      <tr class="tr-link" onclick='window.location="<%= item_path(item) %>"' role="link">
+        <td class="text-center">
+          <%= image_tag item.get_item_image(100,100) %>
+          <% if item.is_active %>
+            <p class="text-success fw-bold">公開中</p>
+          <% else %>
+            <p class="text-danger fw-bold">非公開</p>
+          <% end %>
+        </td>
+        <td>
+          <p class="fw-bold mb-0"><%= item.name %></p>
+          <small>
+            価格: <%= item.price.to_s(:delimited, delimiter: ',') %>円<br>
+            在庫: <%= item.stock %>個<br>
+          </small>
+          <% item.tags.each do |tag| %>
+            <span class="btn btn-outline-secondary disabled rounded-pill px-2 py-0 mb-1">
+              # <%= tag.name %>
+            </span>
+          <% end %>
+        </td>
+        <td>
+          <p class="fw-bold mb-0"><%= item.shop.name %></p>
+          <small>（<%= item.shop.name_kana %>）</small>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

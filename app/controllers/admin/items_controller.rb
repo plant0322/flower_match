@@ -1,8 +1,8 @@
-class Admin::HomesController < ApplicationController
+class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin!
-  def top
-    @items = Item.all.order(id: 'DESC').limit(3)
-    @reviews = Review.all.order(id: 'DESC').limit(3)
+
+  def index
+    @items = Item.all.order(updated_at: 'DESC').page(params[:page])
     @pick_up_tags = PickUpTag.where(is_active: true).order(id: 'DESC')
     @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')
