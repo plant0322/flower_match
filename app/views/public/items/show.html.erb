@@ -6,7 +6,11 @@
       <div class="d-flex flex-wrap">
         <!--画像-->
         <div class="wide-item col-7">
-          <%= image_tag @item.get_item_image(500,500),class: "w-100 p-1 hover-none" %>
+          <% if @item.get_item_image_webp(1080, 1350).present? %>
+          　<%= image_tag @item.get_item_image_webp(1080,1350), class: "w-100 p-1" %>
+          <% else %>
+            <%= image_tag @item.get_item_image(1080,1350), class: "w-100 p-1" %>
+          <% end %>
         </div>
         <!--詳細-->
         <div class="wide-item col-5 p-2">
@@ -60,7 +64,7 @@
           <!--商品紹介-->
           <div class="bg-light p-3 mb-3">
             <p class="fw-bold">商品紹介</p>
-            <p><%= @item.introduction %></p>
+            <p><%= simple_format(h(@item.introduction)) %></p>
           </div>
           <!--商品詳細-->
           <div class="bg-light p-3 mb-3">
@@ -69,7 +73,11 @@
               サイズ: <%= @item.size %>
             </div>
             <div>
-              キャンセル期限: <%= @item.deadline %>日前まで
+              <% if @item.deadline == 0 %>
+                こちらの商品はキャンセル不可となっています
+              <% else %>
+                キャンセル期限: <%= @item.deadline %>日前まで
+              <% end %>
             </div>
           </div>
         </div>

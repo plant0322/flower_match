@@ -3,7 +3,11 @@
   <div class="item-index col-4 p-1">
     <div class="card p-1 h-100">
       <%= link_to item_path(item), class: "text-decoration-none" do %>
-        <%= image_tag item.get_item_image(300,300), class: "item-img-ratio card-img-top" %>
+        <% if item.get_item_image_webp(500, 500).present? %>
+          <%= image_tag item.get_item_image_webp(500,500), class: "hover-img item-img-ratio card-img-top" %>
+        <% else %>
+          <%= image_tag item.get_item_image(500,500), class: "hover-img item-img-ratio card-img-top" %>
+        <% end %>
       <% end %>
       <div id="item_<%= item.id %>" class="card-body">
         <div class="col-12 d-flex flex-row">

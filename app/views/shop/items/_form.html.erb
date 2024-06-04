@@ -1,21 +1,20 @@
 <%= form_with model: item, url: url do |f| %>
-  <%#= render "layouts/error_messages", obj: item %>
 
   <div class="pb-4">
     <h3 class="bg-info p-1 h5">商品情報</h3>
     <table class="form-table table table-borderless table-shop my-3">
       <tr>
         <th class="w-25"><%= f.label :item_image, "画像" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
-        <td>
+        <td class="w-25">
           <% unless controller.action_name == 'edit' %>
             <%= image_tag asset_path('sample.jpg'), size: '150x150' %>
           <% else %>
-            <%= image_tag item.get_item_image(100,100),class: "w-100" %>
+            <%= image_tag item.get_item_image(300,375), class: "w-100 hover-none" %>
           <% end %>
         </td>
         <td>
           <%= f.file_field :item_image, accept: "image/*", class: "form-control" %>
-          <small class="text-secondary">※商品画像をjpegで登録してください</small>
+          <small>※画像サイズは幅1080×高さ1350px推奨です。</small>
         </td>
       </tr>
       <tr>
@@ -112,7 +111,7 @@
         <th class="w-25"><%= f.label :deadline, "キャンセル可能期限" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
         <td colspan="2">
           <%= f.text_field :deadline, autocomplete: "deadline", class: "form-control" %>
-          <small class="text-secondary">例）3　※数字で入力してください</small>
+          <small class="text-secondary">例）3　※数字で入力してください。0にするとキャンセル不可として登録できます。</small>
           <td>日前まで可能</td>
         </td>
       </tr>

@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   has_many :tags, through: :item_tags
   belongs_to :shop
   has_one_attached :item_image
+  has_one_attached :item_image_webp
 
   validates :item_image, presence: true
   validates :name, presence: true
@@ -16,11 +17,11 @@ class Item < ApplicationRecord
   validates :deadline, presence: true, numericality: { in: 0..20 }
 
   def get_item_image(width, height)
-    unless item_image.attached?
-      file_path = Rails.root.join('app/assets/images/sample.jpg')
-      item_image.attach(io: File.open(file_path), filename: 'sample.jpg', content_type: 'image/jpeg')
-    end
     item_image.variant(resize_to_fill: [width, height]).processed
+  end
+
+  def get_item_image_webp(width, height)
+    item_image_webp.variant(resize_to_fill: [width, height], format: :webp).processed if item_image_webp.attached?
   end
 
   def bookmark_by?(member)

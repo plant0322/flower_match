@@ -6,8 +6,13 @@ body {
 }
 
 input,
+textarea,
 .form-select {
     border-radius: 3px!important;
+}
+
+textarea {
+    height: 7.5em;
 }
 
 ::placeholder {
@@ -24,7 +29,7 @@ a:hover {
     color: #E15C67!important;
 }
 
-img:hover {
+.hover-img:hover {
     opacity: 0.6;
     transition-duration: 0.3s;
 }
@@ -153,10 +158,6 @@ h1.page-title {
     color: #D9908F!important;
 }
 
-.hover-none {
-    pointer-events: none;
-}
-
  h3.bg-info {
      background-color: #A3D2D1!important;
      margin-top: 20px;
@@ -230,7 +231,6 @@ label.text-success {
 }
 
 // 登録・編集フォーム
-
 .table-member th,
 .table-member td{
     background-color: #EAE6D8!important;
@@ -327,6 +327,11 @@ footer{
     border: 1px solid #CC9B98!important;
     color: #CC9B98!important;
     font-weight: normal!important;
+}
+
+// shop側の商品一覧
+.tr-link {
+    cursor: pointer;
 }
 
 // メッセージ詳細

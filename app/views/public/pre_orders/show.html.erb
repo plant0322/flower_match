@@ -5,7 +5,6 @@
     <% if @pre_order.status == 'visit' && @pre_order.review.blank? && @pre_order.visit_day > 1.week.ago %>
     <!--口コミ投稿-->
       <%= form_with model: @review, url: pre_order_reviews_path(@pre_order), method: :post do |f| %>
-        <%#= render "layouts/error_messages", obj: @review %>
         <div class="mt-2 mb-5 p-3 bg-light">
           <p class="fw-bold">
             ご購入いただいた商品はいかがでしたか？よろしければ、商品やショップへの感想をこちらからお送りください。
@@ -93,7 +92,12 @@
     <table class="table table-bordered table-light">
       <tr>
         <th class="w-25">キャンセル期限</th>
-        <td><%= @pre_order.item.deadline %>日前まで
+        <td>
+          <% if @pre_order.item.deadline == 0 %>
+            キャンセル不可
+          <% else %>
+            <%= @pre_order.item.deadline %>日前まで
+          <% end %>
         </td>
       </tr>
       <tr>
@@ -103,7 +107,7 @@
           無断: 合計金額の100%<br>
           <small>
             ※キャンセルの際は<b>期限日</b>までに<b>必ず</b>ショップへご連絡ください。
-            <% if @pre_order.status == 'before_visit' %>
+            <% if @pre_order.status == 'before_visit' && (@pre_order.visit_day - @pre_order.item.deadline.to_i.days) > Date.today %>
               <span data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-success">
                 キャンセルはこちら
               </span>
