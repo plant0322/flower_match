@@ -1,13 +1,9 @@
 class Public::ReviewsController < ApplicationController
 
-  #def new
-    #@pre_order = PreOrder.find(params[:pre_order_id])
-    #@review = Review.new
-  #end
-
   def create
     pre_order = PreOrder.find(params[:pre_order_id])
     review = Review.new(review_params)
+    review.score = Language.get_data(review_params[:content])
     review.pre_order_id = pre_order.id
     if review.save
       flash[:notice] = "口コミを投稿しました"
@@ -32,6 +28,6 @@ class Public::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:content, :icon, :is_active)
+    params.require(:review).permit(:content, :is_active)
   end
 end

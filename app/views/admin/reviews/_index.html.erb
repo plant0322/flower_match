@@ -15,6 +15,7 @@
           </div>
         </div>
         <div class="col-3">
+          <span class="<%= (review.score < 0 ? "text-danger" : "" ) %> <%= (review.score > 0 ? "text-success" : "" ) %>">（ポジティブ判定: <%= review.score %>点）</span>
           <%= form_with model: review, url: admin_review_path(review) do |f| %>
             <div class="d-flex align-items-center pt-2">
               <div class="pe-2">
