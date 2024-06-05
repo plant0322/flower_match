@@ -1,6 +1,12 @@
 <%= form_with model: item, url: url do |f| %>
 
   <div class="pb-4">
+    <% if item.item_check && (item.item_check.permission == 'confirm' || item.item_check.permission == 'not_permit') %>
+      <p class="text-danger">
+        ※登録された画像に問題がある可能性があります。
+        画像を変更するか管理者チェックが完了するまでこの商品は公開できません。
+      </p>
+    <% end %>
     <h3 class="bg-info p-1 h5">商品情報</h3>
     <table class="form-table table table-borderless table-shop my-3">
       <tr>
@@ -130,7 +136,7 @@
                 <div class="pe-3"><%= f.radio_button :first_is_active, true, class: "form-check-input" %><%= f.label :first_is_active_true, "公開", class: "form-check-label text-success fw-bold ps-2" %></div>
                 <div class="pe-3"><%= f.radio_button :first_is_active, false, class: "form-check-input" %><%= f.label :first_is_active_false, "非公開", class: "form-check-label text-danger fw-bold ps-2" %></div>
                 <% unless action_name == 'new' || action_name == 'create' %>
-                  <%= link_to '商品を削除する', shop_item_path(item), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger" %>
+                  <%= link_to '商品を削除する', shop_item_path(item), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn bg-shop text-white" %>
                 <% end %>
               </div>
               <small class="text-danger">※商品は一度公開すると削除できません。公開前に再度内容をご確認ください。</small>

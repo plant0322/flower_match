@@ -12,6 +12,11 @@
           before_visit: "予約中"
           visit: "来店済み"
           cancel: "キャンセル"
+      item_check:
+        permission:
+          permit: "承認"
+          confirm: "確認中"
+          not_permit: "承認不可"
 
     activerecord:
       models:
