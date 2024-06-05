@@ -1,7 +1,7 @@
 class Shop::ItemsController < ApplicationController
   before_action :authenticate_shop!, except: [:destroy]
   before_action :set_item, only: [:edit, :update, :destroy]
-  before_action :is_matching_login_shop, only: [:edit, :update]
+  before_action :is_matching_login_shop, only: [:edit, :update, :destroy]
   before_action :set_tag_rank, only: [:edit, :index, :new, :create]
 
   def new
@@ -28,11 +28,39 @@ class Shop::ItemsController < ApplicationController
         content_type: 'image/webp'
         )
     end
+    # visionのデータを取得
+    item_checks = Vision.get_image_data(item_params[:item_image])
 
     if @item.save
-      if params[:item][:first_is_active] == 'true'
-        @item.update(is_active: true)
+      # visionで取得したデータを使って画像の関連度判定
+      plant_found = false
+      flower_found = false
+
+      item_checks.each do |check|
+        if check[:description].include?("Plant") && check[:topicality] >= 0.8
+          plant_found = true
+        elsif check[:description].include?("Flower") && check[:topicality] >= 0.8
+          flower_found = true
+        end
       end
+
+      item_check = ItemCheck.new
+      item_check.item_id = @item.id
+
+      if flower_found || plant_found
+        item_check.label_check = true
+        item_check.permission = 0
+        # 商品を初めて公開した場合の設定
+        if params[:item][:first_is_active] == 'true'
+          @item.update(is_active: true)
+        end
+      else
+        item_check.label_check = false
+        item_check.permission = 1
+        @item.update(first_is_active: false)
+      end
+      item_check.save
+
       @item.save_tags(tag_list)
       flash[:notice] = "商品を登録しました"
       redirect_to item_path(@item)
@@ -68,12 +96,44 @@ class Shop::ItemsController < ApplicationController
         content_type: 'image/webp'
         )
     end
+    # visionのデータを取得
+    if params[:item][:item_image]
+      item_checks = Vision.get_image_data(item_params[:item_image])
+    end
 
     if @item.update(item_params)
-      @item.save_tags(tag_list)
-      if params[:item][:first_is_active] == 'true'
-        @item.update(is_active: true)
+      # visionで取得したデータを使って画像の関連度判定
+      if item_checks
+        plant_found = false
+        flower_found = false
+
+        item_checks.each do |check|
+          if check[:description].include?("Plant") && check[:topicality] >= 0.8
+            plant_found = true
+          elsif check[:description].include?("Flower") && check[:topicality] >= 0.8
+            flower_found = true
+          end
+        end
+
+        item_check = ItemCheck.find_by(item_id: @item.id)
+
+        if flower_found || plant_found
+          item_check.label_check = true
+          item_check.permission = 0
+          # 商品を初めて公開した場合の設定
+          if params[:item][:first_is_active] == 'true'
+            @item.update(is_active: true)
+          end
+        else
+          item_check.label_check = false
+          item_check.permission = 1
+          @item.update(is_active: false)
+        end
+        item_check.save
       end
+
+      @item.save_tags(tag_list)
+
       flash[:notice] = "商品情報を更新しました"
       redirect_to request.referer
     else

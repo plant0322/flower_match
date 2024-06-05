@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   has_many :item_tags, dependent: :destroy
   has_many :tags, through: :item_tags
   belongs_to :shop
+  has_one :item_check, dependent: :destroy
   has_one_attached :item_image
   has_one_attached :item_image_webp
 

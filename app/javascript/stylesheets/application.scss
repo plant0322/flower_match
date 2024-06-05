@@ -139,6 +139,14 @@ h1.page-title {
     background-color: #EBEBEB!important;
 }
 
+.table-confirm td{
+    background-color: #C7E3E2!important;
+}
+
+.table-not-permit td{
+    background-color: #F1D0D0!important;
+}
+
 .btn-info {
     background-color: #A3D2D1!important;
     border: 2px solid #A3D2D1!important;
@@ -194,6 +202,7 @@ div.bg-danger {
 }
 
 .text-danger,
+p.text-danger,
 span.text-danger,
 label.text-danger {
     color: #C33E4C!important;
