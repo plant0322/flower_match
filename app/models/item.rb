@@ -18,11 +18,52 @@ class Item < ApplicationRecord
   validates :deadline, presence: true, numericality: { in: 0..20 }
 
   def get_item_image(width, height)
-    item_image.variant(resize_to_fill: [width, height]).processed
+    return unless item_image.attached?
+
+    image = MiniMagick::Image.read(item_image.download)
+    image.auto_orient
+    image.resize "#{width}x#{height}^"
+    image.extent "#{width}x#{height}"
+
+    tempfile = Tempfile.new(['item_image', '.jpg'])
+    image.write(tempfile.path)
+    tempfile.rewind
+
+    new_blob = ActiveStorage::Blob.create_and_upload!(
+      io: tempfile,
+      filename: "item_image_#{width}x#{height}.jpg",
+      content_type: 'image/jpeg'
+    )
+
+    tempfile.close
+    tempfile.unlink
+
+    new_blob
   end
 
   def get_item_image_webp(width, height)
-    item_image_webp.variant(resize_to_fill: [width, height], format: :webp).processed if item_image_webp.attached?
+    return unless item_image_webp.attached?
+
+    image = MiniMagick::Image.read(item_image_webp.download)
+    image.auto_orient
+    image.format('webp')
+    image.resize "#{width}x#{height}^"
+    image.extent "#{width}x#{height}"
+
+    tempfile = Tempfile.new(['item_image', '.webp'])
+    image.write(tempfile.path)
+    tempfile.rewind
+
+    new_blob = ActiveStorage::Blob.create_and_upload!(
+      io: tempfile,
+      filename: "item_image_#{width}x#{height}.webp",
+      content_type: 'image/webp'
+    )
+
+    tempfile.close
+    tempfile.unlink
+
+    new_blob
   end
 
   def bookmark_by?(member)
