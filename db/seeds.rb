@@ -125,6 +125,12 @@ Item.find_or_create_by!(name: "特別な記念日に贈る花束/ブーケ（大
   item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop1-item1-1.jpg"), filename: "shop1-item1-1.jpg")
 end
 
+item = Item.find_by(name: "特別な記念日に贈る花束/ブーケ（大）")
+ItemCheck.find_or_create_by!(item_id: item.id) do |item_check|
+  item_check.label_check = true
+  item_check.permission = "permit"
+end
+
 Item.find_or_create_by!(name: "母の日のフラワーアレンジ/メッセージカード付") do |item|
   item.introduction ="母の日の贈り物にいかがでしょう？"
   item.size = "幅30×高さ40×奥行き30㎝"
@@ -135,6 +141,12 @@ Item.find_or_create_by!(name: "母の日のフラワーアレンジ/メッセー
   item.first_is_active = true
   item.shop = howell
   item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop1-item2-1.jpg"), filename: "shop1-item2-1.jpg")
+end
+
+item = Item.find_by(name: "母の日のフラワーアレンジ/メッセージカード付")
+ItemCheck.find_or_create_by!(item_id: item.id) do |item_check|
+  item_check.label_check = true
+  item_check.permission = "permit"
 end
 
 for i in 1..2 do
@@ -148,6 +160,12 @@ for i in 1..2 do
     item.first_is_active = true
     item.shop = botanya
     item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop2-item1-1.jpg"), filename: "shop2-item1-1.jpg")
+  end
+
+  item = Item.find_by(name: "寄せ植え体験#{i+1}")
+  ItemCheck.find_or_create_by!(item_id: item.id) do |item_check|
+    item_check.label_check = true
+    item_check.permission = "permit"
   end
 end
 
@@ -163,6 +181,12 @@ for i in 1..3 do
     item.shop = botanya
     item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop2-item2-1.jpg"), filename: "shop2-item2-1.jpg")
   end
+
+  item = Item.find_by(name: "ミニサボテン入荷#{i+1}")
+  ItemCheck.find_or_create_by!(item_id: item.id) do |item_check|
+    item_check.label_check = true
+    item_check.permission = "permit"
+  end
 end
 
 for i in 1..2 do
@@ -176,6 +200,12 @@ for i in 1..2 do
     item.first_is_active = true
     item.shop = als
     item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop3-item1-1.jpg"), filename: "shop3-item1-1.jpg")
+  end
+
+  item = Item.find_by(name: "大きなお花をたっぷり使った高級感のある華やかな花束（おしゃれなブーケ）#{i+1}")
+  ItemCheck.find_or_create_by!(item_id: item.id) do |item_check|
+    item_check.label_check = true
+    item_check.permission = "permit"
   end
 end
 
@@ -191,6 +221,12 @@ for i in 1..3 do
     item.shop = als
     item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop3-item2-1.jpg"), filename: "shop3-item2-1.jpg")
   end
+
+  item = Item.find_by(name: "可愛いミニバラを使った上品な雰囲気の花束（贈り物にオススメのブーケ））#{i+1}")
+  ItemCheck.find_or_create_by!(item_id: item.id) do |item_check|
+    item_check.label_check = true
+    item_check.permission = "permit"
+  end
 end
 
 for i in 1..2 do
@@ -205,6 +241,12 @@ for i in 1..2 do
     item.shop = als
     item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop3-item3-1.jpg"), filename: "shop3-item3-1.jpg")
   end
+
+  item = Item.find_by(name: "お任せブーケ。スタッフがお店のお花たちから厳選して作成する大きな花束）#{i+1}")
+  ItemCheck.find_or_create_by!(item_id: item.id) do |item_check|
+    item_check.label_check = true
+    item_check.permission = "permit"
+  end
 end
 
 for i in 1..3 do
@@ -218,5 +260,11 @@ for i in 1..3 do
     item.first_is_active = true
     item.shop = als
     item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop3-item4-1.jpg"), filename: "shop3-item4-1.jpg")
+  end
+
+  item = Item.find_by(name: "母の日に贈るアンティーク調の落ち着いた色合いがおしゃれなブーケ（可愛い花束）#{i+1}")
+  ItemCheck.find_or_create_by!(item_id: item.id) do |item_check|
+    item_check.label_check = true
+    item_check.permission = "permit"
   end
 end
