@@ -7,9 +7,16 @@
         <!--画像-->
         <div class="wide-item col-7">
           <% if @item.get_item_image_webp(1080, 1350).present? %>
+            get_item_image_webp
           　<%= image_tag @item.get_item_image_webp(1080,1350), class: "w-100 p-1" %>
+          　get_item_image
             <%= image_tag @item.get_item_image(1080,1350), class: "w-100 p-1" %>
+            item_image_webp
+          　<%= image_tag @item.item_image_webp, class: "w-100 p-1" %>
+          　item_image
+          　<%= image_tag @item.item_image, class: "w-100 p-1" %>
           <% else %>
+            <%= image_tag @item.get_item_image(1080,1350), class: "w-100 p-1" %>
           <% end %>
         </div>
         <!--詳細-->
