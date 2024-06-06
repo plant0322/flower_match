@@ -17,6 +17,11 @@ class Shop::ItemsController < ApplicationController
     if params[:item][:item_image].present?
       resized_images = resize_image_set_dpi(params[:item][:item_image])
       original_filename_base = File.basename(params[:item][:item_image].original_filename, ".*")
+      # MiniMagickでHEIC画像の向きを自動修正
+      image = MiniMagick::Image.read(params[:item][:item_image].tempfile)
+      image.auto_orient
+      image.write(params[:item][:item_image].path)
+
       @item.item_image.attach(
         io: resized_images[:jpg],
         filename: "#{original_filename_base}.jpg",

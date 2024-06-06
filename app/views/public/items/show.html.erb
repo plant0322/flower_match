@@ -8,8 +8,8 @@
         <div class="wide-item col-7">
           <% if @item.get_item_image_webp(1080, 1350).present? %>
           　<%= image_tag @item.get_item_image_webp(1080,1350), class: "w-100 p-1" %>
-          <% else %>
             <%= image_tag @item.get_item_image(1080,1350), class: "w-100 p-1" %>
+          <% else %>
           <% end %>
         </div>
         <!--詳細-->
