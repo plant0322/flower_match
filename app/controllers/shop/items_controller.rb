@@ -145,7 +145,7 @@ class Shop::ItemsController < ApplicationController
   def destroy
     item = Item.find(params[:id])
     item.destroy
-    redirect_to root_path
+    redirect_to shop_items_path
     flash[:notice] = "商品を削除しました"
   end
 

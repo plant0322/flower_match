@@ -29,10 +29,15 @@
           <%= link_to item_path(item) do %>
             <%= image_tag item.get_item_image(100,100), class: "hover-img" %>
           <% end %>
-          <% if item.is_active %>
-            <p class="text-success fw-bold">公開中</p>
-          <% else %>
-            <p class="text-danger fw-bold">非公開</p>
+          <!--公開/非公開-->
+          <%= form_with model: item, url: admin_item_path(item) do |f| %>
+              <div>
+                <div class="pe-3"><%= f.radio_button :is_active, true, class: "form-check-input" %><%= f.label :is_active_true, "公開", class: "form-check-label text-success fw-bold ps-2 #{item.is_active ? '' : 'text-mute'}" %></div>
+                <div class="pe-3"><%= f.radio_button :is_active, false, class: "form-check-input" %><%= f.label :is_active_false, "非公開", class: "form-check-label text-danger fw-bold ps-2 #{item.is_active ? 'text-mute' : ''}" %></div>
+              </div>
+              <div>
+                <%= f.submit "更新する", class: "btn btn-info p-2" %>
+              </div>
           <% end %>
         </td>
         <td>

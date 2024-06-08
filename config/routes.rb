@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
     resources :shops, only: [:index, :edit, :update]
     resources :members, only: [:show, :index, :edit, :update]
-    resources :items, only: [:index] do
+    resources :items, only: [:index, :update, :destroy] do
       resource :item_checks, only: [:update]
     end
     resources :reviews, only: [:index, :update]

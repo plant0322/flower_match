@@ -5,6 +5,9 @@ class Admin::ItemChecksController < ApplicationController
     item = Item.find(params[:item_id])
     item_check = ItemCheck.find_by(item_id: item.id)
     item_check.update(item_check_params)
+    unless item_check.permission == 'permit'
+      item.update(is_active: false)
+    end
     flash[:notice] = "「" + item_check.permission_i18n + "」に更新しました。"
     redirect_to request.referer
   end
