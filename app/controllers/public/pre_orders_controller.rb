@@ -18,7 +18,7 @@ class Public::PreOrdersController < ApplicationController
     @amount = session[:amount].to_i
     @item = Item.find(session[:item_id])
     @pre_order = PreOrder.new(pre_order_params)
-    if params[:pre_order][:visit_day].blank? || params[:pre_order][:visit_time].blank?  || params[:pre_order][:purpose].blank?
+    if params[:pre_order][:visit_day].blank? || params[:pre_order]["visit_time(4i)"].blank? || params[:pre_order]["visit_time(5i)"].blank? || params[:pre_order][:purpose].blank?
       flash.now[:alert] = '「来店日」「来店時間」「要望・用途」は必須項目です'
       render :new
     elsif params[:pre_order][:visit_day].to_date < Date.today
@@ -44,6 +44,13 @@ class Public::PreOrdersController < ApplicationController
     @pre_order.telephone_number = current_member.telephone_number
     @pre_order.postal_code = current_member.postal_code
     @pre_order.address = current_member.address
+
+    # visit_timeの保存
+    if params[:pre_order][:visit_time].present?
+      visit_time = Time.zone.parse(params[:pre_order][:visit_time])
+      @pre_order.visit_time = visit_time
+    end
+
     if @pre_order.save
       item.decrement!(:stock, @pre_order.amount)
       @search = OpenStruct.new(model: 'item')

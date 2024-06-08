@@ -26,11 +26,15 @@
       <table class="form-table table table-bordered table-light my-3">
         <tr>
           <th class="w-25"><%= f.label :visit_day, "来店日" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
-          <td><%= f.date_field :visit_day, autofocus: true, placeholder: "例）〇月〇日（水）", autocomplete: "visit_day", class: "form-control" %></td>
+          <td><%= f.date_field :visit_day, autofocus: true, min: Date.tomorrow, autocomplete: "visit_day", class: "form-control" %></td>
         </tr>
         <tr>
           <th class="w-25"><%= f.label :visit_time, "来店時間" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
-          <td><%= f.time_field :visit_time, placeholder: "例）13時", autocomplete: "visit_time", class: "form-control" %></td>
+          <td>
+            <div class="d-flex flex-row align-items-end">
+              <%= f.time_select :visit_time, {:include_blank => true, :minute_step => 10, :time_separator => '時'}, autocomplete: "visit_time", class: "form-control mx-1" %>分
+            </div>
+          </td>
         </tr>
         <tr>
           <td colspan="2">
