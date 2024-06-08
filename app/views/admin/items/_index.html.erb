@@ -9,11 +9,18 @@
   </thead>
   <tbody>
     <% items. each do |item| %>
-      <tr class="<% if item.item_check %><%= (item.item_check.permission == 'confirm' ? "table-confirm" : "" ) %> <%= (item.item_check.permission == 'not_permit' ? "table-not-permit" : "" ) %><% end %>">
+    <% class_name = ""
+     if item.item_check
+       class_name = item.item_check.permission == 'confirm' ? 'table-confirm' : ''
+       class_name += item.item_check.permission == 'permit' ? 'table-permit' : ''
+       class_name += item.item_check.permission == 'not_permit' ? 'table-not-permit' : ''
+     end
+    %>
+      <tr class="<%= class_name %>">
         <td>
           <% if item.item_check %>
             <%= form_with model: item.item_check, url: admin_item_item_checks_path(item) do |f| %>
-              <%= f.select :permission, ItemCheck.permissions_i18n.invert, { }, {:class => "form-select"} %>
+              <%= f.select :permission, ItemCheck.permissions_i18n.invert, { }, {:class => "form-select fw-bold text-secondary #{class_name}"} %>
               <%= f.submit '更新する', class: "btn bg-admin mt-2 text-white" %>
             <% end %>
           <% end %>
@@ -43,8 +50,10 @@
           <% end %>
         </td>
         <td>
-          <p class="fw-bold mb-0"><%= item.shop.name %></p>
-          <small>（<%= item.shop.name_kana %>）</small>
+          <%= link_to shop_path(item.shop) do %>
+            <p class="fw-bold mb-0"><%= item.shop.name %></p>
+            <small>（<%= item.shop.name_kana %>）</small>
+          <% end %>
         </td>
       </tr>
     <% end %>

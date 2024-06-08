@@ -5,15 +5,20 @@ class Public::MembersController < ApplicationController
   before_action :set_search, only: [:show, :edit, :unsubscribe]
 
   def show
+    @before_visit_pre_order = PreOrder.where(status: 'before_visit')
+    @pre_orders = PreOrder.where(status: 'visit').where('visit_day >= ?', 2.week.ago)
     active_shops = Shop.where(is_active: true)
     @recently_seen_item = Item.find(session[:item_id]) unless session[:item_id].blank?
+
     bookmarks = Bookmark.where(member_id: current_member.id)
     @bookmark_items = Item.where(id: bookmarks.pluck(:item_id))
                           .where(is_active: true, shop_id: active_shops).order(created_at: "DESC").limit(4)
+
     active_favorite_shops = FavoriteShop.where(member_id: current_member.id, shop_id: active_shops)
     active_favorite_shops_ids = active_favorite_shops.pluck(:shop_id)
     @favorite_shops = Shop.where(id: active_favorite_shops_ids).order(created_at: "DESC").limit(4)
     @favorite_shop_items = Item.where(is_active: true, shop_id: active_favorite_shops_ids).order(created_at: "DESC").limit(6)
+
     @pick_up_tags = PickUpTag.where(is_active: true).order(id: 'DESC')
     @tag_rank = Tag.tag_rank_item
   end

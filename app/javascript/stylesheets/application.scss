@@ -130,8 +130,10 @@ h1.page-title {
     background-color: #DBDBDB!important;
 }
 
-.table-bordered td{
+.table-bordered td,
+.table-permit{
     background-color: #F3F3F3!important;
+    border: 2px solid #FFF!important;
 }
 
 .table-borderless th,
@@ -139,12 +141,16 @@ h1.page-title {
     background-color: #EBEBEB!important;
 }
 
-.table-confirm td{
+.table-confirm td,
+.table-confirm{
     background-color: #C7E3E2!important;
+    border: 2px solid #EBF0F0!important;
 }
 
-.table-not-permit td{
+.table-not-permit td,
+.table-not-permit{
     background-color: #F1D0D0!important;
+    border: 2px solid #F7F0F0!important;
 }
 
 .btn-info {

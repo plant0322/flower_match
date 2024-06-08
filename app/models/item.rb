@@ -7,7 +7,6 @@ class Item < ApplicationRecord
   belongs_to :shop
   has_one :item_check, dependent: :destroy
   has_one_attached :item_image
-  has_one_attached :item_image_webp
 
   validates :item_image, presence: true
   validates :name, presence: true
@@ -22,7 +21,7 @@ class Item < ApplicationRecord
   end
 
   def get_item_image_webp(width, height)
-    item_image_webp.variant(resize_to_fill: [width, height], format: :webp).processed if item_image_webp.attached?
+    item_image.variant(resize_to_fill: [width, height], format: :webp).processed if item_image.attached?
   end
 
   def bookmark_by?(member)

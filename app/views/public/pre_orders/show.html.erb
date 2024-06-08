@@ -2,7 +2,7 @@
   <div class="main-content col-9 px-3">
     <h2>予約内容詳細</h2><%= @pre_order.order_full_name %>
     <hr>
-    <% if @pre_order.status == 'visit' && @pre_order.review.blank? && @pre_order.visit_day > 1.week.ago %>
+    <% if @pre_order.status == 'visit' && @pre_order.review.blank? && @pre_order.visit_day >= 2.week.ago %>
     <!--口コミ投稿-->
       <%= form_with model: @review, url: pre_order_reviews_path(@pre_order), method: :post do |f| %>
         <div class="mt-2 mb-5 p-3 bg-light">
