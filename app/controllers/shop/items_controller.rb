@@ -18,15 +18,15 @@ class Shop::ItemsController < ApplicationController
       resized_images = resize_image_set_dpi(params[:item][:item_image])
       original_filename_base = File.basename(params[:item][:item_image].original_filename, ".*")
       @item.item_image.attach(
-        io: resized_images[:jpg],
+        io: resized_images,
         filename: "#{original_filename_base}.jpg",
-        content_type: params[:item][:item_image].content_type
+        content_type: 'image/jpg'
         )
-      @item.item_image_webp.attach(
-        io: resized_images[:webp],
-        filename: "#{original_filename_base}.webp",
-        content_type: 'image/webp'
-        )
+      #@item.item_image_webp.attach(
+        #io: resized_images[:webp],
+        #filename: "#{original_filename_base}.webp",
+        #content_type: 'image/webp'
+        #)
     end
     # visionのデータを取得
     item_checks = Vision.get_image_data(item_params[:item_image])
@@ -86,15 +86,15 @@ class Shop::ItemsController < ApplicationController
       resized_images = resize_image_set_dpi(params[:item][:item_image])
       original_filename_base = File.basename(params[:item][:item_image].original_filename, ".*")
       @item.item_image.attach(
-        io: resized_images[:jpg],
+        io: resized_images,
         filename: "#{original_filename_base}.jpg",
-        content_type: params[:item][:item_image].content_type
+        content_type: 'image/jpg'
         )
-      @item.item_image_webp.attach(
-        io: resized_images[:webp],
-        filename: "#{original_filename_base}.webp",
-        content_type: 'image/webp'
-        )
+      #@item.item_image_webp.attach(
+        #io: resized_images[:webp],
+        #filename: "#{original_filename_base}.webp",
+        #content_type: 'image/webp'
+        #)
     end
     # visionのデータを取得
     if params[:item][:item_image]
@@ -173,16 +173,18 @@ class Shop::ItemsController < ApplicationController
     image.resize 'x1350'
     image.density '96'
 
-    tempfile_jpg = Tempfile.new(['resized','.jpg'])
+    #tempfile_jpg = Tempfile.new(['resized','.jpg'])
+    tempfile_jpg = Tempfile.new('resized')
     image.write (tempfile_jpg.path)
     tempfile_jpg.rewind
+    tempfile_jpg
 
-    tempfile_webp = Tempfile.new(['resized', '.webp'])
-    image.format 'webp'
-    image.write(tempfile_webp.path)
-    tempfile_webp.rewind
+    #tempfile_webp = Tempfile.new(['resized', '.webp'])
+    #image.format 'webp'
+    #image.write(tempfile_webp.path)
+    #tempfile_webp.rewind
 
-    { jpg: tempfile_jpg, webp: tempfile_webp }
+    #{ jpg: tempfile_jpg, webp: tempfile_webp }
   end
 
   def item_params

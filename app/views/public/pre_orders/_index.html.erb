@@ -61,7 +61,7 @@
         <div class="wide-btn p-1">
           <% if pre_order.review %>
             <button class="btn btn-outline-secondary disabled w-100 mb-2">口コミの投稿ありがとうございます</button>
-          <% elsif pre_order.visit_day < 1.week.ago %>
+          <% elsif pre_order.visit_day < 2.week.ago %>
             <button class="btn btn-outline-secondary disabled w-100 mb-2">口コミの投稿期限が過ぎています</button>
           <% elsif pre_order.status != 'visit' || pre_order.review %>
             <button class="btn btn-outline-secondary disabled w-100 mb-2">口コミは投稿できません</button>

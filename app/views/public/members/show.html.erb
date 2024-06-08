@@ -1,7 +1,32 @@
 <div class="container d-flex flex-row-reverse flex-wrap pt-3">
   <div class="main-content col-9 px-3 mb-3">
-    <h2>マイページ</h2>
+    <div class="d-flex flex-row flex-wrap align-items-end">
+      <div class="main-content col-9">
+        <h2>マイページ</h2>
+      </div>
+      <div class="main-content col-3 ms-auto">
+        <% if @before_visit_pre_order %>
+          <%= link_to '予約中の商品を確認する', pre_orders_path %>
+        <% else %>
+          現在予約中の商品はありません
+        <% end %>
+      </div>
+    </div>
     <hr>
+    <% @pre_orders.each do |pre_order| %>
+    <div class="d-flex flex-row flex-wrap card my-2 py-2 px-4 align-items-center bg-light">
+      <div class="main-content col-9">
+        <%= pre_order.name %><br>
+        <%= link_to shop_path(pre_order.item.shop) do %>
+          <%= pre_order.item.shop.name %>
+        <% end %>
+        <small>（<%= pre_order.visit_day.strftime("%Y年%-m月%-d日") %>に来店済み）</small>
+      </div>
+      <div class="main-content col-3">
+        <%= link_to '口コミを投稿する', pre_order_path(pre_order), class: "btn btn-info d-grid" %>
+      </div>
+    </div>
+    <% end %>
 
     <div class="pt-5">
       <h2><strong>最近見た</strong> <span class="h4">商品</span></h2>

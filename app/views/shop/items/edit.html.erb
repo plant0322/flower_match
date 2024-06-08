@@ -1,6 +1,13 @@
 <div class="container d-flex flex-row-reverse flex-wrap pt-3">
   <div class="main-content col-9 px-3 mt-3">
-    <h2>商品情報を編集する</h2>
+    <div class="d-flex flex-row flex-wrap">
+      <div class="main-content col-6">
+        <h2>商品情報を編集する</h2>
+      </div>
+      <div class="main-content col-6 d-grid px-1 ms-auto">
+        <%= link_to "プレビューで確認する", item_path(@item), target: :_blank, class: "btn btn-outline-info p-2" %>
+      </div>
+    </div>
     <hr>
 
     <%= render 'form', item: @item, url: shop_item_path, tag_list: @tag_list, pick_up_tags: @pick_up_tags %>
