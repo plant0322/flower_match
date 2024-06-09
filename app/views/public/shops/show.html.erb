@@ -52,7 +52,7 @@
             <th>住所</th>
             <td>
               〒<%= @shop.postal_code.to_s.insert(3, "-") %><br>
-              <%= @shop.address %>
+              <%= @shop.prefecture_name %><%= @shop.address %>
             </td>
           </tr>
           <tr>

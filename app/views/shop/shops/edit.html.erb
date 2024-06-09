@@ -13,28 +13,28 @@
           </td>
           <td>
             <%= f.file_field :shop_image, accept: "image/*", class: "form-control" %>
-            <small>※ショップのイメージ画像をjpegで登録してください。<br>推奨サイズは幅1080×高さ1080pxです。</small>
+            <small class="text-secondary">※ショップのイメージ画像をjpegで登録してください。<br>推奨サイズは幅1080×高さ1080pxです。</small>
           </td>
         </tr>
         <tr>
           <th class="w-25"><%= f.label :name, "ショップ名" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
           <td colspan="2">
             <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
-            <small>例）Flower Shop</small>
+            <small class="text-secondary">例）Flower Shop</small>
           </td>
         </tr>
         <tr>
           <th class="w-25"><%= f.label :name_kana, "ショップ名（フリガナ）" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
           <td colspan="2">
             <%= f.text_field :name_kana, autocomplete: "name_kana", class: "form-control" %>
-            <small>例）フラワーショップ</small>
+            <small class="text-secondary">例）フラワーショップ</small>
           </td>
         </tr>
         <tr>
           <th class="w-25"><%= f.label :introduction, "ショップコメント" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
           <td colspan="2">
             <%= f.text_area :introduction, autocomplete: "introduction", class: "form-control" %>
-            <small>例）フラワーアレンジのご要望承ります。</small>
+            <small class="text-secondary">例）フラワーアレンジのご要望承ります。</small>
           </td>
         </tr>
       </table>
@@ -44,21 +44,27 @@
         <tr>
           <th class="w-25"><%= f.label :postal_code, "ショップの郵便番号" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
           <td colspan="2">
-            <%= f.text_field :postal_code, placeholder: "", autocomplete: "postal_code", class: "form-control" %>
-            <small>例）1234567　※ハイフンは不要です</small>
+            <%= f.text_field :postal_code, placeholder: "〒 郵便番号", autocomplete: "postal_code", class: "form-control" %>
+            <small class="text-secondary">例）1234567　※ハイフンは不要です</small>
           </td>
         </tr>
         <tr>
           <th class="w-25"><%= f.label :address, "ショップの住所" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
-          <td colspan="2">
-            <%= f.text_field :address, autocomplete: "address", class: "form-control" %>
+          <td colspan="2" class="d-flex flex-row">
+            <div class="col-3">
+              <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, { prompt: '都道府県を選択' }, class: 'form-control' %>
+            </div>
+            <div class="col-9">
+              <%= f.text_field :address, placeholder: "市町村/番地/建物", autocomplete: "address", class: "form-control" %>
+              <small class="text-secondary">例）○○市△△町2丁目12番地</small>
+            </div>
           </td>
         </tr>
         <tr>
           <th class="w-25"><%= f.label :direction, "アクセス・道案内" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
           <td colspan="2">
             <%= f.text_area :direction, autocomplete: "direction", class: "form-control" %>
-            <small>例）スーパーの向かい側にある白い建物です</small>
+            <small class="text-secondary">例）スーパーの向かい側にある白い建物です</small>
           </td>
         </tr>
       </table>
@@ -69,28 +75,28 @@
           <th class="w-25"><%= f.label :telephone_number, "電話番号（ショップの連絡先）" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
           <td colspan="2">
             <%= f.text_field :telephone_number, autocomplete: "telephone_number", class: "form-control" %>
-            <small>例）08000000000　※ハイフンは不要です。</small>
+            <small class="text-secondary">例）08000000000　※ハイフンは不要です。</small>
           </td>
         </tr>
         <tr>
           <th class="w-25"><%= f.label :opening_hour, "営業時間" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
           <td colspan="2">
             <%= f.text_field :opening_hour, autocomplete: "opening_hour", class: "form-control" %>
-            <small>例）火～日 9:30～18:00</small>
+            <small class="text-secondary">例）火～日 9:30～18:00</small>
           </td>
         </tr>
         <tr>
           <th class="w-25"><%= f.label :holiday, "定休日" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
           <td colspan="2">
             <%= f.text_field :holiday, autocomplete: "holiday", class: "form-control" %>
-            <small>例）月曜日</small>
+            <small class="text-secondary">例）月曜日</small>
           </td>
         </tr>
         <tr>
           <th class="w-25"><%= f.label :payment_method, "支払方法" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
           <td colspan="2">
             <%= f.text_field :payment_method, autocomplete: "payment_method", class: "form-control" %>
-            <small>例）現金/Visa/Mastercard/JCB/American Express/PayPay</small>
+            <small class="text-secondary">例）現金/Visa/Mastercard/JCB/American Express/PayPay</small>
           </td>
         </tr>
         <tr>
@@ -107,14 +113,14 @@
           <th class="w-25"><%= f.label :representative_name, "担当者名" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
           <td colspan="2">
             <%= f.text_field :representative_name, autocomplete: "representative_name", class: "form-control" %>
-            <small>※担当者名はページ上には表示されません</small>
+            <small class="text-secondary">※担当者名はページ上には表示されません</small>
           </td>
         </tr>
         <tr>
           <th class="w-25"><%= f.label :email, "メール" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
           <td colspan="2">
             <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
-            <small>例）xxx_sample@mail</small>
+            <small class="text-secondary">例）xxx_sample@mail</small>
           </td>
         </tr>
       </table>

@@ -30,8 +30,8 @@
       <div class="main-content col-6">
         <table class="table table-borderless">
           <tr>
-            <th>住所</th>
-            <td>〒<%= shop.postal_code.to_s.insert(3, "-") %><br><%= shop.address %></td>
+            <th class="w-25">住所</th>
+            <td>〒<%= shop.postal_code.to_s.insert(3, "-") %><br><%= shop.prefecture_name %><%= shop.address %></td>
           </tr>
           <tr>
             <th>営業時間</th>

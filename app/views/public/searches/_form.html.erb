@@ -1,19 +1,20 @@
 <%= form_with url: search_path, method: :get do |f| %>
   <div class="px-2">
-    <div class="col-12 d-flex flex-row flex-wrap pb-1">
+    <div class="col-10 d-flex flex-row flex-wrap pb-1 align-items-end justify-content-between">
       <div class="pe-3">
         <%= f.radio_button :model, 'item', checked: search[:model] == 'item', class: "form-check-input" %><%= f.label :model_item, "商品", class: "form-check-label text-white fw-bold ps-2" %>
       </div>
       <div class="pe-3">
-        <%= f.radio_button :model, 'address', checked: search[:model] == 'address', class: "form-check-input" %><%= f.label :model_address, "住所", class: "form-check-label text-white fw-bold ps-2" %>
-      </div>
-      <div class="pe-3">
         <%= f.radio_button :model, 'shop', checked: search[:model] == 'shop', class: "form-check-input" %><%= f.label :model_shop, "ショップ", class: "form-check-label text-white fw-bold ps-2" %>
+      </div>
+      <div>
+        <%= f.hidden_field :prefecture, value: params[:prefecture] %>
+        <%= f.collection_select :prefecture, JpPrefecture::Prefecture.all, :code, :name, { include_blank: '都道府県を選択', selected: params[:prefecture] }, { class: 'form-select bg-light' } %>
       </div>
     </div>
     <div class="d-flex flex-row">
       <div class="col-10">
-        <%= f.text_field :content, placeholder: 'キーワードから探す', class: "form-control" %>
+        <%= f.text_field :content, placeholder: 'キーワードから探す', class: "form-control bg-light" %>
       </div>
       <div class="col-2 member-btn <%= (admin_signed_in? ? "admin-btn" : "" ) %>  <%= (shop_signed_in? ? "shop-btn" : "" ) %>">
         <%= button_tag type: 'submit', name: '', class: "btn form-control" do %>

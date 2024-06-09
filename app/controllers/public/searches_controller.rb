@@ -1,28 +1,29 @@
 class Public::SearchesController < ApplicationController
 
   def search
-    active_shops = Shop.where(is_active: true)
     @content = params[:content]
     @model = params[:model].presence || 'item'
-    @search = if @model.in?(['shop', 'address', 'tag'])
+    @prefecture = params[:prefecture]
+    @search = if @model.in?(['shop', 'tag'])
                 { model: @model }
               else
                 { model: 'item' }
               end
+    if @prefecture.presence
+      active_shops = Shop.where(is_active: true)
+                         .where(prefecture_code: @prefecture)
+    else
+      active_shops = Shop.where(is_active: true)
+    end
 
     if @search[:model] == 'item'
       @records = Item.where('name LIKE? OR introduction LIKE?','%'+@content+'%','%'+@content+'%')
                      .order(updated_at: 'DESC')
                      .where(is_active: true, shop_id: active_shops).page(params[:page])
-    elsif @search[:model] == 'address'
-      @records = Item.joins(:shop)
-                     .where('shops.address LIKE :content', content: "%#{@content}%")
-                     .where(is_active: true, shop_id: active_shops)
-                     .order(updated_at: 'DESC').page(params[:page])
     elsif @search[:model] == 'shop'
       @records = Shop.where('name LIKE? OR name_kana LIKE? OR address LIKE?', '%'+@content+'%', '%'+@content+'%','%'+@content+'%')
                      .order(updated_at: 'DESC')
-                     .where(is_active: true).page(params[:page])
+                     .where(id: active_shops).page(params[:page])
     else #@model = 'tag'
       active_items = Item.where(is_active: true, shop_id: active_shops)
       tag_items = Tag.search_items(@content, active_items)
