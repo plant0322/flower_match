@@ -71,3 +71,4 @@ gem 'net-pop'
 gem 'net-imap'
 
 gem 'mini_magick'
+gem 'jp_prefecture'

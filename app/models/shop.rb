@@ -17,6 +17,7 @@ class Shop < ApplicationRecord
   validates :introduction, presence: true
   validates :representative_name, presence: true
   validates :postal_code, presence: true, format: { with: /\A\d{7}\z/ }
+  validates :prefecture_code, presence: true
   validates :address, presence: true
   validates :opening_hour, presence: true
   validates :holiday, presence: true
@@ -26,6 +27,17 @@ class Shop < ApplicationRecord
   validates :direction, presence: true
   validates :telephone_number, presence: true, uniqueness: true, format: { with: /\A\d{10,11}\z/ }
   validates :email, presence: true
+
+  include JpPrefecture
+  jp_prefecture :prefecture_code
+
+  def prefecture_name
+  JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)
+  end
+
+  def prefecture_name=(prefecture_name)
+    self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
+  end
 
   def get_shop_image(width, height)
     shop_image.variant(resize_to_fill: [width, height]).processed

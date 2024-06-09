@@ -81,11 +81,20 @@
           <tr>
             <th class="w-25"><%= f.label :address, "ショップの住所" %><small class="bg-info py-0 px-2 ms-2 rounded-pill fw-normal">必須</small></th>
             <td colspan="2">
-              <%= f.text_field :address, autocomplete: "address", class: "form-control" %>
+              <div class="d-flex flex-row">
+                <div class="col-3">
+                  <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, { prompt: '都道府県を選択' }, class: 'form-control' %>
+                </div>
+                <div class="col-9">
+                  <%= f.text_field :address, placeholder: "市町村/番地/建物", autocomplete: "address", class: "form-control" %>
+                  <small class="text-secondary">例）○○市△△町2丁目12番地</small>
+                </div>
+              </div>
             </td>
           </tr>
           <tr>
             <td colspan="3">
+              <%= render "layouts/error_messages", obj: @shop, attribute: :prefecture_code %>
               <%= render "layouts/error_messages", obj: @shop, attribute: :address %>
             </td>
           </tr>

@@ -16,7 +16,7 @@
           <% end %><br>
           <small>
             〒<%= shop.postal_code.to_s.insert(3, "-") %><br>
-            <%= shop.address %>
+            <%= shop.prefecture_name %><%= shop.address %>
           </small>
         </td>
         <td class="fw-bold">
