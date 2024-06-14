@@ -32,7 +32,7 @@ class Public::SearchesController < ApplicationController
       @records = Kaminari.paginate_array(tag_items).page(params[:page])
     end
 
-    @pick_up_tags = PickUpTag.where(is_active: true).order(id: 'DESC')
+    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
     @tag_rank = Tag.tag_rank_item
     @tags = Tag.tag_rank_item.limit(50)
   end

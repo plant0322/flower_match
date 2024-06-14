@@ -20,7 +20,7 @@ class Public::ReviewsController < ApplicationController
     pre_orders = PreOrder.where(item_id: items)
     @reviews = Review.where(pre_order_id: pre_orders)
                      .where(is_active: true).order(id: 'DESC').page(params[:page])
-    @pick_up_tags = PickUpTag.where(is_active: true).order(id: 'DESC')
+    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
     @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')
   end

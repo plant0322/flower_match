@@ -7,18 +7,8 @@
       <tr class="tr-menu" onclick='window.location="<%= pick_up_tag_path(tag) %>"' role="link">
         <td>
           <%= tag.name %>
-          <% if tag.is_active & admin_signed_in? %>
-            <small class="text-success">(公開中)</small>
-          <% elsif admin_signed_in? %>
-            <small class="text-danger">(非公開)</small>
-          <% end %>
         </td>
       </tr>
-      <% if admin_signed_in? %>
-        <tr>
-          <td><%= link_to '編集する', edit_admin_pick_up_tag_path(tag) %></td>
-        </tr>
-      <% end %>
     <% end %>
   </table>
 </div>

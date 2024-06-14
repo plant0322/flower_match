@@ -8,7 +8,7 @@ class Shop::HomesController < ApplicationController
     @pre_orders_3 = PreOrder.where(item_id: @shop_items.pluck(:id)).order(id: "DESC").limit(3)
     pre_orders = PreOrder.where(item_id: @shop_items)
     @reviews = Review.where(pre_order_id: pre_orders).order(id: "DESC").limit(3)
-    @pick_up_tags = PickUpTag.where(is_active: true).order(id: 'DESC')
+    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
     @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')
   end

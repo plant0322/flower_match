@@ -4,7 +4,7 @@ class Admin::SearchesController < ApplicationController
   before_action :authenticate_admin!
 
   def search
-    @pick_up_tags = PickUpTag.where(is_active: true).order(id: 'DESC')
+    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
     @tag_rank = Tag.tag_rank_item
       shop = Shop.where('name LIKE ? OR name_kana LIKE ?', "%#{@content}%", "%#{@content}%")
       member = Member.where('last_name LIKE? OR first_name LIKE? OR last_name_kana LIKE? OR first_name_kana LIKE?',

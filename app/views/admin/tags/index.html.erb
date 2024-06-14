@@ -10,7 +10,38 @@
       <div class="wide-item col-4 px-1 pb-5">
         <h3>イベントタグ</h3>
         <hr>
-        <%= render 'layouts/pickup_menu', pick_up_tags: @pick_up_tags %>
+        <div>
+          <table class="table">
+            <tr>
+              <th class="text-center bg-member <%= (admin_signed_in? ? "bg-admin" : "" ) %> <%= (shop_signed_in? ? "bg-shop" : "" ) %>">おすすめ商品</th>
+            </tr>
+            <% @pick_up_tags.each do |tag| %>
+              <tr class="tr-menu" onclick='window.location="<%= pick_up_tag_path(tag) %>"' role="link">
+                <td>
+                  <%= tag.name %>
+                  <% if tag.is_active & admin_signed_in? %>
+                    <small class="text-success">(公開中)</small>
+                  <% elsif admin_signed_in? %>
+                    <small class="text-danger">(非公開)</small>
+                  <% end %>
+                </td>
+              </tr>
+              <% if admin_signed_in? %>
+                <tr>
+                  <td>
+                    <%= link_to '詳細を変数編集する', edit_admin_pick_up_tag_path(tag), class: "btn btn-info p-1 d-grid" %>
+                    <%= form_with model: tag, url: admin_pick_up_tag_path(tag) do |f| %>
+                      <div class="d-flex flex-row d-flex justify-content-center mt-2">
+                        <div class="pe-3"><%= f.select :in_order, (0..20).to_a, { prompt: "" }, { class: "form-select" } %></div>
+                        <%= f.submit '並び替え', class: "btn btn-outline-info" %>
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </table>
+        </div>
       </div>
 
       <div class="wide-item col-4 px-1">

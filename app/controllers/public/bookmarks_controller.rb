@@ -18,7 +18,7 @@ class Public::BookmarksController < ApplicationController
     bookmark_items = Bookmark.where(member_id: current_member.id)
     @items = Item.where(id: bookmark_items.pluck(:item_id))
                  .where(is_active: true, shop_id: active_shops).order(id: 'DESC').page(params[:page])
-    @pick_up_tags = PickUpTag.where(is_active: true).order(id: 'DESC')
+    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
     @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')
   end
