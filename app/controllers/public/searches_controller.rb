@@ -25,7 +25,9 @@ class Public::SearchesController < ApplicationController
                      .order(updated_at: 'DESC')
                      .where(id: active_shops).page(params[:page])
     else #@model = 'tag'
-      active_items = Item.where(is_active: true, shop_id: active_shops)
+      active_items = Item.left_joins(:item_details)
+                         .where(is_active: true, shop_id: active_shops)
+
       tag_items = Tag.search_items(@content, active_items)
       @records = Kaminari.paginate_array(tag_items).page(params[:page])
     end

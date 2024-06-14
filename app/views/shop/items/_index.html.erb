@@ -1,4 +1,4 @@
-<table class="table table-hover table-bordered">
+<table class="table table-bordered">
   <thead>
     <tr class="text-center">
       <th>公開/非公開</th>
@@ -7,7 +7,7 @@
   </thead>
   <tbody>
     <% items. each do |item| %>
-      <tr class="tr-link" onclick='window.location="<%= edit_shop_item_path(item) %>"' role="link">
+      <tr>
         <td class="text-center">
           <%= image_tag item.get_item_image(100,100) %>
           <% if item.is_active %>
@@ -27,6 +27,10 @@
               # <%= tag.name %>
             </span>
           <% end %>
+          <div class="mt-2">
+            <%= link_to '商品情報の編集', edit_shop_item_path(item) %> |
+            <%= link_to '商品詳細の画像・内容の編集', item_path(item) %>
+          </div>
         </td>
       </tr>
     <% end %>

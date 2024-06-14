@@ -22,9 +22,9 @@ class Shop::ItemsController < ApplicationController
         filename: "#{original_filename_base}.jpg",
         content_type: 'image/jpg'
         )
+      # visionのデータを取得
+      item_checks = Vision.get_image_data(item_params[:item_image])
     end
-    # visionのデータを取得
-    item_checks = Vision.get_image_data(item_params[:item_image])
 
     if @item.save
       # visionで取得したデータを使って画像の関連度判定

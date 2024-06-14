@@ -42,6 +42,19 @@ h1.page-title {
     color: #968582;
 }
 
+// 商品編集（アコーディオン）
+.item-summary-edit {
+	display: block;
+}
+
+.item-summary-edit::-webkit-details-marker {
+    display: none!important;
+}
+
+.item-summary-edit:hover {
+    color: #E15C67;
+}
+
 // Aboutページ
 .about-content h2 {
     font-size: 1.5em!important;
@@ -56,10 +69,6 @@ h1.page-title {
     margin-bottom: 30px;
     border-radius: 3px!important;
     line-height: 1.8em;
-}
-
-.about-content .shop-content {
-
 }
 
 // パンくず
