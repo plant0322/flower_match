@@ -5,7 +5,7 @@ class Public::MembersController < ApplicationController
   before_action :set_search, only: [:show, :edit, :unsubscribe]
 
   def show
-    @before_visit_pre_order = PreOrder.where(status: 'before_visit')
+    @before_visit_pre_order = PreOrder.where(status: 'before_visit', member_id: current_member)
     @pre_orders = PreOrder.where(status: 'visit', member_id: current_member)
                           .where('visit_day >= ?', 2.week.ago)
     active_shops = Shop.where(is_active: true)
@@ -20,13 +20,13 @@ class Public::MembersController < ApplicationController
     @favorite_shops = Shop.where(id: active_favorite_shops_ids).order(created_at: "DESC").limit(4)
     @favorite_shop_items = Item.where(is_active: true, shop_id: active_favorite_shops_ids).order(created_at: "DESC").limit(6)
 
-    @pick_up_tags = PickUpTag.where(is_active: true).order(id: 'DESC')
+    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
     @tag_rank = Tag.tag_rank_item
   end
 
   def edit
     @tag_rank = Tag.tag_rank_item
-    @pick_up_tags = PickUpTag.where(is_active: true).order(id: 'DESC')
+    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
   end
 
   def update
@@ -41,7 +41,7 @@ class Public::MembersController < ApplicationController
 
   def unsubscribe
     @tag_rank = Tag.tag_rank_item
-    @pick_up_tags = PickUpTag.where(is_active: true).order(id: 'DESC')
+    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
   end
 
   def withdraw

@@ -124,6 +124,13 @@
           <%= link_to "ショップ詳細へ戻る", shop_path(@shop), class: "btn btn-outline-info p-2" %>
         </div>
       </div>
+
+      <h2 class="mt-5">このショップの商品一覧</h2>
+      <hr>
+      <%= render 'admin/items/index', items: @items %>
+
+      <!--ページネーション-->
+      <%= render 'layouts/paginate', content: @items %>
     </div>
   <div class="left-content col-3 px-3">
     <%= render 'layouts/admin_menu' %>

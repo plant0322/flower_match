@@ -14,7 +14,7 @@ class Shop::MembersController < ApplicationController
     @room = Room.where(shop_id: current_shop, member_id: @member)
     @reviews = Review.where(pre_order_id: pre_orders)
     @pick_up_tags = PickUpTag.where(is_active: true)
-                             .order(id: 'DESC')
+                             .order(in_order: 'ASC')
     @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')
   end

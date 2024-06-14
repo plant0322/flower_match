@@ -15,7 +15,7 @@ class Admin::PickUpTagsController < ApplicationController
   def edit
     @tags = Tag.all
     @pick_up_tag = PickUpTag.find(params[:id])
-    @pick_up_tags = PickUpTag.where(is_active: true).order(id: 'DESC')
+    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
     @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')
   end
@@ -41,6 +41,6 @@ class Admin::PickUpTagsController < ApplicationController
   private
 
   def pick_up_tag_params
-    params.require(:pick_up_tag).permit(:tag_id, :name, :introduction, :is_active, :tag_image)
+    params.require(:pick_up_tag).permit(:tag_id, :name, :introduction, :is_active, :tag_image, :in_order)
   end
 end

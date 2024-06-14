@@ -3,7 +3,7 @@ class Admin::ItemsController < ApplicationController
 
   def index
     @items = Item.all.order(updated_at: 'DESC').page(params[:page])
-    @pick_up_tags = PickUpTag.where(is_active: true).order(id: 'DESC')
+    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
     @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')
   end

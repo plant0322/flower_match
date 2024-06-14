@@ -75,14 +75,14 @@ class Public::PreOrdersController < ApplicationController
     @pre_orders = current_member.pre_orders
     @before_visit_pre_orders = @pre_orders.where(status: 'before_visit').order(visit_day: "ASC")
     @visit_or_cancel_pre_orders = @pre_orders.where(status: ['visit', 'cancel']).order(visit_day: "DESC").page(params[:page])
-    @pick_up_tags = PickUpTag.where(is_active: true).order(id: 'DESC')
+    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
     @tag_rank = Tag.tag_rank_item
   end
 
   def show
     @pre_order = PreOrder.find(params[:id])
     @review = Review.new
-    @pick_up_tags = PickUpTag.where(is_active: true).order(id: 'DESC')
+    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
     @tag_rank = Tag.tag_rank_item
   end
 

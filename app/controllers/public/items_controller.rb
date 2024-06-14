@@ -6,10 +6,12 @@ class Public::ItemsController < ApplicationController
     @shop = @item.shop
     @stock = @item.stock.to_i
     @stock_array = Array(1..@stock)
+    @item_details = ItemDetail.where(item_id: @item.id).order(in_order: 'ASC')
+    @item_detail_new = ItemDetail.new
 
     item_tags = ItemTag.where(item_id: @item.id)
     @item_tags = Tag.where(id: item_tags.pluck(:tag_id))
-    @pick_up_tags = PickUpTag.where(is_active: true).order(id: 'DESC')
+    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
     @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')
   end
