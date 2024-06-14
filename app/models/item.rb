@@ -3,6 +3,7 @@ class Item < ApplicationRecord
   has_many :pre_orders, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :item_tags, dependent: :destroy
+  has_many :item_details, dependent: :destroy
   has_many :tags, through: :item_tags
   belongs_to :shop
   has_one :item_check, dependent: :destroy

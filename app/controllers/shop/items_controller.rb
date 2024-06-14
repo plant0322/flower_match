@@ -22,11 +22,6 @@ class Shop::ItemsController < ApplicationController
         filename: "#{original_filename_base}.jpg",
         content_type: 'image/jpg'
         )
-      #@item.item_image_webp.attach(
-        #io: resized_images[:webp],
-        #filename: "#{original_filename_base}.webp",
-        #content_type: 'image/webp'
-        #)
     end
     # visionのデータを取得
     item_checks = Vision.get_image_data(item_params[:item_image])
@@ -90,11 +85,6 @@ class Shop::ItemsController < ApplicationController
         filename: "#{original_filename_base}.jpg",
         content_type: 'image/jpg'
         )
-      #@item.item_image_webp.attach(
-        #io: resized_images[:webp],
-        #filename: "#{original_filename_base}.webp",
-        #content_type: 'image/webp'
-        #)
     end
     # visionのデータを取得
     if params[:item][:item_image]
@@ -173,18 +163,10 @@ class Shop::ItemsController < ApplicationController
     image.resize 'x1350'
     image.density '96'
 
-    #tempfile_jpg = Tempfile.new(['resized','.jpg'])
     tempfile_jpg = Tempfile.new('resized')
     image.write (tempfile_jpg.path)
     tempfile_jpg.rewind
     tempfile_jpg
-
-    #tempfile_webp = Tempfile.new(['resized', '.webp'])
-    #image.format 'webp'
-    #image.write(tempfile_webp.path)
-    #tempfile_webp.rewind
-
-    #{ jpg: tempfile_jpg, webp: tempfile_webp }
   end
 
   def item_params

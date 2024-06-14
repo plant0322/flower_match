@@ -42,7 +42,9 @@ Rails.application.routes.draw do
     get 'search'                        => 'searches#search'
 
     resources :members, only: [:show]
-    resources :items, except: [:show]
+    resources :items, except: [:show] do
+      resources :item_details, only: [:create, :update, :destroy]
+    end
     resources :pre_orders, only: [:show, :index, :update]
     resources :messages, only: [:show, :index, :create, :update, :destroy]
   end

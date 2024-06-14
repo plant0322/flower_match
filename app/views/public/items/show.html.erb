@@ -1,6 +1,8 @@
 <div class="container d-flex flex-row-reverse flex-wrap pt-3">
   <div class="main-content col-9 px-3">
+    <!--ショップ情報-->
     <%= render 'public/shops/info', shop: @shop %>
+    <!--商品情報-->
     <h1 class="page-title mt-1"><%= @item.shop.name %> | <%= @item.name %></h1>
     <%= form_with url: new_pre_order_path, method: :get do |f| %>
       <div class="d-flex flex-wrap">
@@ -71,7 +73,7 @@
             <p class="fw-bold">商品紹介</p>
             <p><%= simple_format(h(@item.introduction)) %></p>
           </div>
-          <!--商品詳細-->
+          <!--商品サイズ/キャンセル期限-->
           <div class="bg-light p-3 mb-3">
             <p class="fw-bold">詳細</p>
             <div class="mb-2">
@@ -89,6 +91,44 @@
       </div>
       <%= render 'public/searches/tag_btn', tags: @item_tags %>
     <% end %>
+    <!--商品詳細-->
+    <div class="main-content col-8 mx-auto mt-3">
+      <% @item_details.each do |item_detail| %>
+      <div class="my-5">
+        <%= image_tag item_detail.get_item_detail_image(1080,1350), class: "w-100 p-1" %>
+        <p class="col-11 mx-auto mt-2">
+          <%= item_detail.introduction %>
+        </p>
+        <%= form_with model: item_detail, url: shop_item_item_detail_path(@item, item_detail), method: :patch do |f| %>
+          <%= f.select :in_order, (0..10).to_a, { prompt: "" }, { class: "form-select w-25 mt-2" } %>
+          <%= f.file_field :item_detail_image, accept: "image/*", class: "form-control mt-2" %>
+          <%= f.text_area :introduction, autocomplete: "introduction", class: "form-control mt-2" %>
+          <div class="text-end">
+            <%= f.submit "更新する", class: "btn btn-outline-info p-2 mt-2" %>
+            <%= link_to "削除", shop_item_item_detail_path(@item, item_detail), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+          </div>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+    <!--商品詳細投稿フォーム-->
+    <div class="main-content col-8 mx-auto mt-5">
+      <%= form_with model: @item_detail_new, url: shop_item_item_details_path(@item), method: :post do |f| %>
+        <div class="mt-2 d-flex flex-row align-items-center">
+          <%= f.select :in_order, (0..10).to_a, { prompt: "" }, { class: "form-select w-25" } %>
+          <small class="ms-2">0～10までの数字を設定して並び順を指定することが出来ます</small>
+        </div>
+        <div class="mt-2">
+          <%= f.file_field :item_detail_image, accept: "image/*", class: "form-control" %>
+        </div>
+        <div class="mt-2">
+          <%= f.text_area :introduction, autocomplete: "introduction", class: "form-control" %>
+        </div>
+        <div class="text-end">
+          <%= f.submit "詳細を追加する", class: "btn btn-info p-2 mt-2" %>
+        </div>
+      <% end %>
+    </div>
   </div>
   <div class="left-content col-3 px-3">
     <%= render 'layouts/members_menu' %>
