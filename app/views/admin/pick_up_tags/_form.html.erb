@@ -1,19 +1,22 @@
 <%= form_with model: pick_up_tag, url: url do |f| %>
   <table class="table table-borderless table-light my-3">
     <tr>
-      <th>名前</th>
-      <td><%= f.text_field :name, autocomplete: "name", class: "form-control" %></td>
-    </tr>
-    <tr>
       <th>タグ選択</th>
-      <td><%= f.collection_select :tag_id, tags, :id, :name, { prompt: "タグを選択してください" }, { class: "form-select" } %></td>
+      <td><%= f.collection_select :tag_id, tags, :id, :name, { prompt: "イベントとして使用するタグを選択" }, { class: "form-select" } %></td>
     </tr>
     <tr>
-      <th>イベント詳細</th>
+      <th>イベント名</th>
+      <td>
+        <%= f.text_field :name, autocomplete: "name", class: "form-control" %>
+        <small>※基本はタグと同じ名前か似た名前で登録してください</small>
+      </td>
+    </tr>
+    <tr>
+      <th>イベント内容詳細</th>
       <td><%= f.text_area :introduction, autocomplete: "introduction", class: "form-control mh-100" %></td>
     </tr>
     <tr>
-      <th>イメージ画像</th>
+      <th>アイキャッチ画像</th>
       <td>
         <%= f.file_field :tag_image, autocomplete: "tag_image", class: "form-control" %>
         <small>※TOPとイベント詳細にアイキャッチとして表示されます</small>
@@ -26,6 +29,10 @@
           <div class="pe-3"><%= f.radio_button :is_active, true, class: "form-check-input" %><%= f.label :is_active_true, "公開", class: "form-check-label text-success fw-bold ps-2" %></div>
           <div class="pe-3"><%= f.radio_button :is_active, false, class: "form-check-input" %><%= f.label :is_active_false, "非公開", class: "form-check-label text-danger fw-bold ps-2" %></div>
         </div>
+        <div class="text-center">
+          <small>※数字を設定することでイベントの並び順を指定することも可能です</small>
+        </div>
+
       </td>
     </tr>
     <tr>

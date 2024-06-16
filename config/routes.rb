@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'top'    =>  'homes#top', as: 'top'
+    get 'guide'  => 'homes#guide', as: 'guide'
 
     resources :shops, only: [:index, :edit, :update]
     resources :members, only: [:show, :index, :edit, :update]

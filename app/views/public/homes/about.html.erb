@@ -151,20 +151,30 @@
         まずは、定番の<span class="fs-5 fw-bold">母の日</span><br>
         そして<span class="fs-5 fw-bold">送別会</span>や<span class="fs-5 fw-bold">卒業式や入学式</span>にはお花を渡したり受け取った経験がある方も多そうですね。<br>
         さらに、夏の<span class="fs-5 fw-bold">お彼岸</span>や、<br>
-        もしかしたら<span class="fs-5 fw-bold">誕生日</span>のお祝いにお花を購入する方もいるかも…<br><br>
-        想像してみるといろんな場面が思い浮かびますが、やはり基本的には、何かしらの<span class="fs-5 fw-bold">「イベントごと」</span>を想像することが多いのではないでしょうか？<br><br>
+        もしかしたら<span class="fs-5 fw-bold">誕生日</span>のお祝いにお花を購入する方もいるかも…
+      </p>
+      <p class="about-point px-4">
+        想像してみるといろんな場面が思い浮かびますが、やはり基本的には、何かしらの<span class="fs-5 fw-bold">「イベントごと」</span>を想像することが多いのではないでしょうか？
+      </p>
+      <p class="about-point px-4">
         日本ではそんなイメージが強いお花ですが、<br>
-        海外では<span class="fs-5 fw-bold">日常生活の中でお花を楽しんでいる国</span>もあるんです。<br><br>
+        海外では<span class="fs-5 fw-bold">日常生活の中でお花を楽しんでいる国</span>もあるんです。
+      </p>
+      <p>
         <span class="fs-5 fw-bold">オランダ</span>には、<br>
         <span class="fs-5 fw-bold">「パンを2使うお金があったら、パンを1つと花を買う」</span><br>
         ということわざがあるほど。<br><br>
         自分だけでなく道を通りかかる人にも幸せをお裾分けしたいという気持ちから、窓辺にお花を飾るお家も多いんだとか…。<br><br>
         また、<span class="fs-5 fw-bold">イギリス</span>では、<span class="fs-5 fw-bold">金曜日の「仕事終わり」</span>にお花屋さんでお花を買って、<span class="fs-5 fw-bold">週末に家族や恋人と過ごす時間を彩る</span>習慣があったり、<br><br>
         鮮やかな色のある暮らしを楽しむ<span class="fs-5 fw-bold">フランス</span>では、心の栄養になるお花は<span class="fs-5 fw-bold">「生活必需品」</span>だと訴える意見があったり、<br><br>
-        お隣の<span class="fs-5 fw-bold">韓国</span>では、24時間いつでもお花が購入できる<span class="fs-5 fw-bold">「お花の自動販売機」</span>があったり…、<br><br>
-        心の栄養や、周りの人の気持ちを癒したいという思いから、お花のある生活が好まれています。<br><br>
+        お隣の<span class="fs-5 fw-bold">韓国</span>では、24時間いつでもお花が購入できる<span class="fs-5 fw-bold">「お花の自動販売機」</span>があったり…、
+      </p>
+      <p class="about-point px-4">
+        <span class="fs-5 fw-bold">心の栄養</span>のためだったり、自分や周りの人の<span class="fs-5 fw-bold">気持ちを癒したい</span>という思いから、お花のある生活が好まれています。
+      </p>
+      <p>
         実際に、植物には<span class="fs-5 fw-bold">「リラックス効果」</span>があり、<br>
-        植物が視界に入る空間で集中力を伴う作業をしたとき、植物がない場合よりもストレスに関わるホルモンの分泌が大きく変化したという結果も出ているそうです。
+        植物が視界に入る空間で集中力を伴う作業をしたとき、植物がない場合よりもストレスに関わるホルモンの分泌が大きく変化したという実験結果も出ているそうです。
       </p>
     </div>
   </div>
@@ -208,7 +218,7 @@
         実は、日常でお花を購入する機会が少ないからこそ、<br>
         「分からな過ぎて、お花屋さんで<span class="fs-5 fw-bold">質問すらできない…</span>」<br>
         「どこで買うべきか、お花屋さん選びから分からない…」<br><br>
-        という、<br>
+        というように、<br>
         <span class="fs-4 fw-bold">「買わない」</span>のではなく、<span class="fs-4 fw-bold">「買えない」</span>方も多いんです。<br><br>
         これらは購入者側のお悩みでしたが、お花屋さん側でも、<br>
         「予約なしでの来店だと事前に準備が出来ないから<span class="fs-5 fw-bold">出来れば予約して欲しい…</span>」<br>
@@ -240,10 +250,10 @@
   </div>
 </div>
 
-<div class="container d-flex flex-column align-items-center pt-3 mt-5">
+<div id="sign-up" class="container d-flex flex-column align-items-center pt-3 mt-5">
   <div class="about-content col-10 px-3">
 
-    <% unless member_signed_in? || shop_signed_in? %>
+    <% unless member_signed_in? || shop_signed_in? || admin_signed_in? %>
       <div class="d-flex flex-row flex-wrap mb-3 mt-5">
         <div class="login-content col-6 px-3 mb-5">
           <h3>お花を買いたい方はこちら</h3>
@@ -265,6 +275,14 @@
           </div>
         </div>
       </div>
+
+    <!--会員登録に進むボタン-->
+    <div class="back-order px-3 py-1 rounded-pill border border-white border-2">
+      <a href='#sign-up'>
+        <div class="d-flex justify-content-center fs-2 pt-1"><i class="fa-solid fa-user-plus"></i></div>
+        <small>会員登録へ</small>
+      </a>
+    </div>
     <% end %>
 
   </div>
