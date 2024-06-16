@@ -56,11 +56,24 @@ h1.page-title {
 }
 
 // Aboutページ
+.about-top {
+    background-color: #E4DCCC;
+}
+
+p.icon-down {
+    margin-bottom: -30px!important;
+}
+
 .about-content h2 {
-    font-size: 1.5em!important;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #67ABAA;
+    font-size: 2em!important;
+    margin-bottom: 70px;
+    span {
+        font-size: 1.3em!important;
+    }
+}
+
+.about-content p {
+    line-height: 2.5em!important;
 }
 
 .about-item {
@@ -69,6 +82,86 @@ h1.page-title {
     margin-bottom: 30px;
     border-radius: 3px!important;
     line-height: 1.8em;
+}
+
+.speech-bubble-shop {
+    position: relative;
+    border-radius: 15px;
+    background: #CFE7E4;
+}
+
+.speech-bubble-shop:before {
+    content: '';
+    position: absolute;
+    background: #CFE7E4;
+    width: 20px;
+    height: 18px;
+    border-radius: 50%;
+    right: -25px;
+    bottom: 10px;
+}
+
+.speech-bubble-shop:after {
+    content: '';
+    position: absolute;
+    background: #CFE7E4;
+    width: 15px;
+    height: 13px;
+    border-radius: 50%;
+    right: -45px;
+    bottom: 15px;
+}
+
+.speech-bubble-shop p,
+.about-top p{
+    font-weight: bold;
+    font-size: 1em;
+    margin-bottom: 0!important;
+}
+
+.speech-bubble-img img {
+    width: 60%!important;
+}
+
+.speech-bubble-member {
+    position: relative;
+    border-radius: 15px;
+    background: #E4DCCC;
+}
+
+.speech-bubble-member:before {
+    content: '';
+    position: absolute;
+    background: #E4DCCC;
+    width: 20px;
+    height: 18px;
+    border-radius: 50%;
+    left: -25px;
+    bottom: 10px;
+}
+
+.speech-bubble-member:after {
+    content: '';
+    position: absolute;
+    background: #E4DCCC;
+    width: 15px;
+    height: 13px;
+    border-radius: 50%;
+    left: -45px;
+    bottom: 15px;
+}
+
+.speech-bubble-member p {
+    font-weight: bold;
+    font-size: 1em;
+    margin-bottom: 0!important;
+}
+
+.about-point {
+    background-color: #F7F1E5;
+    border-radius: 20px;
+    padding: 10px 0 20px;
+    margin: 40px 0;
 }
 
 // パンくず
@@ -537,5 +630,13 @@ footer{
 
     .form-table th {
         padding: 10px!important;
+    }
+}
+
+
+@media (max-width: 550px) {
+    .speech-bubble-img img {
+        width: 80%!important;
+        margin-top: 20px!important;
     }
 }
