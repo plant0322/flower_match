@@ -19,7 +19,7 @@
 
   <body class="d-flex flex-column vh-100">
     <!--ヘッダーここから-->
-    <header class="d-flex flex-row flex-wrap px-2 pb-2 pt-3 <%= (admin_signed_in? ? "admin-header" : "" ) %>  <%= (shop_signed_in? ? "shop-header" : "" ) %>">
+    <header class="d-flex flex-row flex-wrap px-2 pb-2 pt-3 <%= (admin_signed_in? || request.path.starts_with?("/admin") ? "admin-header" : "" ) %> <%= (shop_signed_in? || request.path.starts_with?("/shop/") ? "shop-header" : "" ) %>">
       <div class="site-title col-3 pt-2 ps-4">
         <%= link_to root_path do %>
           <p class="h1 text-white">FlowerMatch</p>
@@ -31,7 +31,7 @@
           <%= render 'public/searches/form', search: @search %>
         </div>
         <!--ヘッダーボタン-->
-        <div class="header-nav col-8 d-flex justify-content-end pt-4 pe-4 member-btn <%= (admin_signed_in? ? "admin-btn" : "" ) %>  <%= (shop_signed_in? ? "shop-btn" : "" ) %>">
+        <div class="header-nav col-8 d-flex justify-content-end pt-4 pe-4 member-btn <%= (admin_signed_in? || request.path.starts_with?("/admin") ? "admin-btn" : "" ) %>  <%= (shop_signed_in? || request.path.starts_with?("/shop/") ? "shop-btn" : "" ) %>">
           <!--ショップユーザーログイン後-->
           <% if shop_signed_in? %>
             <div class="header-icon px-2 justify-content-center">
@@ -54,7 +54,7 @@
             </div>
             <div class="header-icon px-2">
               <%= link_to shop_pre_orders_path, class: "col-1 btn py-2 px-3 w-100" do %>
-                <i class="fa-regular fa-calendar"></i><br>
+                <i class="fa-regular fa-calendar-check"></i><br>
                 <small>予約管理</small>
               <% end %>
             </div>
@@ -68,7 +68,7 @@
             </div>
             <div class="header-icon px-2">
               <%= link_to pre_orders_path, class: "col-1 btn py-2 px-3 w-100" do %>
-                <i class="fa-regular fa-calendar"></i><br>
+                <i class="fa-regular fa-calendar-check"></i><br>
                 <small>予約一覧</small>
               <% end %>
             </div>
@@ -79,15 +79,19 @@
               <% end %>
             </div>
           <% elsif admin_signed_in? %>
-            <!--管理者ログイン後…口コミ一覧・連絡一覧を追加する-->
             <div class="px-2">
-              <%= link_to admin_shops_path, class: "col-1 btn py-2 px-3 w-100" do %>
-                ショップ管理
+              <%= link_to admin_items_path, class: "col-1 btn py-2 px-3 w-100" do %>
+                商品管理
               <% end %>
             </div>
             <div class="px-2">
-              <%= link_to admin_members_path, class: "col-1 btn py-2 px-3 w-100" do %>
-                一般メンバー管理
+              <%= link_to admin_tags_path, class: "col-1 btn py-2 px-3 w-100" do %>
+                タグ管理
+              <% end %>
+            </div>
+            <div class="px-2">
+              <%= link_to admin_reviews_path, class: "col-1 btn py-2 px-3 w-100" do %>
+                口コミ管理
               <% end %>
             </div>
             <div class="px-2">
@@ -124,7 +128,7 @@
       <%= yield %>
     </main>
 
-    <footer class="text-center p-3 mt-5 <%= (admin_signed_in? ? "admin-footer" : "" ) %> <%= (shop_signed_in? ? "shop-footer" : "" ) %> ">
+    <footer class="text-center p-3 mt-5 <%= (admin_signed_in? || request.path.starts_with?("/admin") ? "admin-footer" : "" ) %> <%= (shop_signed_in? || request.path.starts_with?("/shop/") ? "shop-footer" : "" ) %> ">
       <div class="d-flex flex-wrap justify-content-center">
       <p class="px-4"><%= link_to 'About', about_path, class: "text-decoration-none text-white " %></p>
       <p class="px-4"><%= link_to 'ご利用ガイド', guide_path, class: "text-decoration-none text-white" %></p>

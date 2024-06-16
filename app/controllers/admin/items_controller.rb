@@ -2,7 +2,12 @@ class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @items = Item.all.order(updated_at: 'DESC').page(params[:page])
+    items_all = Item.left_joins(:item_details)
+                    .group('items.id')
+                    .select('items.*,
+                             MAX(COALESCE(item_details.updated_at, items.updated_at)) AS greatest_updated_at')
+                    .order('greatest_updated_at DESC')
+    @items = items_all.page(params[:page])
     @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
     @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')

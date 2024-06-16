@@ -9,13 +9,13 @@
         <!--画像-->
         <div class="wide-item col-7">
           <% if @item.get_item_image_webp(1080, 1350).present? %>
-          　<%= image_tag @item.get_item_image_webp(1080,1350), class: "w-100 p-1" %>
+          　<%= image_tag @item.get_item_image_webp(1080,1350), class: "w-100 px-1" %>
           <% else %>
-            <%= image_tag @item.get_item_image(1080,1350), class: "w-100 p-1" %>
+            <%= image_tag @item.get_item_image(1080,1350), class: "w-100 px-1" %>
           <% end %>
         </div>
         <!--詳細-->
-        <div class="wide-item col-5 p-2">
+        <div id="order" class="wide-item col-5 p-2 mt-3">
           <h2 class="h5 fw-bold"><%= @item.name %> <span class="text-black-50 h6">[ <%= @item.id %> ]</span></h2>
           <p class="py-3">
             価格: <span class="h3"><%= @item.price.to_s(:delimited, delimiter: ',') %></span> 円
@@ -91,6 +91,16 @@
       </div>
       <%= render 'public/searches/tag_btn', tags: @item_tags %>
     <% end %>
+    <% if @item.stock == 0 %>
+    <!--関連商品-->
+    <div class="mt-4">
+      <h2>このショップの新着商品</h2>
+      <hr>
+      <%= render 'index', items: @items %>
+      <%= link_to '▶ このショップの商品をもっと見る', shop_path(@shop), class: "float-end mt-2" %>
+    </div>
+
+    <% end %>
     <!--商品詳細-->
     <div class="main-content col-8 mx-auto mt-3">
       <% @item_details.each do |item_detail| %>
@@ -154,5 +164,13 @@
     <%= render 'layouts/shop_menu' %>
     <%= render 'layouts/pickup_menu', pick_up_tags: @pick_up_tags %>
     <%= render 'layouts/homes_menu', tag_rank: @tag_rank %>
+  </div>
+
+  <!--予約に進むボタン-->
+  <div class="back-order px-3 py-1 rounded-pill border border-white border-2">
+    <a href='#order'>
+      <div class="d-flex justify-content-center fs-2 pt-1"><i class="fa-solid fa-calendar-check"></i></div>
+      <small>予約へ</small>
+    </a>
   </div>
 </div>

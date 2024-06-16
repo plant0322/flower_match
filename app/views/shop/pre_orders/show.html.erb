@@ -17,7 +17,9 @@
                 </div>
                 <div class="col-6">
                   <%= f.label :visit_time, "来店時間" %>
-                  <%= f.time_field :visit_time, class: "form-control" %>
+                  <div class="d-flex flex-row align-items-end">
+                    <%= f.time_select :visit_time, {:include_blank => true, :minute_step => 10, :time_separator => '時'}, autocomplete: "visit_time", class: "form-control mx-1" %>分
+                  </div>
                 </div>
               </div>
               <div class="d-flex flex-row px-1 w-100">
@@ -44,7 +46,7 @@
         <td colspan="2"><%= @pre_order.visit_day.strftime("%Y年%m月%d日") %> <%= @pre_order.visit_time.strftime( "%H時%M分" ) %></td>
       </tr>
       <tr>
-        <th>予約者名</th>
+        <th class="no-border-bottom">予約者名</th>
         <td colspan="2">
           <% if shop_signed_in? %>
             <%= link_to shop_member_path(@pre_order.member_id), class: "btn btn-outline-info mb-2 ms-1" do %>
@@ -105,7 +107,7 @@
         </td>
       </tr>
       <tr>
-        <th>予約番号</th>
+        <th class="no-border-bottom">予約番号</th>
         <td colspan="2"><%= @pre_order.id %></td>
       </tr>
     </table>
@@ -128,7 +130,7 @@
         </td>
       </tr>
       <tr>
-        <th>電話番号</th>
+        <th class="no-border-bottom">電話番号</th>
         <td>
           <%= @pre_order.telephone_number.to_s.insert(3, "-").insert(8, "-") %>
         </td>

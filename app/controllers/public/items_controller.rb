@@ -4,6 +4,9 @@ class Public::ItemsController < ApplicationController
   def show
     session[:item_id] = params[:id]
     @shop = @item.shop
+    @items = Item.where(shop_id: @shop, is_active: true)
+                 .order(id: 'DESC').limit(6)
+                 .where('stock > 0')
     @stock = @item.stock.to_i
     @stock_array = Array(1..@stock)
     @item_details = ItemDetail.where(item_id: @item.id).order(in_order: 'ASC')

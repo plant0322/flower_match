@@ -6,8 +6,11 @@ class Public::MembersController < ApplicationController
 
   def show
     @before_visit_pre_order = PreOrder.where(status: 'before_visit', member_id: current_member)
-    @pre_orders = PreOrder.where(status: 'visit', member_id: current_member)
-                          .where('visit_day >= ?', 2.week.ago)
+    visit_pre_orders = PreOrder.where(status: 'visit', member_id: current_member)
+                               .where('visit_day >= ?', 2.week.ago)
+    reviews = Review.where(pre_order_id: visit_pre_orders)
+    @pre_orders = PreOrder.where(id: visit_pre_orders)
+                          .where.not(id: reviews.pluck(:pre_order_id))
     active_shops = Shop.where(is_active: true)
     @recently_seen_item = Item.find(session[:item_id]) unless session[:item_id].blank?
 

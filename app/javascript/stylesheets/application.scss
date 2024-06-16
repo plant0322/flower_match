@@ -114,6 +114,18 @@ h1.page-title {
     color: #FC7A80!important;
 }
 
+// 予約へボタン（ページ内リンク）
+.back-order {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    background-color: #ACCBCF;
+    opacity: 0.8;
+    small {
+        font-size: 13px;
+    }
+}
+
 // 画像の比率
 .item-img-ratio {
     height: auto!important;
@@ -138,6 +150,12 @@ h1.page-title {
 
 .table-bordered th{
     background-color: #DBDBDB!important;
+    border-bottom: 2px solid #EAEAEA!important;
+    vertical-align: middle;
+}
+
+tr .no-border-bottom {
+    border-bottom: 2px solid #FFF!important;
 }
 
 .table-bordered td,

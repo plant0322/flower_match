@@ -1,7 +1,11 @@
 class Admin::HomesController < ApplicationController
   before_action :authenticate_admin!
   def top
-    @items = Item.all.order(id: 'DESC').limit(3)
+    @items = Item.left_joins(:item_details)
+                 .group('items.id')
+                 .select('items.*,
+                           MAX(COALESCE(item_details.updated_at, items.updated_at)) AS greatest_updated_at')
+                 .order('greatest_updated_at DESC').limit(3)
     @reviews = Review.all.order(id: 'DESC').limit(3)
     @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
     @tag_rank = Tag.tag_rank_item
