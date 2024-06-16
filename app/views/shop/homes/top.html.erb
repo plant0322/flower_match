@@ -2,7 +2,7 @@
   <div class="main-content col-9 px-3">
     <!--予約一覧-->
     <div class="mb-5">
-      <h2>予約一覧</h2>
+      <h2>新着の予約</h2>
       <hr>
       <% unless @pre_orders_3.blank? %>
         <%= render 'shop/pre_orders/index', pre_orders: @pre_orders_3 %>
@@ -11,9 +11,20 @@
         <p>予約がありません</p>
       <% end %>
     </div>
+    <!--メッセージ一覧-->
+    <div class="mb-5">
+      <h2>対応待ちのメッセージ</h2>
+      <hr>
+        <%= render 'shop/messages/index', messages: @messages %>
+        <%= link_to '全てのメッセージを見る', shop_messages_path, class: "float-end" %>
+      <% unless @messages.blank? %>
+      <% else %>
+        <p>対応待ちのメッセージはありません</p>
+      <% end %>
+    </div>
     <!--商品一覧-->
     <div class="mb-5">
-      <h2>商品一覧</h2>
+      <h2>新着の商品</h2>
       <hr>
       <% unless @shop_items_3.blank? %>
         <%= render 'shop/items/index', items: @shop_items_3 %>
@@ -25,7 +36,7 @@
     </div>
     <!--口コミ一覧-->
     <div class="b-5">
-      <h2>口コミ一覧</h2>
+      <h2>新着の口コミ</h2>
       <hr>
       <% unless @reviews.blank? %>
         <%= render 'public/reviews/index', reviews: @reviews, shop: current_shop %>
