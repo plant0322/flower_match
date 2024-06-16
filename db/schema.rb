@@ -87,7 +87,6 @@ ActiveRecord::Schema.define(version: 2024_06_14_150117) do
     t.integer "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "in_order", default: 0, null: false
   end
 
   create_table "items", force: :cascade do |t|

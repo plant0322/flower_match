@@ -59,7 +59,8 @@ howell = Shop.find_or_create_by!(email: "sasaki@s") do |shop|
   shop.introduction = "ガーデニングにもおすすめのマーガレットもたくさん取り扱っています。"
   shop.representative_name = "佐々木 春菊"
   shop.postal_code = "1234567"
-  shop.address = "香川県三豊市0-0"
+  shop.prefecture_code = "37"
+  shop.address = "三豊市0-0"
   shop.opening_hour = "火～金10:00～18:00 土日11:00～17:00"
   shop.holiday = "月曜日"
   shop.parking = "駐車場あり（3台分）"
@@ -79,7 +80,8 @@ botanya = Shop.find_or_create_by!(email: "haya@h") do |shop|
   shop.introduction = "アレンジはもちろん、寄せ植えのご依頼も承ります。"
   shop.representative_name = "葉山 紫"
   shop.postal_code = "1112233"
-  shop.address = "兵庫県神戸市6-6"
+  shop.prefecture_code = "28"
+  shop.address = "神戸市6-6"
   shop.opening_hour = "10:00～19:30"
   shop.holiday = "不定休"
   shop.parking = "駐車場あり"
@@ -96,10 +98,11 @@ end
 als = Shop.find_or_create_by!(email: "yuri@y") do |shop|
   shop.name = "花屋 あるす"
   shop.name_kana = "ハナヤアルス"
-  shop.introduction = "花束のアレンジが得意です。いろんなラッピングをご用意しているので、ご希望ありましたらご連絡ください。"
+  shop.introduction = "花束のアレンジが得意です。\nいろんなラッピングをご用意しているので、ご希望ありましたらご連絡ください。"
   shop.representative_name = "由利 水仙"
   shop.postal_code = "3334444"
-  shop.address = "長野県長野市9-9"
+  shop.prefecture_code = "20"
+  shop.address = "長野市9-9"
   shop.opening_hour = "9:00～13:00 17:00～19:00"
   shop.holiday = "木曜日"
   shop.parking = "駐車場あり（2台分）"
@@ -113,6 +116,34 @@ als = Shop.find_or_create_by!(email: "yuri@y") do |shop|
   shop.shop_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop3.jpg"), filename: "shop3.jpg")
 end
 
+Tag.find_or_create_by!(name: "花束")
+
+Tag.find_or_create_by!(name: "フラワーアレンジ")
+
+Tag.find_or_create_by!(name: "花籠")
+
+Tag.find_or_create_by!(name: "日常のお花")
+
+Tag.find_or_create_by!(name: "大きな花束")
+
+Tag.find_or_create_by!(name: "母の日")
+
+Tag.find_or_create_by!(name: "プレゼント")
+
+Tag.find_or_create_by!(name: "お祝い")
+
+Tag.find_or_create_by!(name: "誕生日")
+
+Tag.find_or_create_by!(name: "プランター")
+
+Tag.find_or_create_by!(name: "イベント")
+
+Tag.find_or_create_by!(name: "小さな観葉植物")
+
+Tag.find_or_create_by!(name: "一輪挿し")
+
+Tag.find_or_create_by!(name: "花瓶")
+
 Item.find_or_create_by!(name: "特別な記念日に贈る花束/ブーケ（大）") do |item|
   item.introduction ="特別な日のプレゼントにもおすすめの大きな花束です。"
   item.size = "幅30×高さ40×奥行き30㎝"
@@ -123,6 +154,12 @@ Item.find_or_create_by!(name: "特別な記念日に贈る花束/ブーケ（大
   item.first_is_active = true
   item.shop = howell
   item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop1-item1-1.jpg"), filename: "shop1-item1-1.jpg")
+
+  tag_names = ['花束', '大きな花束', 'お祝い']
+  tag_names.each do |name|
+    tag = Tag.find_or_create_by!(name: name)
+    ItemTag.find_or_create_by!(item: item, tag: tag)
+  end
 end
 
 item = Item.find_by(name: "特別な記念日に贈る花束/ブーケ（大）")
@@ -141,6 +178,12 @@ Item.find_or_create_by!(name: "母の日のフラワーアレンジ/メッセー
   item.first_is_active = true
   item.shop = howell
   item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop1-item2-1.jpg"), filename: "shop1-item2-1.jpg")
+
+  tag_names = ['花束', '大きな花束', 'お祝い']
+  tag_names.each do |name|
+    tag = Tag.find_or_create_by!(name: name)
+    ItemTag.find_or_create_by!(item: item, tag: tag)
+  end
 end
 
 item = Item.find_by(name: "母の日のフラワーアレンジ/メッセージカード付")
@@ -160,6 +203,12 @@ for i in 1..2 do
     item.first_is_active = true
     item.shop = botanya
     item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop2-item1-1.jpg"), filename: "shop2-item1-1.jpg")
+
+    tag_names = ['プランター', 'イベント', '小さな観葉植物']
+    tag_names.each do |name|
+      tag = Tag.find_or_create_by!(name: name)
+      ItemTag.find_or_create_by!(item: item, tag: tag)
+    end
   end
 
   item = Item.find_by(name: "寄せ植え体験#{i+1}")
@@ -171,7 +220,7 @@ end
 
 for i in 1..3 do
   Item.find_or_create_by!(name: "ミニサボテン入荷#{i+1}") do |item|
-    item.introduction ="可愛いサボテンが入荷しました。個性豊かないろんな子が揃っています。来店いただいた方に先着順で販売致しますので、ご希望の鉢がある方は早めの日程でご予約ください。"
+    item.introduction ="可愛いサボテンが入荷しました。\n個性豊かないろんな子が揃っています。\n来店いただいた方に先着順で販売致しますので、ご希望の鉢がある方は早めの日程でご予約ください。"
     item.size = "約幅10×高さ15×奥行き10㎝"
     item.price = "#{i*500}"
     item.stock = "#{i*4}"
@@ -180,6 +229,12 @@ for i in 1..3 do
     item.first_is_active = true
     item.shop = botanya
     item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop2-item2-1.jpg"), filename: "shop2-item2-1.jpg")
+
+    tag_names = ['プランター', 'イベント', '小さな観葉植物']
+    tag_names.each do |name|
+      tag = Tag.find_or_create_by!(name: name)
+      ItemTag.find_or_create_by!(item: item, tag: tag)
+    end
   end
 
   item = Item.find_by(name: "ミニサボテン入荷#{i+1}")
@@ -191,7 +246,7 @@ end
 
 for i in 1..2 do
   Item.find_or_create_by!(name: "大きなお花をたっぷり使った高級感のある華やかな花束（おしゃれなブーケ）#{i+1}") do |item|
-    item.introduction ="ちょっと珍しいお花を使った華やかなブーケです。色とりどりの大きなお花をたっぷり使用しているので、お祝い事にもピッタリ。華やかなお花に合わせてラッピングにもこだわっています。ラッピングや取り入れたいお花の色など、ご希望がありましたらお気軽にご相談ください。"
+    item.introduction ="ちょっと珍しいお花を使った華やかなブーケです。\n色とりどりの大きなお花をたっぷり使用しているので、お祝い事にもピッタリ。華やかなお花に合わせてラッピングにもこだわっています。\n\nラッピングや取り入れたいお花の色など、ご希望がありましたらお気軽にご相談ください。"
     item.size = "幅40×高さ50×奥行き40㎝"
     item.price = "#{i*3000}"
     item.stock = "#{i*4}"
@@ -200,6 +255,12 @@ for i in 1..2 do
     item.first_is_active = true
     item.shop = als
     item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop3-item1-1.jpg"), filename: "shop3-item1-1.jpg")
+
+  tag_names = ['花束', '大きな花束', 'お祝い', '誕生日']
+  tag_names.each do |name|
+    tag = Tag.find_or_create_by!(name: name)
+    ItemTag.find_or_create_by!(item: item, tag: tag)
+  end
   end
 
   item = Item.find_by(name: "大きなお花をたっぷり使った高級感のある華やかな花束（おしゃれなブーケ）#{i+1}")
@@ -211,7 +272,7 @@ end
 
 for i in 1..3 do
   Item.find_or_create_by!(name: "可愛いミニバラを使った上品な雰囲気の花束（贈り物にオススメのブーケ））#{i+1}") do |item|
-    item.introduction ="上品なミニ薔薇がたくさん入荷しました。大人な雰囲気のパステルカラーが可愛い薔薇の花束で、日ごろの感謝の気持ちを伝えてみませんか？ピンク以外にも、イエロー、オレンジ、ホワイトなどのカラーが揃っています。"
+    item.introduction ="上品なミニ薔薇がたくさん入荷しました。\n大人な雰囲気のパステルカラーが可愛い薔薇の花束で、日ごろの感謝の気持ちを伝えてみませんか？\n\nピンク以外にも、イエロー、オレンジ、ホワイトなどのカラーが揃っています。"
     item.size = "幅30×高さ40×奥行き30㎝"
     item.price = "#{i*2000}"
     item.stock = "#{i*10}"
@@ -220,6 +281,12 @@ for i in 1..3 do
     item.first_is_active = true
     item.shop = als
     item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop3-item2-1.jpg"), filename: "shop3-item2-1.jpg")
+
+    tag_names = ['花束', '大きな花束', 'お祝い', '誕生日', 'プレゼント']
+    tag_names.each do |name|
+      tag = Tag.find_or_create_by!(name: name)
+      ItemTag.find_or_create_by!(item: item, tag: tag)
+    end
   end
 
   item = Item.find_by(name: "可愛いミニバラを使った上品な雰囲気の花束（贈り物にオススメのブーケ））#{i+1}")
@@ -231,7 +298,7 @@ end
 
 for i in 1..2 do
   Item.find_or_create_by!(name: "お任せブーケ。スタッフがお店のお花たちから厳選して作成する大きな花束）#{i+1}") do |item|
-    item.introduction ="入荷したばかりのお花たちの中から厳選して、スタッフが心を込めて花束を作成します。予約時のご要望欄にご希望の色やイメージなどをご記入いただければ、ご要望に合わせてあなただけの花束を作成しますので、お気軽にご記入ください。"
+    item.introduction ="入荷したばかりのお花たちの中から厳選して、スタッフが心を込めて花束を作成します。\n予約時のご要望欄にご希望の色やイメージなどをご記入いただければ、ご要望に合わせてあなただけの花束を作成しますので、お気軽にご記入ください。"
     item.size = "幅40×高さ50×奥行き40㎝"
     item.price = "#{i*1500}"
     item.stock = "#{i*10}"
@@ -240,6 +307,12 @@ for i in 1..2 do
     item.first_is_active = true
     item.shop = als
     item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop3-item3-1.jpg"), filename: "shop3-item3-1.jpg")
+
+    tag_names = ['花束', '大きな花束', 'お祝い', 'プレゼント']
+    tag_names.each do |name|
+      tag = Tag.find_or_create_by!(name: name)
+      ItemTag.find_or_create_by!(item: item, tag: tag)
+    end
   end
 
   item = Item.find_by(name: "お任せブーケ。スタッフがお店のお花たちから厳選して作成する大きな花束）#{i+1}")
@@ -251,7 +324,7 @@ end
 
 for i in 1..3 do
   Item.find_or_create_by!(name: "母の日に贈るアンティーク調の落ち着いた色合いがおしゃれなブーケ（可愛い花束）#{i+1}") do |item|
-    item.introduction ="いつもと一味違う大人な雰囲気の漂う、アンティークカラーが可愛いカーネーションを使った花束。お花のかわいらしさが際立つように、ラッピングはホワイトカラーで上品に仕上げています。今年は、しっとりと楽しむ大人な母の日をプレゼントしてみませんか？"
+    item.introduction ="いつもと一味違う大人な雰囲気の漂う、アンティークカラーが可愛いカーネーションを使った花束。\nお花のかわいらしさが際立つように、ラッピングはホワイトカラーで上品に仕上げています。\n\n今年は、しっとりと楽しむ大人な母の日をプレゼントしてみませんか？"
     item.size = "幅40×高さ50×奥行き40㎝"
     item.price = "#{i*2500}"
     item.stock = "#{i*10}"
@@ -260,6 +333,12 @@ for i in 1..3 do
     item.first_is_active = true
     item.shop = als
     item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/shop3-item4-1.jpg"), filename: "shop3-item4-1.jpg")
+
+    tag_names = ['花束', '大きな花束', 'お祝い', '母の日']
+    tag_names.each do |name|
+      tag = Tag.find_or_create_by!(name: name)
+      ItemTag.find_or_create_by!(item: item, tag: tag)
+    end
   end
 
   item = Item.find_by(name: "母の日に贈るアンティーク調の落ち着いた色合いがおしゃれなブーケ（可愛い花束）#{i+1}")
