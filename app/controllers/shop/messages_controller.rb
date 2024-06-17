@@ -4,8 +4,8 @@ class Shop::MessagesController < ApplicationController
   before_action :block_non_related_shop, only: [:show, :destroy]
 
   def show
-    member = Member.find(params[:id])
-    @room = Room.find_by(member_id: member, shop_id: current_shop)
+    #member = Member.find(params[:id])
+    @room = Room.find(params[:id])
     @messages = (@room.member_messages + @room.shop_messages).sort_by(&:created_at)
     @message = ShopMessage.new(room_id: @room.id)
   end
