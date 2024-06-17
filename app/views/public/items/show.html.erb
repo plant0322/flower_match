@@ -169,8 +169,13 @@
   <!--予約に進むボタン-->
   <div class="back-order px-3 py-1 rounded-pill border border-white border-2">
     <a href='#order'>
-      <div class="d-flex justify-content-center fs-2 pt-1"><i class="fa-solid fa-calendar-check"></i></div>
-      <small>予約へ</small>
+      <% if shop_signed_in? || admin_signed_in? %>
+        <div class="d-flex justify-content-center fs-2 pt-1"><i class="fa-solid fa-file-pen"></i></div>
+        <small>商品編集へ</small>
+      <% else %>
+        <div class="d-flex justify-content-center fs-2 pt-1"><i class="fa-solid fa-calendar-check"></i></div>
+        <small>予約へ</small>
+      <% end %>
     </a>
   </div>
 </div>
