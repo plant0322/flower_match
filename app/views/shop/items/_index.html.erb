@@ -9,7 +9,9 @@
     <% items. each do |item| %>
       <tr>
         <td class="text-center">
-          <%= image_tag item.get_item_image(100,100) %>
+          <%= link_to  item_path(item) do %>
+            <%= image_tag item.get_item_image(100,100) %>
+          <% end %>
           <% if item.is_active %>
             <p class="text-success fw-bold">公開中</p>
           <% else %>

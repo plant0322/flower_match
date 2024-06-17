@@ -58,7 +58,8 @@ class Shop < ApplicationRecord
       shop.introduction = '※こちらは動作体験用のお試しアカウントです。'
       shop.representative_name = 'お試し花子'
       shop.postal_code = '0000000'
-      shop.address = '○○県△△市□□町0-0'
+      shop.prefecture_code = "13"
+      shop.address = '△△市□□町0-0'
       shop.opening_hour = '10:00～17:00'
       shop.holiday = '火曜日'
       shop.parking = '駐車場あり（3台分）'
