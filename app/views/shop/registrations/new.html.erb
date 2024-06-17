@@ -4,7 +4,7 @@
     <h2>既に登録済みの方はこちら</h2>
     <hr>
     <div class="col-6 d-grid mx-auto py-3">
-      <%= link_to "ログインする", new_shop_session_path, class: "btn btn-info p-2" %>
+      <%= link_to "ログインする", new_shop_session_path, class: "btn btn-info p-2 mb-5" %>
     </div>
 
     <h2 class="mt-5">ショップさま新規登録</h2>
@@ -241,7 +241,7 @@
           </tr>
         </table>
         <small>
-          ご登録の際は、<%= link_to guide_path, target: :_blank do %>ご利用ガイド<% end %>、<%= link_to privacypolicy_path, target: :_blank do %>プライバシーポリシー<% end %>をご確認ください。
+          ご登録の際は、<%= link_to terms_path, target: :_blank do %>ご利用規約<% end %>、<%= link_to privacypolicy_path, target: :_blank do %>プライバシーポリシー<% end %>をご確認ください。
         </small>
 
         <div class="col-6 d-grid my-3 mx-auto">

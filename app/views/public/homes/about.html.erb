@@ -1,92 +1,288 @@
-<div class="container d-flex flex-column align-items-center pt-3 mt-3">
-  <div class="about-content col-9 px-3">
-    <h1>About</h1>
-    <hr>
-
-    <div class="bg-info-subtle p-5">
-      <h2 class="text-center mb-5">こんなお悩みありませんか？</h2>
-      <div class="about-item d-flex flex-row justify-content-center bg-light col-10 ms-auto fw-bold">
-        <p>お客さまからの予約を一覧で確認できるようにしたい。<i class="fa-regular fa-comment pe-3 text-black-50"></i></p>
+<div class="about-top col-12">
+  <h1 class="d-flex flex-column">
+    <span class="fs-4 mx-auto mt-4 mb-3">Flower Match</span>
+    <span class="mx-auto mt-4 mb-5">「お花」<span class="fs-2">をもっと</span>「気軽に」<span class="fs-2">楽しんでもらうために</span></span>
+  </h1>
+</div>
+<!--こんなお悩みありませんか-->
+<div class="container d-flex flex-column align-items-center pt-3 mt-5">
+  <div class="about-content col-10 px-3">
+    <h2 class="text-center">こんな<span> お悩み </span>ありませんか…？</h2>
+    <!--吹き出しユーザー-->
+    <div class="about-content col-9 d-flex flex-row me-auto p-2 mb-2">
+      <div class="col-3 speech-bubble-img">
+        <%= image_tag asset_path('about-member.png'), class: "w-75 float-start px-2" %>
       </div>
-      <div class="about-item col-10 fw-bold text-center">
-        <p>お客さまにどんな花束やアレンジが可能か知ってもらいたい。<i class="fa-solid fa-comment ps-3 text-black-50"></i></p>
-      </div>
-      <div class="about-item bg-light col-10 ms-auto fw-bold text-center">
-        <p>製作したアレンジやお花の入荷状況をお客さまに知ってもらいたい。<i class="fa-regular fa-comment pe-3 text-black-50"></i></p>
-      </div>
-      <div class="about-item col-10 fw-bold text-center">
-        <p>お花屋さんへの花束やアレンジの依頼の仕方が分からない。<i class="fa-solid fa-comment ps-3 text-black-50"></i></p>
-      </div>
-      <div class="about-item bg-light col-10 ms-auto fw-bold text-center">
-        <p>依頼が可能な花束やアレンジのバリエーションを知りたい。<i class="fa-regular fa-comment pe-3 text-black-50"></i></p>
-      </div>
-      <div class="about-item col-10 fw-bold text-center">
-        <p>好きなお花屋さんの新着商品や情報を知りたい<i class="fa-solid fa-comment ps-3 text-black-50"></i></p>
-      </div>
-
-      <h2 class="text-center my-5">そんなあなたの悩みをまるっと解消します</h2>
-      <div class="about-item fw-bold">
-        <p class="h5 fw-bold text-center pb-3">Point1.「気軽に予約できる」</p>
-        <p class="text-center text-black-50">
-          お花屋さんが登録した商品を選ぶだけで簡単に予約が可能です
-        </p>
-      </div>
-      <div class="about-item fw-bold">
-        <p class="h5 fw-bold text-center pb-3">Point2.「ショップごとの商品のバリエーションが分かる」</p>
-        <p class="text-center text-black-50">
-          お花屋さんが登録した商品を見ることでどんな花束やアレンジが可能か分かりやすくなります
-        </p>
-      </div>
-      <div class="about-item fw-bold">
-        <p class="h5 fw-bold text-center pb-3">Point3.「お花屋さんの情報をいち早くチェックできる」</p>
-        <p class="text-center text-black-50">
-          実際に作成したアレンジやお花の入荷状況を発信することでショップとの繋がりが生まれます
-        </p>
-      </div>
-
-      <h2 class="text-center my-5">おすすめポイント</h2>
-      <div class="about-item fw-bold">
+      <div class="col-9 speech-bubble-member px-3 py-4 h-100">
         <p>
-          お花屋さんは商品としては同じお花を扱うお店だけど、それぞれしっかり個性があります。<br>
-          ですが、外部からは伝わりにくいもの…商品やお店の情報を発信したり、他のお店と比べることでお花屋さんそれぞれの個性や特徴をを知ることが出来ます。
+          お花屋さんへの花束やアレンジの<span class="fs-4">「依頼の仕方」</span>が分からない…。
         </p>
       </div>
-      <div class="about-item fw-bold">
+    </div>
+    <!--吹き出しショップ-->
+    <div class="about-content col-9 d-flex flex-row ms-auto p-2 mb-2">
+      <div class="col-9 speech-bubble-shop px-3 py-4 h-100">
         <p>
-          お花を選ぶ側も、冠婚葬祭などの大切なときに利用されることが多いお花だからこそ、ショップの想いや背景も大切にして選びたいもの。<br>
-          いろいろあるお花屋さんの中からお気に入りのショップを見つけて、特別な日のための大切なお花を依頼してみましょう。
+          お客さまからの<span class="fs-5">予約を一覧で確認</span>できるようにしたい…。
         </p>
       </div>
-      <div class="about-item fw-bold">
+      <div class="speech-bubble-img col-3">
+        <%= image_tag asset_path('about-shop.png'), class: "float-end px-2" %>
+      </div>
+    </div>
+    <!--吹き出しユーザー-->
+    <div class="about-content col-9 d-flex flex-row me-auto p-2 mb-2">
+      <div class="col-3 speech-bubble-img">
+        <%= image_tag asset_path('about-member.png'), class: "w-75 float-start px-2" %>
+      </div>
+      <div class="col-9 speech-bubble-member px-3 py-4 h-100">
         <p>
-          なんとなく慣れていないと購入に踏み切れないけれど、日常でもお花を楽しんでみたい…という方でも気軽にお花を予約することが出来ます。<br>
-          お花のプロがご紹介する選りすぐりのアイテムの中から、自分のお気に入りを見つけて、お花のある暮らしを楽しんでみましょう。
+          依頼が可能な<span class="fs-5">花束</span>や<span class="fs-5">アレンジ</span>の<span class="fs-4">「種類」</span>が知りたい！
+        </p>
+      </div>
+    </div>
+    <!--吹き出しショップ-->
+    <div class="about-content col-9 d-flex flex-row ms-auto p-2 mb-2">
+      <div class="col-9 speech-bubble-shop px-3 py-4 h-100">
+        <p>
+          お客さまへの<span class="fs-5">オススメ</span>や<span class="fs-5">得意な</span>の花束やアレンジを知ってもらいたい！
+        </p>
+      </div>
+      <div class="speech-bubble-img col-3">
+        <%= image_tag asset_path('about-shop.png'), class: "float-end px-2" %>
+      </div>
+    </div>
+    <!--吹き出しユーザー-->
+    <div class="about-content col-9 d-flex flex-row me-auto p-2 mb-2">
+      <div class="col-3 speech-bubble-img">
+        <%= image_tag asset_path('about-member.png'), class: "w-75 float-start px-2" %>
+      </div>
+      <div class="col-9 speech-bubble-member px-3 py-4 h-100">
+        <p>
+          気になる商品やショップについて<span class="fs-4">「お問い合わせ」</span>がしたい…。
+        </p>
+      </div>
+    </div>
+    <!--吹き出しショップ-->
+    <div class="about-content col-9 d-flex flex-row ms-auto p-2 mb-2">
+      <div class="col-9 speech-bubble-shop px-3 py-4 h-100">
+        <p>
+          登録した商品以外にも依頼があれば<span class="fs-5">柔軟に対応</span>できるようにしたい…。
+        </p>
+      </div>
+      <div class="speech-bubble-img col-3">
+        <%= image_tag asset_path('about-shop.png'), class: "float-end px-2" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--そんなあなたの悩みを解消します-->
+<div class="about-top col-12 mt-5">
+  <p class="text-center text-white fs-2"><i class="fa-solid fa-caret-down"></i></p>
+  <p class="text-center text-white fs-4"><i class="fa-solid fa-caret-down"></i></p>
+  <h2 class="d-flex flex-column py-4">
+    <span class="mx-auto mt-4 mb-5">Flower Matchが、そんなあなたの悩みをまるっと解消します!</span>
+  </h2>
+</div>
+<div class="container d-flex flex-column align-items-center pt-3 mt-5">
+  <div class="about-content col-10 px-3">
+
+    <div class="about-point">
+      <h3 class="d-flex flex-column mt-5">
+        <span class="fs-5 mx-auto">Point1.</span>
+        <span class="mx-auto mt-3"><span class="fs-2">「気軽に」</span>予約ができる</span>
+      </h3>
+      <hr>
+      <div class="mb-4">
+        <p class="text-center fs-5 fw-bold"><span class="fs-4">お花屋さん </span>が商品を登録して、</p>
+        <p class="text-center fs-5">↓</p>
+        <p class="text-center fs-5 fw-bold"><span class="fs-4">購入したいユーザー </span>が登録された商品を予約</p>
+      </div>
+      <div class="about-content col-7 mx-auto">
+        <p>
+          登録された<strong>商品から選ぶだけ</strong>で予約が完了するので、注文の仕方を直接ショップに問い合わせたり確認する手間が省けるのがポイント！<br><br>
+          <strong>お花の購入に慣れていない方</strong>でも、このサイトから予約したらあとは予約日にショップへ行くだけなので、<strong>気軽にお花を購入</strong>できます。
         </p>
       </div>
     </div>
 
-    <% unless member_signed_in? || shop_signed_in? %>
+    <div class="about-point">
+      <h3 class="d-flex flex-column mt-5">
+        <span class="fs-5 mx-auto">Point2.</span>
+        <span class="mx-auto mt-3">ショップの<span class="fs-2">「オススメ商品」</span>や<span class="fs-2">「種類」</span>が分かる</span>
+      </h3>
+      <hr>
+      <div class="about-content col-7 mx-auto">
+        <p>
+          お花の種類が豊富なショップもあれば、少し珍しいお花を扱っているショップや、ラッピングが得意なショップなど、<strong>お花屋さんにも</strong>それぞれ<strong>個性</strong>があります。<br><br>
+          それぞれのショップの商品を見比べることで、ショップの特徴がつかみやすくなるので、自分の<strong>推しお花屋さん</strong>も見つけやすくなるんです。
+        </p>
+      </div>
+    </div>
+
+    <div class="about-point">
+      <h3 class="d-flex flex-column mt-5">
+        <span class="fs-5 mx-auto">Point3.</span>
+        <span class="mx-auto mt-3">メッセージ機能でショップに<span class="fs-2">「お問い合わせ」</span>ができる</span>
+      </h3>
+      <hr>
+      <div class="about-content col-7 mx-auto">
+        <p>
+          登録した商品から選べるとはいえ、お花の種類や色、イメージなど、ショップと購入者との間で<strong>確認したい事柄</strong>も出てくるはず…。<br><br>
+          そんなときは、<strong>メッセージ機能</strong>から、購入を希望している商品の情報と一緒にショップへお問い合わせをすることが出来ます。
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--お花を購入するのはどんな時ですか-->
+<div class="about-top col-12 mt-5">
+  <h2 class="d-flex flex-column py-4 text-center">
+    <span class="my-4 fs-3">あなたが</span>「お花を購入する」<span class="my-4 fs-3">のはどんな時ですか？</span>
+  </h2>
+</div>
+
+<div class="container d-flex flex-column align-items-center pt-3 mt-5">
+  <div class="about-content col-10 px-3">
+    <div class="about-content col-7 mx-auto">
+      <p>
+        まずは、定番の<span class="fs-5 fw-bold">母の日</span><br>
+        そして<span class="fs-5 fw-bold">送別会</span>や<span class="fs-5 fw-bold">卒業式や入学式</span>にはお花を渡したり受け取った経験がある方も多そうですね。<br>
+        さらに、夏の<span class="fs-5 fw-bold">お彼岸</span>や、<br>
+        もしかしたら<span class="fs-5 fw-bold">誕生日</span>のお祝いにお花を購入する方もいるかも…
+      </p>
+      <p class="about-point px-4">
+        想像してみるといろんな場面が思い浮かびますが、やはり基本的には、何かしらの<span class="fs-5 fw-bold">「イベントごと」</span>を想像することが多いのではないでしょうか？
+      </p>
+      <p class="about-point px-4">
+        日本ではそんなイメージが強いお花ですが、<br>
+        海外では<span class="fs-5 fw-bold">日常生活の中でお花を楽しんでいる国</span>もあるんです。
+      </p>
+      <p>
+        <span class="fs-5 fw-bold">オランダ</span>には、<br>
+        <span class="fs-5 fw-bold">「パンを2使うお金があったら、パンを1つと花を買う」</span><br>
+        ということわざがあるほど。<br><br>
+        自分だけでなく道を通りかかる人にも幸せをお裾分けしたいという気持ちから、窓辺にお花を飾るお家も多いんだとか…。<br><br>
+        また、<span class="fs-5 fw-bold">イギリス</span>では、<span class="fs-5 fw-bold">金曜日の「仕事終わり」</span>にお花屋さんでお花を買って、<span class="fs-5 fw-bold">週末に家族や恋人と過ごす時間を彩る</span>習慣があったり、<br><br>
+        鮮やかな色のある暮らしを楽しむ<span class="fs-5 fw-bold">フランス</span>では、心の栄養になるお花は<span class="fs-5 fw-bold">「生活必需品」</span>だと訴える意見があったり、<br><br>
+        お隣の<span class="fs-5 fw-bold">韓国</span>では、24時間いつでもお花が購入できる<span class="fs-5 fw-bold">「お花の自動販売機」</span>があったり…、
+      </p>
+      <p class="about-point px-4">
+        <span class="fs-5 fw-bold">心の栄養</span>のためだったり、自分や周りの人の<span class="fs-5 fw-bold">気持ちを癒したい</span>という思いから、お花のある生活が好まれています。
+      </p>
+      <p>
+        実際に、植物には<span class="fs-5 fw-bold">「リラックス効果」</span>があり、<br>
+        植物が視界に入る空間で集中力を伴う作業をしたとき、植物がない場合よりもストレスに関わるホルモンの分泌が大きく変化したという実験結果も出ているそうです。
+      </p>
+    </div>
+  </div>
+</div>
+
+<!--お花を購入するのはどんな時ですか-->
+<div class="about-top col-12 mt-5">
+  <h2 class="d-flex flex-column py-4 text-center">
+    <span class="fs-4 mx-auto mt-4 mb-3">特に忙しさを感じている方の</span>
+    <span>「日常の中」<span class="my-4 fs-3">こそ、</span></span>
+    <span class="my-4 fs-3">お花を取り入れてみてください</span>
+  </h2>
+</div>
+
+<div class="container d-flex flex-column align-items-center pt-3 mt-5">
+  <div class="about-content col-10 px-3">
+    <div class="about-content col-7 mx-auto">
+      <p>
+        イベント時に贈ったり受け取ったりするお花には、特別感がありますが、日常に取り入れるお花には<span class="fs-5 fw-bold">ホッと一息つけるような安心感</span>があります。<br><br>
+        日常で楽しむお花に作法なんてものはありません。<br>
+        花瓶がなければ、空き瓶やペットボトルでも大丈夫。<br>
+        1輪や2輪のお花を無造作に挿すだけでも癒しを提供してくれます。<br>
+        お花は案外強いので、お手入れについても必要以上に心配する必要はないんです。
+      </p>
+    </div>
+  </div>
+</div>
+
+<!--お花を購入するのはどんな時ですか-->
+<div class="about-top col-12 mt-5">
+  <h2 class="d-flex flex-column py-4 text-center">
+    <span class="fs-4 mx-auto mt-4 mb-3">ここで発生する問題が…</span>
+    <span class="mb-3">「お花の買い方が分からない」<span class="my-4 fs-3">ということ</span></span>
+  </h2>
+</div>
+
+<div class="container d-flex flex-column align-items-center pt-3 mt-5">
+  <div class="about-content col-10 px-3">
+    <div class="about-content col-7 mx-auto">
+      <p>
+        実は、日常でお花を購入する機会が少ないからこそ、<br>
+        「分からな過ぎて、お花屋さんで<span class="fs-5 fw-bold">質問すらできない…</span>」<br>
+        「どこで買うべきか、お花屋さん選びから分からない…」<br><br>
+        というように、<br>
+        <span class="fs-4 fw-bold">「買わない」</span>のではなく、<span class="fs-4 fw-bold">「買えない」</span>方も多いんです。<br><br>
+        これらは購入者側のお悩みでしたが、お花屋さん側でも、<br>
+        「予約なしでの来店だと事前に準備が出来ないから<span class="fs-5 fw-bold">出来れば予約して欲しい…</span>」<br>
+        「普段の生活でももっとお花を楽しんでもらいたい…」<br>
+        「商品の種類や可能なアレンジについて<span class="fs-5 fw-bold">説明するのが大変…</span>」<br>
+        というようなお悩みがあります。
+      </p>
+    </div>
+  </div>
+</div>
+
+<!--お花を購入するのはどんな時ですか-->
+<div class="about-top col-12 mt-5">
+  <h2 class="d-flex flex-column py-4 text-center">
+    <span class="fs-4 mx-auto mt-4 mb-3">Flower Matchは、そんな購入者とお花屋さんの</span>
+    <span class="mb-3">「分からないこと」<span class="my-4 fs-3">や</span>「困りごと」</span>
+    <span class="fs-3 mb-3">を解消するためのサイトです</span>
+  </h2>
+</div>
+
+<div class="container d-flex flex-column align-items-center pt-3 mt-5">
+  <div class="about-content col-10 px-3">
+    <div class="about-content col-7 mx-auto">
+      <p>
+        購入者とショップの会員登録は別になっています。<br>
+        まずは会員登録をして、ショップのお気に入り登録や商品のブックマークをしながらいろんなショップのお花を眺めてみてください。
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="sign-up" class="container d-flex flex-column align-items-center pt-3 mt-5">
+  <div class="about-content col-10 px-3">
+
+    <% unless member_signed_in? || shop_signed_in? || admin_signed_in? %>
       <div class="d-flex flex-row flex-wrap mb-3 mt-5">
         <div class="login-content col-6 px-3 mb-5">
-          <h3>お花を買いたい方</h3>
+          <h3>お花を買いたい方はこちら</h3>
           <hr>
           <div class="p-3">
-            <div class="col-6 d-grid mx-auto">
-              <%= link_to "ユーザーさまの新規登録はこちら", new_member_registration_path, class: "btn btn-info p-2" %>
+            <div class="col-10 d-grid mx-auto">
+              <%= link_to "ユーザーさまの新規会員登録", new_member_registration_path, class: "btn btn-info p-2" %>
             </div>
           </div>
         </div>
 
         <div class="login-content col-6 px-3">
-          <h3>予約を受け付けたいショップ</h3>
+          <h3>お花屋さんはこちら</h3>
           <hr>
           <div class="p-3">
-            <div class="col-6 d-grid mx-auto">
-              <%= link_to "お花屋さんの新規登録はこちら", new_shop_registration_path, class: "btn btn-outline-info p-2" %>
+            <div class="col-10 d-grid mx-auto">
+              <%= link_to "お花屋さんの新規会員登録", new_shop_registration_path, class: "btn btn-outline-info p-2" %>
             </div>
           </div>
         </div>
       </div>
+
+    <!--会員登録に進むボタン-->
+    <div class="back-order px-3 py-1 rounded-pill border border-white border-2">
+      <a href='#sign-up'>
+        <div class="d-flex justify-content-center fs-2 pt-1"><i class="fa-solid fa-user-plus"></i></div>
+        <small>会員登録へ</small>
+      </a>
+    </div>
     <% end %>
 
   </div>

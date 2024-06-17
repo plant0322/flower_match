@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'top'    =>  'homes#top', as: 'top'
+    get 'guide'  => 'homes#guide', as: 'guide'
 
     resources :shops, only: [:index, :edit, :update]
     resources :members, only: [:show, :index, :edit, :update]
@@ -82,6 +83,7 @@ Rails.application.routes.draw do
     get ':shop_id/review'          => 'reviews#index', as: 'review'
     get 'privacypolicy'            => 'homes#privacypolicy'
     get 'guide'                    => 'homes#guide'
+    get 'terms'                    => 'homes#terms'
 
     resources :shops, only: [:show] do
       resource :favorite_shop, only: [:create, :destroy]

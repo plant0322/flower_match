@@ -106,7 +106,7 @@
           受取予定日の<%= @pre_order.item.deadline %>日前: 合計金額の100%<br>
           無断: 合計金額の100%<br>
           <small>
-            ※キャンセルの際は<b>期限日</b>までに<b>必ず</b>ショップへご連絡ください。
+            ※キャンセル期限が過ぎるとサイトからのキャンセルは不可となります。
             <% if @pre_order.status == 'before_visit' && (@pre_order.visit_day - @pre_order.item.deadline.to_i.days) > Date.today %>
               <span data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-success">
                 キャンセルはこちら

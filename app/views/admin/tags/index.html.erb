@@ -29,7 +29,7 @@
               <% if admin_signed_in? %>
                 <tr>
                   <td>
-                    <%= link_to '詳細を変数編集する', edit_admin_pick_up_tag_path(tag), class: "btn btn-info p-1 d-grid" %>
+                    <%= link_to '詳細を編集する', edit_admin_pick_up_tag_path(tag), class: "btn btn-info p-1 d-grid" %>
                     <%= form_with model: tag, url: admin_pick_up_tag_path(tag) do |f| %>
                       <div class="d-flex flex-row d-flex justify-content-center mt-2">
                         <div class="pe-3"><%= f.select :in_order, (0..20).to_a, { prompt: "" }, { class: "form-select" } %></div>

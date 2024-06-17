@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::SessionsController < Devise::SessionsController
-  before_action :set_search, only: [:new]
+  before_action :set_search_check_login, only: [:new]
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -36,8 +36,11 @@ class Admin::SessionsController < Devise::SessionsController
 
   private
 
-  def set_search
+  def set_search_check_login
     @search = OpenStruct.new(model: 'item')
+    if shop_signed_in? || member_signed_in?
+      redirect_to root_path
+    end
   end
 
 end
