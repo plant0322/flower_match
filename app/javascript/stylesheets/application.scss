@@ -166,6 +166,19 @@ p.icon-down {
     margin: 40px 0;
 }
 
+// 利用規約・プライバシーポリシー
+.terms-content h2 {
+    font-size: 1.5em!important;
+    span {
+        font-size: 1.3em!important;
+    }
+}
+
+.terms-content p {
+    line-height: 1.5em!important;
+    padding: 0 5px;
+}
+
 // パンくず
 .breadcrumb {
     list-style: none;
@@ -557,7 +570,8 @@ footer{
     div.main-content,
     div.left-content,
     div.login-content,
-    div.about-content {
+    div.about-content,
+    div.terms-content{
         width: 100%!important;
         padding: 18px 0 0!important;
     }

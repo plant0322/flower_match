@@ -83,6 +83,7 @@ Rails.application.routes.draw do
     get ':shop_id/review'          => 'reviews#index', as: 'review'
     get 'privacypolicy'            => 'homes#privacypolicy'
     get 'guide'                    => 'homes#guide'
+    get 'terms'                    => 'homes#terms'
 
     resources :shops, only: [:show] do
       resource :favorite_shop, only: [:create, :destroy]

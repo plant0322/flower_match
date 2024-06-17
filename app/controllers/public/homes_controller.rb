@@ -26,6 +26,9 @@ class Public::HomesController < ApplicationController
   def privacypolicy
   end
 
+  def terms
+  end
+
   private
 
   def set_search
