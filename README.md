@@ -4,13 +4,13 @@
 ### サイトテーマ
 お花屋さん発信型のフラワーアレンジメントや花束の予約サイト  
 
-【TOPページ（一般ユーザーログイン後）】
+【TOPページ(一般ユーザーログイン後)】
 ![member](https://github.com/plant0322/flower_match/assets/159232279/0f09c467-9a13-465f-91c8-5f10ced0dacf)
 
-【ショップユーザーマイページ（ショップログイン後）】
+【ショップユーザーマイページ(ショップログイン後)】
 ![shop](https://github.com/plant0322/flower_match/assets/159232279/a10f64e7-f483-46e0-9954-e3dbf9df27a8)
 
-【管理者TOPページ（管理者ログイン後）】
+【管理者TOPページ(管理者ログイン後)】
 ![admin](https://github.com/plant0322/flower_match/assets/159232279/b50f0525-b00a-4e8c-afa1-7a91430b654d)
 
 ### テーマを選んだ理由
@@ -61,6 +61,20 @@
 【ER図】
 ![flower_match_ER](https://github.com/plant0322/flower_match/assets/159232279/aeb23804-3217-4859-9897-9eba393a823b)
 ​
+## 使用技術
+
+### Gem
+- ユーザー認証(devise)
+- 画像アップロード時のサイズと解像度の変更(MiniMagick)
+- ショップ所在地の都道府県登録と検索(JpPrefecture)
+
+### その他
+- 画像アップロード機能(Active Storage)
+- ブックマーク追加の非同期通信(Ajax)
+- ショップお気に入り追加の非同期通信(Ajax)
+- 商品画像の関連性判定(Google Vision API)
+- 口コミのポジティブ判定(Google Natural Language API)
+
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
