@@ -67,6 +67,7 @@
 - ユーザー認証(devise)
 - 画像アップロード時のサイズと解像度の変更(MiniMagick)
 - ショップ所在地の都道府県登録と検索(JpPrefecture)
+- ページネーション(kaminari)
 
 ### その他
 - 画像アップロード機能(Active Storage)
