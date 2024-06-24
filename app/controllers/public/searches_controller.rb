@@ -10,29 +10,28 @@ class Public::SearchesController < ApplicationController
                 { model: 'item' }
               end
     if @prefecture.presence
-      active_shops = Shop.where(is_active: true)
-                         .where(prefecture_code: @prefecture)
+      active_shops = Shop.active_shop.where(prefecture_code: @prefecture)
     else
-      active_shops = Shop.where(is_active: true)
+      active_shops = Shop.active_shop
     end
 
     if @search[:model] == 'item'
-      @records = Item.where('name LIKE? OR introduction LIKE?','%'+@content+'%','%'+@content+'%')
-                     .order(updated_at: 'DESC')
-                     .where(is_active: true, shop_id: active_shops).page(params[:page])
+      @records = Item.active.where('name LIKE? OR introduction LIKE?','%'+@content+'%','%'+@content+'%')
+                            .order(updated_at: 'DESC')
+                            .where(shop_id: active_shops).page(params[:page])
     elsif @search[:model] == 'shop'
       @records = Shop.where('name LIKE? OR name_kana LIKE? OR address LIKE?', '%'+@content+'%', '%'+@content+'%','%'+@content+'%')
                      .order(updated_at: 'DESC')
                      .where(id: active_shops).page(params[:page])
     else #@model = 'tag'
-      active_items = Item.left_joins(:item_details)
-                         .where(is_active: true, shop_id: active_shops)
+      active_items = Item.active.left_joins(:item_details)
+                                .where(shop_id: active_shops)
 
       tag_items = Tag.search_items(@content, active_items)
       @records = Kaminari.paginate_array(tag_items).page(params[:page])
     end
 
-    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
+    @pick_up_tags = PickUpTag.active_tag.order(in_order: 'ASC')
     @tag_rank = Tag.tag_rank_item
     @tags = Tag.tag_rank_item.limit(50)
   end

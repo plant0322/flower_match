@@ -15,7 +15,7 @@ class Admin::PickUpTagsController < ApplicationController
   def edit
     @tags = Tag.all
     @pick_up_tag = PickUpTag.find(params[:id])
-    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
+    @pick_up_tags = PickUpTag.active_tag
     @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')
   end

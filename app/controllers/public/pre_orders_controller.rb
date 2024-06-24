@@ -2,6 +2,7 @@ class Public::PreOrdersController < ApplicationController
   before_action :authenticate_member!
   before_action :is_matching_login_member, only: [:show]
   before_action :set_search, only: [:new, :confirm, :error, :thanks, :index, :show]
+  before_action :set_pick_up_tags, only: [:index, :show]
 
   def new
     @item =  Item.find(session[:item_id])
@@ -75,14 +76,14 @@ class Public::PreOrdersController < ApplicationController
     @pre_orders = current_member.pre_orders
     @before_visit_pre_orders = @pre_orders.where(status: 'before_visit').order(visit_day: "ASC")
     @visit_or_cancel_pre_orders = @pre_orders.where(status: ['visit', 'cancel']).order(visit_day: "DESC").page(params[:page])
-    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
+    #@pick_up_tags = PickUpTag.active_tag.order(in_order: 'ASC')
     @tag_rank = Tag.tag_rank_item
   end
 
   def show
     @pre_order = PreOrder.find(params[:id])
     @review = Review.new
-    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
+   # @pick_up_tags = PickUpTag.active_tag.order(in_order: 'ASC')
     @tag_rank = Tag.tag_rank_item
   end
 
@@ -96,6 +97,10 @@ class Public::PreOrdersController < ApplicationController
 
   def set_search
     @search = OpenStruct.new(model: 'item')
+  end
+
+  def set_pick_up_tags
+    @pick_up_tags = PickUpTag.active_tag.order(in_order: 'ASC')
   end
 
   def is_matching_login_member

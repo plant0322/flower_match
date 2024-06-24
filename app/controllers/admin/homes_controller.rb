@@ -17,7 +17,7 @@ class Admin::HomesController < ApplicationController
   private
 
   def set_search_and_tag
-    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
+    @pick_up_tags = PickUpTag.active_tag
     @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')
   end

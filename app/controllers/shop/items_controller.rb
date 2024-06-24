@@ -13,7 +13,7 @@ class Shop::ItemsController < ApplicationController
     @tag_list = @item.tags.pluck(:name).join(',')
     @item.shop_id = current_shop.id
     tag_list = params[:item][:tag_name].split(',')
-    # 画像を圧縮してjpegとwebpで保存
+    # 画像を圧縮してjpegで保存
     if params[:item][:item_image].present?
       resized_images = resize_image_set_dpi(params[:item][:item_image])
       original_filename_base = File.basename(params[:item][:item_image].original_filename, ".*")
@@ -76,7 +76,7 @@ class Shop::ItemsController < ApplicationController
 
   def update
     tag_list = params[:item][:tag_name].split(',')
-    # 画像を圧縮してjpegとwebpで保存
+    # 画像を圧縮してjpegで保存
     if params[:item][:item_image].present?
       resized_images = resize_image_set_dpi(params[:item][:item_image])
       original_filename_base = File.basename(params[:item][:item_image].original_filename, ".*")
@@ -153,7 +153,7 @@ class Shop::ItemsController < ApplicationController
   end
 
   def set_tag_rank
-    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
+    @pick_up_tags = PickUpTag.active_tag
     @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')
   end

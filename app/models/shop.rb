@@ -8,7 +8,6 @@ class Shop < ApplicationRecord
   has_many :favorite_shops, dependent: :destroy
   has_many :shop_messages, dependent: :destroy
   has_many :rooms, dependent: :destroy
-  #has_many :message_rooms, dependent: :destroy
   has_one_attached :shop_image
 
   validates :shop_image, presence: true
@@ -46,6 +45,8 @@ class Shop < ApplicationRecord
   def favorite_shop_by?(member)
     favorite_shops.exists?(member_id: member.id)
   end
+
+  scope :active_shop, -> { where(is_active: true) }
 
   # ゲストログイン用
   GUEST_SHOP_EMAIL = 'guest_shop@example.com'

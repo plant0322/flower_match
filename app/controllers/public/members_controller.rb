@@ -11,25 +11,23 @@ class Public::MembersController < ApplicationController
     reviews = Review.where(pre_order_id: visit_pre_orders)
     @pre_orders = PreOrder.where(id: visit_pre_orders)
                           .where.not(id: reviews.pluck(:pre_order_id))
-    active_shops = Shop.where(is_active: true)
     @recently_seen_item = Item.find(session[:item_id]) unless session[:item_id].blank?
 
     bookmarks = Bookmark.where(member_id: current_member.id)
-    @bookmark_items = Item.where(id: bookmarks.pluck(:item_id))
-                          .where(is_active: true, shop_id: active_shops).order(created_at: "DESC").limit(4)
+    @bookmark_items = Item.active.active_shop
+                          .where(id: bookmarks.pluck(:item_id))
+                          .order(created_at: "DESC").limit(4)
 
-    active_favorite_shops = FavoriteShop.where(member_id: current_member.id, shop_id: active_shops)
-    active_favorite_shops_ids = active_favorite_shops.pluck(:shop_id)
-    @favorite_shops = Shop.where(id: active_favorite_shops_ids).order(created_at: "DESC").limit(4)
-    @favorite_shop_items = Item.where(is_active: true, shop_id: active_favorite_shops_ids).order(created_at: "DESC").limit(6)
+    active_shops = Shop.active_shop
+    active_favorite_shop_ids = FavoriteShop.where(member_id: current_member.id, shop_id: active_shops).pluck(:shop_id)
+    @favorite_shops = Shop.where(id: active_favorite_shop_ids).order(created_at: "DESC").limit(4)
+    @favorite_shop_items = Item.active.where(shop_id: active_favorite_shop_ids).order(created_at: "DESC").limit(6)
 
-    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
     @tag_rank = Tag.tag_rank_item
   end
 
   def edit
     @tag_rank = Tag.tag_rank_item
-    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
   end
 
   def update
@@ -44,7 +42,6 @@ class Public::MembersController < ApplicationController
 
   def unsubscribe
     @tag_rank = Tag.tag_rank_item
-    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
   end
 
   def withdraw
@@ -56,6 +53,7 @@ class Public::MembersController < ApplicationController
   private
 
   def set_search
+    @pick_up_tags = PickUpTag.active_tag.order(in_order: 'ASC')
     @search = OpenStruct.new(model: 'item')
   end
 

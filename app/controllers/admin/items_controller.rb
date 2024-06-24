@@ -8,7 +8,7 @@ class Admin::ItemsController < ApplicationController
                              MAX(COALESCE(item_details.updated_at, items.updated_at)) AS greatest_updated_at')
                     .order('greatest_updated_at DESC')
     @items = items_all.page(params[:page])
-    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
+    @pick_up_tags = PickUpTag.active_tag
     @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')
   end

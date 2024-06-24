@@ -6,6 +6,8 @@ class PickUpTag < ApplicationRecord
   validates :name, presence: true
   validates :introduction, presence: true
 
+  scope :active_tag, -> { where(is_active: true).order(in_order: 'ASC') }
+
   def get_tag_image(width, height)
     unless tag_image.attached?
       file_path = Rails.root.join('app/assets/images/sample.jpg')

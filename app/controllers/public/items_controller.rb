@@ -4,7 +4,7 @@ class Public::ItemsController < ApplicationController
   def show
     session[:item_id] = params[:id]
     @shop = @item.shop
-    @items = Item.where(shop_id: @shop, is_active: true)
+    @items = Item.active.active_shop
                  .order(id: 'DESC').limit(6)
                  .where('stock > 0')
     @stock = @item.stock.to_i
@@ -14,7 +14,7 @@ class Public::ItemsController < ApplicationController
 
     item_tags = ItemTag.where(item_id: @item.id)
     @item_tags = Tag.where(id: item_tags.pluck(:tag_id))
-    @pick_up_tags = PickUpTag.where(is_active: true).order(in_order: 'ASC')
+    @pick_up_tags = PickUpTag.active_tag.order(in_order: 'ASC')
     @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')
   end

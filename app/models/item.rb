@@ -28,6 +28,10 @@ class Item < ApplicationRecord
   def bookmark_by?(member)
     bookmarks.exists?(member_id: member.id)
   end
+  
+  # 退会していないショップ・公開中の商品を定義
+	scope :active, -> { where(is_active: true) }
+	scope :active_shop, -> { joins(:shop).where( shop:{ is_active: true} ) }
 
   def self.search_for(content, method)
     if method == 'partial'
