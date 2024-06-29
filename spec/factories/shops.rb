@@ -6,10 +6,10 @@ FactoryBot.define do
     email { Faker::Internet.email }
     name { Faker::Lorem.characters(number: 5) }
     name_kana { person.first.katakana }
-    representative_name { Faker::Lorem.characters(number: 5) }
+    representative_name { person.first.kanji }
     introduction { Faker::Lorem.characters(number: 100) }
     postal_code { Faker::Number.leading_zero_number(digits: 7) }
-    address { Faker::Lorem.characters(number: 10) }
+    address { person.first.kanji }
     direction { Faker::Lorem.characters(number: 15) }
     telephone_number { Faker::Number.leading_zero_number(digits: 11) }
     parking { Faker::Lorem.characters(number: 10) }

@@ -1,151 +1,121 @@
 require 'rails_helper'
 
-RSpec.describe "Shopモデルのテスト", type: :model do
+RSpec.describe "Memberモデルのテスト", type: :model do
   describe "バリデーションのテスト" do
-    subject { shop.valid? }
+    subject { member.valid? }
 
-    let!(:other_shop) { create(:shop) }
-    let(:shop) { create(:shop) }
+    let!(:other_member) { create(:member) }
+    let(:member) { create(:member) }
 
-    context "nameカラム" do
+    context "last_name" do
       it "空欄でないこと", spec_category: "バリデーションの確認" do
-        shop.name = ''
+        member.last_name = ''
         is_expected.to eq false
       end
     end
 
-    context "name_kanaカラム" do
+    context "first_name" do
       it "空欄でないこと", spec_category: "バリデーションの確認" do
-        shop.name_kana = ''
+        member.first_name = ''
+        is_expected.to eq false
+      end
+    end
+
+    context "last_name_kanaカラム" do
+      it "空欄でないこと", spec_category: "バリデーションの確認" do
+        member.last_name_kana = ''
         is_expected.to eq false
       end
       it "カタカナであること：英数文字列は×", spec_category: "バリデーションの確認" do
-        shop.name_kana = Faker::Lorem.characters(number: 10)
+        member.last_name_kana = Faker::Lorem.characters(number: 10)
         is_expected.to eq false
       end
       it "カタカナであること：ひらがなは×", spec_category: "バリデーションの確認" do
-        shop.name_kana = Gimei.first.hiragana
+        member.last_name_kana = Gimei.first.hiragana
         is_expected.to eq false
       end
       it "カタカナであること：漢字は×", spec_category: "バリデーションの確認" do
-        shop.name_kana = Gimei.first.kanji
+        member.last_name_kana = Gimei.first.kanji
         is_expected.to eq false
       end
     end
 
-    context "introductionカラム" do
+    context "first_name_kanaカラム" do
       it "空欄でないこと", spec_category: "バリデーションの確認" do
-        shop.introduction = ''
+        member.first_name_kana = ''
+        is_expected.to eq false
+      end
+      it "カタカナであること：英数文字列は×", spec_category: "バリデーションの確認" do
+        member.first_name_kana = Faker::Lorem.characters(number: 10)
+        is_expected.to eq false
+      end
+      it "カタカナであること：ひらがなは×", spec_category: "バリデーションの確認" do
+        member.first_name_kana = Gimei.first.hiragana
+        is_expected.to eq false
+      end
+      it "カタカナであること：漢字は×", spec_category: "バリデーションの確認" do
+        member.first_name_kana = Gimei.first.kanji
         is_expected.to eq false
       end
     end
 
-    context "representative_nameカラム" do
+    context "nicknameカラム" do
       it "空欄でないこと", spec_category: "バリデーションの確認" do
-        shop.representative_name = ''
+        member.nickname = ''
         is_expected.to eq false
       end
     end
 
     context "postal_codeカラム" do
       it "空欄でないこと", spec_category: "バリデーションの確認" do
-        shop.postal_code = ''
+        member.postal_code = ''
         is_expected.to eq false
       end
       (1..6).each do |i|
         it "7文字以上の数字であること：#{i}文字の数字は×", spec_category: "バリデーションの確認" do
-          shop.postal_code = Faker::Number.leading_zero_number(digits: i)
+          member.postal_code = Faker::Number.leading_zero_number(digits: i)
           is_expected.to eq false
         end
       end
       it "7文字以上の数字であること：8文字の数字は×", spec_category: "バリデーションの確認" do
-        shop.postal_code = Faker::Number.leading_zero_number(digits: 8)
+        member.postal_code = Faker::Number.leading_zero_number(digits: 8)
         is_expected.to eq false
       end
       it "7文字以上の数字であること：7文字の英字（例abcdefg）は×", spec_category: "バリデーションの確認" do
-        shop.postal_code = "abcdefg"
+        member.postal_code = "abcdefg"
         is_expected.to eq false
       end
       it "7文字以上の数字であること：7文字の数字は〇", spec_category: "バリデーションの確認" do
-        shop.postal_code = Faker::Number.leading_zero_number(digits: 7)
+        member.postal_code = Faker::Number.leading_zero_number(digits: 7)
         is_expected.to eq true
-      end
-    end
-
-    context "prefecture_codeカラム" do
-      it "空欄でないこと", spec_category: "バリデーションの確認" do
-        shop.prefecture_code = ''
-        is_expected.to eq false
       end
     end
 
     context "addressカラム" do
       it "空欄でないこと", spec_category: "バリデーションの確認" do
-        shop.address = ''
-        is_expected.to eq false
-      end
-    end
-
-    context "opening_hourカラム" do
-      it "空欄でないこと", spec_category: "バリデーションの確認" do
-        shop.opening_hour = ''
-        is_expected.to eq false
-      end
-    end
-
-    context "holidayカラム" do
-      it "空欄でないこと", spec_category: "バリデーションの確認" do
-        shop.holiday = ''
-        is_expected.to eq false
-      end
-    end
-
-    context "parkingカラム" do
-      it "空欄でないこと", spec_category: "バリデーションの確認" do
-        shop.parking = ''
-        is_expected.to eq false
-      end
-    end
-
-    context "noteカラム" do
-      it "空欄でないこと", spec_category: "バリデーションの確認" do
-        shop.note = ''
-        is_expected.to eq false
-      end
-    end
-
-    context "payment_methodカラム" do
-      it "空欄でないこと", spec_category: "バリデーションの確認" do
-        shop.payment_method = ''
-        is_expected.to eq false
-      end
-    end
-
-    context "directionカラム" do
-      it "空欄でないこと", spec_category: "バリデーションの確認" do
-        shop.direction = ''
+        member.address = ''
         is_expected.to eq false
       end
     end
 
     context "telephone_numberカラム" do
       it "空欄でないこと", spec_category: "バリデーションの確認" do
-        shop.telephone_number = ''
+        member.telephone_number = ''
         is_expected.to eq false
       end
       (1..9).each do |i|
         it "10～11文字以上の数字であること：#{i}文字の数字は×", spec_category: "バリデーションの確認" do
-          shop.telephone_number = Faker::Number.leading_zero_number(digits: i)
+          member.telephone_number = Faker::Number.leading_zero_number(digits: i)
           is_expected.to eq false
         end
       end
       it "10～11文字以上の数字であること：12文字の数字は×", spec_category: "バリデーションの確認" do
-        shop.telephone_number = Faker::Number.leading_zero_number(digits: 12)
+        member.telephone_number = Faker::Number.leading_zero_number(digits: 12)
         is_expected.to eq false
       end
       (10..11).each do |i|
         it "10～11文字以上の数字であること：#{i}文字の数字は〇", spec_category: "バリデーションの確認" do
-          shop.telephone_number = Faker::Number.leading_zero_number(digits: i)
+          member.telephone_number = Faker::Number.leading_zero_number(digits: i)
           is_expected.to eq true
         end
       end
@@ -153,45 +123,44 @@ RSpec.describe "Shopモデルのテスト", type: :model do
 
     context "emailカラム" do
       it "空欄でないこと", spec_category: "バリデーションの確認" do
-        shop.email = ''
+        member.email = ''
         is_expected.to eq false
       end
       it "一意性があること", spec_category: "バリデーションの確認" do
-        shop.email = other_shop.email
+        member.email = other_member.email
         is_expected.to eq false
-      end
-    end
-
-    context "is_activeカラム" do
-      it "初期設定がfalseになっていること", spec_category: "バリデーションの確認" do
-        shop.is_active = false
-        is_expected.to eq true
       end
     end
   end
 
   describe "アソシエーションのテスト" do
-    context "Itemモデルとの関係" do
-      it "Itemが複数（has_many）", spec_category: "アソシエーションの確認" do
-        expect(Shop.reflect_on_association(:items).macro).to eq :has_many
+    context "PreOrderモデルとの関係" do
+      it "PreOrderが複数（has_many）", spec_category: "アソシエーションの確認" do
+        expect(Member.reflect_on_association(:pre_orders).macro).to eq :has_many
+      end
+    end
+
+    context "Bookmarkモデルとの関係" do
+      it "Bookmarkが複数（has_many）", spec_category: "アソシエーションの確認" do
+        expect(Member.reflect_on_association(:bookmarks).macro).to eq :has_many
       end
     end
 
     context "FavoriteShopモデルとの関係" do
       it "FavoriteShopが複数（has_many）", spec_category: "アソシエーションの確認" do
-        expect(Shop.reflect_on_association(:favorite_shops).macro).to eq :has_many
+        expect(Member.reflect_on_association(:favorite_shops).macro).to eq :has_many
       end
     end
 
-    context "ShopMessageモデルとの関係" do
-      it "ShopMessageが複数（has_many）", spec_category: "アソシエーションの確認" do
-        expect(Shop.reflect_on_association(:shop_messages).macro).to eq :has_many
+    context "MemberMessageモデルとの関係" do
+      it "MemberMessageが複数（has_many）", spec_category: "アソシエーションの確認" do
+        expect(Member.reflect_on_association(:member_messages).macro).to eq :has_many
       end
     end
 
     context "Roomモデルとの関係" do
       it "Roomが複数（has_many）", spec_category: "アソシエーションの確認" do
-        expect(Shop.reflect_on_association(:rooms).macro).to eq :has_many
+        expect(Member.reflect_on_association(:rooms).macro).to eq :has_many
       end
     end
   end
