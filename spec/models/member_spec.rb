@@ -5,7 +5,7 @@ RSpec.describe "Memberモデルのテスト", type: :model do
     subject { member.valid? }
 
     let!(:other_member) { create(:member) }
-    let(:member) { create(:member) }
+    let(:member) { build(:member) }
 
     context "last_name" do
       it "空欄でないこと", spec_category: "バリデーションの確認" do

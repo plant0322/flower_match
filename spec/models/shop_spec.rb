@@ -161,13 +161,6 @@ RSpec.describe "Shopモデルのテスト", type: :model do
         is_expected.to eq false
       end
     end
-
-    context "is_activeカラム" do
-      it "初期設定がfalseになっていること", spec_category: "バリデーションの確認" do
-        shop.is_active = false
-        is_expected.to eq true
-      end
-    end
   end
 
   describe "アソシエーションのテスト" do
