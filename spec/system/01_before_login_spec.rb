@@ -5,10 +5,10 @@ describe '[STEP1] ユーザログイン前のテスト' do
     before do
       visit root_path
     end
-    
+
     context '表示内容の確認' do
-      it 'URLが正しい', spec_category: "ルーティング・URLの理解（ログイン状況に合わせた応用）" do
-        expect(current_path).to eq '/'
+      it 'status_codeが正しい', spec_category: "ページが正常に読み込まれているか" do
+        expect(page.status_code).to eq(200)
       end
     end
   end

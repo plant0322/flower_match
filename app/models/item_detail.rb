@@ -5,7 +5,7 @@ class ItemDetail < ApplicationRecord
 
   validates :item_detail_image, presence: true
   validates :introduction, presence: true
-  validates :in_order, presence: true, numericality: { in: 0..10 }
+  validates :in_order, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 10 }
 
   def get_item_detail_image(width, height)
     item_detail_image.variant(resize_to_fill: [width, height]).processed

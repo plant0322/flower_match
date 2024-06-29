@@ -15,7 +15,7 @@ class Item < ApplicationRecord
   validates :size, presence: true
   validates :price, presence: true
   validates :stock, presence: true
-  validates :deadline, presence: true, numericality: { in: 0..20 }
+  validates :deadline, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 20 }
 
   def get_item_image(width, height)
     item_image.variant(resize_to_fill: [width, height]).processed
@@ -28,7 +28,7 @@ class Item < ApplicationRecord
   def bookmark_by?(member)
     bookmarks.exists?(member_id: member.id)
   end
-  
+
   # 退会していないショップ・公開中の商品を定義
 	scope :active, -> { where(is_active: true) }
 	scope :active_shop, -> { joins(:shop).where( shop:{ is_active: true} ) }
