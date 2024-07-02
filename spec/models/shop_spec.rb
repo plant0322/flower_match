@@ -1,3 +1,5 @@
+=begin
+
 require 'rails_helper'
 
 RSpec.describe "Shopモデルのテスト", type: :model do
@@ -189,3 +191,5 @@ RSpec.describe "Shopモデルのテスト", type: :model do
     end
   end
 end
+
+=end

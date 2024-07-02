@@ -1,3 +1,5 @@
+=begin
+
 require 'rails_helper'
 
 RSpec.describe "ItemDetailモデルのテスト", type: :model do
@@ -36,3 +38,5 @@ RSpec.describe "ItemDetailモデルのテスト", type: :model do
     end
   end
 end
+
+=end

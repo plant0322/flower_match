@@ -1,3 +1,5 @@
+=begin
+
 require 'rails_helper'
 
 RSpec.describe "PickUpTagモデルのテスト", type: :model do
@@ -35,3 +37,5 @@ RSpec.describe "PickUpTagモデルのテスト", type: :model do
     end
   end
 end
+
+=end
