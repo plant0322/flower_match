@@ -2,6 +2,7 @@ class Shop::ShopsController < ApplicationController
   before_action :authenticate_shop!
   before_action :set_current_shop_tag
   before_action :ensure_guest_shop, only: [:edit, :unsubscribe]
+  before_action :set_tag
 
   def edit
   end
@@ -40,8 +41,6 @@ class Shop::ShopsController < ApplicationController
 
   def set_current_shop_tag
     @shop = current_shop
-    @pick_up_tags = PickUpTag.active_tag
-    @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')
   end
 

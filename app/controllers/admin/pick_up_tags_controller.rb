@@ -1,5 +1,6 @@
 class Admin::PickUpTagsController < ApplicationController
   before_action :authenticate_admin!
+  before_action :set_tag
 
   def create
     @pick_up_tag = PickUpTag.new(pick_up_tag_params)
@@ -15,8 +16,6 @@ class Admin::PickUpTagsController < ApplicationController
   def edit
     @tags = Tag.all
     @pick_up_tag = PickUpTag.find(params[:id])
-    @pick_up_tags = PickUpTag.active_tag
-    @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')
   end
 

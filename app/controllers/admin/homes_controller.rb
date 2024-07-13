@@ -1,6 +1,7 @@
 class Admin::HomesController < ApplicationController
   before_action :authenticate_admin!
-  before_action :set_search_and_tag
+  before_action :set_search
+  before_action :set_tag
 
   def top
     @items = Item.left_joins(:item_details)
@@ -16,9 +17,7 @@ class Admin::HomesController < ApplicationController
 
   private
 
-  def set_search_and_tag
-    @pick_up_tags = PickUpTag.active_tag
-    @tag_rank = Tag.tag_rank_item
+  def set_search
     @search = OpenStruct.new(model: 'item')
   end
 end

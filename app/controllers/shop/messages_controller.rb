@@ -1,7 +1,8 @@
 class Shop::MessagesController < ApplicationController
   before_action :authenticate_shop!
-  before_action :set_tag_rank, only: [:show, :index]
+  before_action :set_search, only: [:show, :index]
   before_action :block_non_related_shop, only: [:show, :destroy]
+  before_action :set_tag
 
   def show
     #member = Member.find(params[:id])
@@ -58,9 +59,7 @@ class Shop::MessagesController < ApplicationController
 
   private
 
-  def set_tag_rank
-    @pick_up_tags = PickUpTag.active_tag
-    @tag_rank = Tag.tag_rank_item
+  def set_search
     @search = OpenStruct.new(model: 'item')
   end
 

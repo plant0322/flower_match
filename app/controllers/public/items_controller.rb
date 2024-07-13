@@ -1,5 +1,6 @@
 class Public::ItemsController < ApplicationController
   before_action :permission_check
+  before_action :set_tag
 
   def show
     session[:item_id] = params[:id]
@@ -14,8 +15,6 @@ class Public::ItemsController < ApplicationController
 
     item_tags = ItemTag.where(item_id: @item.id)
     @item_tags = Tag.where(id: item_tags.pluck(:tag_id))
-    @pick_up_tags = PickUpTag.active_tag.order(in_order: 'ASC')
-    @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')
   end
 

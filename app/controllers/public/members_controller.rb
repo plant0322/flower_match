@@ -3,6 +3,7 @@ class Public::MembersController < ApplicationController
   before_action :set_current_member, only: [:edit, :update, :withdraw]
   before_action :ensure_guest_member, only: [:edit, :unsubscribe]
   before_action :set_search, only: [:show, :edit, :unsubscribe]
+  before_action :set_tag
 
   def show
     @before_visit_pre_order = PreOrder.where(status: 'before_visit', member_id: current_member)
@@ -22,12 +23,9 @@ class Public::MembersController < ApplicationController
     active_favorite_shop_ids = FavoriteShop.where(member_id: current_member.id, shop_id: active_shops).pluck(:shop_id)
     @favorite_shops = Shop.where(id: active_favorite_shop_ids).order(created_at: "DESC").limit(4)
     @favorite_shop_items = Item.active.where(shop_id: active_favorite_shop_ids).order(created_at: "DESC").limit(6)
-
-    @tag_rank = Tag.tag_rank_item
   end
 
   def edit
-    @tag_rank = Tag.tag_rank_item
   end
 
   def update
@@ -41,7 +39,6 @@ class Public::MembersController < ApplicationController
   end
 
   def unsubscribe
-    @tag_rank = Tag.tag_rank_item
   end
 
   def withdraw
@@ -53,7 +50,6 @@ class Public::MembersController < ApplicationController
   private
 
   def set_search
-    @pick_up_tags = PickUpTag.active_tag.order(in_order: 'ASC')
     @search = OpenStruct.new(model: 'item')
   end
 

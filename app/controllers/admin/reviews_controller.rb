@@ -1,5 +1,6 @@
 class Admin::ReviewsController < ApplicationController
   before_action :authenticate_admin!
+  before_action :set_tag
 
   def index
     unless params[:content].blank?
@@ -13,8 +14,6 @@ class Admin::ReviewsController < ApplicationController
     else
       @reviews = Review.all.order(id: 'DESC').page(params[:page])
     end
-    @pick_up_tags = PickUpTag.active_tag
-    @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')
   end
 

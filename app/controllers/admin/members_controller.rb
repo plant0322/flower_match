@@ -1,7 +1,8 @@
 class Admin::MembersController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_member, only: [:show, :edit, :update]
-  before_action :set_tag, only: [:show, :edit, :index]
+  before_action :set_search, only: [:show, :edit, :index]
+  before_action :set_tag
 
   def show
     member_pre_orders = PreOrder.where(member_id: @member)
@@ -36,9 +37,7 @@ class Admin::MembersController < ApplicationController
 
   private
 
-  def set_tag
-    @pick_up_tags = PickUpTag.active_tag
-    @tag_rank = Tag.tag_rank_item
+  def set_search
     @search = OpenStruct.new(model: 'item')
   end
 

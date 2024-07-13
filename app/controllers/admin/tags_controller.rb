@@ -1,5 +1,6 @@
 class Admin::TagsController < ApplicationController
   before_action :authenticate_admin!
+  before_action :set_tag
 
   def create
   end
@@ -19,8 +20,6 @@ class Admin::TagsController < ApplicationController
                .group(:id)
                .order('COUNT(item_tags.tag_id) DESC')
     @pick_up_tag = PickUpTag.new
-    @pick_up_tags = PickUpTag.all.order(in_order: 'ASC')
-    @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')
   end
 end
