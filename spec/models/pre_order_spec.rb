@@ -1,5 +1,3 @@
-=begin
-
 require 'rails_helper'
 
 RSpec.describe "PreOrderのテスト" do
@@ -60,5 +58,3 @@ RSpec.describe "PreOrderのテスト" do
     end
   end
 end
-
-=end

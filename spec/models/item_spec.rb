@@ -1,5 +1,3 @@
-=begin
-
 require 'rails_helper'
 
 RSpec.describe "Itemモデルのテスト", type: :model do
@@ -106,5 +104,3 @@ RSpec.describe "Itemモデルのテスト", type: :model do
     end
   end
 end
-
-=end
