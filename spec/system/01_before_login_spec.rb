@@ -2,19 +2,24 @@ require 'rails_helper'
 
 describe "[STEP1] ユーザログイン前のテスト" do
   let!(:shop) { create(:shop) }
-  let!(:item) { create(:item, shop_id: shop.id) }
+  let!(:item) { create(:item, shop_id: shop.id, is_active: true) }
   let!(:item_check) { create(:item_check, item_id: item.id) }
   let!(:item_detail) { create(:item_detail, item_id: item.id) }
+  let!(:tag) { create(:tag) }
+  let!(:item_tag) { create(:item_tag, item_id: item.id, tag_id: tag.id) }
 
   describe "トップ画面のテスト" do
     before do
       visit root_path
     end
 
-    context "表示内容の確認" do
+    context "トップ表示内容の確認" do
       it "status_codeが正しい", spec_category: "ページが正常に読み込まれているか" do
         expect(page.status_code).to eq(200)
       end
+    end
+
+    context "ヘッダーリンクの確認" do
       it "FlowerMatchのリンク", spec_dategory: "リンク先の設定" do
         expect(page).to have_link "FlowerMatch", href: "/"
       end
@@ -27,6 +32,15 @@ describe "[STEP1] ユーザログイン前のテスト" do
       it "ログインのリンク", spec_dategory: "リンク先の設定" do
         expect(page).to have_link "ログイン", href: new_member_session_path
       end
+    end
+
+    context "ヘッダー検索機能の確認" do
+      it "検索ボタンが表示されているか", spec_dategory: "検索機能の確認" do
+        expect(page).to have_css('.fa-magnifying-glass')
+      end
+    end
+
+    context "フッターリンクの確認" do
       it "ご利用ガイドのリンク", spec_dategory: "リンク先の設定" do
         expect(page).to have_link "ご利用ガイド", href: guide_path
       end
@@ -95,6 +109,12 @@ describe "[STEP1] ユーザログイン前のテスト" do
       end
       it "商品詳細画像の表示", spec_dategory: "商品情報の表示" do
         expect(page).to have_selector("img[src$='item_detail_image.jpg']")
+      end
+      it "予約のリンク", spec_dategory: "リンク先の設定" do
+        expect(page).to have_link "ログインして予約する", href: new_member_session_path
+      end
+      it "タグのリンク", spec_dategory: "リンク先の設定" do
+        expect(page).to have_link tag.name, href: "/search?model=tag&content=#{tag.name}"
       end
     end
   end
