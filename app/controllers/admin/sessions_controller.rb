@@ -2,6 +2,7 @@
 
 class Admin::SessionsController < Devise::SessionsController
   before_action :set_search_check_login, only: [:new]
+  before_action :set_tag
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

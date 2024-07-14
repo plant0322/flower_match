@@ -1,5 +1,6 @@
 class Shop::HomesController < ApplicationController
   before_action :authenticate_shop!
+  before_action :set_tag
 
   def top
     @shop = current_shop
@@ -8,8 +9,6 @@ class Shop::HomesController < ApplicationController
     @pre_orders_3 = PreOrder.where(item_id: @shop_items.pluck(:id)).order(id: "DESC").limit(3)
     pre_orders = PreOrder.where(item_id: @shop_items)
     @reviews = Review.where(pre_order_id: pre_orders).order(id: "DESC").limit(3)
-    @pick_up_tags = PickUpTag.active_tag
-    @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')
     # メッセージの取得
     @rooms = Room.where(shop_id: current_shop, is_take_care: false)

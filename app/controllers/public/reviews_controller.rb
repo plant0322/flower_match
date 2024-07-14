@@ -1,4 +1,5 @@
 class Public::ReviewsController < ApplicationController
+  before_action :set_tag
 
   def create
     pre_order = PreOrder.find(params[:pre_order_id])
@@ -20,8 +21,6 @@ class Public::ReviewsController < ApplicationController
     pre_orders = PreOrder.where(item_id: items)
     @reviews = Review.active_review.where(pre_order_id: pre_orders)
                                    .order(id: 'DESC').page(params[:page])
-    @pick_up_tags = PickUpTag.active_tag.order(in_order: 'ASC')
-    @tag_rank = Tag.tag_rank_item
     @search = OpenStruct.new(model: 'item')
   end
 

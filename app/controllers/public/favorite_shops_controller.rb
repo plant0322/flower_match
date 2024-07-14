@@ -1,6 +1,7 @@
 class Public::FavoriteShopsController < ApplicationController
   before_action :authenticate_member!
   before_action :set_search, only: [:shop_list, :item_list]
+  before_action :set_tag
 
   def create
     @shop = Shop.find(params[:shop_id])
@@ -18,7 +19,6 @@ class Public::FavoriteShopsController < ApplicationController
   def shop_list
     favorite_shops = FavoriteShop.where(member_id: current_member.id)
     @shops = Shop.where(id: favorite_shops.pluck(:shop_id), is_active: true).order(id: 'DESC').page(params[:page])
-    @tag_rank = Tag.tag_rank_item
   end
 
   def item_list
@@ -31,13 +31,11 @@ class Public::FavoriteShopsController < ApplicationController
                                                MAX(COALESCE(item_details.updated_at, items.updated_at)) AS greatest_updated_at')
                                       .order('greatest_updated_at DESC')
                                       .page(params[:page])
-    @tag_rank = Tag.tag_rank_item
   end
 
   private
 
   def set_search
-    @pick_up_tags = PickUpTag.active_tag.order(in_order: 'ASC')
     @search = OpenStruct.new(model: 'item')
   end
 end

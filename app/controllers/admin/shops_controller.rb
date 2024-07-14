@@ -1,8 +1,8 @@
 class Admin::ShopsController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_shop, only: [:show, :edit, :update]
-  before_action :set_tag, only: [:index, :edit]
   before_action :set_search, only: [:index, :edit, :show]
+  before_action :set_tag
 
   def show
     @items = Item.where(shop_id: @shop)
@@ -35,11 +35,6 @@ class Admin::ShopsController < ApplicationController
 
   def set_search
     @search = OpenStruct.new(model: 'item')
-  end
-
-  def set_tag
-    @pick_up_tags = PickUpTag.active_tag
-    @tag_rank = Tag.tag_rank_item
   end
 
   def set_shop

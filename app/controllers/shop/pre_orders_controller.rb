@@ -1,6 +1,7 @@
 class Shop::PreOrdersController < ApplicationController
   before_action :authenticate_admin_or_shop!
-  before_action :set_tag_rank, only: [:show, :index]
+  before_action :set_search, only: [:show, :index]
+  before_action :set_tag
 
   def index
     @shop = current_shop
@@ -32,9 +33,7 @@ class Shop::PreOrdersController < ApplicationController
     end
   end
 
-  def set_tag_rank
-    @pick_up_tags = PickUpTag.active_tag
-    @tag_rank = Tag.tag_rank_item
+  def set_search
     @search = OpenStruct.new(model: 'item')
   end
 

@@ -1,5 +1,6 @@
 class Shop::SearchesController < ApplicationController
   before_action :authenticate_shop!
+  before_action :set_tag
 
   def search
     shop_items = Item.where(shop_id: current_shop.id)
@@ -39,8 +40,6 @@ class Shop::SearchesController < ApplicationController
                      .where(id: shop_items.pluck(:id)).order(id: "DESC").page(params[:page])
     end
 
-    @tag_rank = Tag.tag_rank_item
-    @pick_up_tags = PickUpTag.active_tag
     @search = OpenStruct.new(model: 'item')
   end
 end

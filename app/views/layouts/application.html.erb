@@ -19,18 +19,34 @@
   <body class="d-flex flex-column vh-100">
     <!--ヘッダーここから-->
     <header class="d-flex flex-row flex-wrap px-2 pb-2 pt-3 <%= (admin_signed_in? || request.path.starts_with?("/admin") ? "admin-header" : "" ) %> <%= (shop_signed_in? || request.path.starts_with?("/shop/") ? "shop-header" : "" ) %>">
-      <div class="site-title col-3 pt-2 ps-4">
-        <%= link_to root_path do %>
-          <p class="h1 text-white">FlowerMatch</p>
-        <% end %>
-      </div>
+
+        <!--FlowerMatch-->
+        <div class="site-title col-3 pt-2 ps-4">
+          <%= link_to root_path do %>
+            <p class="h1 text-white">FlowerMatch</p>
+          <% end %>
+
+          <!--ハンバーガーメニュー-->
+          <button class="hamburger-menu btn btn-light" id="js-hamburger-menu"><i class="fa-solid fa-bars"></i></button>
+          <nav class="navigation">
+            <div class="left-content col-3 px-3">
+              <%= render 'layouts/members_menu' %>
+              <%= render 'layouts/admin_menu' %>
+              <%= render 'layouts/shop_menu' %>
+              <%= render 'layouts/pickup_menu', pick_up_tags: @pick_up_tags %>
+              <%= render 'layouts/homes_menu', tag_rank: @tag_rank %>
+            </div>
+          </nav>
+        </div>
+
+
       <div class="site-title d-flex flex-row flex-wrap col-9">
         <!--検索フォーム-->
         <div class="header-nav col-4 ps-3">
           <%= render 'public/searches/form', search: @search %>
         </div>
         <!--ヘッダーボタン-->
-        <div class="header-nav col-8 d-flex justify-content-end pt-4 pe-4 member-btn <%= (admin_signed_in? || request.path.starts_with?("/admin") ? "admin-btn" : "" ) %>  <%= (shop_signed_in? || request.path.starts_with?("/shop/") ? "shop-btn" : "" ) %>">
+        <div class="header-nav col-8 d-flex justify-content-end pt-4 pe-4 member-btn <%= (admin_signed_in? || request.path.starts_with?("/admin") ? "admin-btn" : "" ) %> <%= (shop_signed_in? || request.path.starts_with?("/shop/") ? "shop-btn" : "" ) %>">
           <!--ショップユーザーログイン後-->
           <% if shop_signed_in? %>
             <div class="header-icon px-2 justify-content-center">

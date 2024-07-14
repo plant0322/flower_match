@@ -3,6 +3,7 @@
 class Public::SessionsController < Devise::SessionsController
   before_action :member_state, only: [:create]
   before_action :set_search_check_login, only: [:new, :create]
+  before_action :set_tag
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

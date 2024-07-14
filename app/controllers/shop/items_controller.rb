@@ -2,7 +2,8 @@ class Shop::ItemsController < ApplicationController
   before_action :authenticate_shop!, except: [:destroy]
   before_action :set_item, only: [:edit, :update, :destroy]
   before_action :is_matching_login_shop, only: [:edit, :update, :destroy]
-  before_action :set_tag_rank, only: [:edit, :index, :new, :create]
+  before_action :set_search, only: [:edit, :index, :new, :create]
+  before_action :set_tag
 
   def new
     @item = Item.new
@@ -152,9 +153,7 @@ class Shop::ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def set_tag_rank
-    @pick_up_tags = PickUpTag.active_tag
-    @tag_rank = Tag.tag_rank_item
+  def set_search
     @search = OpenStruct.new(model: 'item')
   end
 
