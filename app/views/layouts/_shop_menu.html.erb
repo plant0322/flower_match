@@ -1,7 +1,7 @@
 <% if shop_signed_in? %>
   <table class="table">
     <tr>
-      <th class="text-center bg-member <%= (admin_signed_in? ? "bg-admin" : "" ) %> <%= (shop_signed_in? ? "bg-shop" : "" ) %>">ショップメニュー</th>
+      <th class="text-center bg-member <%= (admin_signed_in? || request.path.starts_with?("/admin") ? "bg-admin" : "" ) %> <%= (shop_signed_in? || request.path.starts_with?("/shop/") ? "bg-shop" : "" ) %>">ショップメニュー</th>
     </tr>
     <tr>
       <td class="text-center bg-gray">

@@ -12,7 +12,7 @@
   <table class="table">
     <thead>
       <tr>
-        <th class="bg-member text-center">会員メニュー</th>
+        <th class="bg-member text-center <%= (admin_signed_in? || request.path.starts_with?("/admin") ? "bg-admin" : "" ) %> <%= (shop_signed_in? || request.path.starts_with?("/shop/") ? "bg-shop" : "" ) %>">会員メニュー</th>
       </tr>
     </thead>
     <tbody>
