@@ -1,4 +1,4 @@
-jQuery(document).on('turbolinks:load', function () {
+$(document).on('turbolinks:load', function () {
   $('#shop_postal_code').jpostal({
     postcode : [
       '#shop_postal_code'
