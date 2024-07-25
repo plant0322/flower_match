@@ -11,7 +11,8 @@ import "jquery";
 import "../stylesheets/application";
 
 import "./scroll_messages";
-import "./hamburger_menu.js"
+import "./hamburger_menu"
+import "./postcode_autofill"
 
 Rails.start()
 Turbolinks.start()
