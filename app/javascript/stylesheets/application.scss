@@ -171,6 +171,16 @@ p.icon-down {
     margin: 40px 0;
 }
 
+.js-display-target {
+    opacity: 0;
+    transition: opacity 1.5s, transform 1s;
+}
+
+.js-display-is-active {
+    opacity: 1;
+    transform: translateY(0px);
+}
+
 // 利用規約・プライバシーポリシー
 .terms-content h2 {
     font-size: 1.5em!important;
