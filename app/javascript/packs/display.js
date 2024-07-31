@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('turbolinks:load', function () {
   const target = document.querySelectorAll('.js-display-target');
 
   const options = {
